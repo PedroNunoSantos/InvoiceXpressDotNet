@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MasterClass">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="NestedClass">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Method">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="UrlParms">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Param">
+                            <xs:complexType>
+                              <xs:attribute name="Index" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="Name" type="xs:string" use="required" />
+                              <xs:attribute name="Type" type="xs:string" use="required" />
+                              <xs:attribute name="DefaultValue" type="xs:string" use="optional" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="1" name="ErrorCodes">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Error">
+                            <xs:complexType>
+                              <xs:attribute name="Code" type="xs:unsignedShort" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="1" name="InputData" type="xs:string" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="ReturnData" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="HttpMethod" type="xs:string" use="required" />
+                  <xs:attribute name="Url" type="xs:string" use="required" />
+                  <xs:attribute name="ApiUrl" type="xs:string" use="required" />
+                  <xs:attribute name="SucessCode" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Type" type="xs:string" use="required" />
+      <xs:attribute name="Name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
