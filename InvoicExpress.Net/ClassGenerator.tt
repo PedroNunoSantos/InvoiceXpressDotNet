@@ -1,14 +1,8 @@
 ﻿<#@ template debug="true" hostSpecific="true" language="C#" #> 
 <#@ include file="$(SolutionDir)T4\MultipleOutputHelper.ttinclude" #>
 <#@ assembly name="System.Xml, Version=4.0.0.0" #>
-<#@ import namespace="System.CodeDom" #>
-<#@ import namespace="System.CodeDom.Compiler" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Xml" #>
-<#@ import namespace="System.Xml.Linq" #>
-<#@ import namespace="System.Xml.Schema" #>
 <#@ import namespace="System.Xml.Serialization" #>
-<#@ import namespace="Microsoft.CSharp" #>
 //generated at : <#= DateTime.Now.ToString(CultureInfo.InvariantCulture) #>
 <#
     string templateDir = Path.GetDirectoryName(Host.TemplateFile);
@@ -16,63 +10,23 @@
     if (!File.Exists(xmlTemplate))
         return string.Empty;
 
-    var xml = DeserializeXml<MasterClass>(File.ReadAllText(xmlTemplate, Encoding.Default));
-    Manager manager = Manager.Create(Host, GenerationEnvironment);
-    foreach (MasterClassNestedClass nested in xml.NestedClass)
-    {
-        GenerateInputOutputClasses(manager, nested);
-        GenerateMethods(manager, nested);
-    }
+    var manager = Manager.Create(Host, GenerationEnvironment);
+
+    var xmlConfig = DeserializeXml<Class>(File.ReadAllText(xmlTemplate, Encoding.Default));
+    GenerateDtos(manager, xmlConfig);
+    GenerateApiCalls(manager, xmlConfig);
+
     manager.Process(true);
 #>
 <#+
     private const string BaseNamespace = "InvoicExpress.Net";
-    private void GenerateInputOutputClasses(Manager m, MasterClassNestedClass data)
+
+    private void GenerateApiCalls(Manager m, Class mc)
     {
-        foreach (MasterClassNestedClassMethod method in data.Method)
+        foreach (var api in mc.NestedClass)
         {
-            Action<string, string, string> createClassFile = (nameSpace, fileName, xml) =>
-            {
-				string xsd = XmlToXsd(xml);
-				m.StartNewFile(fileName.Replace(".cs", ".xsd"));
-				Write(xsd);
-				m.EndBlock();
-
-                string cSharp = XsdToClass(xsd);
-
-                m.StartNewFile(fileName); #>
-// This file was automatically generated
-// Do not write any custom code here.
-<#= string.Format("// {0}", method.ApiUrl) #>
-namespace <#=nameSpace #>
-{<#+
-                PushIndent("\t");
-                Write(cSharp);
-                PopIndent();
-#>}<#+
-                m.EndBlock();
-            };
-
-            if (!string.IsNullOrEmpty(method.InputData))
-            {
-                string inputNameSpace = string.Format("{0}.I.{1}.{2}", BaseNamespace, data.Name, method.Name);
-                string fileName = string.Format("I.{0}.{1}.g.cs", data.Name, method.Name);
-                createClassFile(inputNameSpace, fileName,
-                    method.InputData);
-            }
-            if (!string.IsNullOrEmpty(method.ReturnData))
-            {
-                string returnNameSpace = string.Format("{0}.R.{1}.{2}", BaseNamespace, data.Name, method.Name);
-                string fileName = string.Format("R.{0}.{1}.g.cs", data.Name, method.Name);
-                createClassFile(returnNameSpace, fileName,
-                    method.ReturnData);
-            }
-        }
-    }
-
-	private void GenerateMethods(Manager m, MasterClassNestedClass api)
-	{
-	    m.StartNewFile(string.Format("{0}.g.cs", api.Name));
+            m.StartNewFile(string.Format("{0}.g.cs", api.Name));
+            PrintFileHeader();
 #>
 using System;
 using System.Net;
@@ -83,26 +37,24 @@ namespace <#=BaseNamespace #>
 		public static class <#= api.Name #>
 		{
 	<#+
-	    foreach (MasterClassNestedClassMethod mtd in api.Method)
+	    foreach (var mtd in api.Method)
 	    {
-	        string inputNameSpace = string.Format("I.{0}.{1}", api.Name, mtd.Name);
-	        string returnNameSpace = string.Format("R.{0}.{1}", api.Name, mtd.Name);
+	        //string inputNameSpace = string.Empty; //String.Format("{0}", mtd.Name);
+	        //string returnNameSpace = string.Empty; //String.Format("{0}", mtd.Name);
 
-	        UrlParmsHelper u = BuildParameters(mtd, inputNameSpace);
-	        //string inputClassName = string.Format("{0}.{1}", inputNameSpace, u.InputClassName);
-	        string returnClassName = u.ReturnClassName == "void"
-	            ? u.ReturnClassName
-	            : string.Format("{0}.{1}", returnNameSpace, u.ReturnClassName); #>	        
+	        var u = BuildParameters(mtd);
+	        string returnClassName = u.ReturnClassName; #>
+
 			/// <summary>
 			/// InvoiceExpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
 			/// </summary>
 			public static string <#=mtd.Name #>(<#=u.MethodSignatureStr #>)
 			{
 				string url = <#= u.UrlStringFormat #>;
-				var result = url.Http<#= GetHttpMethod(mtd.HttpMethod) #>(<#= (u.HasInput ? "inputData" : "")#>);
-				if((int)result.StatusCode != <#=mtd.SucessCode #>)
+				var result = url.Http<#= GetHttpMethod(mtd.HttpMethod) #>(<#= u.HasInput ? "inputData" : "" #>);
+				if ((int) result.StatusCode != <#=mtd.SucessCode #>)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)<#=mtd.SucessCode #>)
-						,new Exception(result.Text));
+						, new Exception(result.Text));
 				return result.Text;
 			}
 
@@ -125,11 +77,42 @@ namespace <#=BaseNamespace #>
 		<#+
 	    }
 		#>
+
 		}
 	}
 }<#+
-	    m.EndBlock();
+            m.EndBlock();
+        }
+    }
+
+	 private void GenerateDtos(Manager m, Class c)
+	 {
+	     foreach (ClassType data in c.Types)
+	     {
+	         m.StartNewFile(string.Format("{0}.g.cs", data.Name));
+#>
+using System.Xml.Serialization;
+namespace <#= BaseNamespace #>
+{
+	[XmlRoot("<#= data.XmlName #>")]
+	[XmlType(AnonymousType=true)]
+	public partial class <#= data.Name #>
+	{<#+
+	foreach (var p in data.Property)
+	{
+	    #>
+		
+		[XmlElement("<#=p.XmlName #>")]
+		public <#=p.Type #> <#=p.Name #> { get; set; }
+<#+
 	}
+#>
+	}
+}
+<#+
+	         m.EndBlock();
+	     }
+	 }
 
     private class UrlParmsHelper
     {
@@ -162,57 +145,55 @@ namespace <#=BaseNamespace #>
         }
     }
 
-    private UrlParmsHelper BuildParameters(MasterClassNestedClassMethod m, string ns)
+    private UrlParmsHelper BuildParameters(ClassNestedClassMethod m)
     {
         string maskedUrl = m.Url;
         var up = new UrlParmsHelper();
 
-        up.HasInput = !string.IsNullOrEmpty(m.InputData);
-        up.InputClassName = up.HasInput ? XDocument.Parse(m.InputData).Root.Name.LocalName : "";
+        up.HasInput = !string.IsNullOrEmpty(m.InputClass);
+        up.InputClassName = m.InputClass;
 
-        up.HasReturn = !string.IsNullOrEmpty(m.ReturnData);
-        up.ReturnClassName = up.HasReturn ? XDocument.Parse(m.ReturnData).Root.Name.LocalName : "void";
+        up.HasReturn = !string.IsNullOrEmpty(m.ReturnClass);
+        up.ReturnClassName = up.HasReturn ? m.ReturnClass : "void";
 
         var sbUrlStringFormat = new StringBuilder();
-        var sbParameters = new StringBuilder();
-        var sbMethodCall = new StringBuilder();
+        var sbParameterList = new StringBuilder();
+        var sbArgumentList = new StringBuilder();
 
         if (m.UrlParms != null)
         {
-            foreach (MasterClassNestedClassMethodParam p in m.UrlParms.OrderBy(p => p.Index))
+            foreach (var p in m.UrlParms.OrderBy(p => p.Index))
             {
                 maskedUrl = maskedUrl.Replace(string.Format("{{{0}}}", p.Name), string.Format("{{{0}}}", p.Index));
                 sbUrlStringFormat.Append(string.Format(", {0}", p.Name));
-                sbParameters.Append(sbParameters.Length > 0
+                sbParameterList.Append(sbParameterList.Length > 0
                     ? string.Format(", {0} {1}", p.Type, p.Name)
                     : string.Format("{0} {1}", p.Type, p.Name));
-				
-				//sbParameters.Append(sbParameters.Length > 0
-                //    ? string.Format(", {0} {1}{2}", p.Type, p.Name, string.IsNullOrEmpty(p.DefaultValue) ? "" : " = " + p.DefaultValue)
-                //    : string.Format("{0} {1}{2}", p.Type, p.Name, string.IsNullOrEmpty(p.DefaultValue) ? "" : " = " + p.DefaultValue));
 
-                
-
-                sbMethodCall.Append(sbMethodCall.Length > 0
+                sbArgumentList.Append(sbArgumentList.Length > 0
                     ? string.Format(", {0}", p.Name)
                     : string.Format("{0}", p.Name));
             }
         }
 
-        string str1 = sbParameters.ToString();
-        string str2 = str1;
-        if (m.InputData != null)
+        string m1SignatureStr = sbParameterList.ToString();
+        string m2SignatureStr = m1SignatureStr;
+        if (m.InputClass != null)
         {
-            str1 = str1 + (str1.Length > 0 ? ", string inputData" : "string inputData");
-            str2 = str2 + (str2.Length > 0
-                ? string.Format(", {0}.{1} inputData", ns, up.InputClassName)
-                : string.Format("{0}.{1} inputData", ns, up.InputClassName));
+            m1SignatureStr =
+                string.Format("{0}{1}", m1SignatureStr,
+                    m1SignatureStr.Length > 0 ? ", string inputData" : "string inputData");
+            m2SignatureStr =
+                string.Format("{0}{1}", m2SignatureStr,
+                    m2SignatureStr.Length > 0
+                        ? string.Format(", {0} inputData", up.InputClassName)
+                        : string.Format("{0} inputData", up.InputClassName));
         }
 
         up.UrlStringFormat = string.Format("string.Format(\"{0}\"{1})", maskedUrl, sbUrlStringFormat);
-        up.MethodSignatureStr = str1;
-        up.MethodCallStr = str2;
-        up.MethodCallParameters = sbMethodCall.ToString();
+        up.MethodSignatureStr = m1SignatureStr;
+        up.MethodCallStr = m2SignatureStr;
+        up.MethodCallParameters = sbArgumentList.ToString();
         return up;
     }
 
@@ -232,6 +213,7 @@ namespace <#=BaseNamespace #>
         return result;
     }
 
+    /*
     private static string XmlToXsd(string xml)
     {
         if (string.IsNullOrEmpty(xml))
@@ -240,15 +222,17 @@ namespace <#=BaseNamespace #>
         using (var rd = new StringReader(xml))
         using (XmlReader xmlReader = XmlReader.Create(rd))
         {
-            //var schemaSet = new XmlSchemaSet();
             var schemaInfer = new XmlSchemaInference();
             XmlSchemaSet schemaSet = schemaInfer.InferSchema(xmlReader);
+
             var sb = new StringBuilder();
+            var xmlWriterSettings = new XmlWriterSettings();
+            xmlWriterSettings.Indent = true;
 
             foreach (XmlSchema schema in schemaSet.Schemas())
             {
                 using (var stringWriter = new StringWriter())
-                using (XmlWriter writer = XmlWriter.Create(stringWriter))
+                using (XmlWriter writer = XmlWriter.Create(stringWriter, xmlWriterSettings))
                 {
                     schema.Write(writer);
                     sb.Append(stringWriter);
@@ -310,231 +294,119 @@ namespace <#=BaseNamespace #>
                 codeType.CustomAttributes.Add(xmlTypeAttribute);
         }
     }
+	*/
 
+    private void PrintFileHeader()
+    {
+#>
+// Connector API InvoicExpress.Net developed by EventKey,Lda http://www.eventkey.pt
+<#+
+    }
+#>
+<#+
     /* classes geradas diretamente do ficheiro InioiceExpress.xml*/
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class MasterClass
+
+    [XmlType(AnonymousType = true)]
+    public class Class
     {
-        private MasterClassNestedClass[] nestedClassField;
+        [XmlElement("NestedClass")]
+        public ClassNestedClass[] NestedClass { get; set; }
 
-        private string typeField;
+        [XmlArrayItem("Type", IsNullable = false)]
+        public ClassType[] Types { get; set; }
 
-        private string nameField;
+        [XmlAttribute]
+        public string Type { get; set; }
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("NestedClass")]
-        public MasterClassNestedClass[] NestedClass
-        {
-            get { return this.nestedClassField; }
-            set { this.nestedClassField = value; }
-        }
+        [XmlAttribute]
+        public string Name { get; set; }
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Type
-        {
-            get { return this.typeField; }
-            set { this.typeField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Name
-        {
-            get { return this.nameField; }
-            set { this.nameField = value; }
-        }
+        [XmlAttribute]
+        public string NameSpace { get; set; }
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class MasterClassNestedClass
+    [XmlType(AnonymousType = true)]
+    public class ClassNestedClass
     {
-        private MasterClassNestedClassMethod[] methodField;
+        [XmlElement("Method")]
+        public ClassNestedClassMethod[] Method { get; set; }
 
-        private string nameField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Method")]
-        public MasterClassNestedClassMethod[] Method
-        {
-            get { return this.methodField; }
-            set { this.methodField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Name
-        {
-            get { return this.nameField; }
-            set { this.nameField = value; }
-        }
+        [XmlAttribute]
+        public string Name { get; set; }
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class MasterClassNestedClassMethod
+    [XmlType(AnonymousType = true)]
+    public class ClassNestedClassMethod
     {
-        private MasterClassNestedClassMethodParam[] urlParmsField;
+        [XmlArrayItem("Param", IsNullable = false)]
+        public ClassNestedClassMethodParam[] UrlParms { get; set; }
 
-        private MasterClassNestedClassMethodError[] errorCodesField;
+        [XmlText]
+        public string[] Text { get; set; }
 
-        private string inputDataField;
+        [XmlAttribute]
+        public string Name { get; set; }
 
-        private string returnDataField;
+        [XmlAttribute]
+        public string HttpMethod { get; set; }
 
-        private string nameField;
+        [XmlAttribute]
+        public string Url { get; set; }
 
-        private string httpMethodField;
+        [XmlAttribute]
+        public string ApiUrl { get; set; }
 
-        private string urlField;
+        [XmlAttribute]
+        public byte SucessCode { get; set; }
 
-        private string apiUrlField;
+        [XmlAttribute]
+        public string InputClass { get; set; }
 
-        private byte sucessCodeField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Param", IsNullable = false)]
-        public MasterClassNestedClassMethodParam[] UrlParms
-        {
-            get { return this.urlParmsField; }
-            set { this.urlParmsField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Error", IsNullable = false)]
-        public MasterClassNestedClassMethodError[] ErrorCodes
-        {
-            get { return this.errorCodesField; }
-            set { this.errorCodesField = value; }
-        }
-
-        /// <remarks/>
-        public string InputData
-        {
-            get { return this.inputDataField; }
-            set { this.inputDataField = value; }
-        }
-
-        /// <remarks/>
-        public string ReturnData
-        {
-            get { return this.returnDataField; }
-            set { this.returnDataField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Name
-        {
-            get { return this.nameField; }
-            set { this.nameField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string HttpMethod
-        {
-            get { return this.httpMethodField; }
-            set { this.httpMethodField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Url
-        {
-            get { return this.urlField; }
-            set { this.urlField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ApiUrl
-        {
-            get { return this.apiUrlField; }
-            set { this.apiUrlField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public byte SucessCode
-        {
-            get { return this.sucessCodeField; }
-            set { this.sucessCodeField = value; }
-        }
+        [XmlAttribute]
+        public string ReturnClass { get; set; }
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class MasterClassNestedClassMethodParam
+    [XmlType(AnonymousType = true)]
+    public class ClassNestedClassMethodParam
     {
-        private byte indexField;
+        [XmlAttribute]
+        public byte Index { get; set; }
 
-        private string nameField;
+        [XmlAttribute]
+        public string Name { get; set; }
 
-        private string typeField;
+        [XmlAttribute]
+        public string Type { get; set; }
 
-        private string defaultValueField;
-
-        private bool defaultValueFieldSpecified;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public byte Index
-        {
-            get { return this.indexField; }
-            set { this.indexField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Name
-        {
-            get { return this.nameField; }
-            set { this.nameField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Type
-        {
-            get { return this.typeField; }
-            set { this.typeField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DefaultValue
-        {
-            get { return this.defaultValueField; }
-            set { this.defaultValueField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DefaultValueSpecified
-        {
-            get { return this.defaultValueFieldSpecified; }
-            set { this.defaultValueFieldSpecified = value; }
-        }
+        [XmlAttribute]
+        public string DefaultValue { get; set; }
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class MasterClassNestedClassMethodError
+    [XmlType(AnonymousType = true)]
+    public class ClassType
     {
-        private ushort codeField;
+        [XmlElement("Property")]
+        public ClassTypeProperty[] Property { get; set; }
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort Code
-        {
-            get { return this.codeField; }
-            set { this.codeField = value; }
-        }
+        [XmlAttribute]
+        public string XmlName { get; set; }
+
+        [XmlAttribute]
+        public string Name { get; set; }
+    }
+
+    [XmlType(AnonymousType = true)]
+    public class ClassTypeProperty
+    {
+        [XmlAttribute]
+        public string XmlName { get; set; }
+
+        [XmlAttribute]
+        public string Name { get; set; }
+
+        [XmlAttribute]
+        public string Type { get; set; }
     }
 
 #>

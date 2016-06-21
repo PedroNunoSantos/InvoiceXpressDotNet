@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,7 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Accounts.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountStatsDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeAccountToDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassGenerator.cs">
@@ -51,182 +67,115 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Clients.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientsDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CredentialsDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CreditNote.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CreditNoteChangeStateDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="CreditNotes.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.Accounts.Create.g.cs">
+    <Compile Include="DebitNoteDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.Accounts.Update.g.cs">
+    <Compile Include="DebitNotesDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.Clients.Create.g.cs">
+    <Compile Include="DocumentsStatsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.Clients.Invoices.g.cs">
+    <Compile Include="EmailClientDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.Clients.Update.g.cs">
+    <Compile Include="EmailMessageDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.CreditNotes.ChangeState.g.cs">
+    <Compile Include="EventDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.CreditNotes.Create.g.cs">
+    <Compile Include="EventsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.CreditNotes.EmailDocument.g.cs">
+    <Compile Include="InvoiceChangeStateDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.CreditNotes.Update.g.cs">
+    <Compile Include="InvoiceDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="I.Invoices.ChangeState.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Invoices.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Invoices.EmailInvoice.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Invoices.PartialPayment.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Items.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Items.Update.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.SimplifiedInvoices.ChangeState.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.SimplifiedInvoices.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.SimplifiedInvoices.EmailInvoice.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Users.Accounts.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Users.ChangeAccount.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="I.Users.Login.g.cs">
+    <Compile Include="InvoiceReceiptDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Invoices.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="InvoicesDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Items.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Accounts.Create.g.cs">
+    <Compile Include="ItemsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Accounts.Get.g.cs">
+    <Compile Include="MulticurrencyDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Accounts.Stats.g.cs">
+    <Compile Include="PartialPaymentDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Clients.Create.g.cs">
+    <Compile Include="PartialPaymentReceiptDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Clients.FindByCode.g.cs">
+    <Compile Include="PdfOutputDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Clients.FindByName.g.cs">
+    <Compile Include="PreferredContactDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Clients.Get.g.cs">
+    <Compile Include="RolesDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Clients.Invoices.g.cs">
+    <Compile Include="SimplifiedInvoiceChangeStateDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="R.Clients.List.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.CreditNotes.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.CreditNotes.Get.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.CreditNotes.List.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.CreditNotes.Pdf.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.ChangeState.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.Get.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.List.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.PartialPayment.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.Pdf.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.RelatedDocuments.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Invoices.Update.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Items.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Items.Get.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Items.List.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.SimplifiedInvoices.Create.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.SimplifiedInvoices.Get.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.SimplifiedInvoices.List.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.SimplifiedInvoices.Pdf.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.SimplifiedInvoices.RelatedDocuments.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.SimplifiedInvoices.Update.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Users.Accounts.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="R.Users.Login.g.cs">
+    <Compile Include="SimplifiedInvoiceDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="SimplifiedInvoices.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Test.cs" />
+    <Compile Include="SimplifiedInvoicesDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaxDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccountDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccountsDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersStatsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="XmlSerializationExtensions.cs" />
@@ -234,226 +183,16 @@
     <Compile Include="WebRequestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassesInvoicExpress.csv" />
     <None Include="ClassGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ClassGenerator.cs</LastGenOutput>
     </None>
-    <None Include="I.Accounts.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Accounts.Update.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Clients.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Clients.Invoices.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Clients.Update.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.CreditNotes.ChangeState.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.CreditNotes.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.CreditNotes.EmailDocument.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.CreditNotes.Update.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Invoices.ChangeState.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Invoices.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Invoices.EmailInvoice.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Invoices.PartialPayment.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Items.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Items.Update.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.SimplifiedInvoices.ChangeState.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.SimplifiedInvoices.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.SimplifiedInvoices.EmailInvoice.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Users.Accounts.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Users.ChangeAccount.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="I.Users.Login.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="InvoiceExpress Extract Names.linq" />
     <None Include="InvoiceExpress.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="R.Accounts.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Accounts.Get.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Accounts.Stats.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Clients.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Clients.FindByCode.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Clients.FindByName.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Clients.Get.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Clients.Invoices.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Clients.List.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.CreditNotes.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.CreditNotes.Get.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.CreditNotes.List.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.CreditNotes.Pdf.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.ChangeState.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.Get.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.List.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.PartialPayment.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.Pdf.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.RelatedDocuments.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Invoices.Update.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Items.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Items.Get.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Items.List.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.SimplifiedInvoices.Create.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.SimplifiedInvoices.Get.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.SimplifiedInvoices.List.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.SimplifiedInvoices.Pdf.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.SimplifiedInvoices.RelatedDocuments.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.SimplifiedInvoices.Update.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Users.Accounts.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="R.Users.Login.g.xsd">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

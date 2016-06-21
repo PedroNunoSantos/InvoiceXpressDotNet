@@ -1,85 +1,39 @@
-<MasterClass Type="Class" Name="InvoicExpress">
+<Class Type="Class" Name="InvoicExpress" NameSpace="InvoicExpress.Net">
 
   <NestedClass Name="Accounts">
     <Method Name="Create" HttpMethod="POST"
             Url="https://www.app.invoicexpress.com/api/accounts/create.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/accounts/create"
-            SucessCode="201">
+            SucessCode="201"
+            InputClass="AccountDto"
+            ReturnClass="AccountDto">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<account>
-  <first_name>Ricardo</first_name>
-  <last_name>Pereira</last_name>
-  <organization_name>Company name</organization_name>
-  <phone>+351987654321</phone>
-  <email>someone@example.com</email>
-  <password>123456abc</password>
-  <fiscal_id>123456789</fiscal_id>
-  <tax_country>1</tax_country>
-  <language>pt</language>
-  <terms>1</terms>
-</account>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<account>
-  <id>ID_0000</id>
-  <name>Company name</name>
-  <url>https://companyname.app.invoicexpress.com</url>
-  <api_key>aa8e739bbcbb406c90eccbe0825e87c5c1c4c5a9</api_key>
-  <state>active</state>
-</account>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/get.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/accounts/get"
-            SucessCode="200">
+            SucessCode="200"
+            ReturnClass="AccountDto">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="accountId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<account>
-      <organization_name>Company</organization_name>
-      <fiscal_id>508000111</fiscal_id>
-      <email>someone@example.com</email>
-      <state>active</state>
-      <at_configured Type="boolean">true</at_configured>
-    </account>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Stats" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/stats.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/accounts/stats"
-            SucessCode="200">
+            SucessCode="200"
+            ReturnClass="AccountStatsDto">
       <UrlParms>
         <Param Index="0" Name="accountName" Type="string" />
         <Param Index="1" Name="accountId" Type="string" />
         <Param Index="2" Name="apiKey" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<account_stats>
-      <plan>Gigante</plan>
-      <expires_at Type="date">2016-08-21</expires_at>
-      <documents>
-        <used_documents Type="integer">3</used_documents>
-        <available_documents Type="integer">10000</available_documents>
-        <used_api_documents nil="true" />
-        <available_api_documents nil="true" />
-        <used_web_documents nil="true" />
-        <available_web_documents nil="true" />
-      </documents>
-      <users>
-        <used_users Type="integer">3</used_users>
-        <available_users Type="integer">16</available_users>
-      </users>
-    </account_stats>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Suspend" HttpMethod="PUT"
@@ -107,23 +61,13 @@
     <Method Name="Update" HttpMethod="PUT"
             Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/update.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/accounts/update"
-            SucessCode="200">
+            SucessCode="200"
+            InputClass="AccountDto">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="accountId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<account>
-      <organization_name>SWAT</organization_name>
-      <fiscal_id>508025339</fiscal_id>
-      <address>Saldanha</address>
-      <postal_code>1500-555</postal_code>
-      <city>Lisboa</city>
-      <email>swat@weareswat.com</email>
-    </account>]]>
-      </InputData>
-
     </Method>
 
   </NestedClass>
@@ -132,88 +76,23 @@
     <Method Name="Login" HttpMethod="POST"
             Url="https://www.app.invoicexpress.com/login.xml"
             ApiUrl="https://invoicexpress.com/api/users/login"
+            InputClass="CredentialsDto"
+            ReturnClass="UserAccountDto"
             SucessCode="200">
-      <InputData>
-        <![CDATA[<credentials>
-  <login>someone@example.com</login>
-  <password>mypassword</password>
-</credentials>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<accounts>
-  <account>
-    <id>ID_0000</id>
-    <name>My Company LDA</name>
-    <url>https://mycompany.app.invoicexpress.com</url>
-    <api_key>qwe123234123asd</api_key>
-    <state>active</state>
-    <blocked>false</blocked>
-    <roles>
-      <role>administrator</role>
-    </roles>
-  </account>
-  <account>
-    <id>ID_0000</id>
-    <name>My Other Company S.A.</name>
-    <url>https://myothercompany.app.invoicexpress.com</url>
-    <api_key>123sdfs32412</api_key>
-    <state>active</state>
-    <blocked>true</blocked>
-    <roles>
-      <role>contributor</role>
-    </roles>
-  </account>
-</accounts>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Accounts" HttpMethod="GET"
             Url="https://www.app.invoicexpress.com/users/accounts.xml?api_key?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/users/accounts"
+            ReturnClass="UserAccountsDto"
             SucessCode="200">
-      <InputData>
-        <![CDATA[<credentials>
-  <login>someone@example.com</login>
-  <password>mypassword</password>
-</credentials>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<accounts>
-  <account>
-    <id>ID_0000</id>
-    <name>Oils LDA</name>
-    <url>https://oils.app.invoicexpress.com</url>
-    <api_key>12312rwerwer234234</api_key>
-    <state>active</state>
-    <blocked>false</blocked>
-    <roles>
-      <role>administrator</role>
-    </roles>
-  </account>
-  <account>
-    <id>ID_0000</id>
-    <name>Design Code LDA</name>
-    <url>https://designandcode.app.invoicexpress.com</url>
-    <api_key>3kjj23kjh2kjkj2k3</api_key>
-    <state>active</state>
-    <blocked>true</blocked>
-    <roles>
-      <role>contributor</role>
-    </roles>
-  </account>
-</accounts>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="ChangeAccount" HttpMethod="PUT"
             Url="https://{accountName}.app.invoicexpress.com/users/change_account.xml?api_key?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/users/change-account"
+            InputClass="ChangeAccountToDto"
             SucessCode="200">
-      <InputData>
-        <![CDATA[<change_account_to>
-  <id>ID_0000</id>
-</change_account_to>]]>
-      </InputData>
     </Method>
   </NestedClass>
 
@@ -222,563 +101,98 @@
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/create"
+            InputClass="InvoiceDto"
+            ReturnClass="InvoiceDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<invoice>
-  <id>ID_0000</id>
-  <status>draft</status>
-  <archived>false</archived>
-  <type>Invoice</type>
-  <sequence_number>draft</sequence_number>
-  <date>07/05/2015</date>
-  <due_date>08/05/2015</due_date>
-  <reference>qweqw3213</reference>
-  <observations>obs123</observations>
-  <retention>99.99</retention>
-  <permalink>http://www.app.invoicexpress.com/documents/54109072cfff8e9c8f551b0b3be5d90ab78faa6af28d75</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-  </client>
-  <currency>Euro</currency>
-  <items Type="array">
-    <item>
-      <name>Product 1</name>
-      <description>Cleaning product</description>
-      <unit_price>10.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>10.0</subtotal>
-      <tax_amount>2.3</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>12.3</total>
-    </item>
-    <item>
-      <name>Product 2</name>
-      <description>Beauty product</description>
-      <unit_price>5.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>5.0</subtotal>
-      <tax_amount>1.15</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>6.15</total>
-    </item>
-  </items>
-  <sum>15.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>15.0</before_taxes>
-  <taxes>3.45</taxes>
-  <total>18.45</total>
-</invoice>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<invoice>
-  <id>ID_0000</id>
-  <status>draft</status>
-  <archived>false</archived>
-  <type>Invoice</type>
-  <sequence_number>draft</sequence_number>
-  <date>07/05/2015</date>
-  <due_date>08/05/2015</due_date>
-  <reference>12312jkl1s</reference>
-  <observations>obs123</observations>
-  <retention>99.99</retention>
-  <permalink>http://www.app.invoicexpress.com/documents/54109072cfff8e9c8f551b0b3be5d90ab78faa6af28d75</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-  </client>
-  <currency>Euro</currency>
-  <items Type="array">
-    <item>
-      <name>Product 1</name>
-      <description>Cleaning product</description>
-      <unit_price>10.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>10.0</subtotal>
-      <tax_amount>2.3</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>12.3</total>
-    </item>
-    <item>
-      <name>Product 2</name>
-      <description>Beauty product</description>
-      <unit_price>5.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>5.0</subtotal>
-      <tax_amount>1.15</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>6.15</total>
-    </item>
-  </items>
-  <sum>15.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>15.0</before_taxes>
-  <taxes>3.45</taxes>
-  <total>18.45</total>
-</invoice>]]>
-      </ReturnData>
     </Method>
-
 
     <Method Name="Get" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/get"
+            ReturnClass="InvoiceDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="1" Name="invoiceId" Type="string" />
+        <Param Index="2" Name="invoiceId" Type="string" />
       </UrlParms>
-      <ErrorCodes>
-        <Error Code="401" />
-        <Error Code="404" />
-      </ErrorCodes>
-      <ReturnData>
-        <![CDATA[<invoice>
-  <id>ID_0000</id>
-  <status>final</status>
-  <archived>false</archived>
-  <type>Invoice</type>
-  <sequence_number>64/A</sequence_number>
-  <date>11/05/2015</date>
-  <due_date>10/07/2015</due_date>
-  <reference>erwer2342</reference>
-  <observations>Ligar para departamento financeiro</observations>
-  <retention>99.99</retention>
-  <permalink>http://www.app.invoicexpress.com/documents/54109151f2d4681a26701e642d330e37ef6c6569af2442</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-    <email>someone@example.com</email>
-    <address>address</address>
-    <city>City</city>
-    <postal_code>1234-555</postal_code>
-    <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
-    <website>www.invoicexpress.com</website>
-    <phone>+351987654321</phone>
-    <fax>+351987654321</fax>
-  </client>
-  <currency>Euro</currency>
-  <items type="array">
-    <item>
-      <name>MacBook Pro</name>
-      <description>Product</description>
-      <unit_price>1000.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>1000.0</subtotal>
-      <tax_amount>230.0</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>1230.0</total>
-    </item>
-  </items>
-  <sum>1000.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>1000.0</before_taxes>
-  <taxes>230.0</taxes>
-  <total>1230.0</total>
-</invoice>]]>
-      </ReturnData>
     </Method>
-
 
     <Method Name="Update" HttpMethod="PUT"
             Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/update"
+            InputClass="InvoiceDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="1" Name="invoiceId" Type="string" />
+        <Param Index="2" Name="invoiceId" Type="string" />
       </UrlParms>
-      <ErrorCodes>
-        <Error Code="401" />
-        <Error Code="404" />
-        <Error Code="422" />
-      </ErrorCodes>
-      <ReturnData>
-        <![CDATA[<invoice>
-  <id>ID_0000</id>
-  <status>draft</status>
-  <archived>false</archived>
-  <type>Invoice</type>
-  <sequence_number>draft</sequence_number>
-  <date>07/05/2015</date>
-  <due_date>08/05/2015</due_date>
-  <reference>123123sdfsd</reference>
-  <observations>obs123</observations>
-  <retention>99.99</retention>
-  <permalink>http://www.app.invoicexpress.com/documents/54109072cfff8e9c8f551b0b3be5d90ab78faa6af28d75</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-  </client>
-  <currency>Euro</currency>
-  <items Type="array">
-    <item>
-      <name>Product 1</name>
-      <description>Cleaning product</description>
-      <unit_price>10.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>10.0</subtotal>
-      <tax_amount>2.3</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>12.3</total>
-    </item>
-    <item>
-      <name>Product 2</name>
-      <description>Beauty product</description>
-      <unit_price>5.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>5.0</subtotal>
-      <tax_amount>1.15</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>6.15</total>
-    </item>
-  </items>
-  <sum>15.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>15.0</before_taxes>
-  <taxes>3.45</taxes>
-  <total>18.45</total>
-</invoice>]]>
-      </ReturnData>
     </Method>
-
 
     <Method Name="List" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/list"
+            ReturnClass="InvoicesDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<invoices type="array">
-	<invoice>
-		<id>ID_0000</id>
-		<status>draft</status>
-		<archived>false</archived>
-		<type>Invoice</type>
-		<sequence_number>draft</sequence_number>
-		<date>07/05/2015</date>
-		<due_date>06/07/2015</due_date>
-		<reference>123123sdfsdf</reference>
-		<observations>Ligar para departamento financeiro</observations>
-		<retention>99.99</retention>
-		<permalink>http://www.app.invoicexpress.com/documents/541087cb7dbdb684848ceea2b564124c8aebf570372ff2</permalink>
-		<client>
-			<id>ID_0000</id>
-			<name>Ricardo Pereira</name>
-			<email>someone@example.com</email>
-			<address>rua</address>
-			<city>Algures</city>
-			<postal_code>5522-52</postal_code>
-			<country>Portugal</country>
-			<fiscal_id>508025338</fiscal_id>
-			<website>www.url.pt</website>
-			<phone>+351987654321</phone>
-			<fax>+351987654321</fax>
-		</client>
-		<currency>Euro</currency>
-		<items type="array">
-			<item>
-				<name>MacBook Pro</name>
-				<description>desc123</description>
-				<unit_price>1000.0</unit_price>
-				<unit>Kg</unit>
-				<quantity>1.0</quantity>
-				<tax>
-					<name>IVA23</name>
-					<value>23.0</value>
-				</tax>
-				<discount>0.0</discount>
-				<subtotal>1000.0</subtotal>
-				<tax_amount>230.0</tax_amount>
-				<discount_amount>0.0</discount_amount>
-				<total>1230.0</total>
-			</item>
-		</items>
-		<sum>1000.0</sum>
-		<discount>0.0</discount>
-		<before_taxes>1000.0</before_taxes>
-		<taxes>230.0</taxes>
-		<total>1230.0</total>
-	</invoice>  
-</invoices>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="ChangeState" HttpMethod="PUT"
             Url="https://{accountName}.app.invoicexpress.com/invoice/{invoiceId}/change-state.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/change-state"
-            SucessCode="200">
+            SucessCode="200"
+            InputClass="InvoiceChangeStateDto"
+            ReturnClass="InvoiceChangeStateDto">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="invoiceId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<invoice>
- <state>finalized</state>
-</invoice>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<invoice>
- <state>canceled</state>
- <message>Canceled due to amount of money</message>
-</invoice>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="EmailInvoice" HttpMethod="PUT"
             Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}/email-document.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/email-invoice"
+            InputClass="EmailMessageDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="invoiceId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<message>
-  <client>
-    <email>someone@example.com</email>
-    <save>0</save>
-  </client>
-  <subject>Invoice from company</subject>
-  <body>This is where the email body goes</body>
-  <cc>cc.client@company.com</cc>
-  <bcc>bcc.client@company.com</bcc>
-  <logo>0</logo>
-</message>]]>
-      </InputData>
     </Method>
 
     <Method Name="RelatedDocuments" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/document/{invoiceId}/related_documents.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/related-documents"
+            ReturnClass="InvoicesDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="invoiceId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<invoices type="array">
-  <invoice>
-    <id>ID_0000</id>
-    <status>settled</status>
-    <archived>false</archived>
-    <type>CreditNote</type>
-    <sequence_number>4/A</sequence_number>
-    <date>11/05/2015</date>
-    <due_date>10/07/2015</due_date>
-    <reference>123123sdfsdf</reference>
-    <observations>Ligar para departamento financeiro</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/54109306ea760af5fc386d614352dfefb5ce3c4225223d</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua esquerda</address>
-      <city>Algures em Portugal</city>
-      <postal_code>1234-555</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.invoicexpress.com</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-      <item>
-        <name>MacBook Pro</name>
-        <description>Product</description>
-        <unit_price>200.0</unit_price>
-        <unit>Kg</unit>
-        <quantity>1.0</quantity>
-        <tax>
-          <id>ID_0000</id>
-          <name>IVA23</name>
-          <value>23.0</value>
-        </tax>
-        <discount>0.0</discount>
-        <subtotal>200.0</subtotal>
-        <tax_amount>46.0</tax_amount>
-        <discount_amount>0.0</discount_amount>
-        <total>246.0</total>
-      </item>
-    </items>
-    <sum>200.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>200.0</before_taxes>
-    <taxes>46.0</taxes>
-    <total>246.0</total>
-  </invoice>
-  <invoice>
-    <id>ID_0000</id>
-    <status>settled</status>
-    <archived>false</archived>
-    <type>DebitNote</type>
-    <sequence_number>2/A</sequence_number>
-    <date>11/05/2015</date>
-    <due_date>10/07/2015</due_date>
-    <reference>123123sdfsd</reference>
-    <observations>Ligar para departamento financeiro</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/54109495c7abc8539bde0a209eb4286a76c6328d7a25ee</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua esquerda</address>
-      <city>Algures em Portugal</city>
-      <postal_code>1234-555</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.invoicexpress.com</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-      <item>
-        <name>MacBook Pro</name>
-        <description>Product</description>
-        <unit_price>300.0</unit_price>
-        <unit>Kg</unit>
-        <quantity>1.0</quantity>
-        <tax>
-          <id>ID_0000</id>
-          <name>IVA23</name>
-          <value>23.0</value>
-        </tax>
-        <discount>0.0</discount>
-        <subtotal>300.0</subtotal>
-        <tax_amount>69.0</tax_amount>
-        <discount_amount>0.0</discount_amount>
-        <total>369.0</total>
-      </item>
-    </items>
-    <sum>300.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>300.0</before_taxes>
-    <taxes>69.0</taxes>
-    <total>369.0</total>
-  </invoice>
-  <invoice>
-    <id>ID_0000</id>
-    <status>final</status>
-    <archived>false</archived>
-    <type>Receipt</type>
-    <sequence_number>8/A</sequence_number>
-    <date>11/05/2015</date>
-    <due_date>11/05/2015</due_date>
-    <reference>1231231sdasd</reference>
-    <observations>obs123</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/5410950438975690fe12e5d8a6ac4fcb7f1c40a8931502</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua esquerda</address>
-      <city>Algures em Portugal</city>
-      <postal_code>1234-555</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.invoicexpress.com</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-    </items>
-    <sum>1100.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>1100.0</before_taxes>
-    <taxes>0.0</taxes>
-    <total>1353.0</total>
-  </invoice>
-</invoices>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
-            SucessCode="200">
+            SucessCode="200"
+            ReturnClass="PdfOutputDto">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="invoiceId" Type="string" />
 
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<output>
- <pdfUrl>http://sum.url</pdfUrl>
-</output>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Archive" HttpMethod="PUT"
@@ -808,68 +222,14 @@
     <Method Name="PartialPayment" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/documents/{documentId}/partial_payments.xml"
             ApiUrl="https://invoicexpress.com/api/invoices/partial-payment"
+            InputClass="PartialPaymentDto"
+            ReturnClass="PartialPaymentReceiptDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="documentId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<partial_payment>
-      <payment_mechanism>TB</payment_mechanism>
-      <note>Obervations</note>
-      <serie>A</serie>
-      <amount>100,00</amount>
-      <payment_date>26/10/2015</payment_date>
-    </partial_payment>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<receipt>
-        <id type="integer">654321</id>
-        <status>final</status>
-        <archived type="boolean">false</archived>
-        <type>Receipt</type>
-        <sequence_number>123/A</sequence_number>
-        <date>01/01/2015</date>
-        <due_date>29/12/2015</due_date>
-        <observations>Obervations</observations>
-        <retention nil="true"/>
-        <permalink>http://www.app.invoicexpress.com/documents/54ab78faf2d75</permalink>
-        <sum>0.81</sum>
-        <discount>0.0</discount>
-        <before_taxes>0.81</before_taxes>
-        <taxes>0.0</taxes>
-        <total>1.0</total>
-        <currency>Euro</currency>
-        <client>
-            <id type="integer">123456</id>
-            <name>Client</name>
-            <email>client@example.com</email>
-            <address>Address</address>
-            <city>Lisboa</city>
-            <postal_code>Postal_Code</postal_code>
-            <country>Portugal</country>
-        </client>
-        <multicurrency>
-            <rate>1.0</rate>
-            <currency>EUR</currency>
-        </multicurrency>
-        <events type="array">
-            <event>
-                <type>create</type>
-                <date>29/12/2015</date>
-                <time>17:34</time>
-                <user>someone@example.com</user>
-            </event>
-            <event>
-                <type>finalized</type>
-                <date>29/12/2015</date>
-                <time>17:34</time>
-                <user>someone@example.com</user>
-            </event>
-        </events>
-    </receipt>]]>
-      </ReturnData>
     </Method>
 
   </NestedClass>
@@ -879,542 +239,100 @@
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/create"
+            InputClass="SimplifiedInvoiceDto"
+            ReturnClass="SimplifiedInvoiceDto"
             SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<simplified_invoice>
- <date>07/05/2015</date>
- <due_date>08/05/2015</due_date>
- <reference>asda123</reference>
- <observations>obs</observations>
- <retention>99.99</retention>
- <tax_exemption>M01</tax_exemption>
- <sequence_id>Str123456</sequence_id>
- <manual_sequence_number>Str123456</manual_sequence_number>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-    <email>someone@example.com</email>
-    <address>address</address>
-    <city>City</city>
-    <postal_code>1234-555</postal_code>
-    <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
-    <website>www.invoicexpress.com</website>
-    <phone>+351987654321</phone>
-    <fax>+351987654321</fax>
-  </client>
- <items type="array">
-  <item>
-   <name>Product 1</name>
-   <description>Cleaning product</description>
-   <unit_price>10.0</unit_price>
-   <quantity>1.0</quantity>
-  </item>
-  <item>
-   <name>Product 2</name>
-   <description>Beauty product</description>
-   <unit_price>5.0</unit_price>
-   <quantity>1.0</quantity>
-   <tax>
-    <name>IVA23</name>
-   </tax>
-  </item>
- </items>
-</simplified_invoice>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<simplified_invoice>
-  <id>ID_0000</id>
-  <status>draft</status>
-  <archived>false</archived>
-  <type>SimplifiedInvoice</type>
-  <sequence_number>draft</sequence_number>
-  <date>07/05/2015</date>
-  <due_date>08/05/2015</due_date>
-  <reference>str123</reference>
-  <observations>obs</observations>
-  <retention>99.99</retention>
-  <permalink>http://www.app.invoicexpress.com/documents/54109072cfff8e9c8f551b0b3be5d90ab78faa6af28d75</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-  </client>
-  <currency>Euro</currency>
-  <items type="array">
-    <item>
-      <name>Product 1</name>
-      <description>Cleaning product</description>
-      <unit_price>10.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>10.0</subtotal>
-      <tax_amount>2.3</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>12.3</total>
-    </item>
-    <item>
-      <name>Product 2</name>
-      <description>Beauty product</description>
-      <unit_price>5.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>5.0</subtotal>
-      <tax_amount>1.15</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>6.15</total>
-    </item>
-  </items>
-  <sum>15.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>15.0</before_taxes>
-  <taxes>3.45</taxes>
-  <total>18.45</total>
-</simplified_invoice>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/get"
-		  SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="1" Name="simplifiedInvoiceId" Type="string" />
-      </UrlParms>
-      <ErrorCodes>
-        <Error Code="401"/>
-        <Error Code="404"/>
-      </ErrorCodes>
-      <ReturnData>
-        <![CDATA[<simplified_invoice>
-  <id>ID_0000</id>
-  <status>final</status>
-  <archived>false</archived>
-  <type>SimplifiedInvoice</type>
-  <sequence_number>64/A</sequence_number>
-  <date>11/05/2015</date>
-  <due_date>10/07/2015</due_date>
-  <reference>qweqw3213</reference>
-  <observations>Ligar para departamento financeiro</observations>
-  <retention>99.99</retention>
-  <permalink>http://www.app.invoicexpress.com/documents/54109151f2d4681a26701e642d330e37ef6c6569af2442</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-    <email>someone@example.com</email>
-    <address>Rua</address>
-    <city>Cidade</city>
-    <postal_code>1234-555</postal_code>
-    <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
-    <website>www.invoicexpress.com</website>
-    <phone>+351987654321</phone>
-    <fax>+351987654321</fax>
-  </client>
-  <currency>Euro</currency>
-  <items type="array">
-    <item>
-      <name>MacBook Pro</name>
-      <description>description</description>
-      <unit_price>1000.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>1000.0</subtotal>
-      <tax_amount>230.0</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>1230.0</total>
-    </item>
-  </items>
-  <sum>1000.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>1000.0</before_taxes>
-  <taxes>230.0</taxes>
-  <total>1230.0</total>
-</simplified_invoice>]]>
-      </ReturnData>
-    </Method>
-
-    <Method Name="Update" HttpMethod="PUT"
-      Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/get"
+            ReturnClass="SimplifiedInvoiceDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<simplified_invoice>
-  <id>ID_0000</id>
-  <date>07/05/2015</date>
-  <due_date>08/05/2015</due_date>
-  <status>draft</status>
-  <archived>false</archived>
-  <type>Invoice</type>
-  <sequence_number>draft</sequence_number>
-  <reference>123123sdfsd</reference>
-  <observations>obs123</observations>
-  <retention>99.99</retention>
-  <tax_exemption>M01</tax_exemption>
-  <permalink>http://www.app.invoicexpress.com/documents/54109072cfff8e9c8f551b0b3be5d90ab78faa6af28d75</permalink>
-  <client>
-    <id>ID_0000</id>
-    <name>Ricardo Pereira</name>
-    <code>CODE_123</code>
-    <email>someone@example.com</email>
-    <address>address</address>
-    <city>City</city>
-    <postal_code>1234-555</postal_code>
-    <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
-    <website>www.invoicexpress.com</website>
-    <phone>+351987654321</phone>
-    <fax>+351987654321</fax>
-  </client>
-  <currency>Euro</currency>
-  <items Type="array">
-    <item>
-      <name>Product 1</name>
-      <description>Cleaning product</description>
-      <unit_price>10.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>10.0</subtotal>
-      <tax_amount>2.3</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>12.3</total>
-    </item>
-    <item>
-      <name>Product 2</name>
-      <description>Beauty product</description>
-      <unit_price>5.0</unit_price>
-      <unit>Kg</unit>
-      <quantity>1.0</quantity>
-      <tax>
-        <id>ID_0000</id>
-        <name>IVA23</name>
-        <value>23.0</value>
-      </tax>
-      <discount>0.0</discount>
-      <subtotal>5.0</subtotal>
-      <tax_amount>1.15</tax_amount>
-      <discount_amount>0.0</discount_amount>
-      <total>6.15</total>
-    </item>
-  </items>
-  <sum>15.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>15.0</before_taxes>
-  <taxes>3.45</taxes>
-  <total>18.45</total>
-</simplified_invoice>]]>
-      </ReturnData>
+    </Method>
+
+    <Method Name="Update" HttpMethod="PUT"
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
+            InputClass="SimplifiedInvoiceDto"
+            SucessCode="200">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+        <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
+      </UrlParms>
     </Method>
 
     <Method Name="List" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/list"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/list"
+            ReturnClass="SimplifiedInvoicesDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="page" Type="int" DefaultValue="1" />
         <Param Index="3" Name="perPage" Type="int" DefaultValue="10" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<simplified_invoices type="array">
-  <simplified_invoice>
-    <id>ID_0000</id>
-    <status>draft</status>
-    <archived>false</archived>
-    <type>Invoice</type>
-    <sequence_number>987654321</sequence_number>
-    <date>07/05/2015</date>
-    <due_date>06/07/2015</due_date>
-    <reference>qweqw3213</reference>
-    <observations>Ligar para departamento financeiro</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/541087cb7dbdb684848ceea2b564124c8aebf570372ff2</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua qualquer</address>
-      <city>cidade qualquer</city>
-      <postal_code>1000-200</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.url.pt</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-      <item>
-        <name>MacBook Pro</name>
-        <description>description</description>
-        <unit_price>1000.0</unit_price>
-        <unit>Kg</unit>
-        <quantity>1.0</quantity>
-        <tax>
-          <name>IVA23</name>
-          <value>23.0</value>
-        </tax>
-        <discount>0.0</discount>
-        <subtotal>1000.0</subtotal>
-        <tax_amount>230.0</tax_amount>
-        <discount_amount>0.0</discount_amount>
-        <total>1230.0</total>
-      </item>
-    </items>
-    <sum>1000.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>1000.0</before_taxes>
-    <taxes>230.0</taxes>
-    <total>1230.0</total>
-  </simplified_invoice>
-</simplified_invoices>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="ChangeState" HttpMethod="PUT"
-      Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/change-state.xml"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/change-state.xml"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
+            InputClass="SimplifiedInvoiceChangeStateDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<simplified_invoice>
- <state>canceled</state>
- <message>Canceled due to amount of money</message>
-</simplified_invoice>]]>
-      </InputData>
     </Method>
 
     <Method Name="EmailInvoice" HttpMethod="PUT"
-      Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/email-document.xml?api_key={apiKey}"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/email-document.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
+            InputClass="EmailMessageDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<message>
-  <client>
-    <email>someone@example.com</email>
-    <save>0</save>
-  </client>
-  <subject>Invoice from company</subject>
-  <body>This is where the email body goes</body>
-  <cc>cc.client@company.com</cc>
-  <bcc>bcc.client@company.com</bcc>
-  <logo>0</logo>
-</message>]]>
-      </InputData>
     </Method>
 
+
+    <!--
     <Method Name="RelatedDocuments" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/document/{simplifiedInvoiceId}/related_documents.xml?api_key={apiKey}"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/related-documents"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/document/{simplifiedInvoiceId}/related_documents.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/related-documents"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<invoices type="array">
-  <invoice>
-    <id>ID_0000</id>
-    <status>settled</status>
-    <archived>false</archived>
-    <type>CreditNote</type>
-    <sequence_number>4/A</sequence_number>
-    <date>11/05/2015</date>
-    <due_date>10/07/2015</due_date>
-    <reference>123123sdfsdf</reference>
-    <observations>Ligar para departamento financeiro</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/54109306ea760af5fc386d614352dfefb5ce3c4225223d</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua esquerda</address>
-      <city>Algures em Portugal</city>
-      <postal_code>1234-555</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.invoicexpress.com</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-      <item>
-        <name>MacBook Pro</name>
-        <description>Product</description>
-        <unit_price>200.0</unit_price>
-        <unit>Kg</unit>
-        <quantity>1.0</quantity>
-        <tax>
-          <id>ID_0000</id>
-          <name>IVA23</name>
-          <value>23.0</value>
-        </tax>
-        <discount>0.0</discount>
-        <subtotal>200.0</subtotal>
-        <tax_amount>46.0</tax_amount>
-        <discount_amount>0.0</discount_amount>
-        <total>246.0</total>
-      </item>
-    </items>
-    <sum>200.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>200.0</before_taxes>
-    <taxes>46.0</taxes>
-    <total>246.0</total>
-  </invoice>
-  <invoice>
-    <id>ID_0000</id>
-    <status>settled</status>
-    <archived>false</archived>
-    <type>DebitNote</type>
-    <sequence_number>2/A</sequence_number>
-    <date>11/05/2015</date>
-    <due_date>10/07/2015</due_date>
-    <reference>123123sdfsd</reference>
-    <observations>Ligar para departamento financeiro</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/54109495c7abc8539bde0a209eb4286a76c6328d7a25ee</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua esquerda</address>
-      <city>Algures em Portugal</city>
-      <postal_code>1234-555</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.invoicexpress.com</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-      <item>
-        <name>MacBook Pro</name>
-        <description>Product</description>
-        <unit_price>300.0</unit_price>
-        <unit>Kg</unit>
-        <quantity>1.0</quantity>
-        <tax>
-          <id>ID_0000</id>
-          <name>IVA23</name>
-          <value>23.0</value>
-        </tax>
-        <discount>0.0</discount>
-        <subtotal>300.0</subtotal>
-        <tax_amount>69.0</tax_amount>
-        <discount_amount>0.0</discount_amount>
-        <total>369.0</total>
-      </item>
-    </items>
-    <sum>300.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>300.0</before_taxes>
-    <taxes>69.0</taxes>
-    <total>369.0</total>
-  </invoice>
-  <invoice>
-    <id>ID_0000</id>
-    <status>final</status>
-    <archived>false</archived>
-    <type>Receipt</type>
-    <sequence_number>8/A</sequence_number>
-    <date>11/05/2015</date>
-    <due_date>11/05/2015</due_date>
-    <reference>1231231sdasd</reference>
-    <observations>obs123</observations>
-    <retention>99.99</retention>
-    <permalink>http://www.app.invoicexpress.com/documents/5410950438975690fe12e5d8a6ac4fcb7f1c40a8931502</permalink>
-    <client>
-      <id>ID_0000</id>
-      <name>Ricardo Pereira</name>
-      <email>someone@example.com</email>
-      <address>rua esquerda</address>
-      <city>Algures em Portugal</city>
-      <postal_code>1234-555</postal_code>
-      <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
-      <website>www.invoicexpress.com</website>
-      <phone>+351987654321</phone>
-      <fax>+351987654321</fax>
-    </client>
-    <currency>Euro</currency>
-    <items type="array">
-    </items>
-    <sum>1100.0</sum>
-    <discount>0.0</discount>
-    <before_taxes>1100.0</before_taxes>
-    <taxes>0.0</taxes>
-    <total>1353.0</total>
-  </invoice>
-</invoices>]]>
-      </ReturnData>
     </Method>
+-->
 
     <Method Name="Pdf" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/api/pdf/{simplifiedInvoiceId}.xml?api_key={apiKey}"
-			ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/api/pdf/{simplifiedInvoiceId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
+            ReturnClass="PdfOutputDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<output>
- <pdfUrl>http://sum.url</pdfUrl>
-</output>]]>
-      </ReturnData>
     </Method>
 
   </NestedClass>
@@ -1447,10 +365,10 @@
     <city>cidade</city>
     <postal_code>1234-555</postal_code>
     <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
+    <fiscal_id>F_ID_123456</fiscal_id>
     <website>www.invoicexpress.com</website>
-    <phone>+351987654321</phone>
-    <fax>+351987654321</fax>
+    <phone>PHONE_123</phone>
+    <fax>PHONE_123</fax>
     <observations>obs</observations>
   </client>
  <items type="array">
@@ -1543,9 +461,9 @@
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
-			ApiUrl="https://invoicexpress.com/api/credit-notes/get"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
+            ApiUrl="https://invoicexpress.com/api/credit-notes/get"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1573,10 +491,10 @@
     <city>cidade</city>
     <postal_code>1234-555</postal_code>
     <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
+    <fiscal_id>F_ID_123456</fiscal_id>
     <website>www.invoicexpress.com</website>
-    <phone>+351123456789</phone>
-    <fax>+351123456789</fax>
+    <phone>PHONE_123</phone>
+    <fax>PHONE_123</fax>
   </client>
   <currency>Euro</currency>
   <items type="array">
@@ -1608,9 +526,9 @@
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-      Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
-			ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
+            ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1634,10 +552,10 @@
     <city>cidade</city>
     <postal_code>1234-555</postal_code>
     <country>Portugal</country>
-    <fiscal_id>508025338</fiscal_id>
+    <fiscal_id>F_ID_123456</fiscal_id>
     <website>www.invoicexpress.com</website>
-    <phone>+351987654321</phone>
-    <fax>+351987654321</fax>
+    <phone>PHONE_123</phone>
+    <fax>PHONE_123</fax>
     <observations>obs</observations>
   </client>
  <items type="array">
@@ -1668,9 +586,9 @@
     </Method>
 
     <Method Name="List" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-			ApiUrl="https://invoicexpress.com/api/credit-notes/list"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+            ApiUrl="https://invoicexpress.com/api/credit-notes/list"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1699,10 +617,10 @@
       <city>cidade</city>
       <postal_code>1000-253</postal_code>
       <country>Portugal</country>
-      <fiscal_id>508025338</fiscal_id>
+      <fiscal_id>F_ID_123456</fiscal_id>
       <website>www.url.com</website>
-      <phone>+351123456789</phone>
-      <fax>+351123456789</fax>
+      <phone>PHONE_123</phone>
+      <fax>PHONE_123</fax>
     </client>
     <currency>Euro</currency>
     <items type="array">
@@ -1734,9 +652,9 @@
     </Method>
 
     <Method Name="ChangeState" HttpMethod="PUT"
-      Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/change-state.xml?api_key={apiKey}"
-			ApiUrl="https://invoicexpress.com/api/credit-notes/change-state"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/change-state.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/credit-notes/change-state"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1751,9 +669,9 @@
     </Method>
 
     <Method Name="EmailDocument" HttpMethod="PUT"
-      Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/email-document.xml?api_key={apiKey}"
-			ApiUrl="https://invoicexpress.com/api/credit-notes/email"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/email-document.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/credit-notes/email"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1775,9 +693,9 @@
     </Method>
 
     <Method Name="Pdf" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
-			ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
-		  SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1797,197 +715,57 @@
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/clients/create"
+            InputClass="ClientDto"
+            ReturnClass="ClientDto"
             SucessCode="201">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<client>
-  <name>Ricardo Pereira</name>
-  <language>pt</language>
-  <code>CODE_123</code>
-  <email>someone@example.com</email>
-  <address>Saldanha</address>
-  <city>Lisbon</city>
-  <postal_code>1750-455</postal_code>
-  <fiscal_id>508025338</fiscal_id>
-  <website>www.invoicexpress.com</website>
-  <phone>+3512313423424</phone>
-  <fax>+3512313423424</fax>
-  <preferred_contact>
-    <name>Ricardo Pereira</name>
-    <email>someone@example.com</email>
-    <phone>+3512313423424</phone>
-  </preferred_contact>
-  <observations>Computer Processed</observations>
-  <send_options>1</send_options>
-</client>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<client>
-  <id>ID_0000</id>
-  <name>Ricardo Pereira</name>
-  <email>someone@example.com</email>
-  <address>Saldanha</address>
-  <city>Lisbon</city>
-  <postal_code>1750-455</postal_code>
-  <fiscal_id>508025338</fiscal_id>
-  <website>www.invoicexpress.com</website>
-  <phone>2313423424</phone>
-  <fax>2313423425</fax>
-  <preferred_contact>
-    <name>Ricardo Pereira</name>
-    <email>someone@example.com</email>
-    <phone>2233442233</phone>
-  </preferred_contact>
-  <observations>Computer Processed</observations>
-  <send_options>1</send_options>
-</client>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
-      ApiUrl="https://invoicexpress.com/api/clients/get"
-      SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/clients/get"
+            ReturnClass="ClientDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="clientId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<client>
-  <id>ID_0000</id>
-  <code>CODE_123</code>
-  <language>pt</language>
-  <name>Ricardo Pereira</name>
-  <email>someone@example.com</email>
-  <address>Lisbon</address>
-  <city>Lisbon</city>
-  <postal_code>1750-455</postal_code>
-  <fiscal_id>508025338</fiscal_id>
-  <website>www.invoicexpress.com</website>
-  <country>Portugal</country>
-  <phone>2313423424</phone>
-  <fax>2313423425</fax>
-  <preferred_contact>
-    <name>Ricardo Pereira</name>
-    <email>someone@example.com</email>
-    <phone>2233442233</phone>
-  </preferred_contact>
-  <observations>Computer Processed</observations>
-  <open_account_link>https://www.app.invoicexpress.com/suppliers/1f7bba947948c50e04af20d329db5bc67c38cf89</open_account_link>
-  <send_options>1</send_options>
-</client>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-    Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
-    ApiUrl="https://invoicexpress.com/api/clients/update"
-    SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/clients/update"
+            InputClass="ClientDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="clientId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<client>
-  <name>Ricardo Pereira</name>
-  <language>pt</language>
-  <code>CODE_123</code>
-  <email>someone@example.com</email>
-  <address>Saldanha</address>
-  <city>Lisbon</city>
-  <postal_code>1750-455</postal_code>
-  <fiscal_id>508025338</fiscal_id>
-  <website>www.invoicexpress.com</website>
-  <phone>2313423424</phone>
-  <fax>2313423425</fax>
-  <preferred_contact>
-    <name>Ricardo Pereira</name>
-    <email>someone@example.com</email>
-    <phone>2233442233</phone>
-  </preferred_contact>
-  <observations>Computer Processed</observations>
-  <send_options>1</send_options>
-</client>]]>
-      </InputData>
     </Method>
 
     <Method Name="List" HttpMethod="GET"
-        Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-        ApiUrl="https://invoicexpress.com/api/clients/list"
-        SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+            ApiUrl="https://invoicexpress.com/api/clients/list"
+            InputClass="ClientsDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="page" Type="int" DefaultValue="1" />
         <Param Index="3" Name="perPage" Type="int" DefaultValue="10" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<clients>
-  <client>
-    <id>ID_0000</id>
-    <name>Cliente Dummy 1</name>
-    <code>CODE_123</code>
-    <email>dummy@email.com</email>
-    <language>en</language>
-    <address>Rua Esquerda, 35</address>
-    <city>cidade</city>
-    <postal_code>1000-01</postal_code>
-    <fiscal_id>123456789</fiscal_id>
-    <website>www.google.com</website>
-    <country>Portugal</country>
-    <phone>2313423424</phone>
-    <fax>2313423425</fax>
-    <preferred_contact>
-      <name>pedro</name>
-      <email>pedro@email.com</email>
-      <phone>aceitaletras</phone>
-      <mobile>+351123123123</mobile>
-    </preferred_contact>
-    <observations>Computer Processed</observations>
-    <send_options>1</send_options>
-    <!-- 1 - Original -->
-  </client>
-  <client>
-    <id>ID_0000</id>
-    <name>Cliente Dummy 2</name>
-    <code></code>
-    <email>dummy@email.com</email>
-    <language>en</language>
-    <address>Rua Esquerda, 35</address>
-    <city></city>
-    <postal_code>1000-01</postal_code>
-    <fiscal_id>123456789</fiscal_id>
-    <website>www.google.com</website>
-    <country>Portugal</country>
-    <phone>2313423424</phone>
-    <fax>2313423425</fax>
-    <preferred_contact>
-      <name></name>
-      <email></email>
-      <phone></phone>
-      <mobile></mobile>
-    </preferred_contact>
-    <observations>Pela api</observations>
-    <send_options>1</send_options>
-    <!-- 1 - Original -->
-  </client>
-  <current_page>1</current_page>
-  <total_pages>1</total_pages>
-  <total_entries>2</total_entries>
-  <per_page>10</per_page>
-</clients>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Invoices" HttpMethod="GET"
-        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}/invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-        ApiUrl="https://invoicexpress.com/api/clients/list-invoice"
-        SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}/invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+            ApiUrl="https://invoicexpress.com/api/clients/list-invoice"
+            ReturnClass="InvoicesDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -1995,208 +773,31 @@
         <Param Index="3" Name="page" Type="int" DefaultValue="1" />
         <Param Index="4" Name="perPage" Type="int" DefaultValue="10" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<filter>
- <status type="array">
-  <option>draft</option>
-  <option>final</option>
-  <option>settled</option>
-  <option>canceled</option>
-  <option>second_copy</option>
- </status>
- <by_type type="array">
-  <option>Invoice</option>
-  <option>InvoiceReceipt</option>
-  <option>SimplifiedInvoice</option>
-  <option>CreditNote</option>
-  <option>DebitNote</option>
-  <option>Receipt</option>
-  <option>CashInvoice</option>
- </by_type>
- <archived type="array">
-  <option>only_archived</option>
-  <option>non_archived</option>
- </archived>
-</filter>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<invoices type="array">
- <results>
-  <current_page>1</current_page>
-  <entries>10</entries>
-  <total_entries>200</total_entries>
-  <total_pages>20</total_pages>
-  <per_page>10</per_page>
- </results>
- <invoice>
-  <id>ID_0000</id>
-  <status>final</status>
-  <type>Invoice</type>
-  <sequence_number>1/A</sequence_number>
-  <date>19/10/2015</date>
-  <due_date>19/10/2015</due_date>
-  <reference>123456</reference>
-  <observations>Computer Processed</observations>
-  <retention>5.0</retention>
-  <client>
-   <id>ID_0000</id>
-   <name>Client</name>
-   <email>client@email.com</email>
-   <address>rua</address>
-   <city>cidade</city>
-   <postal_code>1000-253</postal_code>
-   <country>Portugal</country>
-   <fiscal_id>654987321</fiscal_id>
-  </client>
-  <currency>Euro</currency>
-  <items>
-   <item>
-     <name>MacBook Pro</name>
-     <description>desc</description>
-     <unit_price>1000.0</unit_price>
-     <unit>Kg</unit>
-     <quantity>1.0</quantity>
-     <tax>
-       <id>ID_0000</id>
-       <name>IVA23</name>
-       <value>23.0</value>
-     </tax>
-     <discount>0.0</discount>
-     <subtotal>1000.0</subtotal>
-     <tax_amount>230.0</tax_amount>
-     <discount_amount>0.0</discount_amount>
-     <total>1230.0</total>
-    </item>
-    <item>
-     <name>MacBook Air</name>
-     <description>desc</description>
-     <unit_price>1300.0</unit_price>
-     <unit>Kg</unit>
-     <quantity>2.0</quantity>
-     <tax>
-       <id>ID_0000</id>
-       <name>IVA23</name>
-       <value>23.0</value>
-     </tax>
-     <discount>0.0</discount>
-     <subtotal>1300.0</subtotal>
-     <tax_amount>230.0</tax_amount>
-     <discount_amount>0.0</discount_amount>
-     <total>1530.0</total>
-    </item>
-  </items>
-  <sum>2300.0</sum>
-  <discount>0.0</discount>
-  <before_taxes>2300.0</before_taxes>
-  <taxes>460.0</taxes>
-  <total>2760.0</total>
-  <mb_reference>
-    <reference>327300084</reference>
-    <entity>10611</entity>
-    <value>2760.0</value>
-  </mb_reference>
- </invoice>
-</invoices>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="FindByName" HttpMethod="GET"
-        Url="https://{accountName}.app.invoicexpress.com/clients/find-by-name.xml?api_key={apiKey}&amp;client_name={clientName}"
-        ApiUrl="https://invoicexpress.com/api/clients/find-by-name"
-        SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients/find-by-name.xml?api_key={apiKey}&amp;client_name={clientName}"
+            ApiUrl="https://invoicexpress.com/api/clients/find-by-name"
+            ReturnClass="ClientDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="clientName" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<client>
-  <id>ID_0000</id>
-  <code></code>
-  <language></language>
-  <name>Ricardo Pereira</name>
-  <email>someone@example.com</email>
-  <address>Saldanha</address>
-  <city>Lisbon</city>
-  <postal_code>1750-455</postal_code>
-  <fiscal_id>508025338</fiscal_id>
-  <website>www.invoicexpress.com</website>
-  <country>Portugal</country>
-  <phone>2313423424</phone>
-  <fax>2313423425</fax>
-  <preferred_contact>
-    <name>Ricardo Pereira</name>
-    <email>someone@example.com</email>
-    <phone>2233442233</phone>
-  </preferred_contact>
-  <observations>Computer Processed</observations>
-  <open_account_link>https://www.app.invoicexpress.com/suppliers/1f7bba947948c50e04af20d329db5bc67c38cf89</open_account_link>
-  <send_options>1</send_options>
-</client>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="FindByCode" HttpMethod="GET"
-        Url="https://{accountName}.app.invoicexpress.com/clients/find-by-code.xml?api_key={apiKey}&amp;client_code={clientCode}"
-        ApiUrl="https://invoicexpress.com/api/clients/find-by-code"
-        SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients/find-by-code.xml?api_key={apiKey}&amp;client_code={clientCode}"
+            ApiUrl="https://invoicexpress.com/api/clients/find-by-code"
+            ReturnClass="ClientDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="clientCode" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<client>
-  <id>ID_0000</id>
-  <code></code>
-  <language></language>
-  <name>Ricardo Pereira</name>
-  <email>someone@example.com</email>
-  <address>Saldanha</address>
-  <city>Lisbon</city>
-  <postal_code>1750-455</postal_code>
-  <fiscal_id>508025338</fiscal_id>
-  <website>www.invoicexpress.com</website>
-  <country>Portugal</country>
-  <phone>2313423424</phone>
-  <fax>2313423425</fax>
-  <preferred_contact>
-    <name>Ricardo Pereira</name>
-    <email>someone@example.com</email>
-    <phone>2233442233</phone>
-  </preferred_contact>
-  <observations>Computer Processed</observations>
-  <open_account_link>https://www.app.invoicexpress.com/suppliers/1f7bba947948c50e04af20d329db5bc67c38cf89</open_account_link>
-  <send_options>1</send_options>
-</client>]]>
-      </ReturnData>
     </Method>
-
-
-
-    <!--~1~ implement later @1@
-    <Method Name="CreateDebitNote" HttpMethod="POST"
-        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}/create/credit-note.xml?api_key={apiKey}"
-        ApiUrl="https://invoicexpress.com/api/clients/create-credit-note"
-        SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientCode" Type="string" />
-      </UrlParms>
-    </Method>-->
-
-    <!--~1~ implement later @1@
-    <Method Name="CreateCreditNote" HttpMethod="POST"
-        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}/create/credit-note.xml?api_key={apiKey}"
-        ApiUrl="https://invoicexpress.com/api/clients/create-debit-note"
-        SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientCode" Type="string" />
-      </UrlParms>
-    </Method>-->
 
 
   </NestedClass>
@@ -2206,81 +807,37 @@
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/items/create"
+            InputClass="ItemDto"
+            ReturnClass="ItemDto"
             SucessCode="201">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<item>
-  <name>stuff</name>
-  <description>good stuff</description>
-  <unit_price>3.0</unit_price>
-  <unit>Kg</unit>
-  <tax>
-    <name>IVA20</name>
-  </tax>
-</item>]]>
-      </InputData>
-      <ReturnData>
-        <![CDATA[<item>
-  <id>ID_0000</id>
-  <name>stuff</name>
-  <description>good stuff</description>
-  <unit_price>3.0</unit_price>
-  <unit>service</unit>
-  <tax>
-    <name>IVA20</name>
-    <value>20.0</value>    
-  </tax>
-</item>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-      Url="https://{accountName}.app.invoicexpress.com/items/{itemId}.xml?api_key={apiKey}"
-      ApiUrl="https://invoicexpress.com/api/items/get"
-      SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/items/{itemId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/items/get"
+            ReturnClass="ItemDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="itemId" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<item>
-  <id>ID_0000</id>
-  <name>stuff</name>
-  <description>good stuff</description>
-  <unit_price>3.0</unit_price>
-  <unit>service</unit>
-  <tax>
-    <name>IVA20</name>
-    <value>20.0</value>    
-  </tax>
-</item>]]>
-      </ReturnData>
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-    Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
-    ApiUrl="https://invoicexpress.com/api/items/update"
-    SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/items/update"
+            InputClass="ItemDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
         <Param Index="2" Name="itemId" Type="string" />
       </UrlParms>
-      <InputData>
-        <![CDATA[<item>
-  <name>stuff</name>
-  <description>new stuff description</description>
-  <unit_price>3.5</unit_price>
-  <unit>unit</unit>
-  <tax>
-    <name>IVA20</name>
-  </tax>
-</item>]]>
-      </InputData>
     </Method>
 
     <Method Name="Delete" HttpMethod="DELETE"
@@ -2295,41 +852,333 @@
     </Method>
 
     <Method Name="List" HttpMethod="GET"
-    Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
-    ApiUrl="https://invoicexpress.com/api/clients/list"
-    SucessCode="200">
+            Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/clients/list"
+            ReturnClass="ItemsDto"
+            SucessCode="200">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
       </UrlParms>
-      <ReturnData>
-        <![CDATA[<items>
-  <item>
-    <id>ID_0000</id>
-    <name>Item 1</name>
-    <description>Product 1</description>
-    <unit_price>1.50</unit_price>
-    <unit>unit</unit>
-    <tax>
-      <name>IVA23</name>
-      <value>23.0</value>      
-    </tax>
-  </item>
-  <item>
-    <id>ID_0000</id>
-    <name>Item 2</name>
-    <description>Product 2</description>
-    <unit_price>2.00</unit_price>
-    <unit>unit</unit>
-    <tax>
-      <name>IVA23</name>
-      <value>23.0</value>      
-    </tax>
-  </item>
-</items>]]>
-      </ReturnData>
     </Method>
 
   </NestedClass>
 
-</MasterClass>
+  <Types>
+    <Type XmlName="account" Name="AccountDto">
+      <Property XmlName="first_name" Name="FirstName" Type="string" />
+      <Property XmlName="last_name" Name="LastName" Type="string" />
+      <Property XmlName="organization_name" Name="OrganizationName" Type="string" />
+      <Property XmlName="phone" Name="Phone" Type="string" />
+      <Property XmlName="email" Name="Email" Type="string" />
+      <Property XmlName="password" Name="Password" Type="string" />
+      <Property XmlName="fiscal_id" Name="FiscalId" Type="string" />
+      <Property XmlName="tax_country" Name="TaxCountry" Type="string" />
+      <Property XmlName="language" Name="Language" Type="string" />
+      <Property XmlName="terms" Name="Terms" Type="string" />
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="name" Name="Name" Type="string" />
+      <Property XmlName="url" Name="Url" Type="string" />
+      <Property XmlName="api_key" Name="ApiKey" Type="string" />
+      <Property XmlName="state" Name="State" Type="string" />
+      <Property XmlName="at_configured " Name="AtConfigured" Type="string" />
+      <Property XmlName="address" Name="Address" Type="string" />
+      <Property XmlName="postal_code" Name="PostalCode" Type="string" />
+      <Property XmlName="city" Name="City" Type="string" />
+    </Type>
+    <Type XmlName="documents" Name="DocumentsStatsDto">
+      <Property XmlName="used_documents" Name="UsedDocuments" Type="string" />
+      <Property XmlName="available_documents" Name="AvailableDocuments" Type="string" />
+      <Property XmlName="used_api_documents" Name="UsedApiDocuments" Type="string" />
+      <Property XmlName="available_api_documents" Name="AvailableApiDocuments" Type="string" />
+      <Property XmlName="used_web_documents" Name="UsedWebDocuments" Type="string" />
+      <Property XmlName="available_web_documents" Name="AvailableWebDocuments" Type="string" />
+    </Type>
+    <Type XmlName="users" Name="UsersStatsDto">
+      <Property XmlName="used_users" Name="UsedUsers" Type="string" />
+      <Property XmlName="available_users" Name="AvailableUsers" Type="string" />
+    </Type>
+    <Type XmlName="credentials" Name="CredentialsDto">
+      <Property XmlName="login" Name="Login" Type="string" />
+      <Property XmlName="password" Name="Password" Type="string" />
+    </Type>
+    <Type XmlName="account" Name="UserAccountDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="name" Name="Name" Type="string" />
+      <Property XmlName="url" Name="Url" Type="string" />
+      <Property XmlName="api_key" Name="ApiKey" Type="string" />
+      <Property XmlName="state" Name="State" Type="string" />
+      <Property XmlName="blocked" Name="Blocked" Type="string" />
+      <Property XmlName="roles" Name="RolesArray" Type="RolesDto" />
+    </Type>
+    <Type XmlName="roles" Name="RolesDto">
+      <Property XmlName="role" Name="Role" Type="string" />
+    </Type>
+    <Type XmlName="accounts" Name="UserAccountsDto">
+      <Property XmlName="account" Name="AccountsArray" Type="UserAccountDto[]" />
+    </Type>
+    <Type XmlName="accounts" Name="AccountsDto">
+      <Property XmlName="account" Name="AccountsArray" Type="AccountDto[]" />
+    </Type>
+    <Type XmlName="change_account_to" Name="ChangeAccountToDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+    </Type>
+    <Type XmlName="invoice" Name="InvoiceDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="status" Name="Status" Type="string" />
+      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="due_date" Name="DueDate" Type="string" />
+      <Property XmlName="reference" Name="Reference" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="string" />
+      <Property XmlName="tax_exemption" Name="TaxExemption" Type="string" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="sum" Name="Sum" Type="string" />
+      <Property XmlName="discount" Name="Discount" Type="string" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="string" />
+      <Property XmlName="taxes" Name="Taxes" Type="string" />
+      <Property XmlName="total" Name="Total" Type="string" />
+      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
+
+    </Type>
+    <Type XmlName="invoices" Name="InvoicesDto">
+      <Property XmlName="invoice" Name="InvoicesArray" Type="InvoiceDto[]" />
+    </Type>
+    <Type XmlName="client" Name="ClientDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="code" Name="Code" Type="string" />
+      <Property XmlName="language" Name="Language" Type="string" />
+      <Property XmlName="name" Name="Name" Type="string" />
+      <Property XmlName="email" Name="Email" Type="string" />
+      <Property XmlName="address" Name="Address" Type="string" />
+      <Property XmlName="city" Name="City" Type="string" />
+      <Property XmlName="postal_code" Name="PostalCode" Type="string" />
+      <Property XmlName="fiscal_id" Name="FiscalId" Type="string" />
+      <Property XmlName="website" Name="Website" Type="string" />
+      <Property XmlName="country" Name="Country" Type="string" />
+      <Property XmlName="phone" Name="Phone" Type="string" />
+      <Property XmlName="fax" Name="Fax" Type="string" />
+      <Property XmlName="preferred_contact" Name="PreferredContact" Type="PreferredContactDto" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="open_account_link" Name="OpenAccountLink" Type="string" />
+      <Property XmlName="send_options" Name="SendOptions" Type="string" />
+    </Type>
+    <Type XmlName="clients" Name="ClientsDto">
+      <Property XmlName="client" Name="ClientsArray" Type="ClientDto[]" />
+    </Type>
+    <Type XmlName="preferred_contact" Name="PreferredContactDto">
+      <Property XmlName="name" Name="Name" Type="string" />
+      <Property XmlName="email" Name="Email" Type="string" />
+      <Property XmlName="phone" Name="Phone" Type="string" />
+      <Property XmlName="mobile" Name="Mobile" Type="string" />
+    </Type>
+    <Type XmlName="item" Name="ItemDto">
+      <Property XmlName="name" Name="Name" Type="string" />
+      <Property XmlName="description" Name="Description" Type="string" />
+      <Property XmlName="unit_price" Name="UnitPrice" Type="string" />
+      <Property XmlName="unit" Name="Unit" Type="string" />
+      <Property XmlName="tax" Name="Tax" Type="TaxDto" />
+    </Type>
+    <Type XmlName="items" Name="ItemsDto">
+      <Property XmlName="item" Name="ItemsArray" Type="ItemDto[]" />
+    </Type>
+    <Type XmlName="tax" Name="TaxDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="name" Name="Name" Type="string" />
+      <Property XmlName="value" Name="Value" Type="string" />
+      <Property XmlName="region" Name="Region" Type="string" />
+      <Property XmlName="default_tax" Name="DefaultTax" Type="string" />
+    </Type>
+    <Type XmlName="invoice" Name="InvoiceChangeStateDto">
+      <Property XmlName="state" Name="State" Type="string" />
+      <Property XmlName="message" Name="Message" Type="string" />
+    </Type>
+    <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceChangeStateDto">
+      <Property XmlName="state" Name="State" Type="string" />
+      <Property XmlName="message" Name="Message" Type="string" />
+    </Type>
+    <Type XmlName="message" Name="EmailMessageDto">
+      <Property XmlName="client" Name="Client" Type="EmailClientDto" />
+      <Property XmlName="subject" Name="Subject" Type="string" />
+      <Property XmlName="body" Name="Body" Type="string" />
+      <Property XmlName="cc" Name="Cc" Type="string" />
+      <Property XmlName="bcc" Name="Bcc" Type="string" />
+      <Property XmlName="logo" Name="Logo" Type="string" />
+    </Type>
+    <Type XmlName="client" Name="EmailClientDto">
+      <Property XmlName="email" Name="Email" Type="string" />
+      <Property XmlName="save" Name="Save" Type="string" />
+    </Type>
+    <Type XmlName="output" Name="PdfOutputDto">
+      <Property XmlName="pdfUrl" Name="Pdfurl" Type="string" />
+    </Type>
+    <Type XmlName="partial_payment" Name="PartialPaymentDto">
+      <Property XmlName="payment_mechanism" Name="PaymentMechanism" Type="string" />
+      <Property XmlName="note" Name="Note" Type="string" />
+      <Property XmlName="serie" Name="Serie" Type="string" />
+      <Property XmlName="amount" Name="Amount" Type="string" />
+      <Property XmlName="payment_date" Name="PaymentDate" Type="string" />
+    </Type>
+    <Type XmlName="receipt" Name="PartialPaymentReceiptDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="status" Name="Status" Type="string" />
+      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="due_date" Name="DueDate" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="string" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="sum" Name="Sum" Type="string" />
+      <Property XmlName="discount" Name="Discount" Type="string" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="string" />
+      <Property XmlName="taxes" Name="Taxes" Type="string" />
+      <Property XmlName="total" Name="Total" Type="string" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="multicurrency" Name="Multicurrency" Type="MulticurrencyDto" />
+      <Property XmlName="events" Name="EventsArray" Type="EventsDto" />
+    </Type>
+    <Type XmlName="multicurrency" Name="MulticurrencyDto">
+      <Property XmlName="rate" Name="Rate" Type="string" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+    </Type>
+    <Type XmlName="event" Name="EventDto">
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="time" Name="Time" Type="string" />
+      <Property XmlName="user" Name="User" Type="string" />
+    </Type>
+    <Type XmlName="events" Name="EventsDto">
+      <Property XmlName="event" Name="EventsArray" Type="EventDto[]" />
+    </Type>
+    <Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="status" Name="Status" Type="string" />
+      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="due_date" Name="DueDate" Type="string" />
+      <Property XmlName="reference" Name="Reference" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="string" />
+      <Property XmlName="tax_exemption" Name="TaxExemption" Type="string" />
+      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="sum" Name="Sum" Type="string" />
+      <Property XmlName="discount" Name="Discount" Type="string" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="string" />
+      <Property XmlName="taxes" Name="Taxes" Type="string" />
+      <Property XmlName="total" Name="Total" Type="string" />
+      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
+    </Type>
+    <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceDto">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="status" Name="Status" Type="string" />
+      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="due_date" Name="DueDate" Type="string" />
+      <Property XmlName="reference" Name="Reference" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="string" />
+      <Property XmlName="tax_exemption" Name="TaxExemption" Type="string" />
+      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="sum" Name="Sum" Type="string" />
+      <Property XmlName="discount" Name="Discount" Type="string" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="string" />
+      <Property XmlName="taxes" Name="Taxes" Type="string" />
+      <Property XmlName="total" Name="Total" Type="string" />
+      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
+    </Type>
+    <Type XmlName="simplified_invoices" Name="SimplifiedInvoicesDto">
+      <Property XmlName="simplified_invoice" Name="SimplifiedInvoicesArray" Type="SimplifiedInvoiceDto[]" />
+    </Type>
+    <Type XmlName="account_stats" Name="AccountStatsDto">
+      <Property XmlName="plan" Name="Plan" Type="string" />
+      <Property XmlName="expires_at" Name="ExpiresAt" Type="string" />
+      <Property XmlName="documents" Name="Documents" Type="DocumentsStatsDto" />
+      <Property XmlName="users" Name="Users" Type="UsersStatsDto" />
+    </Type>
+    <Type XmlName="credit_note" Name="CreditNote">
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="status" Name="Status" Type="string" />
+      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="due_date" Name="DueDate" Type="string" />
+      <Property XmlName="reference" Name="Reference" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="string" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="tax_exemption" Name="TaxExemption" Type="string" />
+      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
+      <Property XmlName="sum" Name="Sum" Type="string" />
+      <Property XmlName="discount" Name="Discount" Type="string" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="string" />
+      <Property XmlName="taxes" Name="Taxes" Type="string" />
+      <Property XmlName="total" Name="Total" Type="string" />
+    </Type>
+
+    <Type XmlName="credit_note" Name="CreditNoteChangeStateDto">
+      <Property XmlName="state" Name="State" Type="string" />
+      <Property XmlName="message" Name="message" Type="string" />
+    </Type>
+
+    <Type XmlName="debit_note" Name="DebitNoteDto">
+      <Property XmlName="date" Name="Date" Type="string" />
+      <Property XmlName="due_date" Name="DueDate" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
+      <Property XmlName="id" Name="Id" Type="string" />
+      <Property XmlName="status" Name="Status" Type="string" />
+      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="reference" Name="Reference" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="string" />
+      <Property XmlName="tax_exemption" Name="TaxExemption" Type="string" />
+      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="sum" Name="Sum" Type="string" />
+      <Property XmlName="discount" Name="Discount" Type="string" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="string" />
+      <Property XmlName="taxes" Name="Taxes" Type="string" />
+      <Property XmlName="total" Name="Total" Type="string" />
+    </Type>
+
+    <Type XmlName="debit_notes" Name="DebitNotesDto">
+      <Property XmlName="debit_note" Name="DebitNote" Type="DebitNoteDto[]" />
+    </Type>
+
+  </Types>
+  
+</Class>

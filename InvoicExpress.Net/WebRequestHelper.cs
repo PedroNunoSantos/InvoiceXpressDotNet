@@ -31,9 +31,8 @@ namespace InvoicExpress.Net
             , string data = null
             , string contentType = "application/xml; charset=utf-8")
         {
-            var request = (HttpWebRequest)WebRequest.Create(destinationUrl);
+            var request = (HttpWebRequest) WebRequest.Create(destinationUrl);
             request.Method = httpMethod;
-
             if (!string.IsNullOrWhiteSpace(data))
             {
                 byte[] dataBytes = Encoding.UTF8.GetBytes(data);
@@ -44,17 +43,29 @@ namespace InvoicExpress.Net
                 requestStream.Close();
             }
 
-            using (var response = (HttpWebResponse)request.GetResponse())
+            string responseStr = null;
+            HttpStatusCode responseCode;
+
+            try
             {
-                string responseStr = null;
+                using (var response = (HttpWebResponse) request.GetResponse())
                 using (Stream stream = response.GetResponseStream())
                 {
-                    if (stream != null)
-                        responseStr = new StreamReader(stream).ReadToEnd();
+                    responseCode = response.StatusCode;
+                    if (stream != null) responseStr = new StreamReader(stream).ReadToEnd();
                 }
-
-                return HttpResponseInfo.New(response.StatusCode, responseStr);
             }
+            catch (WebException ex)
+            {
+                using (var exResponse = (HttpWebResponse) ex.Response)
+                using (Stream exStream = exResponse.GetResponseStream())
+                {
+                    responseCode = exResponse.StatusCode;
+                    if (exStream != null) responseStr = new StreamReader(exStream).ReadToEnd();
+                }
+            }
+
+            return HttpResponseInfo.New(responseCode, responseStr);
         }
     }
 
