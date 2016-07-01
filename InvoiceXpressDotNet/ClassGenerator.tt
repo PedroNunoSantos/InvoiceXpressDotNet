@@ -1,0 +1,657 @@
+﻿<#@ template debug="true" hostSpecific="true" language="C#" #> 
+<#@ include file="$(SolutionDir)T4\MultipleOutputHelper.ttinclude" #>
+<#@ assembly name="System.Xml, Version=4.0.0.0" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Serialization" #>
+//generated at : <#= DateTime.Now.ToString(CultureInfo.InvariantCulture) #>
+<#
+    string templateDir = Path.GetDirectoryName(Host.TemplateFile);
+    string xmlTemplate = Path.Combine(templateDir, "InvoiceXpress.xml");
+    if (!File.Exists(xmlTemplate))
+        return string.Empty;
+
+    Manager manager = Manager.Create(Host, GenerationEnvironment);
+
+    var xmlConfig = DeserializeXml<Class>(File.ReadAllText(xmlTemplate, Encoding.Default));
+    GenerateDtos(manager, xmlConfig);
+    GenerateApiCalls(manager, xmlConfig);
+
+    manager.Process(true);
+#>
+<#+
+    private const string BaseNamespace = "InvoiceXpressDotNet";
+
+    private void GenerateApiCalls(Manager m, Class mc)
+    {
+        foreach (ClassNestedClass api in mc.NestedClass)
+        {
+            m.StartNewFile(string.Format("{0}.g.cs", api.Name));
+            PrintFileHeader();
+#>
+using System;
+using System.Net;
+namespace <#=BaseNamespace #>
+{
+	public static partial class InvoiceExpress
+    {
+		public static class <#= api.Name #>
+		{
+<#+
+	    foreach (ClassNestedClassMethod mtd in api.Method)
+	    {
+	        //string inputNameSpace = string.Empty; //String.Format("{0}", mtd.Name);
+	        //string returnNameSpace = string.Empty; //String.Format("{0}", mtd.Name);
+
+	        UrlParmsHelper u = BuildParameters(mtd);
+	        string returnClassName = u.ReturnClassName;
+#>
+
+			/// <summary>
+			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
+			/// </summary>
+			public static string <#=mtd.Name #>(<#=u.MethodSignatureStr #>)
+			{
+				string url = <#= u.UrlStringFormat #>;
+				var result = url.Http<#= GetHttpMethod(mtd.HttpMethod) #>(<#= u.HasInput ? "inputData" : "" #>);
+				if ((int) result.StatusCode != <#=mtd.SucessCode #>)
+					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)<#=mtd.SucessCode #>)
+						, new Exception(result.Text));
+				return result.Text;
+			}
+
+			/// <summary>
+			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
+			/// </summary>
+			public static <#=returnClassName #> <#=mtd.Name #>Typed(<#=u.MethodCallStr #>)
+			{
+<#+
+	        string deserializePart = u.HasReturn ? string.Format(".DeserializeXml<{0}>()", returnClassName) : string.Empty;
+	        string returnPart = u.HasReturn ? "return " : string.Empty;
+
+	        Write("\t\t\t\t");
+	        WriteLine(u.HasInput
+	            ? string.Format("{0}{1}({2}{3}inputData.XmlSerializeToString()){4};", returnPart, mtd.Name,
+	                u.MethodCallParameters, string.IsNullOrEmpty(u.MethodCallParameters) ? "" : ", ", deserializePart)
+	            : string.Format("{0}{1}({2}){3};", returnPart, mtd.Name, u.MethodCallParameters, deserializePart));
+#>
+			}
+<#+
+	    }
+#>
+
+	}
+}
+}<#+
+            m.EndBlock();
+        }
+    }
+
+    public static bool IsAnyOf<T>(T data, params T[] parms)
+    {
+        return IsAnyOf(data, EqualityComparer<T>.Default, parms);
+    }
+
+    public static bool IsAnyOf<T>(T data, IEqualityComparer<T> comparer, params T[] parms)
+    {
+        return parms.Contains(data, comparer);
+    }
+
+    private void GenerateDtos(Manager m, Class c)
+    {
+        foreach (ClassType type in c.Types)
+        {
+            m.StartNewFile(string.Format("{0}.g.cs", type.Name));
+#>
+using System;
+using System.Xml.Serialization;
+using System.ComponentModel;
+namespace <#= BaseNamespace #>
+{
+	[XmlRoot("<#= type.XmlName #>"), XmlType(AnonymousType=true)]
+	public partial class <#= type.Name #>
+	{
+<#+
+            if (type.TypeAttribute != null)
+            {
+#>
+		[XmlAttribute]
+		public string type = "<#=type.TypeAttribute #>";
+<#+
+            }
+	foreach (ClassTypeProperty p in type.Property)
+	{
+	    if (!IsAnyOf(p.XmlType, StringComparer.OrdinalIgnoreCase, "date", "float", "int"))
+	    {
+#>		
+		[XmlElement("<#=p.XmlName #>")]
+		public <#=p.Type #> <#=p.Name #> { get; set; }
+<#+
+	    }
+	    else
+	    {
+#>
+		
+		[XmlIgnore]
+		public <#= p.Type #> <#=p.Name #> { get; set; }
+		
+		[XmlElement("<#=p.XmlName #>"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _<#=p.Name #>Dto
+	    {	    
+			get { return <#=p.Name #>.ToXml<<#= p.Type #>>(); }
+            set { <#=p.Name #> = value.FromXml<<#= p.Type #>>(); }
+	    }
+<#+
+	    }
+	}
+#>
+	}
+}
+<#+
+            m.EndBlock();
+        }
+    }
+
+    private class UrlParmsHelper
+    {
+        public string UrlStringFormat { get; set; }
+        public bool HasInput { get; set; }
+        public bool HasReturn { get; set; }
+        public string InputClassName { get; set; }
+        public string ReturnClassName { get; set; }
+        public string MethodSignatureStr { get; set; }
+        public string MethodCallStr { get; set; }
+        public string MethodCallParameters { get; set; }
+    }
+
+    private string GetHttpMethod(string httpMethod)
+    {
+        switch (httpMethod.ToLower())
+        {
+            case "get":
+                return "Get";
+            case "post":
+                return "Post";
+            case "create":
+                return "Create";
+            case "put":
+                return "Put";
+            case "delete":
+                return "Delete";
+            default:
+                throw new ArgumentOutOfRangeException("httpMethod");
+        }
+    }
+
+    private UrlParmsHelper BuildParameters(ClassNestedClassMethod m)
+    {
+        string maskedUrl = m.Url;
+        var up = new UrlParmsHelper();
+
+        up.HasInput = !string.IsNullOrEmpty(m.InputClass);
+        up.InputClassName = m.InputClass;
+
+        up.HasReturn = !string.IsNullOrEmpty(m.ReturnClass);
+        up.ReturnClassName = up.HasReturn ? m.ReturnClass : "void";
+
+        var sbUrlStringFormat = new StringBuilder();
+        var sbParameterList = new StringBuilder();
+        var sbArgumentList = new StringBuilder();
+
+        if (m.UrlParms != null)
+        {
+            foreach (ClassNestedClassMethodParam p in m.UrlParms.OrderBy(p => p.Index))
+            {
+                maskedUrl = maskedUrl.Replace(string.Format("{{{0}}}", p.Name), string.Format("{{{0}}}", p.Index));
+                sbUrlStringFormat.Append(string.Format(", {0}", p.Name));
+                sbParameterList.Append(sbParameterList.Length > 0
+                    ? string.Format(", {0} {1}", p.Type, p.Name)
+                    : string.Format("{0} {1}", p.Type, p.Name));
+
+                sbArgumentList.Append(sbArgumentList.Length > 0
+                    ? string.Format(", {0}", p.Name)
+                    : string.Format("{0}", p.Name));
+            }
+        }
+
+        string m1SignatureStr = sbParameterList.ToString();
+        string m2SignatureStr = m1SignatureStr;
+        if (m.InputClass != null)
+        {
+            m1SignatureStr =
+                string.Format("{0}{1}", m1SignatureStr,
+                    m1SignatureStr.Length > 0 ? ", string inputData" : "string inputData");
+            m2SignatureStr =
+                string.Format("{0}{1}", m2SignatureStr,
+                    m2SignatureStr.Length > 0
+                        ? string.Format(", {0} inputData", up.InputClassName)
+                        : string.Format("{0} inputData", up.InputClassName));
+        }
+
+        up.UrlStringFormat = string.Format("string.Format(\"{0}\"{1})", maskedUrl, sbUrlStringFormat);
+        up.MethodSignatureStr = m1SignatureStr;
+        up.MethodCallStr = m2SignatureStr;
+        up.MethodCallParameters = sbArgumentList.ToString();
+        return up;
+    }
+
+    private static T DeserializeXml<T>(string objectData)
+    {
+        return (T) DeserializeXml(objectData, typeof(T));
+    }
+
+    private static object DeserializeXml(string objectData, Type type)
+    {
+        var serializer = new XmlSerializer(type);
+        object result;
+
+        using (var reader = new StringReader(objectData))
+            result = serializer.Deserialize(reader);
+
+        return result;
+    }
+
+    /*
+    private static string XmlToXsd(string xml)
+    {
+        if (string.IsNullOrEmpty(xml))
+            return null;
+
+        using (var rd = new StringReader(xml))
+        using (XmlReader xmlReader = XmlReader.Create(rd))
+        {
+            var schemaInfer = new XmlSchemaInference();
+            XmlSchemaSet schemaSet = schemaInfer.InferSchema(xmlReader);
+
+            var sb = new StringBuilder();
+            var xmlWriterSettings = new XmlWriterSettings();
+            xmlWriterSettings.Indent = true;
+
+            foreach (XmlSchema schema in schemaSet.Schemas())
+            {
+                using (var stringWriter = new StringWriter())
+                using (XmlWriter writer = XmlWriter.Create(stringWriter, xmlWriterSettings))
+                {
+                    schema.Write(writer);
+                    sb.Append(stringWriter);
+                }
+            }
+            return sb.ToString();
+        }
+    }
+
+    private string XsdToClass(string xsdStr, string nameSpace = "")
+    {
+        XmlSchema xsd = XmlSchema.Read(new StringReader(xsdStr), null);
+
+        var xsds = new XmlSchemas();
+        xsds.Add(xsd);
+        xsds.Compile(null, true);
+        var schemaImporter = new XmlSchemaImporter(xsds);
+
+        // create the codedom
+        var ns = new System.CodeDom.CodeNamespace(nameSpace);
+        var codeExporter = new XmlCodeExporter(ns);
+
+        var maps = new List<XmlTypeMapping>();
+        foreach (XmlSchemaType schemaType in xsd.SchemaTypes.Values)
+            maps.Add(schemaImporter.ImportSchemaType(schemaType.QualifiedName));
+
+        foreach (XmlSchemaElement schemaElement in xsd.Elements.Values)
+            maps.Add(schemaImporter.ImportTypeMapping(schemaElement.QualifiedName));
+
+        foreach (XmlTypeMapping map in maps)
+            codeExporter.ExportTypeMapping(map);
+
+        RemoveAttributes(ns);
+        CodeGenerator.ValidateIdentifiers(ns);
+
+        // output the C# code
+        using (var csharp = new CSharpCodeProvider())
+        using (var wr = new StringWriter())
+        {
+            var opts = new CodeGeneratorOptions();
+            opts.BlankLinesBetweenMembers = false;
+            csharp.GenerateCodeFromNamespace(ns, wr, opts);
+            return wr.GetStringBuilder().ToString();
+        }
+    }
+
+    private void RemoveAttributes(System.CodeDom.CodeNamespace codeNamespace)
+    {
+        foreach (CodeTypeDeclaration codeType in codeNamespace.Types)
+        {
+            CodeAttributeDeclaration xmlTypeAttribute = null;
+            foreach (CodeAttributeDeclaration codeAttribute in codeType.CustomAttributes)
+            {
+                if (codeAttribute.Name == "System.Xml.Serialization.XmlTypeAttribute")
+                    xmlTypeAttribute = codeAttribute;
+            }
+            codeType.CustomAttributes.Clear();
+            if (xmlTypeAttribute != null)
+                codeType.CustomAttributes.Add(xmlTypeAttribute);
+        }
+    }
+	*/
+
+    private void PrintFileHeader()
+    {
+#>
+// Connector API InvoiceXpressDotNet developed by EventKey,Lda http://www.eventkey.pt
+<#+
+    }
+#>
+<#+
+    /* classes geradas diretamente do ficheiro InioiceExpress.xml*/
+
+
+    /// <remarks/>
+    [XmlTypeAttribute(AnonymousType = true)]
+    public partial class Class
+    {
+        private ClassNestedClass[] nestedClassField;
+
+        private ClassType[] typesField;
+
+        private string typeField;
+
+        private string nameField;
+
+        private string nameSpaceField;
+
+        /// <remarks/>
+        [XmlElementAttribute("NestedClass")]
+        public ClassNestedClass[] NestedClass
+        {
+            get { return nestedClassField; }
+            set { nestedClassField = value; }
+        }
+
+        /// <remarks/>
+        [XmlArrayItemAttribute("Type", IsNullable = false)]
+        public ClassType[] Types
+        {
+            get { return typesField; }
+            set { typesField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Type
+        {
+            get { return typeField; }
+            set { typeField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return nameField; }
+            set { nameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string NameSpace
+        {
+            get { return nameSpaceField; }
+            set { nameSpaceField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassNestedClass
+    {
+        private ClassNestedClassMethod[] methodField;
+
+        private string nameField;
+
+        /// <remarks/>
+        [XmlElementAttribute("Method")]
+        public ClassNestedClassMethod[] Method
+        {
+            get { return methodField; }
+            set { methodField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return nameField; }
+            set { nameField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassNestedClassMethod
+    {
+        private ClassNestedClassMethodParam[] urlParmsField;
+
+        private string[] textField;
+
+        private string nameField;
+
+        private string httpMethodField;
+
+        private string urlField;
+
+        private string apiUrlField;
+
+        private uint sucessCodeField;
+
+        private string inputClassField;
+
+        private string returnClassField;
+
+        /// <remarks/>
+        [XmlArrayItemAttribute("Param", IsNullable = false)]
+        public ClassNestedClassMethodParam[] UrlParms
+        {
+            get { return urlParmsField; }
+            set { urlParmsField = value; }
+        }
+
+        /// <remarks/>
+        [XmlTextAttribute()]
+        public string[] Text
+        {
+            get { return textField; }
+            set { textField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return nameField; }
+            set { nameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string HttpMethod
+        {
+            get { return httpMethodField; }
+            set { httpMethodField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Url
+        {
+            get { return urlField; }
+            set { urlField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string ApiUrl
+        {
+            get { return apiUrlField; }
+            set { apiUrlField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public uint SucessCode
+        {
+            get { return sucessCodeField; }
+            set { sucessCodeField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string InputClass
+        {
+            get { return inputClassField; }
+            set { inputClassField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string ReturnClass
+        {
+            get { return returnClassField; }
+            set { returnClassField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassNestedClassMethodParam
+    {
+        private byte indexField;
+
+        private string nameField;
+
+        private string typeField;
+
+        private string defaultValueField;
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public byte Index
+        {
+            get { return indexField; }
+            set { indexField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return nameField; }
+            set { nameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Type
+        {
+            get { return typeField; }
+            set { typeField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string DefaultValue
+        {
+            get { return defaultValueField; }
+            set { defaultValueField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassType
+    {
+        private ClassTypeProperty[] propertyField;
+
+        private string xmlNameField;
+
+        private string nameField;
+
+        private string typeAttributeField;
+
+        /// <remarks/>
+        [XmlElementAttribute("Property")]
+        public ClassTypeProperty[] Property
+        {
+            get { return propertyField; }
+            set { propertyField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string XmlName
+        {
+            get { return xmlNameField; }
+            set { xmlNameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return nameField; }
+            set { nameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string TypeAttribute
+        {
+            get { return typeAttributeField; }
+            set { typeAttributeField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassTypeProperty
+    {
+        private string xmlNameField;
+
+        private string xmlTypeField;
+
+        private string nameField;
+
+        private string typeField;
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string XmlName
+        {
+            get { return xmlNameField; }
+            set { xmlNameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string XmlType
+        {
+            get { return xmlTypeField; }
+            set { xmlTypeField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return nameField; }
+            set { nameField = value; }
+        }
+
+        /// <remarks/>
+        [XmlAttributeAttribute()]
+        public string Type
+        {
+            get { return typeField; }
+            set { typeField = value; }
+        }
+    }
+
+#>
