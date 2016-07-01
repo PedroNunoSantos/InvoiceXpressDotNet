@@ -42,7 +42,7 @@ client.Name = "Some Customer";
 invoice.Client = client;
 invoice.Observations = "Generated with InvoiceXpressDotNet";
 
-// Create some items no the invoice
+// Create some items for the invoice
 var item1 = new ItemDto();
 item1.Name = "Some amazing product";
 item1.UnitPrice = 100;
