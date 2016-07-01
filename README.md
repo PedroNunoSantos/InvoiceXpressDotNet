@@ -40,7 +40,7 @@ invoice.DueDate = DateTime.Today.AddMonths(1);
 var client = new ClientDto();
 client.Name = "Some Customer";
 invoice.Client = client;
-invoice.Observations = "Generated with Inovice.Net";
+invoice.Observations = "Generated with InvoiceXpressDotNet";
 
 // Create some items no the invoice
 var item1 = new ItemDto();
