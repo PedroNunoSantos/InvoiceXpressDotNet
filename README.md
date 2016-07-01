@@ -1,4 +1,4 @@
-# InvoiceXpress.Net
+# InvoiceXpressDotNet
 **InvoiceXpress** API port to .net.
 
 This implementation is based on the information at [https://invoicexpress.com/api](https://invoicexpress.com/api)
@@ -55,16 +55,17 @@ item2.UnitPrice = 0;
 item2.Quantity = 1;
 
 // add itens to the invoice
-invoice.ItemsArray = new ItemsDto { ItemsArray = new[] { item1, item2, item3, item4 } };
+invoice.ItemsArray = new ItemsDto { ItemsArray = new[] { item1, item2 } };
 
-InvoiceDto invoiceReturnData = InvoiceXpress.Invoices.CreateTyped(_apiKey, _accountName, invoice);
+InvoiceDto invoiceReturnData = InvoiceExpress.Invoices.CreateTyped(_apiKey, _accountName, invoice);
 
 // consume the returned data
 Console.WriteLine(invoiceReturnData);
 ```
 ##### List
 ```cs
-InvoicesDto invoices = InvoiceXpress.Invoices.ListTyped(_apiKey, _accountName);
+InvoicesDto invoices = InvoiceExpress.Invoices.ListTyped(_apiKey, _accountName);
+// consume the data
 Console.WriteLine(invoices);
 ```
 more examples later..
