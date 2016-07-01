@@ -4,7 +4,7 @@
 This implementation is based on the information at [https://invoicexpress.com/api](https://invoicexpress.com/api)
 InvoiceXpress API from [http://invoicexpress.com](http://invoicexpress.com)
 
-The source code is almost totally auto generated with [**T4 Text Templates**](https://msdn.microsoft.com/en-us/library/bb126445.aspx), to facilitate the generation of the data transfer objects.
+The source code is almost totally generated with [**T4 Text Templates**](https://msdn.microsoft.com/en-us/library/bb126445.aspx), to facilitate the generation of the data transfer objects.
 
 The xml de/serialization is handled by [XmlSerializer](https://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlserializer(v=vs.110).aspx) with some fiddling to make everything works.
 
