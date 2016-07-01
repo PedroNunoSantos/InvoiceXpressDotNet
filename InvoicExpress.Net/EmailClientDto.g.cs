@@ -1,10 +1,12 @@
+using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
 namespace InvoicExpress.Net
 {
-	[XmlRoot("client")]
-	[XmlType(AnonymousType=true)]
+	[XmlRoot("client"), XmlType(AnonymousType=true)]
 	public partial class EmailClientDto
-	{		
+	{
+		
 		[XmlElement("email")]
 		public string Email { get; set; }
 		

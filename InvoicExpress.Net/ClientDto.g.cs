@@ -1,12 +1,21 @@
+using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
 namespace InvoicExpress.Net
 {
-	[XmlRoot("client")]
-	[XmlType(AnonymousType=true)]
+	[XmlRoot("client"), XmlType(AnonymousType=true)]
 	public partial class ClientDto
-	{		
-		[XmlElement("id")]
-		public string Id { get; set; }
+	{
+		
+		[XmlIgnore]
+		public int? Id { get; set; }
+		
+		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _IdDto
+	    {	    
+			get { return Id.ToXml<int?>(); }
+            set { Id = value.FromXml<int?>(); }
+	    }
 		
 		[XmlElement("code")]
 		public string Code { get; set; }

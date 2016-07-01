@@ -7,7 +7,7 @@ namespace InvoicExpress.Net
     {
 		public static class Items
 		{
-	
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/items/create">Items Create</a> Method
 			/// </summary>
@@ -28,7 +28,7 @@ namespace InvoicExpress.Net
 			{
 				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<ItemDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/items/get">Items Get</a> Method
 			/// </summary>
@@ -49,7 +49,7 @@ namespace InvoicExpress.Net
 			{
 				return Get(apiKey, accountName, itemId).DeserializeXml<ItemDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/items/update">Items Update</a> Method
 			/// </summary>
@@ -70,7 +70,7 @@ namespace InvoicExpress.Net
 			{
 				Update(apiKey, accountName, itemId, inputData.XmlSerializeToString());
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/items/delete">Items Delete</a> Method
 			/// </summary>
@@ -91,7 +91,7 @@ namespace InvoicExpress.Net
 			{
 				Delete(apiKey, accountName, itemId);
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/list">Items List</a> Method
 			/// </summary>
@@ -112,7 +112,7 @@ namespace InvoicExpress.Net
 			{
 				return List(apiKey, accountName).DeserializeXml<ItemsDto>();
 			}
-		
+
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -22,11 +23,18 @@ namespace InvoicExpress.Net
             }
         }
 
-        public static T DeserializeXml<T>(this string xmlData) where T : class
+
+        public static T DeserializeXml<T>(this string xmlData, bool removeEmptyElements = true) where T : class
         {
+            string xmlDeserialize = removeEmptyElements
+                ? Utils.CleanXml(xmlData)
+                : xmlData;
+
+            Trace.WriteLine(xmlDeserialize);
+
             var serializer = new XmlSerializer(typeof(T));
-            using (var reader = new StringReader(xmlData))
-                return (T)serializer.Deserialize(reader);
+            using (var reader = new StringReader(xmlDeserialize))
+                return (T) serializer.Deserialize(reader);
         }
     }
 }

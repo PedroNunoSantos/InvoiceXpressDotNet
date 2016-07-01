@@ -7,7 +7,7 @@ namespace InvoicExpress.Net
     {
 		public static class Clients
 		{
-	
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/create">Clients Create</a> Method
 			/// </summary>
@@ -28,7 +28,7 @@ namespace InvoicExpress.Net
 			{
 				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<ClientDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/get">Clients Get</a> Method
 			/// </summary>
@@ -49,7 +49,7 @@ namespace InvoicExpress.Net
 			{
 				return Get(apiKey, accountName, clientId).DeserializeXml<ClientDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/update">Clients Update</a> Method
 			/// </summary>
@@ -70,11 +70,11 @@ namespace InvoicExpress.Net
 			{
 				Update(apiKey, accountName, clientId, inputData.XmlSerializeToString());
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/list">Clients List</a> Method
 			/// </summary>
-			public static string List(string apiKey, string accountName, int page, int perPage, string inputData)
+			public static string List(string apiKey, string accountName, int? page, int? perPage, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients.xml?api_key={0}&page={2}&per_page={3}", apiKey, accountName, page, perPage);
 				var result = url.HttpGet(inputData);
@@ -87,15 +87,15 @@ namespace InvoicExpress.Net
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/list">Clients List</a> Method
 			/// </summary>
-			public static void ListTyped(string apiKey, string accountName, int page, int perPage, ClientsDto inputData)
+			public static void ListTyped(string apiKey, string accountName, int? page, int? perPage, ClientsDto inputData)
 			{
 				List(apiKey, accountName, page, perPage, inputData.XmlSerializeToString());
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/list-invoice">Clients Invoices</a> Method
 			/// </summary>
-			public static string Invoices(string apiKey, string accountName, string clientId, int page, int perPage)
+			public static string Invoices(string apiKey, string accountName, string clientId, int? page, int? perPage)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}/invoices.xml?api_key={0}&page={3}&per_page={4}", apiKey, accountName, clientId, page, perPage);
 				var result = url.HttpGet();
@@ -108,11 +108,11 @@ namespace InvoicExpress.Net
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/list-invoice">Clients Invoices</a> Method
 			/// </summary>
-			public static InvoicesDto InvoicesTyped(string apiKey, string accountName, string clientId, int page, int perPage)
+			public static InvoicesDto InvoicesTyped(string apiKey, string accountName, string clientId, int? page, int? perPage)
 			{
 				return Invoices(apiKey, accountName, clientId, page, perPage).DeserializeXml<InvoicesDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/find-by-name">Clients FindByName</a> Method
 			/// </summary>
@@ -133,7 +133,7 @@ namespace InvoicExpress.Net
 			{
 				return FindByName(apiKey, accountName, clientName).DeserializeXml<ClientDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/clients/find-by-code">Clients FindByCode</a> Method
 			/// </summary>
@@ -154,7 +154,7 @@ namespace InvoicExpress.Net
 			{
 				return FindByCode(apiKey, accountName, clientCode).DeserializeXml<ClientDto>();
 			}
-		
+
 		}
 	}
 }

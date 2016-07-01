@@ -1,26 +1,70 @@
+using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
 namespace InvoicExpress.Net
 {
-	[XmlRoot("documents")]
-	[XmlType(AnonymousType=true)]
+	[XmlRoot("documents"), XmlType(AnonymousType=true)]
 	public partial class DocumentsStatsDto
-	{		
-		[XmlElement("used_documents")]
-		public string UsedDocuments { get; set; }
+	{
 		
-		[XmlElement("available_documents")]
-		public string AvailableDocuments { get; set; }
+		[XmlIgnore]
+		public int? UsedDocuments { get; set; }
 		
-		[XmlElement("used_api_documents")]
-		public string UsedApiDocuments { get; set; }
+		[XmlElement("used_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _UsedDocumentsDto
+	    {	    
+			get { return UsedDocuments.ToXml<int?>(); }
+            set { UsedDocuments = value.FromXml<int?>(); }
+	    }
 		
-		[XmlElement("available_api_documents")]
-		public string AvailableApiDocuments { get; set; }
+		[XmlIgnore]
+		public int? AvailableDocuments { get; set; }
 		
-		[XmlElement("used_web_documents")]
-		public string UsedWebDocuments { get; set; }
+		[XmlElement("available_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _AvailableDocumentsDto
+	    {	    
+			get { return AvailableDocuments.ToXml<int?>(); }
+            set { AvailableDocuments = value.FromXml<int?>(); }
+	    }
 		
-		[XmlElement("available_web_documents")]
-		public string AvailableWebDocuments { get; set; }
+		[XmlIgnore]
+		public int? UsedApiDocuments { get; set; }
+		
+		[XmlElement("used_api_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _UsedApiDocumentsDto
+	    {	    
+			get { return UsedApiDocuments.ToXml<int?>(); }
+            set { UsedApiDocuments = value.FromXml<int?>(); }
+	    }
+		
+		[XmlIgnore]
+		public int? AvailableApiDocuments { get; set; }
+		
+		[XmlElement("available_api_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _AvailableApiDocumentsDto
+	    {	    
+			get { return AvailableApiDocuments.ToXml<int?>(); }
+            set { AvailableApiDocuments = value.FromXml<int?>(); }
+	    }
+		
+		[XmlIgnore]
+		public int? UsedWebDocuments { get; set; }
+		
+		[XmlElement("used_web_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _UsedWebDocumentsDto
+	    {	    
+			get { return UsedWebDocuments.ToXml<int?>(); }
+            set { UsedWebDocuments = value.FromXml<int?>(); }
+	    }
+		
+		[XmlIgnore]
+		public int? AvailableWebDocuments { get; set; }
+		
+		[XmlElement("available_web_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _AvailableWebDocumentsDto
+	    {	    
+			get { return AvailableWebDocuments.ToXml<int?>(); }
+            set { AvailableWebDocuments = value.FromXml<int?>(); }
+	    }
 	}
 }

@@ -1,12 +1,21 @@
+using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
 namespace InvoicExpress.Net
 {
-	[XmlRoot("simplified_invoice")]
-	[XmlType(AnonymousType=true)]
+	[XmlRoot("simplified_invoice"), XmlType(AnonymousType=true)]
 	public partial class SimplifiedInvoiceDto
-	{		
-		[XmlElement("id")]
-		public string Id { get; set; }
+	{
+		
+		[XmlIgnore]
+		public int? Id { get; set; }
+		
+		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _IdDto
+	    {	    
+			get { return Id.ToXml<int?>(); }
+            set { Id = value.FromXml<int?>(); }
+	    }
 		
 		[XmlElement("status")]
 		public string Status { get; set; }
@@ -20,11 +29,25 @@ namespace InvoicExpress.Net
 		[XmlElement("sequence_number")]
 		public string SequenceNumber { get; set; }
 		
-		[XmlElement("date")]
-		public string Date { get; set; }
+		[XmlIgnore]
+		public DateTime? Date { get; set; }
 		
-		[XmlElement("due_date")]
-		public string DueDate { get; set; }
+		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _DateDto
+	    {	    
+			get { return Date.ToXml<DateTime?>(); }
+            set { Date = value.FromXml<DateTime?>(); }
+	    }
+		
+		[XmlIgnore]
+		public DateTime? DueDate { get; set; }
+		
+		[XmlElement("due_date"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _DueDateDto
+	    {	    
+			get { return DueDate.ToXml<DateTime?>(); }
+            set { DueDate = value.FromXml<DateTime?>(); }
+	    }
 		
 		[XmlElement("reference")]
 		public string Reference { get; set; }
@@ -32,8 +55,15 @@ namespace InvoicExpress.Net
 		[XmlElement("observations")]
 		public string Observations { get; set; }
 		
-		[XmlElement("retention")]
-		public string Retention { get; set; }
+		[XmlIgnore]
+		public float? Retention { get; set; }
+		
+		[XmlElement("retention"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _RetentionDto
+	    {	    
+			get { return Retention.ToXml<float?>(); }
+            set { Retention = value.FromXml<float?>(); }
+	    }
 		
 		[XmlElement("tax_exemption")]
 		public string TaxExemption { get; set; }
@@ -56,20 +86,55 @@ namespace InvoicExpress.Net
 		[XmlElement("items")]
 		public ItemsDto ItemsArray { get; set; }
 		
-		[XmlElement("sum")]
-		public string Sum { get; set; }
+		[XmlIgnore]
+		public float? Sum { get; set; }
 		
-		[XmlElement("discount")]
-		public string Discount { get; set; }
+		[XmlElement("sum"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _SumDto
+	    {	    
+			get { return Sum.ToXml<float?>(); }
+            set { Sum = value.FromXml<float?>(); }
+	    }
 		
-		[XmlElement("before_taxes")]
-		public string BeforeTaxes { get; set; }
+		[XmlIgnore]
+		public float? Discount { get; set; }
 		
-		[XmlElement("taxes")]
-		public string Taxes { get; set; }
+		[XmlElement("discount"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _DiscountDto
+	    {	    
+			get { return Discount.ToXml<float?>(); }
+            set { Discount = value.FromXml<float?>(); }
+	    }
 		
-		[XmlElement("total")]
-		public string Total { get; set; }
+		[XmlIgnore]
+		public float? BeforeTaxes { get; set; }
+		
+		[XmlElement("before_taxes"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _BeforeTaxesDto
+	    {	    
+			get { return BeforeTaxes.ToXml<float?>(); }
+            set { BeforeTaxes = value.FromXml<float?>(); }
+	    }
+		
+		[XmlIgnore]
+		public float? Taxes { get; set; }
+		
+		[XmlElement("taxes"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _TaxesDto
+	    {	    
+			get { return Taxes.ToXml<float?>(); }
+            set { Taxes = value.FromXml<float?>(); }
+	    }
+		
+		[XmlIgnore]
+		public float? Total { get; set; }
+		
+		[XmlElement("total"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+	    public string _TotalDto
+	    {	    
+			get { return Total.ToXml<float?>(); }
+            set { Total = value.FromXml<float?>(); }
+	    }
 		
 		[XmlElement("mb_reference")]
 		public string MbReference { get; set; }

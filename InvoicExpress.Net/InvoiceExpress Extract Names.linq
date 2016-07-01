@@ -25,7 +25,7 @@ void Main()
 				<Property XmlName="first_name" Name="FirstName" Type="string" />
 				...
 	*/
-	new XElement("Type", new XAttribute("XmlName", xmlRoot.Name.LocalName), new XAttribute("Name", xmlRoot.Name.LocalName.Pascalize()),
+	new XElement("Type", new XAttribute("XmlName", xmlRoot.Name.LocalName), new XAttribute("Name", xmlRoot.Name.LocalName.Pascalize() + "Dto"),
 		items.Select(l => new XElement("Property", new XAttribute("XmlName", l.XmlName), new XAttribute("Name", l.CSharpName), new XAttribute("Type", l.Type)))
 		).Dump();
 	/*

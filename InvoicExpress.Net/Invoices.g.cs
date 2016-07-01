@@ -7,7 +7,7 @@ namespace InvoicExpress.Net
     {
 		public static class Invoices
 		{
-	
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/create">Invoices Create</a> Method
 			/// </summary>
@@ -15,8 +15,8 @@ namespace InvoicExpress.Net
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoices.xml?api_key={0}", apiKey, accountName);
 				var result = url.HttpPost(inputData);
-				if ((int) result.StatusCode != 200)
-					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
+				if ((int) result.StatusCode != 201)
+					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)201)
 						, new Exception(result.Text));
 				return result.Text;
 			}
@@ -28,7 +28,7 @@ namespace InvoicExpress.Net
 			{
 				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<InvoiceDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/get">Invoices Get</a> Method
 			/// </summary>
@@ -49,7 +49,7 @@ namespace InvoicExpress.Net
 			{
 				return Get(apiKey, accountName, invoiceId).DeserializeXml<InvoiceDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/update">Invoices Update</a> Method
 			/// </summary>
@@ -70,7 +70,7 @@ namespace InvoicExpress.Net
 			{
 				Update(apiKey, accountName, invoiceId, inputData.XmlSerializeToString());
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/list">Invoices List</a> Method
 			/// </summary>
@@ -91,7 +91,7 @@ namespace InvoicExpress.Net
 			{
 				return List(apiKey, accountName).DeserializeXml<InvoicesDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/change-state">Invoices ChangeState</a> Method
 			/// </summary>
@@ -112,7 +112,7 @@ namespace InvoicExpress.Net
 			{
 				return ChangeState(apiKey, accountName, invoiceId, inputData.XmlSerializeToString()).DeserializeXml<InvoiceChangeStateDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/email-invoice">Invoices EmailInvoice</a> Method
 			/// </summary>
@@ -133,7 +133,7 @@ namespace InvoicExpress.Net
 			{
 				EmailInvoice(apiKey, accountName, invoiceId, inputData.XmlSerializeToString());
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/related-documents">Invoices RelatedDocuments</a> Method
 			/// </summary>
@@ -154,7 +154,7 @@ namespace InvoicExpress.Net
 			{
 				return RelatedDocuments(apiKey, accountName, invoiceId).DeserializeXml<InvoicesDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">Invoices Pdf</a> Method
 			/// </summary>
@@ -175,7 +175,7 @@ namespace InvoicExpress.Net
 			{
 				return Pdf(apiKey, accountName, invoiceId).DeserializeXml<PdfOutputDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/archive">Invoices Archive</a> Method
 			/// </summary>
@@ -196,7 +196,7 @@ namespace InvoicExpress.Net
 			{
 				Archive(apiKey, accountName, documentType, documentId);
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/unarchive">Invoices Unarchive</a> Method
 			/// </summary>
@@ -217,7 +217,7 @@ namespace InvoicExpress.Net
 			{
 				Unarchive(apiKey, accountName, documentType, documentId);
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/invoices/partial-payment">Invoices PartialPayment</a> Method
 			/// </summary>
@@ -238,7 +238,7 @@ namespace InvoicExpress.Net
 			{
 				return PartialPayment(apiKey, accountName, documentId, inputData.XmlSerializeToString()).DeserializeXml<PartialPaymentReceiptDto>();
 			}
-		
+
 		}
 	}
 }

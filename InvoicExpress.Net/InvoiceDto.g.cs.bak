@@ -1,0 +1,78 @@
+using Newtonsoft.Json;
+using System.Xml.Serialization;
+namespace InvoicExpress.Net
+{
+	[XmlRoot("invoice"), XmlType(AnonymousType=true)]
+	public partial class InvoiceDto
+	{
+		
+		[XmlElement("id"), JsonProperty("id")]
+		public string Id { get; set; }
+		
+		[XmlElement("status", DataType = ""), JsonProperty("status")]
+		public string Status { get; set; }
+		
+		[XmlElement("archived"), JsonProperty("archived")]
+		public string Archived { get; set; }
+		
+		[XmlElement("type"), JsonProperty("type")]
+		public string Type { get; set; }
+		
+		[XmlElement("sequence_number"), JsonProperty("sequence_number")]
+		public string SequenceNumber { get; set; }
+		
+		[XmlElement("date"), JsonProperty("date")]
+		public string Date { get; set; }
+		
+		[XmlElement("due_date"), JsonProperty("due_date")]
+		public string DueDate { get; set; }
+		
+		[XmlElement("reference"), JsonProperty("reference")]
+		public string Reference { get; set; }
+		
+		[XmlElement("observations"), JsonProperty("observations")]
+		public string Observations { get; set; }
+		
+		[XmlElement("retention"), JsonProperty("retention")]
+		public string Retention { get; set; }
+		
+		[XmlElement("tax_exemption"), JsonProperty("tax_exemption")]
+		public string TaxExemption { get; set; }
+		
+		[XmlElement("permalink"), JsonProperty("permalink")]
+		public string Permalink { get; set; }
+		
+		[XmlElement("sequence_id"), JsonProperty("sequence_id")]
+		public string SequenceId { get; set; }
+		
+		[XmlElement("manual_sequence_number"), JsonProperty("manual_sequence_number")]
+		public string ManualSequenceNumber { get; set; }
+		
+		[XmlElement("client"), JsonProperty("client")]
+		public ClientDto Client { get; set; }
+		
+		[XmlElement("currency"), JsonProperty("currency")]
+		public string Currency { get; set; }
+		
+		[XmlElement("items"), JsonProperty("items")]
+		public ItemsDto ItemsArray { get; set; }
+		
+		[XmlElement("sum"), JsonProperty("sum")]
+		public string Sum { get; set; }
+		
+		[XmlElement("discount"), JsonProperty("discount")]
+		public string Discount { get; set; }
+		
+		[XmlElement("before_taxes"), JsonProperty("before_taxes")]
+		public string BeforeTaxes { get; set; }
+		
+		[XmlElement("taxes"), JsonProperty("taxes")]
+		public string Taxes { get; set; }
+		
+		[XmlElement("total"), JsonProperty("total")]
+		public string Total { get; set; }
+		
+		[XmlElement("mb_reference"), JsonProperty("mb_reference")]
+		public string MbReference { get; set; }
+	}
+}

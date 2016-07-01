@@ -7,7 +7,7 @@ namespace InvoicExpress.Net
     {
 		public static class Users
 		{
-	
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/users/login">Users Login</a> Method
 			/// </summary>
@@ -28,7 +28,7 @@ namespace InvoicExpress.Net
 			{
 				return Login(inputData.XmlSerializeToString()).DeserializeXml<UserAccountDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/users/accounts">Users Accounts</a> Method
 			/// </summary>
@@ -49,7 +49,7 @@ namespace InvoicExpress.Net
 			{
 				return Accounts().DeserializeXml<UserAccountsDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/users/change-account">Users ChangeAccount</a> Method
 			/// </summary>
@@ -70,7 +70,7 @@ namespace InvoicExpress.Net
 			{
 				ChangeAccount(inputData.XmlSerializeToString());
 			}
-		
+
 		}
 	}
 }

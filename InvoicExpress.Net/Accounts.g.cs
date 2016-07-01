@@ -7,7 +7,7 @@ namespace InvoicExpress.Net
     {
 		public static class Accounts
 		{
-	
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/accounts/create">Accounts Create</a> Method
 			/// </summary>
@@ -28,7 +28,7 @@ namespace InvoicExpress.Net
 			{
 				return Create(apiKey, inputData.XmlSerializeToString()).DeserializeXml<AccountDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/accounts/get">Accounts Get</a> Method
 			/// </summary>
@@ -49,7 +49,7 @@ namespace InvoicExpress.Net
 			{
 				return Get(apiKey, accountName, accountId).DeserializeXml<AccountDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/accounts/stats">Accounts Stats</a> Method
 			/// </summary>
@@ -70,7 +70,7 @@ namespace InvoicExpress.Net
 			{
 				return Stats(accountName, accountId, apiKey).DeserializeXml<AccountStatsDto>();
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/accounts/suspend">Accounts Suspend</a> Method
 			/// </summary>
@@ -91,7 +91,7 @@ namespace InvoicExpress.Net
 			{
 				Suspend(apiKey, accountName, accountId);
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/accounts/activate">Accounts Activate</a> Method
 			/// </summary>
@@ -112,7 +112,7 @@ namespace InvoicExpress.Net
 			{
 				Activate(apiKey, accountName, accountId);
 			}
-		
+
 			/// <summary>
 			/// InvoiceExpress <a href="https://invoicexpress.com/api/accounts/update">Accounts Update</a> Method
 			/// </summary>
@@ -133,7 +133,7 @@ namespace InvoicExpress.Net
 			{
 				Update(apiKey, accountName, accountId, inputData.XmlSerializeToString());
 			}
-		
+
 		}
 	}
 }

@@ -36,7 +36,7 @@
                   <xs:attribute name="HttpMethod" type="xs:string" use="required" />
                   <xs:attribute name="Url" type="xs:string" use="required" />
                   <xs:attribute name="ApiUrl" type="xs:string" use="required" />
-                  <xs:attribute name="SucessCode" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="SucessCode" type="xs:unsignedInt" use="required" />
                   <xs:attribute name="InputClass" type="xs:string" use="optional" />
                   <xs:attribute name="ReturnClass" type="xs:string" use="optional" />
                 </xs:complexType>
@@ -59,6 +59,7 @@
                     <xs:element maxOccurs="unbounded" name="Property">
                       <xs:complexType>
                         <xs:attribute name="XmlName" type="xs:string" use="required" />
+                        <xs:attribute name="XmlType" type="xs:string" use="optional" />
                         <xs:attribute name="Name" type="xs:string" use="required" />
                         <xs:attribute name="Type" type="xs:string" use="required" />
                       </xs:complexType>
@@ -66,6 +67,7 @@
                   </xs:sequence>
                   <xs:attribute name="XmlName" type="xs:string" use="required" />
                   <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="TypeAttribute" type="xs:string" use="optional" />
                 </xs:complexType>
                 <xs:unique name="UK_Property">
                   <xs:selector xpath="Property" />

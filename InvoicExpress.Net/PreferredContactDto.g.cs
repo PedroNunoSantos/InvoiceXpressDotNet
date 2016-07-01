@@ -1,10 +1,12 @@
+using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
 namespace InvoicExpress.Net
 {
-	[XmlRoot("preferred_contact")]
-	[XmlType(AnonymousType=true)]
+	[XmlRoot("preferred_contact"), XmlType(AnonymousType=true)]
 	public partial class PreferredContactDto
-	{		
+	{
+		
 		[XmlElement("name")]
 		public string Name { get; set; }
 		

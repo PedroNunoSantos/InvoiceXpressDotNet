@@ -3,8 +3,8 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 namespace InvoicExpress.Net
 {
-	[XmlRoot("invoice_receipt"), XmlType(AnonymousType=true)]
-	public partial class InvoiceReceiptDto
+	[XmlRoot("credit_note"), XmlType(AnonymousType=true)]
+	public partial class CreditNoteDto
 	{
 		
 		[XmlIgnore]
@@ -65,6 +65,9 @@ namespace InvoicExpress.Net
             set { Retention = value.FromXml<float?>(); }
 	    }
 		
+		[XmlElement("permalink")]
+		public string Permalink { get; set; }
+		
 		[XmlElement("tax_exemption")]
 		public string TaxExemption { get; set; }
 		
@@ -74,9 +77,6 @@ namespace InvoicExpress.Net
 		[XmlElement("manual_sequence_number")]
 		public string ManualSequenceNumber { get; set; }
 		
-		[XmlElement("permalink")]
-		public string Permalink { get; set; }
-		
 		[XmlElement("client")]
 		public ClientDto Client { get; set; }
 		
@@ -84,7 +84,7 @@ namespace InvoicExpress.Net
 		public string Currency { get; set; }
 		
 		[XmlElement("items")]
-		public ItemsDto ItemsArray { get; set; }
+		public ItemsDto Items { get; set; }
 		
 		[XmlIgnore]
 		public float? Sum { get; set; }
@@ -135,8 +135,5 @@ namespace InvoicExpress.Net
 			get { return Total.ToXml<float?>(); }
             set { Total = value.FromXml<float?>(); }
 	    }
-		
-		[XmlElement("mb_reference")]
-		public string MbReference { get; set; }
 	}
 }
