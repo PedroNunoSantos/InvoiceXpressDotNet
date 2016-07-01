@@ -44,13 +44,13 @@ invoice.Observations = "Generated with InvoiceXpressDotNet";
 
 // Create some items no the invoice
 var item1 = new ItemDto();
-item1.Name = "Some amazing product 1";
+item1.Name = "Some amazing product";
 item1.UnitPrice = 100;
 item1.Quantity = 1;
 item1.Discount = 5.5F;
 
 var item2 = new ItemDto();
-item2.Name = "Curso 2";
+item2.Name = "Some not so amazing product";
 item2.UnitPrice = 0;
 item2.Quantity = 1;
 
