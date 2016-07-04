@@ -7,9 +7,10 @@ namespace InvoiceXpressDotNet
     {
         const string DateFormat = @"dd\/MM\/yyyy";
         const string FloatFormat = "0.00";
-        
+
         public static string ToXml<T>(this T data)
         {
+
             if (typeof(T) == typeof(float?))
             {
                 var floatValue = data as float?;
@@ -30,7 +31,7 @@ namespace InvoiceXpressDotNet
 
             throw new ArgumentOutOfRangeException();
         }
-        
+
         public static T FromXml<T>(this string str)
         {
             Type baseType = typeof(T);
@@ -62,6 +63,6 @@ namespace InvoiceXpressDotNet
 
             throw new ArgumentOutOfRangeException();
         }
-	
+
     }
 }

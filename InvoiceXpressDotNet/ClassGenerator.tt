@@ -13,7 +13,9 @@
     Manager manager = Manager.Create(Host, GenerationEnvironment);
 
     var xmlConfig = DeserializeXml<Class>(File.ReadAllText(xmlTemplate, Encoding.Default));
+    GenerateEnums(manager, xmlConfig);
     GenerateDtos(manager, xmlConfig);
+
     GenerateApiCalls(manager, xmlConfig);
 
     manager.Process(true);
@@ -86,16 +88,6 @@ namespace <#=BaseNamespace #>
         }
     }
 
-    public static bool IsAnyOf<T>(T data, params T[] parms)
-    {
-        return IsAnyOf(data, EqualityComparer<T>.Default, parms);
-    }
-
-    public static bool IsAnyOf<T>(T data, IEqualityComparer<T> comparer, params T[] parms)
-    {
-        return parms.Contains(data, comparer);
-    }
-
     private void GenerateDtos(Manager m, Class c)
     {
         foreach (ClassType type in c.Types)
@@ -108,8 +100,8 @@ using System.ComponentModel;
 namespace <#= BaseNamespace #>
 {
 	[XmlRoot("<#= type.XmlName #>"), XmlType(AnonymousType=true)]
-	public partial class <#= type.Name #>
-	{
+	public partial class <#= type.Name #> : Dto
+	{		
 <#+
             if (type.TypeAttribute != null)
             {
@@ -134,7 +126,7 @@ namespace <#= BaseNamespace #>
 		[XmlIgnore]
 		public <#= p.Type #> <#=p.Name #> { get; set; }
 		
-		[XmlElement("<#=p.XmlName #>"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("<#=p.XmlName #>"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _<#=p.Name #>Dto
 	    {	    
 			get { return <#=p.Name #>.ToXml<<#= p.Type #>>(); }
@@ -144,12 +136,61 @@ namespace <#= BaseNamespace #>
 	    }
 	}
 #>
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<<#= type.Name #>>();
+        }
+		*/
 	}
 }
 <#+
             m.EndBlock();
         }
     }
+	
+	private void GenerateEnums(Manager m, Class c)
+	{
+	    foreach (var e in c.Enums)
+	    {
+	        m.StartNewFile(string.Format("{0}.enum.g.cs", e.Name));
+#>
+using System;
+using System.Xml.Serialization;
+namespace <#= BaseNamespace #>
+{
+	public enum <#= e.Name #>
+	{
+		[XmlEnum("")]
+		None = 0,
+<#+
+		foreach (var enumValue in e.Value)
+		{
+#>
+		[XmlEnum(Name="<#=enumValue.XmlName ?? "" #>")]
+		<#=enumValue.Name #>,
+<#+
+		}
+#>
+	}
+}
+<#+
+	        m.EndBlock();
+	    }
+	}
+
+    public static bool IsAnyOf<T>(T data, params T[] parms)
+    {
+        return IsAnyOf(data, EqualityComparer<T>.Default, parms);
+    }
+
+    public static bool IsAnyOf<T>(T data, IEqualityComparer<T> comparer, params T[] parms)
+    {
+        return parms.Contains(data, comparer);
+    }
+
 
     private class UrlParmsHelper
     {
@@ -343,14 +384,16 @@ namespace <#= BaseNamespace #>
 <#+
     /* classes geradas diretamente do ficheiro InioiceExpress.xml*/
 
-
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
     public partial class Class
     {
         private ClassNestedClass[] nestedClassField;
 
         private ClassType[] typesField;
+
+        private ClassEnum[] enumsField;
 
         private string typeField;
 
@@ -359,48 +402,56 @@ namespace <#= BaseNamespace #>
         private string nameSpaceField;
 
         /// <remarks/>
-        [XmlElementAttribute("NestedClass")]
+        [System.Xml.Serialization.XmlElementAttribute("NestedClass")]
         public ClassNestedClass[] NestedClass
         {
-            get { return nestedClassField; }
-            set { nestedClassField = value; }
+            get { return this.nestedClassField; }
+            set { this.nestedClassField = value; }
         }
 
         /// <remarks/>
-        [XmlArrayItemAttribute("Type", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Type", IsNullable = false)]
         public ClassType[] Types
         {
-            get { return typesField; }
-            set { typesField = value; }
+            get { return this.typesField; }
+            set { this.typesField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Enum", IsNullable = false)]
+        public ClassEnum[] Enums
+        {
+            get { return this.enumsField; }
+            set { this.enumsField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Type
         {
-            get { return typeField; }
-            set { typeField = value; }
+            get { return this.typeField; }
+            set { this.typeField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name
         {
-            get { return nameField; }
-            set { nameField = value; }
+            get { return this.nameField; }
+            set { this.nameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string NameSpace
         {
-            get { return nameSpaceField; }
-            set { nameSpaceField = value; }
+            get { return this.nameSpaceField; }
+            set { this.nameSpaceField = value; }
         }
     }
 
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ClassNestedClass
     {
         private ClassNestedClassMethod[] methodField;
@@ -408,29 +459,27 @@ namespace <#= BaseNamespace #>
         private string nameField;
 
         /// <remarks/>
-        [XmlElementAttribute("Method")]
+        [System.Xml.Serialization.XmlElementAttribute("Method")]
         public ClassNestedClassMethod[] Method
         {
-            get { return methodField; }
-            set { methodField = value; }
+            get { return this.methodField; }
+            set { this.methodField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name
         {
-            get { return nameField; }
-            set { nameField = value; }
+            get { return this.nameField; }
+            set { this.nameField = value; }
         }
     }
 
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ClassNestedClassMethod
     {
         private ClassNestedClassMethodParam[] urlParmsField;
-
-        private string[] textField;
 
         private string nameField;
 
@@ -440,87 +489,79 @@ namespace <#= BaseNamespace #>
 
         private string apiUrlField;
 
-        private uint sucessCodeField;
+        private byte sucessCodeField;
 
         private string inputClassField;
 
         private string returnClassField;
 
         /// <remarks/>
-        [XmlArrayItemAttribute("Param", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Param", IsNullable = false)]
         public ClassNestedClassMethodParam[] UrlParms
         {
-            get { return urlParmsField; }
-            set { urlParmsField = value; }
+            get { return this.urlParmsField; }
+            set { this.urlParmsField = value; }
         }
 
         /// <remarks/>
-        [XmlTextAttribute()]
-        public string[] Text
-        {
-            get { return textField; }
-            set { textField = value; }
-        }
-
-        /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name
         {
-            get { return nameField; }
-            set { nameField = value; }
+            get { return this.nameField; }
+            set { this.nameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string HttpMethod
         {
-            get { return httpMethodField; }
-            set { httpMethodField = value; }
+            get { return this.httpMethodField; }
+            set { this.httpMethodField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Url
         {
-            get { return urlField; }
-            set { urlField = value; }
+            get { return this.urlField; }
+            set { this.urlField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ApiUrl
         {
-            get { return apiUrlField; }
-            set { apiUrlField = value; }
+            get { return this.apiUrlField; }
+            set { this.apiUrlField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
-        public uint SucessCode
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public byte SucessCode
         {
-            get { return sucessCodeField; }
-            set { sucessCodeField = value; }
+            get { return this.sucessCodeField; }
+            set { this.sucessCodeField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string InputClass
         {
-            get { return inputClassField; }
-            set { inputClassField = value; }
+            get { return this.inputClassField; }
+            set { this.inputClassField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ReturnClass
         {
-            get { return returnClassField; }
-            set { returnClassField = value; }
+            get { return this.returnClassField; }
+            set { this.returnClassField = value; }
         }
     }
 
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ClassNestedClassMethodParam
     {
         private byte indexField;
@@ -529,43 +570,53 @@ namespace <#= BaseNamespace #>
 
         private string typeField;
 
-        private string defaultValueField;
+        private byte defaultValueField;
+
+        private bool defaultValueFieldSpecified;
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public byte Index
         {
-            get { return indexField; }
-            set { indexField = value; }
+            get { return this.indexField; }
+            set { this.indexField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name
         {
-            get { return nameField; }
-            set { nameField = value; }
+            get { return this.nameField; }
+            set { this.nameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Type
         {
-            get { return typeField; }
-            set { typeField = value; }
+            get { return this.typeField; }
+            set { this.typeField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
-        public string DefaultValue
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public byte DefaultValue
         {
-            get { return defaultValueField; }
-            set { defaultValueField = value; }
+            get { return this.defaultValueField; }
+            set { this.defaultValueField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DefaultValueSpecified
+        {
+            get { return this.defaultValueFieldSpecified; }
+            set { this.defaultValueFieldSpecified = value; }
         }
     }
 
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ClassType
     {
         private ClassTypeProperty[] propertyField;
@@ -577,80 +628,140 @@ namespace <#= BaseNamespace #>
         private string typeAttributeField;
 
         /// <remarks/>
-        [XmlElementAttribute("Property")]
+        [System.Xml.Serialization.XmlElementAttribute("Property")]
         public ClassTypeProperty[] Property
         {
-            get { return propertyField; }
-            set { propertyField = value; }
+            get { return this.propertyField; }
+            set { this.propertyField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string XmlName
         {
-            get { return xmlNameField; }
-            set { xmlNameField = value; }
+            get { return this.xmlNameField; }
+            set { this.xmlNameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name
         {
-            get { return nameField; }
-            set { nameField = value; }
+            get { return this.nameField; }
+            set { this.nameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TypeAttribute
         {
-            get { return typeAttributeField; }
-            set { typeAttributeField = value; }
+            get { return this.typeAttributeField; }
+            set { this.typeAttributeField = value; }
         }
     }
 
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ClassTypeProperty
     {
         private string xmlNameField;
-
-        private string xmlTypeField;
 
         private string nameField;
 
         private string typeField;
 
+        private string xmlTypeField;
+
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string XmlName
         {
-            get { return xmlNameField; }
-            set { xmlNameField = value; }
+            get { return this.xmlNameField; }
+            set { this.xmlNameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
-        public string XmlType
-        {
-            get { return xmlTypeField; }
-            set { xmlTypeField = value; }
-        }
-
-        /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name
         {
-            get { return nameField; }
-            set { nameField = value; }
+            get { return this.nameField; }
+            set { this.nameField = value; }
         }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Type
         {
-            get { return typeField; }
-            set { typeField = value; }
+            get { return this.typeField; }
+            set { this.typeField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string XmlType
+        {
+            get { return this.xmlTypeField; }
+            set { this.xmlTypeField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassEnum
+    {
+        private ClassEnumValue[] valueField;
+
+        private string nameField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Value")]
+        public ClassEnumValue[] Value
+        {
+            get { return this.valueField; }
+            set { this.valueField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return this.nameField; }
+            set { this.nameField = value; }
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    public partial class ClassEnumValue
+    {
+        private string nameField;
+
+        private string xmlValueField;
+
+        private string xmlNameField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Name
+        {
+            get { return this.nameField; }
+            set { this.nameField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string XmlValue
+        {
+            get { return this.xmlValueField; }
+            set { this.xmlValueField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string XmlName
+        {
+            get { return this.xmlNameField; }
+            set { this.xmlNameField = value; }
         }
     }
 

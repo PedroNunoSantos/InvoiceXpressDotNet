@@ -3,20 +3,20 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
-	[XmlRoot("accounts"), XmlType(AnonymousType=true)]
-	public partial class UserAccountsDto : Dto
+	[XmlRoot("invoice_receipts"), XmlType(AnonymousType=true)]
+	public partial class InvoiceReceiptsDto : Dto
 	{		
 		[XmlAttribute]
 		public string type = "array";
 		
-		[XmlElement("account")]
-		public UserAccountDto[] AccountsArray { get; set; }
+		[XmlElement("invoice_receipt")]
+		public InvoiceReceiptDto[] InvoiceReceipt { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)
 		{
 			var me = this;
-			me = xml.DeserializeXml<UserAccountsDto>();
+			me = xml.DeserializeXml<InvoiceReceiptsDto>();
         }
 		*/
 	}

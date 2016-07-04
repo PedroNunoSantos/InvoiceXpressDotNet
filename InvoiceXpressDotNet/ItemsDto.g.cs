@@ -4,12 +4,20 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("items"), XmlType(AnonymousType=true)]
-	public partial class ItemsDto
-	{
+	public partial class ItemsDto : Dto
+	{		
 		[XmlAttribute]
 		public string type = "array";
 		
 		[XmlElement("item")]
 		public ItemDto[] ItemsArray { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<ItemsDto>();
+        }
+		*/
 	}
 }

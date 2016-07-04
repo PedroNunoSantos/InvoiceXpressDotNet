@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("message"), XmlType(AnonymousType=true)]
-	public partial class EmailMessageDto
-	{
+	public partial class EmailMessageDto : Dto
+	{		
 		
 		[XmlElement("client")]
 		public EmailClientDto Client { get; set; }
@@ -24,5 +24,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("logo")]
 		public string Logo { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<EmailMessageDto>();
+        }
+		*/
 	}
 }

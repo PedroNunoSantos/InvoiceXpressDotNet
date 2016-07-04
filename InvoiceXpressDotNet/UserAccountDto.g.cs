@@ -4,13 +4,13 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("account"), XmlType(AnonymousType=true)]
-	public partial class UserAccountDto
-	{
+	public partial class UserAccountDto : Dto
+	{		
 		
 		[XmlIgnore]
 		public int? Id { get; set; }
 		
-		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _IdDto
 	    {	    
 			get { return Id.ToXml<int?>(); }
@@ -34,5 +34,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("roles")]
 		public RolesDto RolesArray { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<UserAccountDto>();
+        }
+		*/
 	}
 }

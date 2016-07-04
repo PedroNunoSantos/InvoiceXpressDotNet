@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("preferred_contact"), XmlType(AnonymousType=true)]
-	public partial class PreferredContactDto
-	{
+	public partial class PreferredContactDto : Dto
+	{		
 		
 		[XmlElement("name")]
 		public string Name { get; set; }
@@ -18,5 +18,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("mobile")]
 		public string Mobile { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<PreferredContactDto>();
+        }
+		*/
 	}
 }

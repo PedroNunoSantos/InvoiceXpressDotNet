@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("event"), XmlType(AnonymousType=true)]
-	public partial class EventDto
-	{
+	public partial class EventDto : Dto
+	{		
 		
 		[XmlElement("type")]
 		public string Type { get; set; }
@@ -13,7 +13,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public DateTime? Date { get; set; }
 		
-		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _DateDto
 	    {	    
 			get { return Date.ToXml<DateTime?>(); }
@@ -25,5 +25,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("user")]
 		public string User { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<EventDto>();
+        }
+		*/
 	}
 }

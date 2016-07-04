@@ -3,8 +3,8 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
-	[XmlRoot("simplified_invoice"), XmlType(AnonymousType=true)]
-	public partial class SimplifiedInvoiceChangeStateDto : Dto
+	[XmlRoot("invoice_receipt"), XmlType(AnonymousType=true)]
+	public partial class InvoiceReceiptChangeStateDto : Dto
 	{		
 		
 		[XmlElement("state")]
@@ -17,7 +17,7 @@ namespace InvoiceXpressDotNet
 		public override void SetFromXml(string xml)
 		{
 			var me = this;
-			me = xml.DeserializeXml<SimplifiedInvoiceChangeStateDto>();
+			me = xml.DeserializeXml<InvoiceReceiptChangeStateDto>();
         }
 		*/
 	}

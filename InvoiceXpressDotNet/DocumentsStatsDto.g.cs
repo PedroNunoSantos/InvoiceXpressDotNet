@@ -4,13 +4,13 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("documents"), XmlType(AnonymousType=true)]
-	public partial class DocumentsStatsDto
-	{
+	public partial class DocumentsStatsDto : Dto
+	{		
 		
 		[XmlIgnore]
 		public int? UsedDocuments { get; set; }
 		
-		[XmlElement("used_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("used_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _UsedDocumentsDto
 	    {	    
 			get { return UsedDocuments.ToXml<int?>(); }
@@ -20,7 +20,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public int? AvailableDocuments { get; set; }
 		
-		[XmlElement("available_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("available_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _AvailableDocumentsDto
 	    {	    
 			get { return AvailableDocuments.ToXml<int?>(); }
@@ -30,7 +30,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public int? UsedApiDocuments { get; set; }
 		
-		[XmlElement("used_api_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("used_api_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _UsedApiDocumentsDto
 	    {	    
 			get { return UsedApiDocuments.ToXml<int?>(); }
@@ -40,7 +40,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public int? AvailableApiDocuments { get; set; }
 		
-		[XmlElement("available_api_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("available_api_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _AvailableApiDocumentsDto
 	    {	    
 			get { return AvailableApiDocuments.ToXml<int?>(); }
@@ -50,7 +50,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public int? UsedWebDocuments { get; set; }
 		
-		[XmlElement("used_web_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("used_web_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _UsedWebDocumentsDto
 	    {	    
 			get { return UsedWebDocuments.ToXml<int?>(); }
@@ -60,11 +60,19 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public int? AvailableWebDocuments { get; set; }
 		
-		[XmlElement("available_web_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("available_web_documents"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _AvailableWebDocumentsDto
 	    {	    
 			get { return AvailableWebDocuments.ToXml<int?>(); }
             set { AvailableWebDocuments = value.FromXml<int?>(); }
 	    }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<DocumentsStatsDto>();
+        }
+		*/
 	}
 }

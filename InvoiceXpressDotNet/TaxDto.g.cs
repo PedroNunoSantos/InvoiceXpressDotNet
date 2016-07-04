@@ -4,13 +4,13 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("tax"), XmlType(AnonymousType=true)]
-	public partial class TaxDto
-	{
+	public partial class TaxDto : Dto
+	{		
 		
 		[XmlIgnore]
 		public int? Id { get; set; }
 		
-		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _IdDto
 	    {	    
 			get { return Id.ToXml<int?>(); }
@@ -28,5 +28,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("default_tax")]
 		public string DefaultTax { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<TaxDto>();
+        }
+		*/
 	}
 }

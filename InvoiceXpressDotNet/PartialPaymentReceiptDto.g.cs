@@ -4,13 +4,13 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("receipt"), XmlType(AnonymousType=true)]
-	public partial class PartialPaymentReceiptDto
-	{
+	public partial class PartialPaymentReceiptDto : Dto
+	{		
 		
 		[XmlIgnore]
 		public int? Id { get; set; }
 		
-		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("id"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _IdDto
 	    {	    
 			get { return Id.ToXml<int?>(); }
@@ -32,7 +32,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public DateTime? Date { get; set; }
 		
-		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _DateDto
 	    {	    
 			get { return Date.ToXml<DateTime?>(); }
@@ -42,7 +42,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public DateTime? DueDate { get; set; }
 		
-		[XmlElement("due_date"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("due_date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _DueDateDto
 	    {	    
 			get { return DueDate.ToXml<DateTime?>(); }
@@ -55,7 +55,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public float? Retention { get; set; }
 		
-		[XmlElement("retention"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("retention"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _RetentionDto
 	    {	    
 			get { return Retention.ToXml<float?>(); }
@@ -68,7 +68,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public float? Sum { get; set; }
 		
-		[XmlElement("sum"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("sum"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _SumDto
 	    {	    
 			get { return Sum.ToXml<float?>(); }
@@ -78,7 +78,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public float? Discount { get; set; }
 		
-		[XmlElement("discount"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("discount"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _DiscountDto
 	    {	    
 			get { return Discount.ToXml<float?>(); }
@@ -88,7 +88,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public float? BeforeTaxes { get; set; }
 		
-		[XmlElement("before_taxes"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("before_taxes"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _BeforeTaxesDto
 	    {	    
 			get { return BeforeTaxes.ToXml<float?>(); }
@@ -98,7 +98,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public float? Taxes { get; set; }
 		
-		[XmlElement("taxes"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("taxes"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _TaxesDto
 	    {	    
 			get { return Taxes.ToXml<float?>(); }
@@ -108,7 +108,7 @@ namespace InvoiceXpressDotNet
 		[XmlIgnore]
 		public float? Total { get; set; }
 		
-		[XmlElement("total"), EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		[XmlElement("total"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _TotalDto
 	    {	    
 			get { return Total.ToXml<float?>(); }
@@ -126,5 +126,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("events")]
 		public EventsDto EventsArray { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<PartialPaymentReceiptDto>();
+        }
+		*/
 	}
 }

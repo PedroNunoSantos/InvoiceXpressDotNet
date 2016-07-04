@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("account_stats"), XmlType(AnonymousType=true)]
-	public partial class AccountStatsDto
-	{
+	public partial class AccountStatsDto : Dto
+	{		
 		
 		[XmlElement("plan")]
 		public string Plan { get; set; }
@@ -18,5 +18,13 @@ namespace InvoiceXpressDotNet
 		
 		[XmlElement("users")]
 		public UsersStatsDto Users { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<AccountStatsDto>();
+        }
+		*/
 	}
 }

@@ -4,13 +4,21 @@ using System.ComponentModel;
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("invoice"), XmlType(AnonymousType=true)]
-	public partial class InvoiceChangeStateDto
-	{
+	public partial class InvoiceChangeStateDto : Dto
+	{		
 		
 		[XmlElement("state")]
-		public string State { get; set; }
+		public InvoiceState State { get; set; }
 		
 		[XmlElement("message")]
 		public string Message { get; set; }
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<InvoiceChangeStateDto>();
+        }
+		*/
 	}
 }

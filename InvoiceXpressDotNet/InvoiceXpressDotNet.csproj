@@ -115,13 +115,25 @@
     <Compile Include="InvoiceDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="InvoiceReceiptChangeStateDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceReceiptDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceReceipts.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceReceiptsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Invoices.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="InvoicesDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceState.enum.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemDto.g.cs">
@@ -133,6 +145,9 @@
     <Compile Include="ItemsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="IvaExemptionCode.enum.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="MulticurrencyDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
@@ -140,6 +155,9 @@
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="PartialPaymentReceiptDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentMechanism.enum.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="PdfOutputDto.g.cs">
@@ -178,10 +196,9 @@
     <Compile Include="UsersStatsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Utils.cs" />
     <Compile Include="XmlConverterHelpers.cs" />
-    <Compile Include="XmlDto.cs" />
-    <Compile Include="XmlSerializationExtensions.cs" />
+    <Compile Include="Dto.cs" />
+    <Compile Include="XmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebRequestHelper.cs" />
   </ItemGroup>
