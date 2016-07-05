@@ -26,7 +26,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static SimplifiedInvoiceDto CreateTyped(string apiKey, string accountName, SimplifiedInvoiceDto inputData)
 			{
-				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<SimplifiedInvoiceDto>();
+				string xmlResult = Create(apiKey, accountName, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<SimplifiedInvoiceDto>();
 			}
 
 			/// <summary>
@@ -34,7 +35,7 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static string Get(string apiKey, string accountName, string simplifiedInvoiceId)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml", apiKey, accountName, simplifiedInvoiceId);
+				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpGet();
 				if ((int) result.StatusCode != 200)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
@@ -47,7 +48,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static SimplifiedInvoiceDto GetTyped(string apiKey, string accountName, string simplifiedInvoiceId)
 			{
-				return Get(apiKey, accountName, simplifiedInvoiceId).DeserializeXml<SimplifiedInvoiceDto>();
+				string xmlResult = Get(apiKey, accountName, simplifiedInvoiceId);
+			    return xmlResult.DeserializeXml<SimplifiedInvoiceDto>();
 			}
 
 			/// <summary>
@@ -55,7 +57,7 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static string Update(string apiKey, string accountName, string simplifiedInvoiceId, string inputData)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml", apiKey, accountName, simplifiedInvoiceId);
+				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpPut(inputData);
 				if ((int) result.StatusCode != 200)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
@@ -89,7 +91,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static SimplifiedInvoicesDto ListTyped(string apiKey, string accountName, int? page, int? perPage)
 			{
-				return List(apiKey, accountName, page, perPage).DeserializeXml<SimplifiedInvoicesDto>();
+				string xmlResult = List(apiKey, accountName, page, perPage);
+			    return xmlResult.DeserializeXml<SimplifiedInvoicesDto>();
 			}
 
 			/// <summary>
@@ -97,7 +100,7 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static string ChangeState(string apiKey, string accountName, string simplifiedInvoiceId, string inputData)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}/change-state.xml", apiKey, accountName, simplifiedInvoiceId);
+				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}/change-state.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpPut(inputData);
 				if ((int) result.StatusCode != 200)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
@@ -152,7 +155,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static PdfOutputDto PdfTyped(string apiKey, string accountName, string simplifiedInvoiceId)
 			{
-				return Pdf(apiKey, accountName, simplifiedInvoiceId).DeserializeXml<PdfOutputDto>();
+				string xmlResult = Pdf(apiKey, accountName, simplifiedInvoiceId);
+			    return xmlResult.DeserializeXml<PdfOutputDto>();
 			}
 
 	}

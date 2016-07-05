@@ -26,7 +26,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static ClientDto CreateTyped(string apiKey, string accountName, ClientDto inputData)
 			{
-				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<ClientDto>();
+				string xmlResult = Create(apiKey, accountName, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 			/// <summary>
@@ -47,7 +48,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static ClientDto GetTyped(string apiKey, string accountName, string clientId)
 			{
-				return Get(apiKey, accountName, clientId).DeserializeXml<ClientDto>();
+				string xmlResult = Get(apiKey, accountName, clientId);
+			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 			/// <summary>
@@ -110,7 +112,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static InvoicesDto InvoicesTyped(string apiKey, string accountName, string clientId, int? page, int? perPage)
 			{
-				return Invoices(apiKey, accountName, clientId, page, perPage).DeserializeXml<InvoicesDto>();
+				string xmlResult = Invoices(apiKey, accountName, clientId, page, perPage);
+			    return xmlResult.DeserializeXml<InvoicesDto>();
 			}
 
 			/// <summary>
@@ -131,7 +134,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static ClientDto FindByNameTyped(string apiKey, string accountName, string clientName)
 			{
-				return FindByName(apiKey, accountName, clientName).DeserializeXml<ClientDto>();
+				string xmlResult = FindByName(apiKey, accountName, clientName);
+			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 			/// <summary>
@@ -152,7 +156,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static ClientDto FindByCodeTyped(string apiKey, string accountName, string clientCode)
 			{
-				return FindByCode(apiKey, accountName, clientCode).DeserializeXml<ClientDto>();
+				string xmlResult = FindByCode(apiKey, accountName, clientCode);
+			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 	}

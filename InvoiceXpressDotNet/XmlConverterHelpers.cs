@@ -40,7 +40,7 @@ namespace InvoiceXpressDotNet
             if (baseType == typeof(float))
             {
                 float floatValue;
-                if (float.TryParse(str, out floatValue))
+                if (float.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out floatValue))
                     return (T)Convert.ChangeType(floatValue, baseType);
                 return default(T);
             }

@@ -26,7 +26,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static UserAccountDto LoginTyped(CredentialsDto inputData)
 			{
-				return Login(inputData.XmlSerializeToString()).DeserializeXml<UserAccountDto>();
+				string xmlResult = Login(inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<UserAccountDto>();
 			}
 
 			/// <summary>
@@ -47,7 +48,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static UserAccountsDto AccountsTyped()
 			{
-				return Accounts().DeserializeXml<UserAccountsDto>();
+				string xmlResult = Accounts();
+			    return xmlResult.DeserializeXml<UserAccountsDto>();
 			}
 
 			/// <summary>

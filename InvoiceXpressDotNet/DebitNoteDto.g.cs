@@ -31,7 +31,7 @@ namespace InvoiceXpressDotNet
 		public ClientDto Client { get; set; }
 		
 		[XmlElement("items")]
-		public ItemsDto ItemsArray { get; set; }
+		public ItemsDto Items { get; set; }
 		
 		[XmlIgnore]
 		public int? Id { get; set; }

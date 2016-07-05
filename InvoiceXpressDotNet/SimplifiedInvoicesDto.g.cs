@@ -10,7 +10,7 @@ namespace InvoiceXpressDotNet
 		public string type = "array";
 		
 		[XmlElement("simplified_invoice")]
-		public SimplifiedInvoiceDto[] SimplifiedInvoicesArray { get; set; }
+		public SimplifiedInvoiceDto[] Items { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

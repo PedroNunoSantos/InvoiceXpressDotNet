@@ -10,7 +10,7 @@ namespace InvoiceXpressDotNet
 		public string type = "array";
 		
 		[XmlElement("debit_note")]
-		public DebitNoteDto[] DebitNote { get; set; }
+		public DebitNoteDto[] Items { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

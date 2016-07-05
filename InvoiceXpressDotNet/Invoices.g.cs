@@ -26,7 +26,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static InvoiceDto CreateTyped(string apiKey, string accountName, InvoiceDto inputData)
 			{
-				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<InvoiceDto>();
+				string xmlResult = Create(apiKey, accountName, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<InvoiceDto>();
 			}
 
 			/// <summary>
@@ -47,7 +48,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static InvoiceDto GetTyped(string apiKey, string accountName, int invoiceId)
 			{
-				return Get(apiKey, accountName, invoiceId).DeserializeXml<InvoiceDto>();
+				string xmlResult = Get(apiKey, accountName, invoiceId);
+			    return xmlResult.DeserializeXml<InvoiceDto>();
 			}
 
 			/// <summary>
@@ -89,7 +91,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static InvoicesDto ListTyped(string apiKey, string accountName)
 			{
-				return List(apiKey, accountName).DeserializeXml<InvoicesDto>();
+				string xmlResult = List(apiKey, accountName);
+			    return xmlResult.DeserializeXml<InvoicesDto>();
 			}
 
 			/// <summary>
@@ -110,7 +113,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static InvoiceChangeStateDto ChangeStateTyped(string apiKey, string accountName, int invoiceId, InvoiceChangeStateDto inputData)
 			{
-				return ChangeState(apiKey, accountName, invoiceId, inputData.XmlSerializeToString()).DeserializeXml<InvoiceChangeStateDto>();
+				string xmlResult = ChangeState(apiKey, accountName, invoiceId, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<InvoiceChangeStateDto>();
 			}
 
 			/// <summary>
@@ -152,7 +156,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static InvoicesDto RelatedDocumentsTyped(string apiKey, string accountName, int invoiceId)
 			{
-				return RelatedDocuments(apiKey, accountName, invoiceId).DeserializeXml<InvoicesDto>();
+				string xmlResult = RelatedDocuments(apiKey, accountName, invoiceId);
+			    return xmlResult.DeserializeXml<InvoicesDto>();
 			}
 
 			/// <summary>
@@ -173,7 +178,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static PdfOutputDto PdfTyped(string apiKey, string accountName, int invoiceId)
 			{
-				return Pdf(apiKey, accountName, invoiceId).DeserializeXml<PdfOutputDto>();
+				string xmlResult = Pdf(apiKey, accountName, invoiceId);
+			    return xmlResult.DeserializeXml<PdfOutputDto>();
 			}
 
 			/// <summary>
@@ -223,10 +229,10 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static string PartialPayment(string apiKey, string accountName, int documentId, string inputData)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/documents/{2}/partial_payments.xml", apiKey, accountName, documentId);
+				string url = string.Format("https://{1}.app.invoicexpress.com/documents/{2}/partial_payments.xml?api_key={0}", apiKey, accountName, documentId);
 				var result = url.HttpPost(inputData);
-				if ((int) result.StatusCode != 200)
-					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
+				if ((int) result.StatusCode != 201)
+					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)201)
 						, new Exception(result.Text));
 				return result.Text;
 			}
@@ -236,7 +242,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static PartialPaymentReceiptDto PartialPaymentTyped(string apiKey, string accountName, int documentId, PartialPaymentDto inputData)
 			{
-				return PartialPayment(apiKey, accountName, documentId, inputData.XmlSerializeToString()).DeserializeXml<PartialPaymentReceiptDto>();
+				string xmlResult = PartialPayment(apiKey, accountName, documentId, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<PartialPaymentReceiptDto>();
 			}
 
 	}

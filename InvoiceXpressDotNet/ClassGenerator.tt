@@ -68,13 +68,16 @@ namespace <#=BaseNamespace #>
 			{
 <#+
 	        string deserializePart = u.HasReturn ? string.Format(".DeserializeXml<{0}>()", returnClassName) : string.Empty;
-	        string returnPart = u.HasReturn ? "return " : string.Empty;
-
 	        Write("\t\t\t\t");
-	        WriteLine(u.HasInput
-	            ? string.Format("{0}{1}({2}{3}inputData.XmlSerializeToString()){4};", returnPart, mtd.Name,
-	                u.MethodCallParameters, string.IsNullOrEmpty(u.MethodCallParameters) ? "" : ", ", deserializePart)
-	            : string.Format("{0}{1}({2}){3};", returnPart, mtd.Name, u.MethodCallParameters, deserializePart));
+	        string invocationCall = u.HasInput
+	            ? string.Format("{0}({1}{2}inputData.XmlSerializeToString())", mtd.Name,
+	                u.MethodCallParameters, string.IsNullOrEmpty(u.MethodCallParameters) ? "" : ", ")
+	            : string.Format("{0}({1})", mtd.Name, u.MethodCallParameters);
+
+	        WriteLine(u.HasReturn
+	            ? string.Format("string xmlResult = {0};\r\n\t\t\t    return xmlResult{1};", invocationCall,
+	                deserializePart)
+	            : string.Format("{0};", invocationCall));
 #>
 			}
 <#+
@@ -170,7 +173,7 @@ namespace <#= BaseNamespace #>
 		{
 #>
 		[XmlEnum(Name="<#=enumValue.XmlName ?? "" #>")]
-		<#=enumValue.Name #>,
+		<#=FixName(enumValue.Name) #>,
 <#+
 		}
 #>
@@ -180,6 +183,34 @@ namespace <#= BaseNamespace #>
 	        m.EndBlock();
 	    }
 	}
+
+    private string FixName(string baseName)
+    {
+        char[] separators = {' ', '(', ')', '.', '-', 'º', '\'', '%', '?', '!', ';', '/', ':' ,','};
+        string validcSharpName = Replace(RemoveDiacritics(baseName), separators, "_");
+        string enumIdentifier = validcSharpName.Trim('_');
+        return enumIdentifier;
+    }
+
+	public static string Replace(string s, char[] separators, string newVal)
+    {
+        string[] temp = s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        return String.Join(newVal, temp);
+    }
+
+	public static string RemoveDiacritics(string stIn)
+    {
+        string stFormD = stIn.Normalize(NormalizationForm.FormD);
+        var sb = new StringBuilder();
+
+        foreach (char c in stFormD)
+        {
+            UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(c);
+            if (uc != UnicodeCategory.NonSpacingMark)
+                sb.Append(c);
+        }
+        return (sb.ToString());
+    }
 
     public static bool IsAnyOf<T>(T data, params T[] parms)
     {

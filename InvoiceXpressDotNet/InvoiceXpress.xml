@@ -220,11 +220,11 @@
     </Method>
 
     <Method Name="PartialPayment" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/documents/{documentId}/partial_payments.xml"
+            Url="https://{accountName}.app.invoicexpress.com/documents/{documentId}/partial_payments.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/partial-payment"
             InputClass="PartialPaymentDto"
             ReturnClass="PartialPaymentReceiptDto"
-            SucessCode="200">
+            SucessCode="201">
       <UrlParms>
         <Param Index="0" Name="apiKey" Type="string" />
         <Param Index="1" Name="accountName" Type="string" />
@@ -249,7 +249,7 @@
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/get"
             ReturnClass="SimplifiedInvoiceDto"
             SucessCode="200">
@@ -261,7 +261,7 @@
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
             InputClass="SimplifiedInvoiceDto"
             SucessCode="200">
@@ -286,7 +286,7 @@
     </Method>
 
     <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/change-state.xml"
+            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/change-state.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
             InputClass="SimplifiedInvoiceChangeStateDto"
             SucessCode="200">
@@ -364,7 +364,7 @@
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoice-receipt/update"
             InputClass="InvoiceReceiptDto"
             SucessCode="200">
@@ -453,7 +453,7 @@
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/get"
             ReturnClass="CreditNoteDto"
             SucessCode="200">
@@ -465,7 +465,7 @@
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
             InputClass="CreditNoteDto"
             SucessCode="200">
@@ -542,7 +542,7 @@
     </Method>
 
     <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/get"
             ReturnClass="CreditNoteDto"
             SucessCode="200">
@@ -554,7 +554,7 @@
     </Method>
 
     <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml"
+            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
             InputClass="CreditNoteDto"
             SucessCode="200">
@@ -820,7 +820,7 @@
       <Property XmlName="api_key" Name="ApiKey" Type="string" XmlType="string" />
       <Property XmlName="state" Name="State" Type="string" XmlType="string" />
       <Property XmlName="blocked" Name="Blocked" Type="string" XmlType="string" />
-      <Property XmlName="roles" Name="RolesArray" Type="RolesDto" />
+      <Property XmlName="roles" Name="Roles" Type="RolesDto" />
     </Type>
     
     <Type XmlName="roles" Name="RolesDto">
@@ -828,11 +828,11 @@
     </Type>
     
     <Type XmlName="accounts" Name="UserAccountsDto" TypeAttribute="array">
-      <Property XmlName="account" Name="AccountsArray" Type="UserAccountDto[]" />
+      <Property XmlName="account" Name="Items" Type="UserAccountDto[]" />
     </Type>
     
     <Type XmlName="accounts" Name="AccountsDto" TypeAttribute="array">
-      <Property XmlName="account" Name="AccountsArray" Type="AccountDto[]" />
+      <Property XmlName="account" Name="Items" Type="AccountDto[]" />
     </Type>
     
     <Type XmlName="change_account_to" Name="ChangeAccountToDto">
@@ -856,7 +856,7 @@
       <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
       <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
       <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
       <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
       <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
@@ -867,7 +867,7 @@
     </Type>
     
     <Type XmlName="invoices" Name="InvoicesDto" TypeAttribute="array">
-      <Property XmlName="invoice" Name="InvoicesArray" Type="InvoiceDto[]" />
+      <Property XmlName="invoice" Name="Items" Type="InvoiceDto[]" />
     </Type>
     
     <Type XmlName="client" Name="ClientDto">
@@ -891,7 +891,7 @@
     </Type>
     
     <Type XmlName="clients" Name="ClientsDto" TypeAttribute="array">
-      <Property XmlName="client" Name="ClientsArray" Type="ClientDto[]" />
+      <Property XmlName="client" Name="Items" Type="ClientDto[]" />
     </Type>
     
     <Type XmlName="preferred_contact" Name="PreferredContactDto">
@@ -917,7 +917,7 @@
     </Type>
     
     <Type XmlName="items" Name="ItemsDto" TypeAttribute="array">
-      <Property XmlName="item" Name="ItemsArray" Type="ItemDto[]" />
+      <Property XmlName="item" Name="Items" Type="ItemDto[]" />
     </Type>
     
     <Type XmlName="tax" Name="TaxDto">
@@ -929,8 +929,11 @@
     </Type>
     
     <Type XmlName="invoice" Name="InvoiceChangeStateDto">
-      <Property XmlName="state" Name="State" Type="InvoiceState" />
+      <Property XmlName="id" Name="Id" Type="int" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="message" Name="Message" Type="string" />
+      <Property XmlName="state" Name="State" Type="InvoiceState" />
     </Type>
 
     <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceChangeStateDto">
@@ -965,7 +968,7 @@
       <Property XmlName="payment_mechanism" Name="PaymentMechanism" Type="PaymentMechanism" />
       <Property XmlName="note" Name="Note" Type="string" />
       <Property XmlName="serie" Name="Serie" Type="string" />
-      <Property XmlName="amount" Name="Amount" Type="float" XmlType="Float" />
+      <Property XmlName="amount" Name="Amount" Type="float?" XmlType="Float" />
       <Property XmlName="payment_date" Name="PaymentDate"  Type="DateTime?" XmlType="Date" />
     </Type>
     
@@ -988,7 +991,7 @@
       <Property XmlName="currency" Name="Currency" Type="string" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
       <Property XmlName="multicurrency" Name="Multicurrency" Type="MulticurrencyDto" />
-      <Property XmlName="events" Name="EventsArray" Type="EventsDto" />
+      <Property XmlName="events" Name="Events" Type="EventsDto" />
     </Type>
     
     <Type XmlName="multicurrency" Name="MulticurrencyDto">
@@ -1004,7 +1007,7 @@
     </Type>
     
     <Type XmlName="events" Name="EventsDto" TypeAttribute="array">
-      <Property XmlName="event" Name="EventsArray" Type="EventDto[]" />
+      <Property XmlName="event" Name="Items" Type="EventDto[]" />
     </Type>
 
    <Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
@@ -1024,7 +1027,7 @@
       <Property XmlName="permalink" Name="Permalink" Type="string" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
       <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
       <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
       <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
       <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
@@ -1050,7 +1053,7 @@
       <Property XmlName="permalink" Name="Permalink" Type="string" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
       <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
       <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
       <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
       <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
@@ -1060,7 +1063,7 @@
     </Type>
     
     <Type XmlName="simplified_invoices" Name="SimplifiedInvoicesDto" TypeAttribute="array">
-      <Property XmlName="simplified_invoice" Name="SimplifiedInvoicesArray" Type="SimplifiedInvoiceDto[]" />
+      <Property XmlName="simplified_invoice" Name="Items" Type="SimplifiedInvoiceDto[]" />
     </Type>
     
     <Type XmlName="account_stats" Name="AccountStatsDto">
@@ -1087,7 +1090,7 @@
       <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
       <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
       <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
       <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
       <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
@@ -1096,7 +1099,7 @@
     </Type>
     
     <Type XmlName="credit_notes" Name="CreditNotesDto" TypeAttribute="array">
-      <Property XmlName="credit_note" Name="CreditNote" Type="CreditNoteDto[]" />
+      <Property XmlName="credit_note" Name="Items" Type="CreditNoteDto[]" />
     </Type>
     
     <Type XmlName="invoice_receipts" Name="InvoiceReceiptsDto" TypeAttribute="array">
@@ -1112,7 +1115,7 @@
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
       <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="items" Name="ItemsArray" Type="ItemsDto" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
       <Property XmlName="status" Name="Status" Type="string" />
       <Property XmlName="archived" Name="Archived" Type="string" />
@@ -1134,7 +1137,7 @@
     </Type>
     
     <Type XmlName="debit_notes" Name="DebitNotesDto" TypeAttribute="array">
-      <Property XmlName="debit_note" Name="DebitNote" Type="DebitNoteDto[]" />
+      <Property XmlName="debit_note" Name="Items" Type="DebitNoteDto[]" />
     </Type>
 
   </Types>
@@ -1168,7 +1171,7 @@
       <Value Name="M99" XmlName="M99" />
     </Enum>
 
-    
+      <!--https://invoicexpress.com/api/appendix/payment-mechanisms-->
     <Enum Name="PaymentMechanism" >
       <!-- Credit card -->
       <Value Name="CC" XmlName="CC" />

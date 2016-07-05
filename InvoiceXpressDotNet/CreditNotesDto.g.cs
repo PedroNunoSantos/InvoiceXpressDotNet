@@ -10,7 +10,7 @@ namespace InvoiceXpressDotNet
 		public string type = "array";
 		
 		[XmlElement("credit_note")]
-		public CreditNoteDto[] CreditNote { get; set; }
+		public CreditNoteDto[] Items { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

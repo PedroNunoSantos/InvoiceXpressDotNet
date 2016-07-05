@@ -33,7 +33,7 @@ namespace InvoiceXpressDotNet
 		public string Blocked { get; set; }
 		
 		[XmlElement("roles")]
-		public RolesDto RolesArray { get; set; }
+		public RolesDto Roles { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

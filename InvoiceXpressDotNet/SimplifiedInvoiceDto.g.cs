@@ -84,7 +84,7 @@ namespace InvoiceXpressDotNet
 		public string Currency { get; set; }
 		
 		[XmlElement("items")]
-		public ItemsDto ItemsArray { get; set; }
+		public ItemsDto Items { get; set; }
 		
 		[XmlIgnore]
 		public float? Sum { get; set; }

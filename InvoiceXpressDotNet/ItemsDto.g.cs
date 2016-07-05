@@ -10,7 +10,7 @@ namespace InvoiceXpressDotNet
 		public string type = "array";
 		
 		[XmlElement("item")]
-		public ItemDto[] ItemsArray { get; set; }
+		public ItemDto[] Items { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

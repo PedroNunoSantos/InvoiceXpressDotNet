@@ -125,7 +125,7 @@ namespace InvoiceXpressDotNet
 		public MulticurrencyDto Multicurrency { get; set; }
 		
 		[XmlElement("events")]
-		public EventsDto EventsArray { get; set; }
+		public EventsDto Events { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

@@ -17,13 +17,13 @@ namespace InvoiceXpressDotNet
 		public string Serie { get; set; }
 		
 		[XmlIgnore]
-		public float Amount { get; set; }
+		public float? Amount { get; set; }
 		
 		[XmlElement("amount"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
 	    public string _AmountDto
 	    {	    
-			get { return Amount.ToXml<float>(); }
-            set { Amount = value.FromXml<float>(); }
+			get { return Amount.ToXml<float?>(); }
+            set { Amount = value.FromXml<float?>(); }
 	    }
 		
 		[XmlIgnore]

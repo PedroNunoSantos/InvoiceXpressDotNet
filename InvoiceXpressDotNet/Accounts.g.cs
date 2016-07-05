@@ -26,7 +26,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static AccountDto CreateTyped(string apiKey, AccountDto inputData)
 			{
-				return Create(apiKey, inputData.XmlSerializeToString()).DeserializeXml<AccountDto>();
+				string xmlResult = Create(apiKey, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<AccountDto>();
 			}
 
 			/// <summary>
@@ -47,7 +48,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static AccountDto GetTyped(string apiKey, string accountName, string accountId)
 			{
-				return Get(apiKey, accountName, accountId).DeserializeXml<AccountDto>();
+				string xmlResult = Get(apiKey, accountName, accountId);
+			    return xmlResult.DeserializeXml<AccountDto>();
 			}
 
 			/// <summary>
@@ -68,7 +70,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static AccountStatsDto StatsTyped(string accountName, string accountId, string apiKey)
 			{
-				return Stats(accountName, accountId, apiKey).DeserializeXml<AccountStatsDto>();
+				string xmlResult = Stats(accountName, accountId, apiKey);
+			    return xmlResult.DeserializeXml<AccountStatsDto>();
 			}
 
 			/// <summary>

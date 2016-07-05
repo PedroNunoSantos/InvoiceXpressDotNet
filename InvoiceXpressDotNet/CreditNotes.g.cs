@@ -26,7 +26,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static CreditNoteDto CreateTyped(string apiKey, string accountName, CreditNoteDto inputData)
 			{
-				return Create(apiKey, accountName, inputData.XmlSerializeToString()).DeserializeXml<CreditNoteDto>();
+				string xmlResult = Create(apiKey, accountName, inputData.XmlSerializeToString());
+			    return xmlResult.DeserializeXml<CreditNoteDto>();
 			}
 
 			/// <summary>
@@ -34,7 +35,7 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static string Get(string apiKey, string accountName, string creditNoteId)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}.xml", apiKey, accountName, creditNoteId);
+				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}.xml?api_key={0}", apiKey, accountName, creditNoteId);
 				var result = url.HttpGet();
 				if ((int) result.StatusCode != 200)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
@@ -47,7 +48,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static CreditNoteDto GetTyped(string apiKey, string accountName, string creditNoteId)
 			{
-				return Get(apiKey, accountName, creditNoteId).DeserializeXml<CreditNoteDto>();
+				string xmlResult = Get(apiKey, accountName, creditNoteId);
+			    return xmlResult.DeserializeXml<CreditNoteDto>();
 			}
 
 			/// <summary>
@@ -55,7 +57,7 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static string Update(string apiKey, string accountName, string creditNoteId, string inputData)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}.xml", apiKey, accountName, creditNoteId);
+				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}.xml?api_key={0}", apiKey, accountName, creditNoteId);
 				var result = url.HttpPut(inputData);
 				if ((int) result.StatusCode != 200)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
@@ -89,7 +91,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static CreditNotesDto ListTyped(string apiKey, string accountName, int? page, int? perPage)
 			{
-				return List(apiKey, accountName, page, perPage).DeserializeXml<CreditNotesDto>();
+				string xmlResult = List(apiKey, accountName, page, perPage);
+			    return xmlResult.DeserializeXml<CreditNotesDto>();
 			}
 
 			/// <summary>
@@ -152,7 +155,8 @@ namespace InvoiceXpressDotNet
 			/// </summary>
 			public static PdfOutputDto PdfTyped(string apiKey, string accountName, string simplifiedInvoiceId)
 			{
-				return Pdf(apiKey, accountName, simplifiedInvoiceId).DeserializeXml<PdfOutputDto>();
+				string xmlResult = Pdf(apiKey, accountName, simplifiedInvoiceId);
+			    return xmlResult.DeserializeXml<PdfOutputDto>();
 			}
 
 	}
