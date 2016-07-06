@@ -1,17 +1,23 @@
 // Connector API InvoiceXpressDotNet developed by EventKey,Lda http://www.eventkey.pt
 using System;
 using System.Net;
+using System.ComponentModel;
+
 namespace InvoiceXpressDotNet
 {
 	public static partial class InvoiceExpress
     {
+		/// <summary>
+		/// InvoiceXpress <a href="https://invoicexpress.com/api/clients">Clients</a> module
+		/// </summary>
 		public static class Clients
 		{
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/create">Clients Create</a> Method
 			/// </summary>
-			public static string Create(string apiKey, string accountName, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Create(string apiKey, string accountName, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients.xml?api_key={0}", apiKey, accountName);
 				var result = url.HttpPost(inputData);
@@ -24,16 +30,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/create">Clients Create</a> Method
 			/// </summary>
-			public static ClientDto CreateTyped(string apiKey, string accountName, ClientDto inputData)
+			public static ClientDto Create(string apiKey, string accountName, ClientDto inputData)
 			{
-				string xmlResult = Create(apiKey, accountName, inputData.XmlSerializeToString());
+				string xmlResult = Rest_Create(apiKey, accountName, inputData.XmlSerializeToString());
 			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/get">Clients Get</a> Method
 			/// </summary>
-			public static string Get(string apiKey, string accountName, string clientId)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Get(string apiKey, string accountName, string clientId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}.xml?api_key={0}", apiKey, accountName, clientId);
 				var result = url.HttpGet();
@@ -46,16 +53,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/get">Clients Get</a> Method
 			/// </summary>
-			public static ClientDto GetTyped(string apiKey, string accountName, string clientId)
+			public static ClientDto Get(string apiKey, string accountName, string clientId)
 			{
-				string xmlResult = Get(apiKey, accountName, clientId);
+				string xmlResult = Rest_Get(apiKey, accountName, clientId);
 			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/update">Clients Update</a> Method
 			/// </summary>
-			public static string Update(string apiKey, string accountName, string clientId, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Update(string apiKey, string accountName, string clientId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}.xml?api_key={0}", apiKey, accountName, clientId);
 				var result = url.HttpPut(inputData);
@@ -68,15 +76,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/update">Clients Update</a> Method
 			/// </summary>
-			public static void UpdateTyped(string apiKey, string accountName, string clientId, ClientDto inputData)
+			public static void Update(string apiKey, string accountName, string clientId, ClientDto inputData)
 			{
-				Update(apiKey, accountName, clientId, inputData.XmlSerializeToString());
+				Rest_Update(apiKey, accountName, clientId, inputData.XmlSerializeToString());
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list">Clients List</a> Method
 			/// </summary>
-			public static string List(string apiKey, string accountName, int? page, int? perPage, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_List(string apiKey, string accountName, int? page, int? perPage, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients.xml?api_key={0}&page={2}&per_page={3}", apiKey, accountName, page, perPage);
 				var result = url.HttpGet(inputData);
@@ -89,15 +98,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list">Clients List</a> Method
 			/// </summary>
-			public static void ListTyped(string apiKey, string accountName, int? page, int? perPage, ClientsDto inputData)
+			public static void List(string apiKey, string accountName, int? page, int? perPage, ClientsDto inputData)
 			{
-				List(apiKey, accountName, page, perPage, inputData.XmlSerializeToString());
+				Rest_List(apiKey, accountName, page, perPage, inputData.XmlSerializeToString());
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list-invoice">Clients Invoices</a> Method
 			/// </summary>
-			public static string Invoices(string apiKey, string accountName, string clientId, int? page, int? perPage)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Invoices(string apiKey, string accountName, string clientId, int? page, int? perPage)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}/invoices.xml?api_key={0}&page={3}&per_page={4}", apiKey, accountName, clientId, page, perPage);
 				var result = url.HttpGet();
@@ -110,16 +120,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list-invoice">Clients Invoices</a> Method
 			/// </summary>
-			public static InvoicesDto InvoicesTyped(string apiKey, string accountName, string clientId, int? page, int? perPage)
+			public static InvoicesDto Invoices(string apiKey, string accountName, string clientId, int? page, int? perPage)
 			{
-				string xmlResult = Invoices(apiKey, accountName, clientId, page, perPage);
+				string xmlResult = Rest_Invoices(apiKey, accountName, clientId, page, perPage);
 			    return xmlResult.DeserializeXml<InvoicesDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/find-by-name">Clients FindByName</a> Method
 			/// </summary>
-			public static string FindByName(string apiKey, string accountName, string clientName)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_FindByName(string apiKey, string accountName, string clientName)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/find-by-name.xml?api_key={0}&client_name={2}", apiKey, accountName, clientName);
 				var result = url.HttpGet();
@@ -132,16 +143,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/find-by-name">Clients FindByName</a> Method
 			/// </summary>
-			public static ClientDto FindByNameTyped(string apiKey, string accountName, string clientName)
+			public static ClientDto FindByName(string apiKey, string accountName, string clientName)
 			{
-				string xmlResult = FindByName(apiKey, accountName, clientName);
+				string xmlResult = Rest_FindByName(apiKey, accountName, clientName);
 			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/find-by-code">Clients FindByCode</a> Method
 			/// </summary>
-			public static string FindByCode(string apiKey, string accountName, string clientCode)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_FindByCode(string apiKey, string accountName, string clientCode)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/find-by-code.xml?api_key={0}&client_code={2}", apiKey, accountName, clientCode);
 				var result = url.HttpGet();
@@ -154,9 +166,9 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/find-by-code">Clients FindByCode</a> Method
 			/// </summary>
-			public static ClientDto FindByCodeTyped(string apiKey, string accountName, string clientCode)
+			public static ClientDto FindByCode(string apiKey, string accountName, string clientCode)
 			{
-				string xmlResult = FindByCode(apiKey, accountName, clientCode);
+				string xmlResult = Rest_FindByCode(apiKey, accountName, clientCode);
 			    return xmlResult.DeserializeXml<ClientDto>();
 			}
 

@@ -44,10 +44,17 @@ namespace InvoiceXpressDotNet
 	    }
 		
 		[XmlElement("status")]
-		public string Status { get; set; }
+		public DocumentState Status { get; set; }
 		
-		[XmlElement("archived")]
-		public string Archived { get; set; }
+		[XmlIgnore]
+		public bool? Archived { get; set; }
+		
+		[XmlElement("archived"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _ArchivedDto
+	    {	    
+			get { return Archived.ToXml<bool?>(); }
+            set { Archived = value.FromXml<bool?>(); }
+	    }
 		
 		[XmlElement("type")]
 		public string Type { get; set; }

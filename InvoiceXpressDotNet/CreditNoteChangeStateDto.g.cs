@@ -8,7 +8,7 @@ namespace InvoiceXpressDotNet
 	{		
 		
 		[XmlElement("state")]
-		public InvoiceState State { get; set; }
+		public DocumentState State { get; set; }
 		
 		[XmlElement("message")]
 		public string message { get; set; }

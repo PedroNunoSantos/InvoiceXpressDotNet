@@ -28,6 +28,12 @@ namespace InvoiceXpressDotNet
                 var intValue = data as int?;
                 return intValue.HasValue ? intValue.Value.ToString(CultureInfo.InvariantCulture) : null;
             }
+            
+            if (typeof(T) == typeof(bool?))
+            {
+                var boolValue = data as bool?;
+                return boolValue.HasValue ? boolValue.Value.ToString(CultureInfo.InvariantCulture) : null;
+            }
 
             throw new ArgumentOutOfRangeException();
         }
@@ -44,6 +50,7 @@ namespace InvoiceXpressDotNet
                     return (T)Convert.ChangeType(floatValue, baseType);
                 return default(T);
             }
+
             if (baseType == typeof(DateTime))
             {
                 DateTime dateVal;
@@ -53,11 +60,20 @@ namespace InvoiceXpressDotNet
                 return default(T);
 
             }
+
             if (baseType == typeof(int))
             {
                 int intValue;
                 if (int.TryParse(str, out intValue))
                     return (T)Convert.ChangeType(intValue, baseType);
+                return default(T);
+            }
+
+            if (baseType == typeof(bool))
+            {
+                bool boolValue;
+                if (bool.TryParse(str, out boolValue))
+                    return (T)Convert.ChangeType(boolValue, baseType);
                 return default(T);
             }
 

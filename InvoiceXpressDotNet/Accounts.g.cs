@@ -1,17 +1,23 @@
 // Connector API InvoiceXpressDotNet developed by EventKey,Lda http://www.eventkey.pt
 using System;
 using System.Net;
+using System.ComponentModel;
+
 namespace InvoiceXpressDotNet
 {
 	public static partial class InvoiceExpress
     {
+		/// <summary>
+		/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts">Accounts</a> module
+		/// </summary>
 		public static class Accounts
 		{
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/create">Accounts Create</a> Method
 			/// </summary>
-			public static string Create(string apiKey, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Create(string apiKey, string inputData)
 			{
 				string url = string.Format("https://www.app.invoicexpress.com/api/accounts/create.xml?api_key={0}", apiKey);
 				var result = url.HttpPost(inputData);
@@ -24,16 +30,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/create">Accounts Create</a> Method
 			/// </summary>
-			public static AccountDto CreateTyped(string apiKey, AccountDto inputData)
+			public static AccountDto Create(string apiKey, AccountDto inputData)
 			{
-				string xmlResult = Create(apiKey, inputData.XmlSerializeToString());
+				string xmlResult = Rest_Create(apiKey, inputData.XmlSerializeToString());
 			    return xmlResult.DeserializeXml<AccountDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/get">Accounts Get</a> Method
 			/// </summary>
-			public static string Get(string apiKey, string accountName, string accountId)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Get(string apiKey, string accountName, string accountId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/get.xml?api_key={0}", apiKey, accountName, accountId);
 				var result = url.HttpGet();
@@ -46,16 +53,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/get">Accounts Get</a> Method
 			/// </summary>
-			public static AccountDto GetTyped(string apiKey, string accountName, string accountId)
+			public static AccountDto Get(string apiKey, string accountName, string accountId)
 			{
-				string xmlResult = Get(apiKey, accountName, accountId);
+				string xmlResult = Rest_Get(apiKey, accountName, accountId);
 			    return xmlResult.DeserializeXml<AccountDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/stats">Accounts Stats</a> Method
 			/// </summary>
-			public static string Stats(string accountName, string accountId, string apiKey)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Stats(string accountName, string accountId, string apiKey)
 			{
 				string url = string.Format("https://{0}.app.invoicexpress.com/api/accounts/{1}/stats.xml?api_key={2}", accountName, accountId, apiKey);
 				var result = url.HttpGet();
@@ -68,16 +76,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/stats">Accounts Stats</a> Method
 			/// </summary>
-			public static AccountStatsDto StatsTyped(string accountName, string accountId, string apiKey)
+			public static AccountStatsDto Stats(string accountName, string accountId, string apiKey)
 			{
-				string xmlResult = Stats(accountName, accountId, apiKey);
+				string xmlResult = Rest_Stats(accountName, accountId, apiKey);
 			    return xmlResult.DeserializeXml<AccountStatsDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/suspend">Accounts Suspend</a> Method
 			/// </summary>
-			public static string Suspend(string apiKey, string accountName, string accountId)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Suspend(string apiKey, string accountName, string accountId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/suspend.xml?api_key={0}", apiKey, accountName, accountId);
 				var result = url.HttpPut();
@@ -90,15 +99,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/suspend">Accounts Suspend</a> Method
 			/// </summary>
-			public static void SuspendTyped(string apiKey, string accountName, string accountId)
+			public static void Suspend(string apiKey, string accountName, string accountId)
 			{
-				Suspend(apiKey, accountName, accountId);
+				Rest_Suspend(apiKey, accountName, accountId);
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/activate">Accounts Activate</a> Method
 			/// </summary>
-			public static string Activate(string apiKey, string accountName, string accountId)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Activate(string apiKey, string accountName, string accountId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/activate.xml?api_key={0}", apiKey, accountName, accountId);
 				var result = url.HttpPut();
@@ -111,15 +121,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/activate">Accounts Activate</a> Method
 			/// </summary>
-			public static void ActivateTyped(string apiKey, string accountName, string accountId)
+			public static void Activate(string apiKey, string accountName, string accountId)
 			{
-				Activate(apiKey, accountName, accountId);
+				Rest_Activate(apiKey, accountName, accountId);
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/update">Accounts Update</a> Method
 			/// </summary>
-			public static string Update(string apiKey, string accountName, string accountId, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Update(string apiKey, string accountName, string accountId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/update.xml?api_key={0}", apiKey, accountName, accountId);
 				var result = url.HttpPut(inputData);
@@ -132,9 +143,9 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/update">Accounts Update</a> Method
 			/// </summary>
-			public static void UpdateTyped(string apiKey, string accountName, string accountId, AccountDto inputData)
+			public static void Update(string apiKey, string accountName, string accountId, AccountDto inputData)
 			{
-				Update(apiKey, accountName, accountId, inputData.XmlSerializeToString());
+				Rest_Update(apiKey, accountName, accountId, inputData.XmlSerializeToString());
 			}
 
 	}

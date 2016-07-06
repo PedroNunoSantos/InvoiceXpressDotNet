@@ -43,6 +43,7 @@
               </xs:element>
             </xs:sequence>
             <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute name="ApiUrl" type="xs:string" use="optional" />
           </xs:complexType>
           <xs:unique name="UK_MethodName">
             <xs:selector xpath="Method" />

@@ -1,17 +1,23 @@
 // Connector API InvoiceXpressDotNet developed by EventKey,Lda http://www.eventkey.pt
 using System;
 using System.Net;
+using System.ComponentModel;
+
 namespace InvoiceXpressDotNet
 {
 	public static partial class InvoiceExpress
     {
+		/// <summary>
+		/// InvoiceXpress <a href="https://invoicexpress.com/api/items/create">Items</a> module
+		/// </summary>
 		public static class Items
 		{
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/create">Items Create</a> Method
 			/// </summary>
-			public static string Create(string apiKey, string accountName, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Create(string apiKey, string accountName, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/items.xml?api_key={0}", apiKey, accountName);
 				var result = url.HttpPost(inputData);
@@ -24,16 +30,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/create">Items Create</a> Method
 			/// </summary>
-			public static ItemDto CreateTyped(string apiKey, string accountName, ItemDto inputData)
+			public static ItemDto Create(string apiKey, string accountName, ItemDto inputData)
 			{
-				string xmlResult = Create(apiKey, accountName, inputData.XmlSerializeToString());
+				string xmlResult = Rest_Create(apiKey, accountName, inputData.XmlSerializeToString());
 			    return xmlResult.DeserializeXml<ItemDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/get">Items Get</a> Method
 			/// </summary>
-			public static string Get(string apiKey, string accountName, string itemId)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Get(string apiKey, string accountName, string itemId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/items/{2}.xml?api_key={0}", apiKey, accountName, itemId);
 				var result = url.HttpGet();
@@ -46,16 +53,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/get">Items Get</a> Method
 			/// </summary>
-			public static ItemDto GetTyped(string apiKey, string accountName, string itemId)
+			public static ItemDto Get(string apiKey, string accountName, string itemId)
 			{
-				string xmlResult = Get(apiKey, accountName, itemId);
+				string xmlResult = Rest_Get(apiKey, accountName, itemId);
 			    return xmlResult.DeserializeXml<ItemDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/update">Items Update</a> Method
 			/// </summary>
-			public static string Update(string apiKey, string accountName, string itemId, string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Update(string apiKey, string accountName, string itemId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{clientId}.xml?api_key={0}", apiKey, accountName, itemId);
 				var result = url.HttpPut(inputData);
@@ -68,15 +76,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/update">Items Update</a> Method
 			/// </summary>
-			public static void UpdateTyped(string apiKey, string accountName, string itemId, ItemDto inputData)
+			public static void Update(string apiKey, string accountName, string itemId, ItemDto inputData)
 			{
-				Update(apiKey, accountName, itemId, inputData.XmlSerializeToString());
+				Rest_Update(apiKey, accountName, itemId, inputData.XmlSerializeToString());
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/delete">Items Delete</a> Method
 			/// </summary>
-			public static string Delete(string apiKey, string accountName, string itemId)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Delete(string apiKey, string accountName, string itemId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/items/{2}.xml?api_key={0}", apiKey, accountName, itemId);
 				var result = url.HttpDelete();
@@ -89,15 +98,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/items/delete">Items Delete</a> Method
 			/// </summary>
-			public static void DeleteTyped(string apiKey, string accountName, string itemId)
+			public static void Delete(string apiKey, string accountName, string itemId)
 			{
-				Delete(apiKey, accountName, itemId);
+				Rest_Delete(apiKey, accountName, itemId);
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list">Items List</a> Method
 			/// </summary>
-			public static string List(string apiKey, string accountName)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_List(string apiKey, string accountName)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/items.xml?api_key={0}", apiKey, accountName);
 				var result = url.HttpGet();
@@ -110,9 +120,9 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list">Items List</a> Method
 			/// </summary>
-			public static ItemsDto ListTyped(string apiKey, string accountName)
+			public static ItemsDto List(string apiKey, string accountName)
 			{
-				string xmlResult = List(apiKey, accountName);
+				string xmlResult = Rest_List(apiKey, accountName);
 			    return xmlResult.DeserializeXml<ItemsDto>();
 			}
 

@@ -97,6 +97,9 @@
     <Compile Include="DocumentsStatsDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentState.enum.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="EmailClientDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
@@ -131,9 +134,6 @@
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="InvoicesDto.g.cs">
-      <DependentUpon>ClassGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InvoiceState.enum.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemDto.g.cs">

@@ -12,6 +12,46 @@ namespace InvoiceXpressDotNet
 		[XmlElement("invoice")]
 		public InvoiceDto[] Items { get; set; }
 		
+		[XmlIgnore]
+		public int? CurrentPage { get; set; }
+		
+		[XmlElement("current_page"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _CurrentPageDto
+	    {	    
+			get { return CurrentPage.ToXml<int?>(); }
+            set { CurrentPage = value.FromXml<int?>(); }
+	    }
+		
+		[XmlIgnore]
+		public int? TotalPages { get; set; }
+		
+		[XmlElement("total_pages"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _TotalPagesDto
+	    {	    
+			get { return TotalPages.ToXml<int?>(); }
+            set { TotalPages = value.FromXml<int?>(); }
+	    }
+		
+		[XmlIgnore]
+		public int? TotalEntries { get; set; }
+		
+		[XmlElement("total_entries"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _TotalEntriesDto
+	    {	    
+			get { return TotalEntries.ToXml<int?>(); }
+            set { TotalEntries = value.FromXml<int?>(); }
+	    }
+		
+		[XmlIgnore]
+		public int? PerPage { get; set; }
+		
+		[XmlElement("per_page"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _PerPageDto
+	    {	    
+			get { return PerPage.ToXml<int?>(); }
+            set { PerPage = value.FromXml<int?>(); }
+	    }
+		
 		/*
 		public override void SetFromXml(string xml)
 		{

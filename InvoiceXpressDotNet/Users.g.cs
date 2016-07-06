@@ -1,17 +1,23 @@
 // Connector API InvoiceXpressDotNet developed by EventKey,Lda http://www.eventkey.pt
 using System;
 using System.Net;
+using System.ComponentModel;
+
 namespace InvoiceXpressDotNet
 {
 	public static partial class InvoiceExpress
     {
+		/// <summary>
+		/// InvoiceXpress <a href="https://invoicexpress.com/api/users">Users</a> module
+		/// </summary>
 		public static class Users
 		{
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/users/login">Users Login</a> Method
 			/// </summary>
-			public static string Login(string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Login(string inputData)
 			{
 				string url = string.Format("https://www.app.invoicexpress.com/login.xml");
 				var result = url.HttpPost(inputData);
@@ -24,16 +30,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/users/login">Users Login</a> Method
 			/// </summary>
-			public static UserAccountDto LoginTyped(CredentialsDto inputData)
+			public static UserAccountDto Login(CredentialsDto inputData)
 			{
-				string xmlResult = Login(inputData.XmlSerializeToString());
+				string xmlResult = Rest_Login(inputData.XmlSerializeToString());
 			    return xmlResult.DeserializeXml<UserAccountDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/users/accounts">Users Accounts</a> Method
 			/// </summary>
-			public static string Accounts()
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_Accounts()
 			{
 				string url = string.Format("https://www.app.invoicexpress.com/users/accounts.xml?api_key?api_key={apiKey}");
 				var result = url.HttpGet();
@@ -46,16 +53,17 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/users/accounts">Users Accounts</a> Method
 			/// </summary>
-			public static UserAccountsDto AccountsTyped()
+			public static UserAccountsDto Accounts()
 			{
-				string xmlResult = Accounts();
+				string xmlResult = Rest_Accounts();
 			    return xmlResult.DeserializeXml<UserAccountsDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/users/change-account">Users ChangeAccount</a> Method
 			/// </summary>
-			public static string ChangeAccount(string inputData)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_ChangeAccount(string inputData)
 			{
 				string url = string.Format("https://{accountName}.app.invoicexpress.com/users/change_account.xml?api_key?api_key={apiKey}");
 				var result = url.HttpPut(inputData);
@@ -68,9 +76,9 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/users/change-account">Users ChangeAccount</a> Method
 			/// </summary>
-			public static void ChangeAccountTyped(ChangeAccountToDto inputData)
+			public static void ChangeAccount(ChangeAccountToDto inputData)
 			{
-				ChangeAccount(inputData.XmlSerializeToString());
+				Rest_ChangeAccount(inputData.XmlSerializeToString());
 			}
 
 	}

@@ -7,12 +7,10 @@
 <#
     string templateDir = Path.GetDirectoryName(Host.TemplateFile);
     string xmlTemplate = Path.Combine(templateDir, "InvoiceXpress.xml");
-    if (!File.Exists(xmlTemplate))
-        return string.Empty;
 
     Manager manager = Manager.Create(Host, GenerationEnvironment);
 
-    var xmlConfig = DeserializeXml<Class>(File.ReadAllText(xmlTemplate, Encoding.Default));
+    var xmlConfig = DeserializeXml<Class>(File.ReadAllText(xmlTemplate, Encoding.UTF8));
     GenerateEnums(manager, xmlConfig);
     GenerateDtos(manager, xmlConfig);
 
@@ -32,10 +30,15 @@
 #>
 using System;
 using System.Net;
+using System.ComponentModel;
+
 namespace <#=BaseNamespace #>
 {
 	public static partial class InvoiceExpress
     {
+		/// <summary>
+		/// InvoiceXpress <a href="<#= api.ApiUrl #>"><#= api.Name #></a> module
+		/// </summary>
 		public static class <#= api.Name #>
 		{
 <#+
@@ -51,7 +54,8 @@ namespace <#=BaseNamespace #>
 			/// <summary>
 			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
 			/// </summary>
-			public static string <#=mtd.Name #>(<#=u.MethodSignatureStr #>)
+			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			public static string Rest_<#=mtd.Name #>(<#=u.MethodSignatureStr #>)
 			{
 				string url = <#= u.UrlStringFormat #>;
 				var result = url.Http<#= GetHttpMethod(mtd.HttpMethod) #>(<#= u.HasInput ? "inputData" : "" #>);
@@ -64,15 +68,15 @@ namespace <#=BaseNamespace #>
 			/// <summary>
 			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
 			/// </summary>
-			public static <#=returnClassName #> <#=mtd.Name #>Typed(<#=u.MethodCallStr #>)
+			public static <#=returnClassName #> <#=mtd.Name #>(<#=u.MethodCallStr #>)
 			{
 <#+
 	        string deserializePart = u.HasReturn ? string.Format(".DeserializeXml<{0}>()", returnClassName) : string.Empty;
 	        Write("\t\t\t\t");
 	        string invocationCall = u.HasInput
-	            ? string.Format("{0}({1}{2}inputData.XmlSerializeToString())", mtd.Name,
+	            ? string.Format("Rest_{0}({1}{2}inputData.XmlSerializeToString())", mtd.Name,
 	                u.MethodCallParameters, string.IsNullOrEmpty(u.MethodCallParameters) ? "" : ", ")
-	            : string.Format("{0}({1})", mtd.Name, u.MethodCallParameters);
+	            : string.Format("Rest_{0}({1})", mtd.Name, u.MethodCallParameters);
 
 	        WriteLine(u.HasReturn
 	            ? string.Format("string xmlResult = {0};\r\n\t\t\t    return xmlResult{1};", invocationCall,
@@ -115,7 +119,7 @@ namespace <#= BaseNamespace #>
             }
 	foreach (ClassTypeProperty p in type.Property)
 	{
-	    if (!IsAnyOf(p.XmlType, StringComparer.OrdinalIgnoreCase, "date", "float", "int"))
+	    if (!IsAnyOf(p.XmlType, StringComparer.OrdinalIgnoreCase, "date", "float", "int", "bool"))
 	    {
 #>		
 		[XmlElement("<#=p.XmlName #>")]
@@ -162,6 +166,8 @@ namespace <#= BaseNamespace #>
 #>
 using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
+
 namespace <#= BaseNamespace #>
 {
 	public enum <#= e.Name #>
@@ -171,6 +177,14 @@ namespace <#= BaseNamespace #>
 <#+
 		foreach (var enumValue in e.Value)
 		{
+		    if (!string.IsNullOrWhiteSpace(enumValue.Description))
+		    {
+#>
+		/// <summary>
+		/// <#=enumValue.Description ?? "" #>
+		/// </summary>		
+<#+
+		    }
 #>
 		[XmlEnum(Name="<#=enumValue.XmlName ?? "" #>")]
 		<#=FixName(enumValue.Name) #>,
@@ -186,19 +200,19 @@ namespace <#= BaseNamespace #>
 
     private string FixName(string baseName)
     {
-        char[] separators = {' ', '(', ')', '.', '-', 'º', '\'', '%', '?', '!', ';', '/', ':' ,','};
+        char[] separators = {' ', '(', ')', '.', '-', 'º', '\'', '%', '?', '!', ';', '/', ':', ','};
         string validcSharpName = Replace(RemoveDiacritics(baseName), separators, "_");
         string enumIdentifier = validcSharpName.Trim('_');
         return enumIdentifier;
     }
 
-	public static string Replace(string s, char[] separators, string newVal)
+    public static string Replace(string s, char[] separators, string newVal)
     {
         string[] temp = s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         return String.Join(newVal, temp);
     }
 
-	public static string RemoveDiacritics(string stIn)
+    public static string RemoveDiacritics(string stIn)
     {
         string stFormD = stIn.Normalize(NormalizationForm.FormD);
         var sb = new StringBuilder();
@@ -489,6 +503,8 @@ namespace <#= BaseNamespace #>
 
         private string nameField;
 
+        private string apiUrlField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Method")]
         public ClassNestedClassMethod[] Method
@@ -503,6 +519,14 @@ namespace <#= BaseNamespace #>
         {
             get { return this.nameField; }
             set { this.nameField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ApiUrl
+        {
+            get { return this.apiUrlField; }
+            set { this.apiUrlField = value; }
         }
     }
 
@@ -767,9 +791,9 @@ namespace <#= BaseNamespace #>
     {
         private string nameField;
 
-        private string xmlValueField;
-
         private string xmlNameField;
+
+        private string descriptionField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -781,18 +805,18 @@ namespace <#= BaseNamespace #>
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string XmlValue
-        {
-            get { return this.xmlValueField; }
-            set { this.xmlValueField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string XmlName
         {
             get { return this.xmlNameField; }
             set { this.xmlNameField = value; }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Description
+        {
+            get { return this.descriptionField; }
+            set { this.descriptionField = value; }
         }
     }
 

@@ -20,7 +20,7 @@ namespace InvoiceXpressDotNet
 		public string Message { get; set; }
 		
 		[XmlElement("state")]
-		public InvoiceState State { get; set; }
+		public DocumentState State { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

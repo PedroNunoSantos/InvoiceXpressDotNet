@@ -1,6 +1,6 @@
 <Class Type="Class" Name="InvoiceXpress" NameSpace="InvoiceXpressDotNet">
 
-  <NestedClass Name="Accounts">
+  <NestedClass Name="Accounts" ApiUrl="https://invoicexpress.com/api/accounts">
     <Method Name="Create" HttpMethod="POST"
             Url="https://www.app.invoicexpress.com/api/accounts/create.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/accounts/create"
@@ -72,7 +72,7 @@
 
   </NestedClass>
 
-  <NestedClass Name="Users">
+  <NestedClass Name="Users" ApiUrl="https://invoicexpress.com/api/users">
     <Method Name="Login" HttpMethod="POST"
             Url="https://www.app.invoicexpress.com/login.xml"
             ApiUrl="https://invoicexpress.com/api/users/login"
@@ -96,7 +96,7 @@
     </Method>
   </NestedClass>
 
-  <NestedClass Name="Invoices">
+  <NestedClass Name="Invoices" ApiUrl="https://invoicexpress.com/api/invoices">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}"
@@ -234,7 +234,7 @@
 
   </NestedClass>
 
-  <NestedClass Name="SimplifiedInvoices">
+  <NestedClass Name="SimplifiedInvoices" ApiUrl="https://invoicexpress.com/api/simplified-invoices">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}"
@@ -337,7 +337,7 @@
 
   </NestedClass>
 
-  <NestedClass Name="InvoiceReceipts">
+  <NestedClass Name="InvoiceReceipts" ApiUrl="https://invoicexpress.com/api/invoice-receipt/create">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/invoice_receipts.xml?api_key={apiKey}"
@@ -435,10 +435,10 @@
 
       </UrlParms>
     </Method>
-    
+
   </NestedClass>
-  
-  <NestedClass Name="CreditNotes">
+
+  <NestedClass Name="CreditNotes" ApiUrl="https://invoicexpress.com/api/credit-notes">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}"
@@ -527,7 +527,7 @@
 
   </NestedClass>
 
-  <NestedClass Name="CreditNotes">
+  <NestedClass Name="CreditNotes" ApiUrl="https://invoicexpress.com/api/debit-notes">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/debit_notes.xml?api_key={apiKey}"
@@ -616,7 +616,7 @@
 
   </NestedClass>
 
-  <NestedClass Name="Clients">
+  <NestedClass Name="Clients" ApiUrl="https://invoicexpress.com/api/clients">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}"
@@ -708,7 +708,7 @@
 
   </NestedClass>
 
-  <NestedClass Name="Items">
+  <NestedClass Name="Items" ApiUrl="https://invoicexpress.com/api/items/create">
 
     <Method Name="Create" HttpMethod="POST"
             Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
@@ -771,7 +771,7 @@
   </NestedClass>
 
   <Types>
-    
+
     <Type XmlName="account" Name="AccountDto">
       <Property XmlName="first_name" Name="FirstName" Type="string" />
       <Property XmlName="last_name" Name="LastName" Type="string" />
@@ -793,7 +793,7 @@
       <Property XmlName="postal_code" Name="PostalCode" Type="string" />
       <Property XmlName="city" Name="City" Type="string" />
     </Type>
-    
+
     <Type XmlName="documents" Name="DocumentsStatsDto">
       <Property XmlName="used_documents" Name="UsedDocuments" Type="int?" XmlType="int" />
       <Property XmlName="available_documents" Name="AvailableDocuments" Type="int?" XmlType="int" />
@@ -802,17 +802,17 @@
       <Property XmlName="used_web_documents" Name="UsedWebDocuments" Type="int?" XmlType="int" />
       <Property XmlName="available_web_documents" Name="AvailableWebDocuments" Type="int?" XmlType="int" />
     </Type>
-    
+
     <Type XmlName="users" Name="UsersStatsDto">
       <Property XmlName="used_users" Name="UsedUsers" Type="int?" XmlType="int" />
       <Property XmlName="available_users" Name="AvailableUsers" Type="int?" XmlType="int" />
     </Type>
-    
+
     <Type XmlName="credentials" Name="CredentialsDto">
       <Property XmlName="login" Name="Login" Type="string" />
       <Property XmlName="password" Name="Password" Type="string" />
     </Type>
-    
+
     <Type XmlName="account" Name="UserAccountDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
       <Property XmlName="name" Name="Name" Type="string" XmlType="string" />
@@ -822,27 +822,27 @@
       <Property XmlName="blocked" Name="Blocked" Type="string" XmlType="string" />
       <Property XmlName="roles" Name="Roles" Type="RolesDto" />
     </Type>
-    
+
     <Type XmlName="roles" Name="RolesDto">
       <Property XmlName="role" Name="Role" Type="string" />
     </Type>
-    
+
     <Type XmlName="accounts" Name="UserAccountsDto" TypeAttribute="array">
       <Property XmlName="account" Name="Items" Type="UserAccountDto[]" />
     </Type>
-    
+
     <Type XmlName="accounts" Name="AccountsDto" TypeAttribute="array">
       <Property XmlName="account" Name="Items" Type="AccountDto[]" />
     </Type>
-    
+
     <Type XmlName="change_account_to" Name="ChangeAccountToDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
     </Type>
-    
+
     <Type XmlName="invoice" Name="InvoiceDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="string" />
-      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
@@ -865,11 +865,15 @@
       <Property XmlName="mb_reference" Name="MbReference" Type="string" />
 
     </Type>
-    
+
     <Type XmlName="invoices" Name="InvoicesDto" TypeAttribute="array">
       <Property XmlName="invoice" Name="Items" Type="InvoiceDto[]" />
+      <Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
+      <Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
+      <Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
+      <Property XmlName="per_page" Name="PerPage" Type="int?" XmlType="int" />
     </Type>
-    
+
     <Type XmlName="client" Name="ClientDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
       <Property XmlName="code" Name="Code" Type="string" />
@@ -889,18 +893,18 @@
       <Property XmlName="open_account_link" Name="OpenAccountLink" Type="string" />
       <Property XmlName="send_options" Name="SendOptions" Type="string" />
     </Type>
-    
+
     <Type XmlName="clients" Name="ClientsDto" TypeAttribute="array">
       <Property XmlName="client" Name="Items" Type="ClientDto[]" />
     </Type>
-    
+
     <Type XmlName="preferred_contact" Name="PreferredContactDto">
       <Property XmlName="name" Name="Name" Type="string" />
       <Property XmlName="email" Name="Email" Type="string" />
       <Property XmlName="phone" Name="Phone" Type="string" />
       <Property XmlName="mobile" Name="Mobile" Type="string" />
     </Type>
-    
+
     <Type XmlName="item" Name="ItemDto">
       <Property XmlName="name" Name="Name" Type="string" />
       <Property XmlName="description" Name="Description" Type="string" />
@@ -915,11 +919,11 @@
       <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
 
     </Type>
-    
+
     <Type XmlName="items" Name="ItemsDto" TypeAttribute="array">
       <Property XmlName="item" Name="Items" Type="ItemDto[]" />
     </Type>
-    
+
     <Type XmlName="tax" Name="TaxDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
       <Property XmlName="name" Name="Name" Type="string" />
@@ -927,22 +931,22 @@
       <Property XmlName="region" Name="Region" Type="string" />
       <Property XmlName="default_tax" Name="DefaultTax" Type="string" />
     </Type>
-    
+
     <Type XmlName="invoice" Name="InvoiceChangeStateDto">
       <Property XmlName="id" Name="Id" Type="int" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="message" Name="Message" Type="string" />
-      <Property XmlName="state" Name="State" Type="InvoiceState" />
+      <Property XmlName="state" Name="State" Type="DocumentState" />
     </Type>
 
     <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceChangeStateDto">
-      <Property XmlName="state" Name="State" Type="InvoiceState" />
+      <Property XmlName="state" Name="State" Type="DocumentState" />
       <Property XmlName="message" Name="Message" Type="string" />
     </Type>
 
     <Type XmlName="invoice_receipt" Name="InvoiceReceiptChangeStateDto">
-      <Property XmlName="state" Name="State" Type="InvoiceState" />
+      <Property XmlName="state" Name="State" Type="DocumentState" />
       <Property XmlName="message" Name="Message" Type="string" />
     </Type>
 
@@ -954,28 +958,28 @@
       <Property XmlName="bcc" Name="Bcc" Type="string" />
       <Property XmlName="logo" Name="Logo" Type="string" />
     </Type>
-    
+
     <Type XmlName="client" Name="EmailClientDto">
       <Property XmlName="email" Name="Email" Type="string" />
       <Property XmlName="save" Name="Save" Type="string" />
     </Type>
-    
+
     <Type XmlName="output" Name="PdfOutputDto">
       <Property XmlName="pdfUrl" Name="Pdfurl" Type="string" />
     </Type>
-    
+
     <Type XmlName="partial_payment" Name="PartialPaymentDto">
       <Property XmlName="payment_mechanism" Name="PaymentMechanism" Type="PaymentMechanism" />
       <Property XmlName="note" Name="Note" Type="string" />
       <Property XmlName="serie" Name="Serie" Type="string" />
       <Property XmlName="amount" Name="Amount" Type="float?" XmlType="Float" />
-      <Property XmlName="payment_date" Name="PaymentDate"  Type="DateTime?" XmlType="Date" />
+      <Property XmlName="payment_date" Name="PaymentDate" Type="DateTime?" XmlType="Date" />
     </Type>
-    
+
     <Type XmlName="receipt" Name="PartialPaymentReceiptDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="string" />
-      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
@@ -993,27 +997,27 @@
       <Property XmlName="multicurrency" Name="Multicurrency" Type="MulticurrencyDto" />
       <Property XmlName="events" Name="Events" Type="EventsDto" />
     </Type>
-    
+
     <Type XmlName="multicurrency" Name="MulticurrencyDto">
       <Property XmlName="rate" Name="Rate" Type="string" />
       <Property XmlName="currency" Name="Currency" Type="string" />
     </Type>
-    
+
     <Type XmlName="event" Name="EventDto">
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
       <Property XmlName="time" Name="Time" Type="string" />
       <Property XmlName="user" Name="User" Type="string" />
     </Type>
-    
+
     <Type XmlName="events" Name="EventsDto" TypeAttribute="array">
       <Property XmlName="event" Name="Items" Type="EventDto[]" />
     </Type>
 
-   <Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
+    <Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="string" />
-      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
@@ -1035,11 +1039,11 @@
       <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
       <Property XmlName="mb_reference" Name="MbReference" Type="string" />
     </Type>
-    
+
     <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="string" />
-      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
@@ -1061,22 +1065,22 @@
       <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
       <Property XmlName="mb_reference" Name="MbReference" Type="string" />
     </Type>
-    
+
     <Type XmlName="simplified_invoices" Name="SimplifiedInvoicesDto" TypeAttribute="array">
       <Property XmlName="simplified_invoice" Name="Items" Type="SimplifiedInvoiceDto[]" />
     </Type>
-    
+
     <Type XmlName="account_stats" Name="AccountStatsDto">
       <Property XmlName="plan" Name="Plan" Type="string" />
       <Property XmlName="expires_at" Name="ExpiresAt" Type="string" />
       <Property XmlName="documents" Name="Documents" Type="DocumentsStatsDto" />
       <Property XmlName="users" Name="Users" Type="UsersStatsDto" />
     </Type>
-    
+
     <Type XmlName="credit_note" Name="CreditNoteDto">
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="string" />
-      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
@@ -1097,28 +1101,28 @@
       <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
       <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
     </Type>
-    
+
     <Type XmlName="credit_notes" Name="CreditNotesDto" TypeAttribute="array">
       <Property XmlName="credit_note" Name="Items" Type="CreditNoteDto[]" />
     </Type>
-    
+
     <Type XmlName="invoice_receipts" Name="InvoiceReceiptsDto" TypeAttribute="array">
       <Property XmlName="invoice_receipt" Name="InvoiceReceipt" Type="InvoiceReceiptDto[]" />
     </Type>
-    
+
     <Type XmlName="credit_note" Name="CreditNoteChangeStateDto">
-      <Property XmlName="state" Name="State" Type="InvoiceState" />
+      <Property XmlName="state" Name="State" Type="DocumentState" />
       <Property XmlName="message" Name="message" Type="string" />
     </Type>
-    
+
     <Type XmlName="debit_note" Name="DebitNoteDto">
       <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
       <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
       <Property XmlName="client" Name="Client" Type="ClientDto" />
       <Property XmlName="items" Name="Items" Type="ItemsDto" />
       <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="string" />
-      <Property XmlName="archived" Name="Archived" Type="string" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
       <Property XmlName="type" Name="Type" Type="string" />
       <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
       <Property XmlName="reference" Name="Reference" Type="string" />
@@ -1135,7 +1139,7 @@
       <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
       <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
     </Type>
-    
+
     <Type XmlName="debit_notes" Name="DebitNotesDto" TypeAttribute="array">
       <Property XmlName="debit_note" Name="Items" Type="DebitNoteDto[]" />
     </Type>
@@ -1143,62 +1147,49 @@
   </Types>
 
   <Enums>
-    <Enum Name="InvoiceState" >
-      <Value Name="Draft" XmlName="daft" />
+    <Enum Name="DocumentState">
+      <Value Name="Draft" XmlName="draft" />
       <Value Name="Settled" XmlName="settled" />
       <Value Name="Finalized" XmlName="finalized" />
       <Value Name="Deleted" XmlName="deleted" />
       <Value Name="Canceled" XmlName="canceled" />
     </Enum>
 
-    <Enum Name="IvaExemptionCode" >
-      <Value Name="M01" XmlName="M01" />
-      <Value Name="M02" XmlName="M02" />
-      <Value Name="M03" XmlName="M03" />
-      <Value Name="M04" XmlName="M04" />
-      <Value Name="M05" XmlName="M05" />
-      <Value Name="M06" XmlName="M06" />
-      <Value Name="M07" XmlName="M07" />
-      <Value Name="M08" XmlName="M08" />
-      <Value Name="M09" XmlName="M09" />
-      <Value Name="M10" XmlName="M10" />
-      <Value Name="M11" XmlName="M11" />
-      <Value Name="M12" XmlName="M12" />
-      <Value Name="M13" XmlName="M13" />
-      <Value Name="M14" XmlName="M14" />
-      <Value Name="M15" XmlName="M15" />
-      <Value Name="M16" XmlName="M16" />
-      <Value Name="M99" XmlName="M99" />
+    <Enum Name="IvaExemptionCode">
+      <Value Name="M01" XmlName="M01" Description="Artigo 16.º n.º 6 alínea c) do CIVA" />
+      <Value Name="M02" XmlName="M02" Description="Artigo 6.º do Decreto‐Lei n.º 198/90, de 19 de Junho" />
+      <Value Name="M03" XmlName="M03" Description="Exigibilidade de caixa" />
+      <Value Name="M04" XmlName="M04" Description="Isento Artigo 13.º do CIVA" />
+      <Value Name="M05" XmlName="M05" Description="Isento Artigo 14.º do CIVA" />
+      <Value Name="M06" XmlName="M06" Description="Isento Artigo 15.º do CIVA" />
+      <Value Name="M07" XmlName="M07" Description="Isento Artigo 9.º do CIVA" />
+      <Value Name="M08" XmlName="M08" Description="IVA – Autoliquidação" />
+      <Value Name="M09" XmlName="M09" Description="IVA ‐ não confere direito a dedução" />
+      <Value Name="M10" XmlName="M10" Description="IVA – Regime de isenção" />
+      <Value Name="M11" XmlName="M11" Description="Regime particular do tabaco" />
+      <Value Name="M12" XmlName="M12" Description="Regime da margem de lucro – Agências de Viagens" />
+      <Value Name="M13" XmlName="M13" Description="Regime da margem de lucro – Bens em segunda mão" />
+      <Value Name="M14" XmlName="M14" Description="Regime da margem de lucro – Objetos de arte" />
+      <Value Name="M15" XmlName="M15" Description="Regime da margem de lucro – Objetos de coleção e antiguidades" />
+      <Value Name="M16" XmlName="M16" Description="Isento Artigo 14.º do RITI" />
+      <Value Name="M99" XmlName="M99" Description="Não sujeito; não tributado (ou similar)" />
     </Enum>
 
-      <!--https://invoicexpress.com/api/appendix/payment-mechanisms-->
-    <Enum Name="PaymentMechanism" >
-      <!-- Credit card -->
-      <Value Name="CC" XmlName="CC" />
-      <!-- Debit card -->
-      <Value Name="CD" XmlName="CD" />
-      <!-- Bank check -->
-      <Value Name="CH" XmlName="CH" />
-      <!-- Check or voucher -->
-      <Value Name="CO" XmlName="CO" />
-      <!-- Current account balance compensation -->
-      <Value Name="CS" XmlName="CS" />
-      <!-- e-Cash -->
-      <Value Name="DE" XmlName="DE" />
-      <!-- Commercial paper -->
-      <Value Name="LC" XmlName="LC" />
-      <!-- Multibanco payment references -->
-      <Value Name="MB" XmlName="MB" />
-      <!-- Cash -->
-      <Value Name="NU" XmlName="NU" />
-      <!-- Other methods not mentioned here -->
-      <Value Name="OU" XmlName="OU" />
-      <!-- Exchange of properties -->
-      <Value Name="PR" XmlName="PR" />
-      <!-- Bank transfer or authorized direct debit -->
-      <Value Name="TB" XmlName="TB" />
-      <!-- Restaurant ticket -->
-      <Value Name="TR" XmlName="TR" />
+    <!--https://invoicexpress.com/api/appendix/payment-mechanisms-->
+    <Enum Name="PaymentMechanism">
+      <Value Name="CC" XmlName="CC" Description="Credit card" />
+      <Value Name="CD" XmlName="CD" Description="Debit card" />
+      <Value Name="CH" XmlName="CH" Description="Bank check" />
+      <Value Name="CO" XmlName="CO" Description="Check or voucher" />
+      <Value Name="CS" XmlName="CS" Description="Current account balance compensation" />
+      <Value Name="DE" XmlName="DE" Description="e-Cash" />
+      <Value Name="LC" XmlName="LC" Description="Commercial paper" />
+      <Value Name="MB" XmlName="MB" Description="Multibanco payment references" />
+      <Value Name="NU" XmlName="NU" Description="Cash" />
+      <Value Name="OU" XmlName="OU" Description="Other methods not mentioned here" />
+      <Value Name="PR" XmlName="PR" Description="Exchange of properties" />
+      <Value Name="TB" XmlName="TB" Description="Bank transfer or authorized direct debit" />
+      <Value Name="TR" XmlName="TR" Description="Restaurant ticket" />
     </Enum>
   </Enums>
 
