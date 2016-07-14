@@ -1,6 +1,8 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
+
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("invoice_receipt"), XmlType(AnonymousType=true)]

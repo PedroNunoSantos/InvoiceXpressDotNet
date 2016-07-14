@@ -1,6 +1,8 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
+
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("change_account_to"), XmlType(AnonymousType=true)]

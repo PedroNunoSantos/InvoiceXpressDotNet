@@ -1,3 +1,6 @@
+using System.Xml;
+using InvoiceXpressDotNet.Extensions;
+
 namespace InvoiceXpressDotNet
 {
     public abstract class Dto
@@ -14,6 +17,5 @@ namespace InvoiceXpressDotNet
             return this.XmlSerializeToString();
         }
          */
-
     }
 }

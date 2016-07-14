@@ -1,6 +1,8 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
+
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("account"), XmlType(AnonymousType=true)]
@@ -29,7 +31,7 @@ namespace InvoiceXpressDotNet
 		public string FiscalId { get; set; }
 		
 		[XmlElement("tax_country")]
-		public string TaxCountry { get; set; }
+		public Country TaxCountry { get; set; }
 		
 		[XmlElement("language")]
 		public string Language { get; set; }

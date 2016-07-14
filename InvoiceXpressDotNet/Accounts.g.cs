@@ -2,10 +2,11 @@
 using System;
 using System.Net;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
 
 namespace InvoiceXpressDotNet
 {
-	public static partial class InvoiceExpress
+	public static partial class InvoiceXpress
     {
 		/// <summary>
 		/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts">Accounts</a> module

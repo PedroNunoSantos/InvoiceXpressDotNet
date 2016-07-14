@@ -2,10 +2,11 @@
 using System;
 using System.Net;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
 
 namespace InvoiceXpressDotNet
 {
-	public static partial class InvoiceExpress
+	public static partial class InvoiceXpress
     {
 		/// <summary>
 		/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes">CreditNotes</a> module
@@ -40,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/get">CreditNotes Get</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, string creditNoteId)
+			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, int creditNoteId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}.xml?api_key={0}", apiKey, accountName, creditNoteId);
 				var result = url.HttpGet();
@@ -53,7 +54,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/get">CreditNotes Get</a> Method
 			/// </summary>
-			public static CreditNoteDto Get(string apiKey, string accountName, string creditNoteId)
+			public static CreditNoteDto Get(string apiKey, string accountName, int creditNoteId)
 			{
 				HttpResponseInfo result = Rest_Get(apiKey, accountName, creditNoteId);
 			    return result.Text.DeserializeXml<CreditNoteDto>();
@@ -63,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/update">CreditNotes Update</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, string creditNoteId, string inputData)
+			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, int creditNoteId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}.xml?api_key={0}", apiKey, accountName, creditNoteId);
 				var result = url.HttpPut(inputData);
@@ -76,7 +77,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/update">CreditNotes Update</a> Method
 			/// </summary>
-			public static void Update(string apiKey, string accountName, string creditNoteId, CreditNoteDto inputData)
+			public static void Update(string apiKey, string accountName, int creditNoteId, CreditNoteDto inputData)
 			{
 				Rest_Update(apiKey, accountName, creditNoteId, inputData.XmlSerializeToString());
 			}
@@ -108,7 +109,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/change-state">CreditNotes ChangeState</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_ChangeState(string apiKey, string accountName, string creditNoteId, string inputData)
+			public static HttpResponseInfo Rest_ChangeState(string apiKey, string accountName, int creditNoteId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}/change-state.xml?api_key={0}", apiKey, accountName, creditNoteId);
 				var result = url.HttpPut(inputData);
@@ -121,7 +122,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/change-state">CreditNotes ChangeState</a> Method
 			/// </summary>
-			public static void ChangeState(string apiKey, string accountName, string creditNoteId, CreditNoteChangeStateDto inputData)
+			public static void ChangeState(string apiKey, string accountName, int creditNoteId, CreditNoteChangeStateDto inputData)
 			{
 				Rest_ChangeState(apiKey, accountName, creditNoteId, inputData.XmlSerializeToString());
 			}
@@ -130,7 +131,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/email">CreditNotes EmailDocument</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_EmailDocument(string apiKey, string accountName, string creditNoteId, string inputData)
+			public static HttpResponseInfo Rest_EmailDocument(string apiKey, string accountName, int creditNoteId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/credit_notes/{2}/email-document.xml?api_key={0}", apiKey, accountName, creditNoteId);
 				var result = url.HttpPut(inputData);
@@ -143,7 +144,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/email">CreditNotes EmailDocument</a> Method
 			/// </summary>
-			public static void EmailDocument(string apiKey, string accountName, string creditNoteId, EmailMessageDto inputData)
+			public static void EmailDocument(string apiKey, string accountName, int creditNoteId, EmailMessageDto inputData)
 			{
 				Rest_EmailDocument(apiKey, accountName, creditNoteId, inputData.XmlSerializeToString());
 			}

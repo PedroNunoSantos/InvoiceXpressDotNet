@@ -1,6 +1,8 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
+
 namespace InvoiceXpressDotNet
 {
 	[XmlRoot("client"), XmlType(AnonymousType=true)]
@@ -45,7 +47,7 @@ namespace InvoiceXpressDotNet
 		public string Website { get; set; }
 		
 		[XmlElement("country")]
-		public string Country { get; set; }
+		public Country Country { get; set; }
 		
 		[XmlElement("phone")]
 		public string Phone { get; set; }

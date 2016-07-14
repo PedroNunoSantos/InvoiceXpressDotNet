@@ -2,10 +2,11 @@
 using System;
 using System.Net;
 using System.ComponentModel;
+using InvoiceXpressDotNet.Extensions;
 
 namespace InvoiceXpressDotNet
 {
-	public static partial class InvoiceExpress
+	public static partial class InvoiceXpress
     {
 		/// <summary>
 		/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices">SimplifiedInvoices</a> module
@@ -40,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/get">SimplifiedInvoices Get</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, string simplifiedInvoiceId)
+			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, int simplifiedInvoiceId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpGet();
@@ -53,7 +54,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/get">SimplifiedInvoices Get</a> Method
 			/// </summary>
-			public static SimplifiedInvoiceDto Get(string apiKey, string accountName, string simplifiedInvoiceId)
+			public static SimplifiedInvoiceDto Get(string apiKey, string accountName, int simplifiedInvoiceId)
 			{
 				HttpResponseInfo result = Rest_Get(apiKey, accountName, simplifiedInvoiceId);
 			    return result.Text.DeserializeXml<SimplifiedInvoiceDto>();
@@ -63,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/update">SimplifiedInvoices Update</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, string simplifiedInvoiceId, string inputData)
+			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, int simplifiedInvoiceId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpPut(inputData);
@@ -76,7 +77,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/update">SimplifiedInvoices Update</a> Method
 			/// </summary>
-			public static void Update(string apiKey, string accountName, string simplifiedInvoiceId, SimplifiedInvoiceDto inputData)
+			public static void Update(string apiKey, string accountName, int simplifiedInvoiceId, SimplifiedInvoiceDto inputData)
 			{
 				Rest_Update(apiKey, accountName, simplifiedInvoiceId, inputData.XmlSerializeToString());
 			}
@@ -130,7 +131,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/change-state">SimplifiedInvoices EmailInvoice</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_EmailInvoice(string apiKey, string accountName, string simplifiedInvoiceId, string inputData)
+			public static HttpResponseInfo Rest_EmailInvoice(string apiKey, string accountName, int simplifiedInvoiceId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}/email-document.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpPut(inputData);
@@ -143,7 +144,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/change-state">SimplifiedInvoices EmailInvoice</a> Method
 			/// </summary>
-			public static void EmailInvoice(string apiKey, string accountName, string simplifiedInvoiceId, EmailMessageDto inputData)
+			public static void EmailInvoice(string apiKey, string accountName, int simplifiedInvoiceId, EmailMessageDto inputData)
 			{
 				Rest_EmailInvoice(apiKey, accountName, simplifiedInvoiceId, inputData.XmlSerializeToString());
 			}
@@ -152,7 +153,7 @@ namespace InvoiceXpressDotNet
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/related-documents">SimplifiedInvoices RelatedDocuments</a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_RelatedDocuments(string apiKey, string accountName, string simplifiedInvoiceId)
+			public static HttpResponseInfo Rest_RelatedDocuments(string apiKey, string accountName, int simplifiedInvoiceId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/document/{2}/related_documents.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
 				var result = url.HttpGet();
@@ -165,7 +166,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/related-documents">SimplifiedInvoices RelatedDocuments</a> Method
 			/// </summary>
-			public static void RelatedDocuments(string apiKey, string accountName, string simplifiedInvoiceId)
+			public static void RelatedDocuments(string apiKey, string accountName, int simplifiedInvoiceId)
 			{
 				Rest_RelatedDocuments(apiKey, accountName, simplifiedInvoiceId);
 			}
