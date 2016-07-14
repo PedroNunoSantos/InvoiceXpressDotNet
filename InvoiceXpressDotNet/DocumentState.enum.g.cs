@@ -18,5 +18,7 @@ namespace InvoiceXpressDotNet
 		Deleted,
 		[XmlEnum(Name="canceled")]
 		Canceled,
+		[XmlEnum(Name="final")]
+		Final,
 	}
 }

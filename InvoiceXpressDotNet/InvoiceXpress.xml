@@ -181,7 +181,9 @@
         <Param Index="2" Name="invoiceId" Type="int" />
       </UrlParms>
     </Method>
-
+    
+<!-- pdf method are handled by custom code see InvoiceExpress.Pdf.cs-->
+<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
@@ -194,6 +196,7 @@
 
       </UrlParms>
     </Method>
+-->
 
     <Method Name="Archive" HttpMethod="PUT"
             Url="https://{accountName}.app.invoicexpress.com/{documentType}/{documentId}/archive.xml?api_key={apiKey}"
@@ -310,7 +313,6 @@
     </Method>
 
 
-    <!--
     <Method Name="RelatedDocuments" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/document/{simplifiedInvoiceId}/related_documents.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/simplified-invoices/related-documents"
@@ -321,8 +323,9 @@
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
     </Method>
--->
 
+<!-- pdf method are handled by custom code see InvoiceExpress.Pdf.cs-->
+<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{simplifiedInvoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
@@ -334,6 +337,7 @@
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
     </Method>
+-->
 
   </NestedClass>
 
@@ -423,6 +427,8 @@
       </UrlParms>
     </Method>
 
+<!-- pdf method are handled by custom code see InvoiceExpress.Pdf.cs-->
+<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceReceiptId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoice-receipt/documents-pdf"
@@ -435,6 +441,7 @@
 
       </UrlParms>
     </Method>
+-->
 
   </NestedClass>
 
@@ -513,6 +520,8 @@
       </UrlParms>
     </Method>
 
+<!-- pdf method are handled by custom code see InvoiceExpress.Pdf.cs-->
+<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
@@ -524,6 +533,7 @@
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
     </Method>
+-->
 
   </NestedClass>
 
@@ -602,6 +612,8 @@
       </UrlParms>
     </Method>
 
+<!-- pdf method are handled by custom code see InvoiceExpress.Pdf.cs-->
+<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
@@ -613,6 +625,7 @@
         <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
       </UrlParms>
     </Method>
+-->
 
   </NestedClass>
 
@@ -1153,6 +1166,7 @@
       <Value Name="Finalized" XmlName="finalized" />
       <Value Name="Deleted" XmlName="deleted" />
       <Value Name="Canceled" XmlName="canceled" />
+      <Value Name="Final" XmlName="final" />
     </Enum>
 
     <Enum Name="IvaExemptionCode">

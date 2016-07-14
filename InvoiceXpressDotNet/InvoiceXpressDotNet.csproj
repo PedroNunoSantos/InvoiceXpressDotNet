@@ -59,6 +59,9 @@
     <Compile Include="ChangeAccountToDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="InvoiceExpress.Pdf.cs" />
+    <Compile Include="PdfOutputDto.cs" />
     <Compile Include="ClassGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

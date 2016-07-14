@@ -39,7 +39,7 @@ namespace <#=BaseNamespace #>
 		/// <summary>
 		/// InvoiceXpress <a href="<#= api.ApiUrl #>"><#= api.Name #></a> module
 		/// </summary>
-		public static class <#= api.Name #>
+		public static partial class <#= api.Name #>
 		{
 <#+
 	    foreach (ClassNestedClassMethod mtd in api.Method)
@@ -55,14 +55,14 @@ namespace <#=BaseNamespace #>
 			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
 			/// </summary>
 			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static string Rest_<#=mtd.Name #>(<#=u.MethodSignatureStr #>)
+			public static HttpResponseInfo Rest_<#=mtd.Name #>(<#=u.MethodSignatureStr #>)
 			{
 				string url = <#= u.UrlStringFormat #>;
 				var result = url.Http<#= GetHttpMethod(mtd.HttpMethod) #>(<#= u.HasInput ? "inputData" : "" #>);
 				if ((int) result.StatusCode != <#=mtd.SucessCode #>)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)<#=mtd.SucessCode #>)
 						, new Exception(result.Text));
-				return result.Text;
+				return result;
 			}
 
 			/// <summary>
@@ -79,7 +79,7 @@ namespace <#=BaseNamespace #>
 	            : string.Format("Rest_{0}({1})", mtd.Name, u.MethodCallParameters);
 
 	        WriteLine(u.HasReturn
-	            ? string.Format("string xmlResult = {0};\r\n\t\t\t    return xmlResult{1};", invocationCall,
+	            ? string.Format("HttpResponseInfo result = {0};\r\n\t\t\t    return result.Text{1};", invocationCall,
 	                deserializePart)
 	            : string.Format("{0};", invocationCall));
 #>
