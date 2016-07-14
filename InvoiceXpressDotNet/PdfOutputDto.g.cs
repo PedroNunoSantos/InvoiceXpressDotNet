@@ -11,7 +11,7 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 	{		
 		
 		[XmlElement("pdfUrl")]
-		public string Pdfurl { get; set; }
+		public string PdfUrl { get; set; }
 		
 		/*
 		public override void SetFromXml(string xml)

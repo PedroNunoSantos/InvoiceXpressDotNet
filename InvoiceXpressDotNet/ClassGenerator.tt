@@ -428,7 +428,7 @@ namespace <#= BaseNamespace #>.Enums
     private void PrintFileHeader()
     {
 #>
-// Connector API <#= BaseNamespace #> developed by EventKey,Lda http://www.eventkey.pt
+// Connector API <#= BaseNamespace #> developed by EventKey, Lda http://www.eventkey.pt
 <#+
     }
 #>

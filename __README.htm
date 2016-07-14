@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- saved from url=(0016)http://localhost -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="C:\Program Files\Markdown Monster\PreviewThemes\Github\..\scripts\bootstrap\css\bootstrap.css" rel="stylesheet"/>
+    <link href="C:\Program Files\Markdown Monster\PreviewThemes\Github\..\scripts\fontawesome\css\font-awesome.min.css" rel="stylesheet" />
+    <link href="C:\Program Files\Markdown Monster\PreviewThemes\Github\Theme.css" rel="stylesheet" />    
+</head>
+<body>
+    <div id="MainContent">
+        <!-- Markdown Monster Content -->
+        <h1>InvoiceXpressDotNet</h1>
+<p><strong>InvoiceXpress</strong> API port to .net.</p>
+<p>This implementation is based on the information at <a href="https://invoicexpress.com/api">https://invoicexpress.com/api</a>
+InvoiceXpress API from <a href="http://invoicexpress.com">http://invoicexpress.com</a></p>
+<p>The source code is almost totally generated with <a href="https://msdn.microsoft.com/en-us/library/bb126445.aspx"><strong>T4 Text Templates</strong></a>, to facilitate the generation of the data transfer objects.</p>
+<p>The xml de/serialization is handled by <a href="https://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlserializer(v=vs.110).aspx">XmlSerializer</a> with some fiddling to make everything works.</p>
+<h2>How to use</h2>
+<p>First of all, you need a <a href="https://invoicexpress.com/api/overview">invoiceXpress account and a api key</a>.
+From there you can get the following data needed to make the api calls</p>
+<pre><code class="language-cs">string _accountName = &quot;your account name here&quot;;
+string _apiKey = &quot;your api key here&quot;;
+string _accountId = &quot;your accountId key here&quot;;
+</code></pre>
+<p>To use this api just call the nested static methods inside each module class, like so :</p>
+<p><strong>InvoiceXpress.Invoices</strong></p>
+<pre><code class="language-cs">InvoiceXpress.Invoices.List(...);
+InvoiceXpress.Invoices.Create(...);
+InvoiceXpress.Invoices.Update(...);
+...
+</code></pre>
+<p><strong>InvoiceXpress.CreditNotes</strong></p>
+<pre><code class="language-cs">InvoiceXpress.CreditNotes.List(...); 
+InvoiceXpress.CreditNotes.Create(...); 
+InvoiceXpress.CreditNotes.Update(...);
+...
+</code></pre>
+<h2>Examples</h2>
+<h3><a href="https://invoicexpress.com/api/invoices/">Invoices</a></h3>
+<h5>Create and finalize a Invoice</h5>
+<pre><code class="language-cs">var invoice = new InvoiceDto();
+invoice.Date = DateTime.Today;
+invoice.DueDate = DateTime.Today.AddMonths(1);
+
+// Create/associate the customer
+var client = new ClientDto();
+client.Name = &quot;Some Customer&quot;;
+invoice.Client = client;
+invoice.Observations = &quot;Generated with InvoiceXpressDotNet&quot;;
+
+// Create some items for the invoice
+var item1 = new ItemDto();
+item1.Name = &quot;Some amazing product&quot;;
+item1.UnitPrice = 100;
+item1.Quantity = 1;
+item1.Discount = 5.5F;
+
+var item2 = new ItemDto();
+item2.Name = &quot;Some not so amazing product&quot;;
+item2.UnitPrice = 0;
+item2.Quantity = 1;
+
+// add itens to the invoice
+invoice.Items = new ItemsDto { Items = new[] { item1, item2 } };
+
+// create the invoice
+InvoiceDto invoiceReturnData = InvoiceXpress.Invoices.Create(_apiKey, _accountName, invoice);
+
+// consume the returned data
+Console.WriteLine(invoiceReturnData);
+
+// finalize the invoice
+if (invoiceReturnData.Id.HasValue)
+{
+    var state = new InvoiceChangeStateDto { State = DocumentState.Finalized };
+    var returnState = InvoiceXpress.Invoices.ChangeState(_apiKey, _accountName, invoiceReturnData.Id.Value, state);
+    Console.WriteLine(returnState);
+}
+</code></pre>
+<h5>List Invoices</h5>
+<pre><code class="language-cs">InvoicesDto invoices = InvoiceXpress.Invoices.List(_apiKey, _accountName);
+foreach (InvoiceDto invoice in invoices.Items)
+    Console.WriteLine(invoice.Id);
+</code></pre>
+<h5>Get a Invoice</h5>
+<pre><code class="language-cs">InvoiceDto invoice = InvoiceXpress.Invoices.Get(_apiKey, _accountName, invoiceId).Dump();
+Console.WriteLine(invoice);
+</code></pre>
+<h5>Get the invoice pdf</h5>
+<pre><code class="language-cs">var pdfData = InvoiceXpress.Invoices.Pdf(_apiKey, _accountName, invoiceId);
+// check if the pdf id ready to be downloaded, if not you will need to try again later
+if (pdfData.IsPdfReady)
+{
+    string downloadTo = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), Guid.NewGuid() + &quot;.pdf&quot;);
+    using (var wc = new WebClient())
+        wc.DownloadFile(pdfData.Pdfurl, downloadTo);
+		
+    //Process.Start(downloadTo);
+}
+else 
+    Console.WriteLine(&quot;Document is not ready yet, try again later.&quot;);
+</code></pre>
+<h5>Email a invoice to someone</h5>
+<pre><code class="language-cs">var clientEmail = new EmailClientDto();
+clientEmail.Email = &quot;email@whatever.com&quot;;
+
+var email = new EmailMessageDto();
+email.Client = clientEmail;
+email.Subject = &quot;here is your invoice&quot;;
+email.Body = &quot;the invoice is attached to the message&quot;;
+
+InvoiceXpress.Invoices.EmailInvoice(apiKey, accountName, invoiceId, email);
+</code></pre>
+<h3><a href="https://invoicexpress.com/api/invoice-receipt/create">Invoice Receipt</a></h3>
+<h5>Create and finalize a Invoice Receipt</h5>
+<p><em>pretty much the same as the Invoices.Create method</em></p>
+<pre><code class="language-cs">var invoiceReceipt = new InvoiceReceiptDto();
+invoiceReceipt.Date = DateTime.Today;
+invoiceReceipt.DueDate = DateTime.Today.AddMonths(1);
+
+// Create/associate the customer
+var client = new ClientDto();
+client.Name = &quot;Some Customer&quot;;
+invoiceReceipt.Client = client;
+invoiceReceipt.Observations = &quot;Generated with InvoiceXpressDotNet&quot;;
+
+// Create some items for the invoice
+var produt1 = new ItemDto();
+produt1.Name = &quot;Some amazing product&quot;;
+produt1.UnitPrice = 200;
+produt1.Quantity = 1;
+produt1.Discount = 5.5F;
+
+var gift = new ItemDto();
+gift.Name = &quot;Gift&quot;;
+gift.UnitPrice = 0;
+gift.Quantity = 1;
+
+// add itens to the invoice
+invoiceReceipt.Items = new ItemsDto { Items = new[] { produt1, gift } };
+
+// create the invoice
+InvoiceReceiptDto createdInvoiceReceipt = InvoiceXpress.InvoiceReceipts.Create(_apiKey, _accountName, invoiceReceipt);
+Console.WriteLine(createdInvoiceReceipt);
+
+var stateChange = new InvoiceReceiptChangeStateDto { State = DocumentState.Finalized };
+if (createdInvoiceReceipt.Id.HasValue)
+{
+    InvoiceReceiptChangeStateDto state = InvoiceXpress.InvoiceReceipts.ChangeState(_apiKey, _accountName, createdInvoiceReceipt.Id.Value, stateChange);
+    Console.WriteLine(state)
+}
+</code></pre>
+<h3>The MIT License (MIT)</h3>
+<p>Copyright (c) 2016 EventKey, Lda</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+
+        <!-- End Markdown Monster Content -->
+    </div>
+    <script src="C:\Program Files\Markdown Monster\PreviewThemes\Github\..\scripts\jquery.min.js"></script>
+    <link href="C:\Program Files\Markdown Monster\PreviewThemes\Github\..\scripts\highlightjs/styles/github-gist.css" rel="stylesheet" />
+    <script src="C:\Program Files\Markdown Monster\PreviewThemes\Github\..\scripts\highlightjs\highlight.pack.js"></script>
+    <script src="C:\Program Files\Markdown Monster\PreviewThemes\Github\..\scripts\preview.js"></script>
+</body>
+</html>

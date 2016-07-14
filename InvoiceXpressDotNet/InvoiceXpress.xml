@@ -978,7 +978,7 @@
     </Type>
 
     <Type XmlName="output" Name="PdfOutputDto">
-      <Property XmlName="pdfUrl" Name="Pdfurl" Type="string" />
+      <Property XmlName="pdfUrl" Name="PdfUrl" Type="string" />
     </Type>
 
     <Type XmlName="partial_payment" Name="PartialPaymentDto">
@@ -1190,7 +1190,7 @@
       <Value Name="M99" XmlName="M99" Description="Não sujeito; não tributado (ou similar)" />
     </Enum>
 
-    <!--https://invoicexpress.com/api/appendix/payment-mechanisms-->
+    <!-- https://invoicexpress.com/api/appendix/payment-mechanisms -->
     <Enum Name="PaymentMechanism">
       <Value Name="CC" XmlName="CC" Description="Credit card" />
       <Value Name="CD" XmlName="CD" Description="Debit card" />
@@ -1207,264 +1207,259 @@
       <Value Name="TR" XmlName="TR" Description="Restaurant ticket" />
     </Enum>
 
-
+    <!-- https://invoicexpress.com/api/appendix/country-list -->
     <Enum Name="Country">
-      <Value Name="Portugal" XmlName="Portugal" Decription="Portugal" />
-      <Value Name="Ireland" XmlName="Ireland" Decription="Ireland" />
-      <Value Name="UK" XmlName="UK" Decription="UK" />
-      <Value Name="Canada" XmlName="Canada" Decription="Canada" />
-      <Value Name="UnitedStates" XmlName="UnitedStates" Decription="United States" />
-      <Value Name="Afghanistan" XmlName="Afghanistan" Decription="Afghanistan" />
-      <Value Name="Albania" XmlName="Albania" Decription="Albania" />
-      <Value Name="Algeria" XmlName="Algeria" Decription="Algeria" />
-      <Value Name="AmericanSamoa" XmlName="AmericanSamoa" Decription="American Samoa" />
-      <Value Name="Andorra" XmlName="Andorra" Decription="Andorra" />
-      <Value Name="Angola" XmlName="Angola" Decription="Angola" />
-      <Value Name="Anguilla" XmlName="Anguilla" Decription="Anguilla" />
-      <Value Name="AntiguaAndBarbuda" XmlName="AntiguaAndBarbuda" Decription="Antigua and Barbuda" />
-      <Value Name="Argentina" XmlName="Argentina" Decription="Argentina" />
-      <Value Name="Armenia" XmlName="Armenia" Decription="Armenia" />
-      <Value Name="Aruba" XmlName="Aruba" Decription="Aruba" />
-      <Value Name="Australia" XmlName="Australia" Decription="Australia" />
-      <Value Name="Austria" XmlName="Austria" Decription="Austria" />
-      <Value Name="Azerbaijan" XmlName="Azerbaijan" Decription="Azerbaijan" />
-      <Value Name="Bahamas" XmlName="Bahamas" Decription="Bahamas" />
-      <Value Name="Bahrain" XmlName="Bahrain" Decription="Bahrain" />
-      <Value Name="Bangladesh" XmlName="Bangladesh" Decription="Bangladesh" />
-      <Value Name="Barbados" XmlName="Barbados" Decription="Barbados" />
-      <Value Name="Belarus" XmlName="Belarus" Decription="Belarus" />
-      <Value Name="Belgium" XmlName="Belgium" Decription="Belgium" />
-      <Value Name="Belize" XmlName="Belize" Decription="Belize" />
-      <Value Name="Benin" XmlName="Benin" Decription="Benin" />
-      <Value Name="Bermuda" XmlName="Bermuda" Decription="Bermuda" />
-      <Value Name="Bhutan" XmlName="Bhutan" Decription="Bhutan" />
-      <Value Name="Bolivia" XmlName="Bolivia" Decription="Bolivia" />
-      <Value Name="BosniaHerzegovina" XmlName="BosniaHerzegovina" Decription="Bosnia-Herzegovina" />
-      <Value Name="Botswana" XmlName="Botswana" Decription="Botswana" />
-      <Value Name="Brazil" XmlName="Brazil" Decription="Brazil" />
-      <Value Name="BritishIndianOceanTerritory" XmlName="BritishIndianOceanTerritory"
-             Decription="British Indian Ocean Territory" />
-      <Value Name="Brunei" XmlName="Brunei" Decription="Brunei" />
-      <Value Name="Bulgaria" XmlName="Bulgaria" Decription="Bulgaria" />
-      <Value Name="BurkinaFaso" XmlName="BurkinaFaso" Decription="Burkina Faso" />
-      <Value Name="Burma" XmlName="Burma" Decription="Burma" />
-      <Value Name="Burundi" XmlName="Burundi" Decription="Burundi" />
-      <Value Name="Cambodia" XmlName="Cambodia" Decription="Cambodia" />
-      <Value Name="Cameroon" XmlName="Cameroon" Decription="Cameroon" />
-      <Value Name="CantonAndEnderburyIslands" XmlName="CantonAndEnderburyIslands"
-             Decription="Canton and Enderbury Islands" />
-      <Value Name="CapeVerde" XmlName="CapeVerde" Decription="Cape Verde" />
-      <Value Name="CaymanIslands" XmlName="CaymanIslands" Decription="Cayman Islands" />
-      <Value Name="CentralAfricanRepublic" XmlName="CentralAfricanRepublic" Decription="Central African Republic" />
-      <Value Name="Chad" XmlName="Chad" Decription="Chad" />
-      <Value Name="Chile" XmlName="Chile" Decription="Chile" />
-      <Value Name="China" XmlName="China" Decription="China" />
-      <Value Name="ChristmasIsland" XmlName="ChristmasIsland" Decription="Christmas Island" />
-      <Value Name="CocosKeelingIslands" XmlName="CocosKeelingIslands" Decription="Cocos (Keeling) Islands" />
-      <Value Name="Colombia" XmlName="Colombia" Decription="Colombia" />
-      <Value Name="Comoros" XmlName="Comoros" Decription="Comoros" />
-      <Value Name="Congo" XmlName="Congo" Decription="Congo" />
-      <Value Name="CongoDemocraticRepublic" XmlName="CongoDemocraticRepublic" Decription="Congo, Democratic Republic" />
-      <Value Name="CookIslands" XmlName="CookIslands" Decription="Cook Islands" />
-      <Value Name="CostaRica" XmlName="CostaRica" Decription="Costa Rica" />
-      <Value Name="CoteDIvoire" XmlName="CoteDIvoire" Decription="Côte d’Ivoire" />
-      <Value Name="Croatia" XmlName="Croatia" Decription="Croatia" />
-      <Value Name="Cuba" XmlName="Cuba" Decription="Cuba" />
-      <Value Name="Curacao" XmlName="Curacao" Decription="Curaçao" />
-      <Value Name="Cyprus" XmlName="Cyprus" Decription="Cyprus" />
-      <Value Name="CzechRepublic" XmlName="CzechRepublic" Decription="Czech Republic" />
-      <Value Name="Denmark" XmlName="Denmark" Decription="Denmark" />
-      <Value Name="Djibouti" XmlName="Djibouti" Decription="Djibouti" />
-      <Value Name="Dominica" XmlName="Dominica" Decription="Dominica" />
-      <Value Name="DominicanRepublic" XmlName="DominicanRepublic" Decription="Dominican Republic" />
-      <Value Name="DronningMaudLand" XmlName="DronningMaudLand" Decription="Dronning Maud Land" />
-      <Value Name="EastTimor" XmlName="EastTimor" Decription="East Timor" />
-      <Value Name="Ecuador" XmlName="Ecuador" Decription="Ecuador" />
-      <Value Name="Egypt" XmlName="Egypt" Decription="Egypt" />
-      <Value Name="ElSalvador" XmlName="ElSalvador" Decription="El Salvador" />
-      <Value Name="EquatorialGuinea" XmlName="EquatorialGuinea" Decription="Equatorial Guinea" />
-      <Value Name="Eritrea" XmlName="Eritrea" Decription="Eritrea" />
-      <Value Name="Estonia" XmlName="Estonia" Decription="Estonia" />
-      <Value Name="Ethiopia" XmlName="Ethiopia" Decription="Ethiopia" />
-      <Value Name="FaeroeIslandsFøroyar" XmlName="FaeroeIslandsFøroyar" Decription="Faeroe Islands (Føroyar)" />
-      <Value Name="FalklandIslands" XmlName="FalklandIslands" Decription="Falkland Islands" />
-      <Value Name="Fiji" XmlName="Fiji" Decription="Fiji" />
-      <Value Name="Finland" XmlName="Finland" Decription="Finland" />
-      <Value Name="France" XmlName="France" Decription="France" />
-      <Value Name="FrenchGuiana" XmlName="FrenchGuiana" Decription="French Guiana" />
-      <Value Name="FrenchPolynesia" XmlName="FrenchPolynesia" Decription="French Polynesia" />
-      <Value Name="Gabon" XmlName="Gabon" Decription="Gabon" />
-      <Value Name="Gambia" XmlName="Gambia" Decription="Gambia" />
-      <Value Name="Georgia" XmlName="Georgia" Decription="Georgia" />
-      <Value Name="Germany" XmlName="Germany" Decription="Germany" />
-      <Value Name="Ghana" XmlName="Ghana" Decription="Ghana" />
-      <Value Name="Gibraltar" XmlName="Gibraltar" Decription="Gibraltar" />
-      <Value Name="GreatBritain" XmlName="GreatBritain" Decription="Great Britain" />
-      <Value Name="Greece" XmlName="Greece" Decription="Greece" />
-      <Value Name="Greenland" XmlName="Greenland" Decription="Greenland" />
-      <Value Name="Grenada" XmlName="Grenada" Decription="Grenada" />
-      <Value Name="Guadeloupe" XmlName="Guadeloupe" Decription="Guadeloupe" />
-      <Value Name="Guam" XmlName="Guam" Decription="Guam" />
-      <Value Name="Guatemala" XmlName="Guatemala" Decription="Guatemala" />
-      <Value Name="Guernsey" XmlName="Guernsey" Decription="Guernsey" />
-      <Value Name="GuineaBissau" XmlName="GuineaBissau" Decription="Guinea-Bissau" />
-      <Value Name="Guinea" XmlName="Guinea" Decription="Guinea" />
-      <Value Name="Guyana" XmlName="Guyana" Decription="Guyana" />
-      <Value Name="Haiti" XmlName="Haiti" Decription="Haiti" />
-      <Value Name="HeardAndMcDonaldIslands" XmlName="HeardAndMcDonaldIslands" Decription="Heard and McDonald Islands" />
-      <Value Name="Honduras" XmlName="Honduras" Decription="Honduras" />
-      <Value Name="HongKong" XmlName="HongKong" Decription="Hong Kong" />
-      <Value Name="Hungary" XmlName="Hungary" Decription="Hungary" />
-      <Value Name="Iceland" XmlName="Iceland" Decription="Iceland" />
-      <Value Name="India" XmlName="India" Decription="India" />
-      <Value Name="Indonesia" XmlName="Indonesia" Decription="Indonesia" />
-      <Value Name="InternationalMonetaryFund" XmlName="InternationalMonetaryFund"
-             Decription="International Monetary Fund" />
-      <Value Name="Iran" XmlName="Iran" Decription="Iran" />
-      <Value Name="Iraq" XmlName="Iraq" Decription="Iraq" />
-      <Value Name="IsleOfMan" XmlName="IsleOfMan" Decription="Isle of Man" />
-      <Value Name="Israel" XmlName="Israel" Decription="Israel" />
-      <Value Name="Italy" XmlName="Italy" Decription="Italy" />
-      <Value Name="IvoryCoast" XmlName="IvoryCoast" Decription="Ivory Coast" />
-      <Value Name="Jamaica" XmlName="Jamaica" Decription="Jamaica" />
-      <Value Name="Japan" XmlName="Japan" Decription="Japan" />
-      <Value Name="Jersey" XmlName="Jersey" Decription="Jersey" />
-      <Value Name="JohnstonIsland" XmlName="JohnstonIsland" Decription="Johnston Island" />
-      <Value Name="Jordan" XmlName="Jordan" Decription="Jordan" />
-      <Value Name="Kampuchea" XmlName="Kampuchea" Decription="Kampuchea" />
-      <Value Name="Kazakhstan" XmlName="Kazakhstan" Decription="Kazakhstan" />
-      <Value Name="Kenya" XmlName="Kenya" Decription="Kenya" />
-      <Value Name="Kiribati" XmlName="Kiribati" Decription="Kiribati" />
-      <Value Name="KoreaNorth" XmlName="KoreaNorth" Decription="Korea, North" />
-      <Value Name="KoreaSouth" XmlName="KoreaSouth" Decription="Korea, South" />
-      <Value Name="Kuwait" XmlName="Kuwait" Decription="Kuwait" />
-      <Value Name="Kyrgyzstan" XmlName="Kyrgyzstan" Decription="Kyrgyzstan" />
-      <Value Name="Laos" XmlName="Laos" Decription="Laos" />
-      <Value Name="Latvia" XmlName="Latvia" Decription="Latvia" />
-      <Value Name="Lebanon" XmlName="Lebanon" Decription="Lebanon" />
-      <Value Name="Lesotho" XmlName="Lesotho" Decription="Lesotho" />
-      <Value Name="Liberia" XmlName="Liberia" Decription="Liberia" />
-      <Value Name="Libya" XmlName="Libya" Decription="Libya" />
-      <Value Name="Liechtenstein" XmlName="Liechtenstein" Decription="Liechtenstein" />
-      <Value Name="Lithuania" XmlName="Lithuania" Decription="Lithuania" />
-      <Value Name="Luxembourg" XmlName="Luxembourg" Decription="Luxembourg" />
-      <Value Name="Macau" XmlName="Macau" Decription="Macau" />
-      <Value Name="MacedoniaFormerYugRep" XmlName="MacedoniaFormerYugRep" Decription="Macedonia (Former Yug. Rep.)" />
-      <Value Name="Madagascar" XmlName="Madagascar" Decription="Madagascar" />
-      <Value Name="Malawi" XmlName="Malawi" Decription="Malawi" />
-      <Value Name="Malaysia" XmlName="Malaysia" Decription="Malaysia" />
-      <Value Name="Maldives" XmlName="Maldives" Decription="Maldives" />
-      <Value Name="Mali" XmlName="Mali" Decription="Mali" />
-      <Value Name="Malta" XmlName="Malta" Decription="Malta" />
-      <Value Name="MarshallIslands" XmlName="MarshallIslands" Decription="Marshall Islands" />
-      <Value Name="Martinique" XmlName="Martinique" Decription="Martinique" />
-      <Value Name="Mauritania" XmlName="Mauritania" Decription="Mauritania" />
-      <Value Name="Mauritius" XmlName="Mauritius" Decription="Mauritius" />
-      <Value Name="Mayotte" XmlName="Mayotte" Decription="Mayotte" />
-      <Value Name="Micronesia" XmlName="Micronesia" Decription="Micronesia" />
-      <Value Name="MidwayIslands" XmlName="MidwayIslands" Decription="Midway Islands" />
-      <Value Name="Mexico" XmlName="Mexico" Decription="Mexico" />
-      <Value Name="Moldova" XmlName="Moldova" Decription="Moldova" />
-      <Value Name="Monaco" XmlName="Monaco" Decription="Monaco" />
-      <Value Name="Mongolia" XmlName="Mongolia" Decription="Mongolia" />
-      <Value Name="Montenegro" XmlName="Montenegro" Decription="Montenegro" />
-      <Value Name="Montserrat" XmlName="Montserrat" Decription="Montserrat" />
-      <Value Name="Morocco" XmlName="Morocco" Decription="Morocco" />
-      <Value Name="Mozambique" XmlName="Mozambique" Decription="Mozambique" />
-      <Value Name="Myanmar" XmlName="Myanmar" Decription="Myanmar" />
-      <Value Name="Nauru" XmlName="Nauru" Decription="Nauru" />
-      <Value Name="Namibia" XmlName="Namibia" Decription="Namibia" />
-      <Value Name="Nepal" XmlName="Nepal" Decription="Nepal" />
-      <Value Name="NetherlandsAntilles" XmlName="NetherlandsAntilles" Decription="Netherlands Antilles" />
-      <Value Name="Netherlands" XmlName="Netherlands" Decription="Netherlands" />
-      <Value Name="NewCaledonia" XmlName="NewCaledonia" Decription="New Caledonia" />
-      <Value Name="NewZealand" XmlName="NewZealand" Decription="New Zealand" />
-      <Value Name="Nicaragua" XmlName="Nicaragua" Decription="Nicaragua" />
-      <Value Name="Niger" XmlName="Niger" Decription="Niger" />
-      <Value Name="Nigeria" XmlName="Nigeria" Decription="Nigeria" />
-      <Value Name="Niue" XmlName="Niue" Decription="Niue" />
-      <Value Name="NorfolkIsland" XmlName="NorfolkIsland" Decription="Norfolk Island" />
-      <Value Name="NorthernMarianaIslands" XmlName="NorthernMarianaIslands" Decription="Northern Mariana Islands" />
-      <Value Name="Norway" XmlName="Norway" Decription="Norway" />
-      <Value Name="Oman" XmlName="Oman" Decription="Oman" />
-      <Value Name="Pakistan" XmlName="Pakistan" Decription="Pakistan" />
-      <Value Name="Palau" XmlName="Palau" Decription="Palau" />
-      <Value Name="Palestine" XmlName="Palestine" Decription="Palestine" />
-      <Value Name="Panama" XmlName="Panama" Decription="Panama" />
-      <Value Name="PapuaNewGuinea" XmlName="PapuaNewGuinea" Decription="Papua New Guinea" />
-      <Value Name="Paraguay" XmlName="Paraguay" Decription="Paraguay" />
-      <Value Name="Peru" XmlName="Peru" Decription="Peru" />
-      <Value Name="Philippines" XmlName="Philippines" Decription="Philippines" />
-      <Value Name="PitcairnIsland" XmlName="PitcairnIsland" Decription="Pitcairn Island" />
-      <Value Name="Poland" XmlName="Poland" Decription="Poland" />
-      <Value Name="PuertoRico" XmlName="PuertoRico" Decription="Puerto Rico" />
-      <Value Name="Qatar" XmlName="Qatar" Decription="Qatar" />
-      <Value Name="Reunion" XmlName="Reunion" Decription="Reunion" />
-      <Value Name="Romania" XmlName="Romania" Decription="Romania" />
-      <Value Name="Russia" XmlName="Russia" Decription="Russia" />
-      <Value Name="Rwanda" XmlName="Rwanda" Decription="Rwanda" />
-      <Value Name="SamoaWestern" XmlName="SamoaWestern" Decription="Samoa (Western)" />
-      <Value Name="SamoaAmerica" XmlName="SamoaAmerica" Decription="Samoa (America)" />
-      <Value Name="SanMarino" XmlName="SanMarino" Decription="San Marino" />
-      <Value Name="SaoTomeAndPrincipe" XmlName="SaoTomeAndPrincipe" Decription="São Tomé and Príncipe" />
-      <Value Name="SaudiArabia" XmlName="SaudiArabia" Decription="Saudi Arabia" />
-      <Value Name="Senegal" XmlName="Senegal" Decription="Sénégal" />
-      <Value Name="Serbia" XmlName="Serbia" Decription="Serbia" />
-      <Value Name="Seychelles" XmlName="Seychelles" Decription="Seychelles" />
-      <Value Name="SierraLeone" XmlName="SierraLeone" Decription="Sierra Leone" />
-      <Value Name="Singapore" XmlName="Singapore" Decription="Singapore" />
-      <Value Name="Slovakia" XmlName="Slovakia" Decription="Slovakia" />
-      <Value Name="Slovenia" XmlName="Slovenia" Decription="Slovenia" />
-      <Value Name="SolomonIslands" XmlName="SolomonIslands" Decription="Solomon Islands" />
-      <Value Name="Somalia" XmlName="Somalia" Decription="Somalia" />
-      <Value Name="SouthAfrica" XmlName="SouthAfrica" Decription="South Africa" />
-      <Value Name="Spain" XmlName="Spain" Decription="Spain" />
-      <Value Name="SriLanka" XmlName="SriLanka" Decription="Sri Lanka" />
-      <Value Name="StHelena" XmlName="StHelena" Decription="St. Helena" />
-      <Value Name="StKittsAndNevis" XmlName="StKittsAndNevis" Decription="St. Kitts and Nevis" />
-      <Value Name="StLucia" XmlName="StLucia" Decription="St. Lucia" />
-      <Value Name="StVincentAndTheGrenadines" XmlName="StVincentAndTheGrenadines"
-             Decription="St. Vincent and the Grenadines" />
-      <Value Name="Sudan" XmlName="Sudan" Decription="Sudan" />
-      <Value Name="Suriname" XmlName="Suriname" Decription="Suriname" />
-      <Value Name="SvalbardAndJanMayenIslands" XmlName="SvalbardAndJanMayenIslands"
-             Decription="Svalbard and Jan Mayen Islands" />
-      <Value Name="Swaziland" XmlName="Swaziland" Decription="Swaziland" />
-      <Value Name="Sweden" XmlName="Sweden" Decription="Sweden" />
-      <Value Name="Switzerland" XmlName="Switzerland" Decription="Switzerland" />
-      <Value Name="Syria" XmlName="Syria" Decription="Syria" />
-      <Value Name="Tahiti" XmlName="Tahiti" Decription="Tahiti" />
-      <Value Name="Taiwan" XmlName="Taiwan" Decription="Taiwan" />
-      <Value Name="Tajikistan" XmlName="Tajikistan" Decription="Tajikistan" />
-      <Value Name="Tanzania" XmlName="Tanzania" Decription="Tanzania" />
-      <Value Name="Thailand" XmlName="Thailand" Decription="Thailand" />
-      <Value Name="TimorLeste" XmlName="TimorLeste" Decription="Timor-Leste" />
-      <Value Name="Togo" XmlName="Togo" Decription="Togo" />
-      <Value Name="TrinidadAndTobago" XmlName="TrinidadAndTobago" Decription="Trinidad and Tobago" />
-      <Value Name="Tunisia" XmlName="Tunisia" Decription="Tunisia" />
-      <Value Name="Turkey" XmlName="Turkey" Decription="Turkey" />
-      <Value Name="Turkmenistan" XmlName="Turkmenistan" Decription="Turkmenistan" />
-      <Value Name="TurksAndCaicosIslands" XmlName="TurksAndCaicosIslands" Decription="Turks and Caicos Islands" />
-      <Value Name="Tuvalu" XmlName="Tuvalu" Decription="Tuvalu" />
-      <Value Name="Uganda" XmlName="Uganda" Decription="Uganda" />
-      <Value Name="Ukraine" XmlName="Ukraine" Decription="Ukraine" />
-      <Value Name="UnitedArabEmirates" XmlName="UnitedArabEmirates" Decription="United Arab Emirates" />
-      <Value Name="UpperVolta" XmlName="UpperVolta" Decription="Upper Volta" />
-      <Value Name="Uruguay" XmlName="Uruguay" Decription="Uruguay" />
-      <Value Name="Uzbekistan" XmlName="Uzbekistan" Decription="Uzbekistan" />
-      <Value Name="Vanuatu" XmlName="Vanuatu" Decription="Vanuatu" />
-      <Value Name="Vatican" XmlName="Vatican" Decription="Vatican" />
-      <Value Name="Venezuela" XmlName="Venezuela" Decription="Venezuela" />
-      <Value Name="Vietnam" XmlName="Vietnam" Decription="Vietnam" />
-      <Value Name="VirginIslands" XmlName="VirginIslands" Decription="Virgin Islands" />
-      <Value Name="WakeIsland" XmlName="WakeIsland" Decription="Wake Island" />
-      <Value Name="WallisAndFutunaIslands" XmlName="WallisAndFutunaIslands" Decription="Wallis and Futuna Islands" />
-      <Value Name="WesternSahara" XmlName="WesternSahara" Decription="Western Sahara" />
-      <Value Name="WesternSamoa" XmlName="WesternSamoa" Decription="Western Samoa" />
-      <Value Name="Yemen" XmlName="Yemen" Decription="Yemen" />
-      <Value Name="Zaire" XmlName="Zaire" Decription="Zaïre" />
-      <Value Name="Zambia" XmlName="Zambia" Decription="Zambia" />
-      <Value Name="Zimbabwe" XmlName="Zimbabwe" Decription="Zimbabwe" />
+      <Value Name="Portugal" XmlName="Portugal" />
+      <Value Name="Ireland" XmlName="Ireland" />
+      <Value Name="UK" XmlName="UK" />
+      <Value Name="Canada" XmlName="Canada" />
+      <Value Name="UnitedStates" XmlName="United States" />
+      <Value Name="Afghanistan" XmlName="Afghanistan" />
+      <Value Name="Albania" XmlName="Albania" />
+      <Value Name="Algeria" XmlName="Algeria" />
+      <Value Name="AmericanSamoa" XmlName="American Samoa" />
+      <Value Name="Andorra" XmlName="Andorra" />
+      <Value Name="Angola" XmlName="Angola" />
+      <Value Name="Anguilla" XmlName="Anguilla" />
+      <Value Name="AntiguaAndBarbuda" XmlName="Antigua and Barbuda" />
+      <Value Name="Argentina" XmlName="Argentina" />
+      <Value Name="Armenia" XmlName="Armenia" />
+      <Value Name="Aruba" XmlName="Aruba" />
+      <Value Name="Australia" XmlName="Australia" />
+      <Value Name="Austria" XmlName="Austria" />
+      <Value Name="Azerbaijan" XmlName="Azerbaijan" />
+      <Value Name="Bahamas" XmlName="Bahamas" />
+      <Value Name="Bahrain" XmlName="Bahrain" />
+      <Value Name="Bangladesh" XmlName="Bangladesh" />
+      <Value Name="Barbados" XmlName="Barbados" />
+      <Value Name="Belarus" XmlName="Belarus" />
+      <Value Name="Belgium" XmlName="Belgium" />
+      <Value Name="Belize" XmlName="Belize" />
+      <Value Name="Benin" XmlName="Benin" />
+      <Value Name="Bermuda" XmlName="Bermuda" />
+      <Value Name="Bhutan" XmlName="Bhutan" />
+      <Value Name="Bolivia" XmlName="Bolivia" />
+      <Value Name="BosniaHerzegovina" XmlName="Bosnia-Herzegovina" />
+      <Value Name="Botswana" XmlName="Botswana" />
+      <Value Name="Brazil" XmlName="Brazil" />
+      <Value Name="BritishIndianOceanTerritory" XmlName="British Indian Ocean Territory" />
+      <Value Name="Brunei" XmlName="Brunei" />
+      <Value Name="Bulgaria" XmlName="Bulgaria" />
+      <Value Name="BurkinaFaso" XmlName="Burkina Faso" />
+      <Value Name="Burma" XmlName="Burma" />
+      <Value Name="Burundi" XmlName="Burundi" />
+      <Value Name="Cambodia" XmlName="Cambodia" />
+      <Value Name="Cameroon" XmlName="Cameroon" />
+      <Value Name="CantonAndEnderburyIslands" XmlName="Canton and Enderbury Islands" />
+      <Value Name="CapeVerde" XmlName="Cape Verde" />
+      <Value Name="CaymanIslands" XmlName="Cayman Islands" />
+      <Value Name="CentralAfricanRepublic" XmlName="Central African Republic" />
+      <Value Name="Chad" XmlName="Chad" />
+      <Value Name="Chile" XmlName="Chile" />
+      <Value Name="China" XmlName="China" />
+      <Value Name="ChristmasIsland" XmlName="Christmas Island" />
+      <Value Name="CocosKeelingIslands" XmlName="Cocos (Keeling) Islands" />
+      <Value Name="Colombia" XmlName="Colombia" />
+      <Value Name="Comoros" XmlName="Comoros" />
+      <Value Name="Congo" XmlName="Congo" />
+      <Value Name="CongoDemocraticRepublic" XmlName="Congo, Democratic Republic" />
+      <Value Name="CookIslands" XmlName="Cook Islands" />
+      <Value Name="CostaRica" XmlName="Costa Rica" />
+      <Value Name="CoteDIvoire" XmlName="Côte d’Ivoire" />
+      <Value Name="Croatia" XmlName="Croatia" />
+      <Value Name="Cuba" XmlName="Cuba" />
+      <Value Name="Curacao" XmlName="Curaçao" />
+      <Value Name="Cyprus" XmlName="Cyprus" />
+      <Value Name="CzechRepublic" XmlName="Czech Republic" />
+      <Value Name="Denmark" XmlName="Denmark" />
+      <Value Name="Djibouti" XmlName="Djibouti" />
+      <Value Name="Dominica" XmlName="Dominica" />
+      <Value Name="DominicanRepublic" XmlName="Dominican Republic" />
+      <Value Name="DronningMaudLand" XmlName="Dronning Maud Land" />
+      <Value Name="EastTimor" XmlName="East Timor" />
+      <Value Name="Ecuador" XmlName="Ecuador" />
+      <Value Name="Egypt" XmlName="Egypt" />
+      <Value Name="ElSalvador" XmlName="El Salvador" />
+      <Value Name="EquatorialGuinea" XmlName="Equatorial Guinea" />
+      <Value Name="Eritrea" XmlName="Eritrea" />
+      <Value Name="Estonia" XmlName="Estonia" />
+      <Value Name="Ethiopia" XmlName="Ethiopia" />
+      <Value Name="FaeroeIslandsFøroyar" XmlName="Faeroe Islands (Føroyar)" />
+      <Value Name="FalklandIslands" XmlName="Falkland Islands" />
+      <Value Name="Fiji" XmlName="Fiji" />
+      <Value Name="Finland" XmlName="Finland" />
+      <Value Name="France" XmlName="France" />
+      <Value Name="FrenchGuiana" XmlName="French Guiana" />
+      <Value Name="FrenchPolynesia" XmlName="French Polynesia" />
+      <Value Name="Gabon" XmlName="Gabon" />
+      <Value Name="Gambia" XmlName="Gambia" />
+      <Value Name="Georgia" XmlName="Georgia" />
+      <Value Name="Germany" XmlName="Germany" />
+      <Value Name="Ghana" XmlName="Ghana" />
+      <Value Name="Gibraltar" XmlName="Gibraltar" />
+      <Value Name="GreatBritain" XmlName="Great Britain" />
+      <Value Name="Greece" XmlName="Greece" />
+      <Value Name="Greenland" XmlName="Greenland" />
+      <Value Name="Grenada" XmlName="Grenada" />
+      <Value Name="Guadeloupe" XmlName="Guadeloupe" />
+      <Value Name="Guam" XmlName="Guam" />
+      <Value Name="Guatemala" XmlName="Guatemala" />
+      <Value Name="Guernsey" XmlName="Guernsey" />
+      <Value Name="GuineaBissau" XmlName="Guinea-Bissau" />
+      <Value Name="Guinea" XmlName="Guinea" />
+      <Value Name="Guyana" XmlName="Guyana" />
+      <Value Name="Haiti" XmlName="Haiti" />
+      <Value Name="HeardAndMcDonaldIslands" XmlName="Heard and McDonald Islands" />
+      <Value Name="Honduras" XmlName="Honduras" />
+      <Value Name="HongKong" XmlName="Hong Kong" />
+      <Value Name="Hungary" XmlName="Hungary" />
+      <Value Name="Iceland" XmlName="Iceland" />
+      <Value Name="India" XmlName="India" />
+      <Value Name="Indonesia" XmlName="Indonesia" />
+      <Value Name="InternationalMonetaryFund" XmlName="International Monetary Fund" />
+      <Value Name="Iran" XmlName="Iran" />
+      <Value Name="Iraq" XmlName="Iraq" />
+      <Value Name="IsleOfMan" XmlName="Isle of Man" />
+      <Value Name="Israel" XmlName="Israel" />
+      <Value Name="Italy" XmlName="Italy" />
+      <Value Name="IvoryCoast" XmlName="Ivory Coast" />
+      <Value Name="Jamaica" XmlName="Jamaica" />
+      <Value Name="Japan" XmlName="Japan" />
+      <Value Name="Jersey" XmlName="Jersey" />
+      <Value Name="JohnstonIsland" XmlName="Johnston Island" />
+      <Value Name="Jordan" XmlName="Jordan" />
+      <Value Name="Kampuchea" XmlName="Kampuchea" />
+      <Value Name="Kazakhstan" XmlName="Kazakhstan" />
+      <Value Name="Kenya" XmlName="Kenya" />
+      <Value Name="Kiribati" XmlName="Kiribati" />
+      <Value Name="KoreaNorth" XmlName="Korea, North" />
+      <Value Name="KoreaSouth" XmlName="Korea, South" />
+      <Value Name="Kuwait" XmlName="Kuwait" />
+      <Value Name="Kyrgyzstan" XmlName="Kyrgyzstan" />
+      <Value Name="Laos" XmlName="Laos" />
+      <Value Name="Latvia" XmlName="Latvia" />
+      <Value Name="Lebanon" XmlName="Lebanon" />
+      <Value Name="Lesotho" XmlName="Lesotho" />
+      <Value Name="Liberia" XmlName="Liberia" />
+      <Value Name="Libya" XmlName="Libya" />
+      <Value Name="Liechtenstein" XmlName="Liechtenstein" />
+      <Value Name="Lithuania" XmlName="Lithuania" />
+      <Value Name="Luxembourg" XmlName="Luxembourg" />
+      <Value Name="Macau" XmlName="Macau" />
+      <Value Name="MacedoniaFormerYugRep" XmlName="Macedonia (Former Yug. Rep.)" />
+      <Value Name="Madagascar" XmlName="Madagascar" />
+      <Value Name="Malawi" XmlName="Malawi" />
+      <Value Name="Malaysia" XmlName="Malaysia" />
+      <Value Name="Maldives" XmlName="Maldives" />
+      <Value Name="Mali" XmlName="Mali" />
+      <Value Name="Malta" XmlName="Malta" />
+      <Value Name="MarshallIslands" XmlName="Marshall Islands" />
+      <Value Name="Martinique" XmlName="Martinique" />
+      <Value Name="Mauritania" XmlName="Mauritania" />
+      <Value Name="Mauritius" XmlName="Mauritius" />
+      <Value Name="Mayotte" XmlName="Mayotte" />
+      <Value Name="Micronesia" XmlName="Micronesia" />
+      <Value Name="MidwayIslands" XmlName="Midway Islands" />
+      <Value Name="Mexico" XmlName="Mexico" />
+      <Value Name="Moldova" XmlName="Moldova" />
+      <Value Name="Monaco" XmlName="Monaco" />
+      <Value Name="Mongolia" XmlName="Mongolia" />
+      <Value Name="Montenegro" XmlName="Montenegro" />
+      <Value Name="Montserrat" XmlName="Montserrat" />
+      <Value Name="Morocco" XmlName="Morocco" />
+      <Value Name="Mozambique" XmlName="Mozambique" />
+      <Value Name="Myanmar" XmlName="Myanmar" />
+      <Value Name="Nauru" XmlName="Nauru" />
+      <Value Name="Namibia" XmlName="Namibia" />
+      <Value Name="Nepal" XmlName="Nepal" />
+      <Value Name="NetherlandsAntilles" XmlName="Netherlands Antilles" />
+      <Value Name="Netherlands" XmlName="Netherlands" />
+      <Value Name="NewCaledonia" XmlName="New Caledonia" />
+      <Value Name="NewZealand" XmlName="New Zealand" />
+      <Value Name="Nicaragua" XmlName="Nicaragua" />
+      <Value Name="Niger" XmlName="Niger" />
+      <Value Name="Nigeria" XmlName="Nigeria" />
+      <Value Name="Niue" XmlName="Niue" />
+      <Value Name="NorfolkIsland" XmlName="Norfolk Island" />
+      <Value Name="NorthernMarianaIslands" XmlName="Northern Mariana Islands" />
+      <Value Name="Norway" XmlName="Norway" />
+      <Value Name="Oman" XmlName="Oman" />
+      <Value Name="Pakistan" XmlName="Pakistan" />
+      <Value Name="Palau" XmlName="Palau" />
+      <Value Name="Palestine" XmlName="Palestine" />
+      <Value Name="Panama" XmlName="Panama" />
+      <Value Name="PapuaNewGuinea" XmlName="Papua New Guinea" />
+      <Value Name="Paraguay" XmlName="Paraguay" />
+      <Value Name="Peru" XmlName="Peru" />
+      <Value Name="Philippines" XmlName="Philippines" />
+      <Value Name="PitcairnIsland" XmlName="Pitcairn Island" />
+      <Value Name="Poland" XmlName="Poland" />
+      <Value Name="PuertoRico" XmlName="Puerto Rico" />
+      <Value Name="Qatar" XmlName="Qatar" />
+      <Value Name="Reunion" XmlName="Reunion" />
+      <Value Name="Romania" XmlName="Romania" />
+      <Value Name="Russia" XmlName="Russia" />
+      <Value Name="Rwanda" XmlName="Rwanda" />
+      <Value Name="SamoaWestern" XmlName="Samoa (Western)" />
+      <Value Name="SamoaAmerica" XmlName="Samoa (America)" />
+      <Value Name="SanMarino" XmlName="San Marino" />
+      <Value Name="SaoTomeAndPrincipe" XmlName="São Tomé and Príncipe" />
+      <Value Name="SaudiArabia" XmlName="Saudi Arabia" />
+      <Value Name="Senegal" XmlName="Sénégal" />
+      <Value Name="Serbia" XmlName="Serbia" />
+      <Value Name="Seychelles" XmlName="Seychelles" />
+      <Value Name="SierraLeone" XmlName="Sierra Leone" />
+      <Value Name="Singapore" XmlName="Singapore" />
+      <Value Name="Slovakia" XmlName="Slovakia" />
+      <Value Name="Slovenia" XmlName="Slovenia" />
+      <Value Name="SolomonIslands" XmlName="Solomon Islands" />
+      <Value Name="Somalia" XmlName="Somalia" />
+      <Value Name="SouthAfrica" XmlName="South Africa" />
+      <Value Name="Spain" XmlName="Spain" />
+      <Value Name="SriLanka" XmlName="Sri Lanka" />
+      <Value Name="StHelena" XmlName="St. Helena" />
+      <Value Name="StKittsAndNevis" XmlName="St. Kitts and Nevis" />
+      <Value Name="StLucia" XmlName="St. Lucia" />
+      <Value Name="StVincentAndTheGrenadines" XmlName="St. Vincent and the Grenadines" />
+      <Value Name="Sudan" XmlName="Sudan" />
+      <Value Name="Suriname" XmlName="Suriname" />
+      <Value Name="SvalbardAndJanMayenIslands" XmlName="Svalbard and Jan Mayen Islands" />
+      <Value Name="Swaziland" XmlName="Swaziland" />
+      <Value Name="Sweden" XmlName="Sweden" />
+      <Value Name="Switzerland" XmlName="Switzerland" />
+      <Value Name="Syria" XmlName="Syria" />
+      <Value Name="Tahiti" XmlName="Tahiti" />
+      <Value Name="Taiwan" XmlName="Taiwan" />
+      <Value Name="Tajikistan" XmlName="Tajikistan" />
+      <Value Name="Tanzania" XmlName="Tanzania" />
+      <Value Name="Thailand" XmlName="Thailand" />
+      <Value Name="TimorLeste" XmlName="Timor-Leste" />
+      <Value Name="Togo" XmlName="Togo" />
+      <Value Name="TrinidadAndTobago" XmlName="Trinidad and Tobago" />
+      <Value Name="Tunisia" XmlName="Tunisia" />
+      <Value Name="Turkey" XmlName="Turkey" />
+      <Value Name="Turkmenistan" XmlName="Turkmenistan" />
+      <Value Name="TurksAndCaicosIslands" XmlName="Turks and Caicos Islands" />
+      <Value Name="Tuvalu" XmlName="Tuvalu" />
+      <Value Name="Uganda" XmlName="Uganda" />
+      <Value Name="Ukraine" XmlName="Ukraine" />
+      <Value Name="UnitedArabEmirates" XmlName="United Arab Emirates" />
+      <Value Name="UpperVolta" XmlName="Upper Volta" />
+      <Value Name="Uruguay" XmlName="Uruguay" />
+      <Value Name="Uzbekistan" XmlName="Uzbekistan" />
+      <Value Name="Vanuatu" XmlName="Vanuatu" />
+      <Value Name="Vatican" XmlName="Vatican" />
+      <Value Name="Venezuela" XmlName="Venezuela" />
+      <Value Name="Vietnam" XmlName="Vietnam" />
+      <Value Name="VirginIslands" XmlName="Virgin Islands" />
+      <Value Name="WakeIsland" XmlName="Wake Island" />
+      <Value Name="WallisAndFutunaIslands" XmlName="Wallis and Futuna Islands" />
+      <Value Name="WesternSahara" XmlName="Western Sahara" />
+      <Value Name="WesternSamoa" XmlName="Western Samoa" />
+      <Value Name="Yemen" XmlName="Yemen" />
+      <Value Name="Zaire" XmlName="Zaïre" />
+      <Value Name="Zambia" XmlName="Zambia" />
+      <Value Name="Zimbabwe" XmlName="Zimbabwe" />
     </Enum>
 
   </Enums>

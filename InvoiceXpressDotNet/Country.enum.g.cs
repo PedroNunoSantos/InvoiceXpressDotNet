@@ -17,7 +17,7 @@ namespace InvoiceXpressDotNet.Enums
 		UK,
 		[XmlEnum(Name="Canada")]
 		Canada,
-		[XmlEnum(Name="UnitedStates")]
+		[XmlEnum(Name="United States")]
 		UnitedStates,
 		[XmlEnum(Name="Afghanistan")]
 		Afghanistan,
@@ -25,7 +25,7 @@ namespace InvoiceXpressDotNet.Enums
 		Albania,
 		[XmlEnum(Name="Algeria")]
 		Algeria,
-		[XmlEnum(Name="AmericanSamoa")]
+		[XmlEnum(Name="American Samoa")]
 		AmericanSamoa,
 		[XmlEnum(Name="Andorra")]
 		Andorra,
@@ -33,7 +33,7 @@ namespace InvoiceXpressDotNet.Enums
 		Angola,
 		[XmlEnum(Name="Anguilla")]
 		Anguilla,
-		[XmlEnum(Name="AntiguaAndBarbuda")]
+		[XmlEnum(Name="Antigua and Barbuda")]
 		AntiguaAndBarbuda,
 		[XmlEnum(Name="Argentina")]
 		Argentina,
@@ -69,19 +69,19 @@ namespace InvoiceXpressDotNet.Enums
 		Bhutan,
 		[XmlEnum(Name="Bolivia")]
 		Bolivia,
-		[XmlEnum(Name="BosniaHerzegovina")]
+		[XmlEnum(Name="Bosnia-Herzegovina")]
 		BosniaHerzegovina,
 		[XmlEnum(Name="Botswana")]
 		Botswana,
 		[XmlEnum(Name="Brazil")]
 		Brazil,
-		[XmlEnum(Name="BritishIndianOceanTerritory")]
+		[XmlEnum(Name="British Indian Ocean Territory")]
 		BritishIndianOceanTerritory,
 		[XmlEnum(Name="Brunei")]
 		Brunei,
 		[XmlEnum(Name="Bulgaria")]
 		Bulgaria,
-		[XmlEnum(Name="BurkinaFaso")]
+		[XmlEnum(Name="Burkina Faso")]
 		BurkinaFaso,
 		[XmlEnum(Name="Burma")]
 		Burma,
@@ -91,13 +91,13 @@ namespace InvoiceXpressDotNet.Enums
 		Cambodia,
 		[XmlEnum(Name="Cameroon")]
 		Cameroon,
-		[XmlEnum(Name="CantonAndEnderburyIslands")]
+		[XmlEnum(Name="Canton and Enderbury Islands")]
 		CantonAndEnderburyIslands,
-		[XmlEnum(Name="CapeVerde")]
+		[XmlEnum(Name="Cape Verde")]
 		CapeVerde,
-		[XmlEnum(Name="CaymanIslands")]
+		[XmlEnum(Name="Cayman Islands")]
 		CaymanIslands,
-		[XmlEnum(Name="CentralAfricanRepublic")]
+		[XmlEnum(Name="Central African Republic")]
 		CentralAfricanRepublic,
 		[XmlEnum(Name="Chad")]
 		Chad,
@@ -105,9 +105,9 @@ namespace InvoiceXpressDotNet.Enums
 		Chile,
 		[XmlEnum(Name="China")]
 		China,
-		[XmlEnum(Name="ChristmasIsland")]
+		[XmlEnum(Name="Christmas Island")]
 		ChristmasIsland,
-		[XmlEnum(Name="CocosKeelingIslands")]
+		[XmlEnum(Name="Cocos (Keeling) Islands")]
 		CocosKeelingIslands,
 		[XmlEnum(Name="Colombia")]
 		Colombia,
@@ -115,23 +115,23 @@ namespace InvoiceXpressDotNet.Enums
 		Comoros,
 		[XmlEnum(Name="Congo")]
 		Congo,
-		[XmlEnum(Name="CongoDemocraticRepublic")]
+		[XmlEnum(Name="Congo, Democratic Republic")]
 		CongoDemocraticRepublic,
-		[XmlEnum(Name="CookIslands")]
+		[XmlEnum(Name="Cook Islands")]
 		CookIslands,
-		[XmlEnum(Name="CostaRica")]
+		[XmlEnum(Name="Costa Rica")]
 		CostaRica,
-		[XmlEnum(Name="CoteDIvoire")]
+		[XmlEnum(Name="Côte d’Ivoire")]
 		CoteDIvoire,
 		[XmlEnum(Name="Croatia")]
 		Croatia,
 		[XmlEnum(Name="Cuba")]
 		Cuba,
-		[XmlEnum(Name="Curacao")]
+		[XmlEnum(Name="Curaçao")]
 		Curacao,
 		[XmlEnum(Name="Cyprus")]
 		Cyprus,
-		[XmlEnum(Name="CzechRepublic")]
+		[XmlEnum(Name="Czech Republic")]
 		CzechRepublic,
 		[XmlEnum(Name="Denmark")]
 		Denmark,
@@ -139,19 +139,19 @@ namespace InvoiceXpressDotNet.Enums
 		Djibouti,
 		[XmlEnum(Name="Dominica")]
 		Dominica,
-		[XmlEnum(Name="DominicanRepublic")]
+		[XmlEnum(Name="Dominican Republic")]
 		DominicanRepublic,
-		[XmlEnum(Name="DronningMaudLand")]
+		[XmlEnum(Name="Dronning Maud Land")]
 		DronningMaudLand,
-		[XmlEnum(Name="EastTimor")]
+		[XmlEnum(Name="East Timor")]
 		EastTimor,
 		[XmlEnum(Name="Ecuador")]
 		Ecuador,
 		[XmlEnum(Name="Egypt")]
 		Egypt,
-		[XmlEnum(Name="ElSalvador")]
+		[XmlEnum(Name="El Salvador")]
 		ElSalvador,
-		[XmlEnum(Name="EquatorialGuinea")]
+		[XmlEnum(Name="Equatorial Guinea")]
 		EquatorialGuinea,
 		[XmlEnum(Name="Eritrea")]
 		Eritrea,
@@ -159,9 +159,9 @@ namespace InvoiceXpressDotNet.Enums
 		Estonia,
 		[XmlEnum(Name="Ethiopia")]
 		Ethiopia,
-		[XmlEnum(Name="FaeroeIslandsFøroyar")]
+		[XmlEnum(Name="Faeroe Islands (Føroyar)")]
 		FaeroeIslandsFøroyar,
-		[XmlEnum(Name="FalklandIslands")]
+		[XmlEnum(Name="Falkland Islands")]
 		FalklandIslands,
 		[XmlEnum(Name="Fiji")]
 		Fiji,
@@ -169,9 +169,9 @@ namespace InvoiceXpressDotNet.Enums
 		Finland,
 		[XmlEnum(Name="France")]
 		France,
-		[XmlEnum(Name="FrenchGuiana")]
+		[XmlEnum(Name="French Guiana")]
 		FrenchGuiana,
-		[XmlEnum(Name="FrenchPolynesia")]
+		[XmlEnum(Name="French Polynesia")]
 		FrenchPolynesia,
 		[XmlEnum(Name="Gabon")]
 		Gabon,
@@ -185,7 +185,7 @@ namespace InvoiceXpressDotNet.Enums
 		Ghana,
 		[XmlEnum(Name="Gibraltar")]
 		Gibraltar,
-		[XmlEnum(Name="GreatBritain")]
+		[XmlEnum(Name="Great Britain")]
 		GreatBritain,
 		[XmlEnum(Name="Greece")]
 		Greece,
@@ -201,7 +201,7 @@ namespace InvoiceXpressDotNet.Enums
 		Guatemala,
 		[XmlEnum(Name="Guernsey")]
 		Guernsey,
-		[XmlEnum(Name="GuineaBissau")]
+		[XmlEnum(Name="Guinea-Bissau")]
 		GuineaBissau,
 		[XmlEnum(Name="Guinea")]
 		Guinea,
@@ -209,11 +209,11 @@ namespace InvoiceXpressDotNet.Enums
 		Guyana,
 		[XmlEnum(Name="Haiti")]
 		Haiti,
-		[XmlEnum(Name="HeardAndMcDonaldIslands")]
+		[XmlEnum(Name="Heard and McDonald Islands")]
 		HeardAndMcDonaldIslands,
 		[XmlEnum(Name="Honduras")]
 		Honduras,
-		[XmlEnum(Name="HongKong")]
+		[XmlEnum(Name="Hong Kong")]
 		HongKong,
 		[XmlEnum(Name="Hungary")]
 		Hungary,
@@ -223,19 +223,19 @@ namespace InvoiceXpressDotNet.Enums
 		India,
 		[XmlEnum(Name="Indonesia")]
 		Indonesia,
-		[XmlEnum(Name="InternationalMonetaryFund")]
+		[XmlEnum(Name="International Monetary Fund")]
 		InternationalMonetaryFund,
 		[XmlEnum(Name="Iran")]
 		Iran,
 		[XmlEnum(Name="Iraq")]
 		Iraq,
-		[XmlEnum(Name="IsleOfMan")]
+		[XmlEnum(Name="Isle of Man")]
 		IsleOfMan,
 		[XmlEnum(Name="Israel")]
 		Israel,
 		[XmlEnum(Name="Italy")]
 		Italy,
-		[XmlEnum(Name="IvoryCoast")]
+		[XmlEnum(Name="Ivory Coast")]
 		IvoryCoast,
 		[XmlEnum(Name="Jamaica")]
 		Jamaica,
@@ -243,7 +243,7 @@ namespace InvoiceXpressDotNet.Enums
 		Japan,
 		[XmlEnum(Name="Jersey")]
 		Jersey,
-		[XmlEnum(Name="JohnstonIsland")]
+		[XmlEnum(Name="Johnston Island")]
 		JohnstonIsland,
 		[XmlEnum(Name="Jordan")]
 		Jordan,
@@ -255,9 +255,9 @@ namespace InvoiceXpressDotNet.Enums
 		Kenya,
 		[XmlEnum(Name="Kiribati")]
 		Kiribati,
-		[XmlEnum(Name="KoreaNorth")]
+		[XmlEnum(Name="Korea, North")]
 		KoreaNorth,
-		[XmlEnum(Name="KoreaSouth")]
+		[XmlEnum(Name="Korea, South")]
 		KoreaSouth,
 		[XmlEnum(Name="Kuwait")]
 		Kuwait,
@@ -283,7 +283,7 @@ namespace InvoiceXpressDotNet.Enums
 		Luxembourg,
 		[XmlEnum(Name="Macau")]
 		Macau,
-		[XmlEnum(Name="MacedoniaFormerYugRep")]
+		[XmlEnum(Name="Macedonia (Former Yug. Rep.)")]
 		MacedoniaFormerYugRep,
 		[XmlEnum(Name="Madagascar")]
 		Madagascar,
@@ -297,7 +297,7 @@ namespace InvoiceXpressDotNet.Enums
 		Mali,
 		[XmlEnum(Name="Malta")]
 		Malta,
-		[XmlEnum(Name="MarshallIslands")]
+		[XmlEnum(Name="Marshall Islands")]
 		MarshallIslands,
 		[XmlEnum(Name="Martinique")]
 		Martinique,
@@ -309,7 +309,7 @@ namespace InvoiceXpressDotNet.Enums
 		Mayotte,
 		[XmlEnum(Name="Micronesia")]
 		Micronesia,
-		[XmlEnum(Name="MidwayIslands")]
+		[XmlEnum(Name="Midway Islands")]
 		MidwayIslands,
 		[XmlEnum(Name="Mexico")]
 		Mexico,
@@ -335,13 +335,13 @@ namespace InvoiceXpressDotNet.Enums
 		Namibia,
 		[XmlEnum(Name="Nepal")]
 		Nepal,
-		[XmlEnum(Name="NetherlandsAntilles")]
+		[XmlEnum(Name="Netherlands Antilles")]
 		NetherlandsAntilles,
 		[XmlEnum(Name="Netherlands")]
 		Netherlands,
-		[XmlEnum(Name="NewCaledonia")]
+		[XmlEnum(Name="New Caledonia")]
 		NewCaledonia,
-		[XmlEnum(Name="NewZealand")]
+		[XmlEnum(Name="New Zealand")]
 		NewZealand,
 		[XmlEnum(Name="Nicaragua")]
 		Nicaragua,
@@ -351,9 +351,9 @@ namespace InvoiceXpressDotNet.Enums
 		Nigeria,
 		[XmlEnum(Name="Niue")]
 		Niue,
-		[XmlEnum(Name="NorfolkIsland")]
+		[XmlEnum(Name="Norfolk Island")]
 		NorfolkIsland,
-		[XmlEnum(Name="NorthernMarianaIslands")]
+		[XmlEnum(Name="Northern Mariana Islands")]
 		NorthernMarianaIslands,
 		[XmlEnum(Name="Norway")]
 		Norway,
@@ -367,7 +367,7 @@ namespace InvoiceXpressDotNet.Enums
 		Palestine,
 		[XmlEnum(Name="Panama")]
 		Panama,
-		[XmlEnum(Name="PapuaNewGuinea")]
+		[XmlEnum(Name="Papua New Guinea")]
 		PapuaNewGuinea,
 		[XmlEnum(Name="Paraguay")]
 		Paraguay,
@@ -375,11 +375,11 @@ namespace InvoiceXpressDotNet.Enums
 		Peru,
 		[XmlEnum(Name="Philippines")]
 		Philippines,
-		[XmlEnum(Name="PitcairnIsland")]
+		[XmlEnum(Name="Pitcairn Island")]
 		PitcairnIsland,
 		[XmlEnum(Name="Poland")]
 		Poland,
-		[XmlEnum(Name="PuertoRico")]
+		[XmlEnum(Name="Puerto Rico")]
 		PuertoRico,
 		[XmlEnum(Name="Qatar")]
 		Qatar,
@@ -391,23 +391,23 @@ namespace InvoiceXpressDotNet.Enums
 		Russia,
 		[XmlEnum(Name="Rwanda")]
 		Rwanda,
-		[XmlEnum(Name="SamoaWestern")]
+		[XmlEnum(Name="Samoa (Western)")]
 		SamoaWestern,
-		[XmlEnum(Name="SamoaAmerica")]
+		[XmlEnum(Name="Samoa (America)")]
 		SamoaAmerica,
-		[XmlEnum(Name="SanMarino")]
+		[XmlEnum(Name="San Marino")]
 		SanMarino,
-		[XmlEnum(Name="SaoTomeAndPrincipe")]
+		[XmlEnum(Name="São Tomé and Príncipe")]
 		SaoTomeAndPrincipe,
-		[XmlEnum(Name="SaudiArabia")]
+		[XmlEnum(Name="Saudi Arabia")]
 		SaudiArabia,
-		[XmlEnum(Name="Senegal")]
+		[XmlEnum(Name="Sénégal")]
 		Senegal,
 		[XmlEnum(Name="Serbia")]
 		Serbia,
 		[XmlEnum(Name="Seychelles")]
 		Seychelles,
-		[XmlEnum(Name="SierraLeone")]
+		[XmlEnum(Name="Sierra Leone")]
 		SierraLeone,
 		[XmlEnum(Name="Singapore")]
 		Singapore,
@@ -415,29 +415,29 @@ namespace InvoiceXpressDotNet.Enums
 		Slovakia,
 		[XmlEnum(Name="Slovenia")]
 		Slovenia,
-		[XmlEnum(Name="SolomonIslands")]
+		[XmlEnum(Name="Solomon Islands")]
 		SolomonIslands,
 		[XmlEnum(Name="Somalia")]
 		Somalia,
-		[XmlEnum(Name="SouthAfrica")]
+		[XmlEnum(Name="South Africa")]
 		SouthAfrica,
 		[XmlEnum(Name="Spain")]
 		Spain,
-		[XmlEnum(Name="SriLanka")]
+		[XmlEnum(Name="Sri Lanka")]
 		SriLanka,
-		[XmlEnum(Name="StHelena")]
+		[XmlEnum(Name="St. Helena")]
 		StHelena,
-		[XmlEnum(Name="StKittsAndNevis")]
+		[XmlEnum(Name="St. Kitts and Nevis")]
 		StKittsAndNevis,
-		[XmlEnum(Name="StLucia")]
+		[XmlEnum(Name="St. Lucia")]
 		StLucia,
-		[XmlEnum(Name="StVincentAndTheGrenadines")]
+		[XmlEnum(Name="St. Vincent and the Grenadines")]
 		StVincentAndTheGrenadines,
 		[XmlEnum(Name="Sudan")]
 		Sudan,
 		[XmlEnum(Name="Suriname")]
 		Suriname,
-		[XmlEnum(Name="SvalbardAndJanMayenIslands")]
+		[XmlEnum(Name="Svalbard and Jan Mayen Islands")]
 		SvalbardAndJanMayenIslands,
 		[XmlEnum(Name="Swaziland")]
 		Swaziland,
@@ -457,11 +457,11 @@ namespace InvoiceXpressDotNet.Enums
 		Tanzania,
 		[XmlEnum(Name="Thailand")]
 		Thailand,
-		[XmlEnum(Name="TimorLeste")]
+		[XmlEnum(Name="Timor-Leste")]
 		TimorLeste,
 		[XmlEnum(Name="Togo")]
 		Togo,
-		[XmlEnum(Name="TrinidadAndTobago")]
+		[XmlEnum(Name="Trinidad and Tobago")]
 		TrinidadAndTobago,
 		[XmlEnum(Name="Tunisia")]
 		Tunisia,
@@ -469,7 +469,7 @@ namespace InvoiceXpressDotNet.Enums
 		Turkey,
 		[XmlEnum(Name="Turkmenistan")]
 		Turkmenistan,
-		[XmlEnum(Name="TurksAndCaicosIslands")]
+		[XmlEnum(Name="Turks and Caicos Islands")]
 		TurksAndCaicosIslands,
 		[XmlEnum(Name="Tuvalu")]
 		Tuvalu,
@@ -477,9 +477,9 @@ namespace InvoiceXpressDotNet.Enums
 		Uganda,
 		[XmlEnum(Name="Ukraine")]
 		Ukraine,
-		[XmlEnum(Name="UnitedArabEmirates")]
+		[XmlEnum(Name="United Arab Emirates")]
 		UnitedArabEmirates,
-		[XmlEnum(Name="UpperVolta")]
+		[XmlEnum(Name="Upper Volta")]
 		UpperVolta,
 		[XmlEnum(Name="Uruguay")]
 		Uruguay,
@@ -493,19 +493,19 @@ namespace InvoiceXpressDotNet.Enums
 		Venezuela,
 		[XmlEnum(Name="Vietnam")]
 		Vietnam,
-		[XmlEnum(Name="VirginIslands")]
+		[XmlEnum(Name="Virgin Islands")]
 		VirginIslands,
-		[XmlEnum(Name="WakeIsland")]
+		[XmlEnum(Name="Wake Island")]
 		WakeIsland,
-		[XmlEnum(Name="WallisAndFutunaIslands")]
+		[XmlEnum(Name="Wallis and Futuna Islands")]
 		WallisAndFutunaIslands,
-		[XmlEnum(Name="WesternSahara")]
+		[XmlEnum(Name="Western Sahara")]
 		WesternSahara,
-		[XmlEnum(Name="WesternSamoa")]
+		[XmlEnum(Name="Western Samoa")]
 		WesternSamoa,
 		[XmlEnum(Name="Yemen")]
 		Yemen,
-		[XmlEnum(Name="Zaire")]
+		[XmlEnum(Name="Zaïre")]
 		Zaire,
 		[XmlEnum(Name="Zambia")]
 		Zambia,

@@ -11,7 +11,7 @@ The xml de/serialization is handled by [XmlSerializer](https://msdn.microsoft.co
 ## How to use
 
 First of all, you need a [invoiceXpress account and a api key](https://invoicexpress.com/api/overview). 
-From there you can get the following data needed to make tht api calls
+From there you can get the following data needed to make the api calls
 
 ```cs
 string _accountName = "your account name here";
@@ -69,16 +69,31 @@ InvoiceDto invoiceReturnData = InvoiceXpress.Invoices.Create(_apiKey, _accountNa
 
 // consume the returned data
 Console.WriteLine(invoiceReturnData);
+
+// finalize the invoice
+if (invoiceReturnData.Id.HasValue)
+{
+    var state = new InvoiceChangeStateDto { State = DocumentState.Finalized };
+    var returnState = InvoiceXpress.Invoices.ChangeState(_apiKey, _accountName, invoiceReturnData.Id.Value, state);
+    Console.WriteLine(returnState);
+}
 ```
 
-##### List All
+##### List Invoices
 ```cs
 InvoicesDto invoices = InvoiceXpress.Invoices.List(_apiKey, _accountName);
 foreach (InvoiceDto invoice in invoices.Items)
     Console.WriteLine(invoice.Id);
 ```
 
-##### Get the invoice Pdf
+
+##### Get a Invoice
+```cs
+InvoiceDto invoice = InvoiceXpress.Invoices.Get(_apiKey, _accountName, invoiceId).Dump();
+Console.WriteLine(invoice);
+```
+
+##### Get the invoice pdf
 ```cs
 var pdfData = InvoiceXpress.Invoices.Pdf(_apiKey, _accountName, invoiceId);
 // check if the pdf id ready to be downloaded, if not you will need to try again later
@@ -92,7 +107,18 @@ if (pdfData.IsPdfReady)
 }
 else 
     Console.WriteLine("Document is not ready yet, try again later.");
+```
+##### Email a invoice to someone
+```cs
+var clientEmail = new EmailClientDto();
+clientEmail.Email = "email@whatever.com";
 
+var email = new EmailMessageDto();
+email.Client = clientEmail;
+email.Subject = "here is your invoice";
+email.Body = "the invoice is attached to the message";
+
+InvoiceXpress.Invoices.EmailInvoice(apiKey, accountName, invoiceId, email);
 ```
 
 ### [Invoice Receipt](https://invoicexpress.com/api/invoice-receipt/create)
@@ -136,3 +162,12 @@ if (createdInvoiceReceipt.Id.HasValue)
     Console.WriteLine(state)
 }
 ```
+
+### The MIT License (MIT)
+Copyright (c) 2016 EventKey, Lda
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

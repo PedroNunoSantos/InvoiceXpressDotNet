@@ -1,4 +1,4 @@
-// Connector API InvoiceXpressDotNet developed by EventKey,Lda http://www.eventkey.pt
+// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Net;
 using System.ComponentModel;

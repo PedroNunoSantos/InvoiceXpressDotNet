@@ -43,29 +43,34 @@ namespace InvoiceXpressDotNet.Extensions
                 requestStream.Close();
             }
 
-            string responseStr = null;
+            string responseStr;
             HttpStatusCode responseCode;
 
             try
             {
                 using (var response = (HttpWebResponse) request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                {
-                    responseCode = response.StatusCode;
-                    if (stream != null) responseStr = new StreamReader(stream).ReadToEnd();
-                }
+                    GetResponse(response, out responseCode, out responseStr);
             }
             catch (WebException ex)
             {
                 using (var exResponse = (HttpWebResponse) ex.Response)
-                using (Stream exStream = exResponse.GetResponseStream())
-                {
-                    responseCode = exResponse.StatusCode;
-                    if (exStream != null) responseStr = new StreamReader(exStream).ReadToEnd();
-                }
+                    GetResponse(exResponse, out responseCode, out responseStr);
             }
 
             return HttpResponseInfo.New(responseCode, responseStr);
+        }
+
+        private static void GetResponse(HttpWebResponse response, out HttpStatusCode responseCode,
+            out string responseStr)
+        {
+            responseStr = null;
+            responseCode = response.StatusCode;
+            using (Stream stream = response.GetResponseStream())
+            {
+                if (stream == null) return;
+                using (var reader = new StreamReader(stream))
+                    responseStr = reader.ReadToEnd();
+            }
         }
     }
 }
