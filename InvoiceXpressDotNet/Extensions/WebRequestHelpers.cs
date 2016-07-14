@@ -2,9 +2,9 @@
 using System.Net;
 using System.Text;
 
-namespace InvoiceXpressDotNet
+namespace InvoiceXpressDotNet.Extensions
 {
-    public static class WebRequestHelper
+    public static class WebRequestHelpers
     {
         public static HttpResponseInfo HttpGet(this string destinationUrl, string data = null)
         {

@@ -7,12 +7,14 @@ namespace InvoiceXpressDotNet
 {
     // Get pdf methods requires to check is the document is ready first
     // thus this custom implementation
-    public static partial class InvoiceExpress
+    public static partial class InvoiceXpress
     {
-        static class PdfHelper
+        private static class PdfHelper
         {
-            internal static HttpResponseInfo Rest_Pdf(string url)
+            public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int documentId)
             {
+                string url = string.Format("https://{1}.app.invoicexpress.com/api/pdf/{2}.xml?api_key={0}", apiKey,
+                    accountName, documentId);
                 HttpResponseInfo result = url.HttpGet();
                 if (result.StatusCode.IsAnyOf(HttpStatusCode.OK, HttpStatusCode.Accepted))
                     return result;
@@ -22,8 +24,9 @@ namespace InvoiceXpressDotNet
                         HttpStatusCode.Accepted), new Exception(result.Text));
             }
 
-            internal static PdfOutputDto Pdf(HttpResponseInfo responseInfo)
+            public static PdfOutputDto Pdf(string apiKey, string accountName, int documentId)
             {
+                HttpResponseInfo responseInfo = Rest_Pdf(apiKey, accountName, documentId);
                 PdfOutputDto result = null;
                 switch (responseInfo.StatusCode)
                 {
@@ -48,9 +51,7 @@ namespace InvoiceXpressDotNet
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int invoiceId)
             {
-                string url = string.Format("https://{1}.app.invoicexpress.com/api/pdf/{2}.xml?api_key={0}", apiKey,
-                    accountName, invoiceId);
-                return PdfHelper.Rest_Pdf(url);
+                return PdfHelper.Rest_Pdf(apiKey, accountName, invoiceId);
             }
 
             /// <summary>
@@ -58,7 +59,7 @@ namespace InvoiceXpressDotNet
             /// </summary>
             public static PdfOutputDto Pdf(string apiKey, string accountName, int invoiceId)
             {
-                return PdfHelper.Pdf(Rest_Pdf(apiKey, accountName, invoiceId));
+                return PdfHelper.Pdf(apiKey, accountName, invoiceId);
             }
         }
 
@@ -68,19 +69,17 @@ namespace InvoiceXpressDotNet
             /// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/documents-pdf">CreditNotes Pdf</a> Method
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, string simplifiedInvoiceId)
+            public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {
-                string url = string.Format("https://{1}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={0}",
-                    apiKey, accountName, simplifiedInvoiceId);
-                return PdfHelper.Rest_Pdf(url);
+                return PdfHelper.Rest_Pdf(apiKey, accountName, simplifiedInvoiceId);
             }
 
             /// <summary>
             /// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/documents-pdf">CreditNotes Pdf</a> Method
             /// </summary>
-            public static PdfOutputDto Pdf(string apiKey, string accountName, string simplifiedInvoiceId)
+            public static PdfOutputDto Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {
-                return PdfHelper.Pdf(Rest_Pdf(apiKey, accountName, simplifiedInvoiceId));
+                return PdfHelper.Pdf(apiKey, accountName, simplifiedInvoiceId);
             }
         }
 
@@ -92,9 +91,8 @@ namespace InvoiceXpressDotNet
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int invoiceReceiptId)
             {
-                string url = string.Format("https://{1}.app.invoicexpress.com/api/pdf/{2}.xml?api_key={0}", apiKey,
-                    accountName, invoiceReceiptId);
-                return PdfHelper.Rest_Pdf(url);
+                
+                return PdfHelper.Rest_Pdf(apiKey, accountName, invoiceReceiptId);
             }
 
             /// <summary>
@@ -102,7 +100,7 @@ namespace InvoiceXpressDotNet
             /// </summary>
             public static PdfOutputDto Pdf(string apiKey, string accountName, int invoiceReceiptId)
             {
-                return PdfHelper.Pdf(Rest_Pdf(apiKey, accountName, invoiceReceiptId));
+                return PdfHelper.Pdf(apiKey, accountName, invoiceReceiptId);
             }
         }
 
@@ -112,19 +110,17 @@ namespace InvoiceXpressDotNet
             /// InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">SimplifiedInvoices Pdf</a> Method
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, string simplifiedInvoiceId)
+            public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {
-                string url = string.Format("https://{1}.app.invoicexpress.com/api/pdf/{2}.xml?api_key={0}", apiKey,
-                    accountName, simplifiedInvoiceId);
-                return PdfHelper.Rest_Pdf(url);
+                return PdfHelper.Rest_Pdf(apiKey, accountName, Int32.MaxValue);
             }
 
             /// <summary>
             /// InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">SimplifiedInvoices Pdf</a> Method
             /// </summary>
-            public static PdfOutputDto Pdf(string apiKey, string accountName, string simplifiedInvoiceId)
+            public static PdfOutputDto Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {
-                return PdfHelper.Pdf(Rest_Pdf(apiKey, accountName, simplifiedInvoiceId));
+                return PdfHelper.Pdf(apiKey, accountName, simplifiedInvoiceId);
             }
         }
     }

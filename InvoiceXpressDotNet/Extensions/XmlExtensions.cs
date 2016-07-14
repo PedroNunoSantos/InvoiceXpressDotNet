@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace InvoiceXpressDotNet
+namespace InvoiceXpressDotNet.Extensions
 {
     public static class XmlExtensions
     {
