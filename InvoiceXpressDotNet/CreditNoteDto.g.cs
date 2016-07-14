@@ -2,8 +2,9 @@ using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
 using InvoiceXpressDotNet.Extensions;
+using InvoiceXpressDotNet.Enums;
 
-namespace InvoiceXpressDotNet
+namespace InvoiceXpressDotNet.DataTransferObjects
 {
 	[XmlRoot("credit_note"), XmlType(AnonymousType=true)]
 	public partial class CreditNoteDto : Dto

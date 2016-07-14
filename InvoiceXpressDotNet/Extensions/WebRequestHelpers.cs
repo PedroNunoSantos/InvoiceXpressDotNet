@@ -2,6 +2,10 @@
 using System.Net;
 using System.Text;
 
+namespace InvoiceXpressDotNet
+{
+}
+
 namespace InvoiceXpressDotNet.Extensions
 {
     public static class WebRequestHelpers
@@ -35,7 +39,7 @@ namespace InvoiceXpressDotNet.Extensions
             request.Method = httpMethod;
             if (!string.IsNullOrWhiteSpace(data))
             {
-                byte[] dataBytes = Encoding.UTF8.GetBytes(data);
+                var dataBytes = Encoding.UTF8.GetBytes(data);
                 request.ContentType = contentType;
                 request.ContentLength = dataBytes.Length;
                 Stream requestStream = request.GetRequestStream();
@@ -66,23 +70,6 @@ namespace InvoiceXpressDotNet.Extensions
             }
 
             return HttpResponseInfo.New(responseCode, responseStr);
-        }
-    }
-
-    public class HttpResponseInfo
-    {
-        public HttpResponseInfo(HttpStatusCode statusCode, string text)
-        {
-            StatusCode = statusCode;
-            Text = text;
-        }
-
-        public HttpStatusCode StatusCode { get; set; }
-        public string Text { get; set; }
-
-        public static HttpResponseInfo New(HttpStatusCode statusCode, string text)
-        {
-            return new HttpResponseInfo(statusCode, text);
         }
     }
 }

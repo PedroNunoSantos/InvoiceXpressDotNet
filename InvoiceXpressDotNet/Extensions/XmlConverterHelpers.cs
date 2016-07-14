@@ -5,12 +5,11 @@ namespace InvoiceXpressDotNet.Extensions
 {
     public static class XmlConverterHelpers
     {
-        const string DateFormat = @"dd\/MM\/yyyy";
-        const string FloatFormat = "0.00";
+        private const string DateFormat = @"dd\/MM\/yyyy";
+        private const string FloatFormat = "0.00";
 
         public static string ToXml<T>(this T data)
         {
-
             if (typeof(T) == typeof(float?))
             {
                 var floatValue = data as float?;
@@ -28,7 +27,7 @@ namespace InvoiceXpressDotNet.Extensions
                 var intValue = data as int?;
                 return intValue.HasValue ? intValue.Value.ToString(CultureInfo.InvariantCulture) : null;
             }
-            
+
             if (typeof(T) == typeof(bool?))
             {
                 var boolValue = data as bool?;
@@ -47,7 +46,7 @@ namespace InvoiceXpressDotNet.Extensions
             {
                 float floatValue;
                 if (float.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out floatValue))
-                    return (T)Convert.ChangeType(floatValue, baseType);
+                    return (T) Convert.ChangeType(floatValue, baseType);
                 return default(T);
             }
 
@@ -55,17 +54,16 @@ namespace InvoiceXpressDotNet.Extensions
             {
                 DateTime dateVal;
                 if (DateTime.TryParseExact(str, DateFormat, null, DateTimeStyles.AssumeLocal,
-                        out dateVal))
-                    return (T)Convert.ChangeType(dateVal, baseType);
+                    out dateVal))
+                    return (T) Convert.ChangeType(dateVal, baseType);
                 return default(T);
-
             }
 
             if (baseType == typeof(int))
             {
                 int intValue;
                 if (int.TryParse(str, out intValue))
-                    return (T)Convert.ChangeType(intValue, baseType);
+                    return (T) Convert.ChangeType(intValue, baseType);
                 return default(T);
             }
 
@@ -73,12 +71,11 @@ namespace InvoiceXpressDotNet.Extensions
             {
                 bool boolValue;
                 if (bool.TryParse(str, out boolValue))
-                    return (T)Convert.ChangeType(boolValue, baseType);
+                    return (T) Convert.ChangeType(boolValue, baseType);
                 return default(T);
             }
 
             throw new ArgumentOutOfRangeException();
         }
-
     }
 }

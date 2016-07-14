@@ -1,4 +1,3 @@
-using System.Xml;
 using InvoiceXpressDotNet.Extensions;
 
 namespace InvoiceXpressDotNet

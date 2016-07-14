@@ -1,11 +1,12 @@
 using System;
 using System.ComponentModel;
 using System.Net;
+using InvoiceXpressDotNet.DataTransferObjects;
 using InvoiceXpressDotNet.Extensions;
 
 namespace InvoiceXpressDotNet
 {
-    // Get pdf methods requires to check is the document is ready first
+    // Get pdf methods requires to check if the the document is ready first
     // thus this custom implementation
     public static partial class InvoiceXpress
     {
@@ -46,7 +47,7 @@ namespace InvoiceXpressDotNet
         public static partial class Invoices
         {
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">Invoices Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">Invoices Pdf</a> Method
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int invoiceId)
@@ -55,7 +56,7 @@ namespace InvoiceXpressDotNet
             }
 
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">Invoices Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">Invoices Pdf</a> Method
             /// </summary>
             public static PdfOutputDto Pdf(string apiKey, string accountName, int invoiceId)
             {
@@ -66,7 +67,7 @@ namespace InvoiceXpressDotNet
         public static partial class CreditNotes
         {
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/documents-pdf">CreditNotes Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/documents-pdf">CreditNotes Pdf</a> Method
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
@@ -75,7 +76,7 @@ namespace InvoiceXpressDotNet
             }
 
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/documents-pdf">CreditNotes Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/credit-notes/documents-pdf">CreditNotes Pdf</a> Method
             /// </summary>
             public static PdfOutputDto Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {
@@ -86,17 +87,16 @@ namespace InvoiceXpressDotNet
         public static partial class InvoiceReceipts
         {
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/documents-pdf">InvoiceReceipts Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/documents-pdf">InvoiceReceipts Pdf</a> Method
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int invoiceReceiptId)
             {
-                
                 return PdfHelper.Rest_Pdf(apiKey, accountName, invoiceReceiptId);
             }
 
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/documents-pdf">InvoiceReceipts Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/documents-pdf">InvoiceReceipts Pdf</a> Method
             /// </summary>
             public static PdfOutputDto Pdf(string apiKey, string accountName, int invoiceReceiptId)
             {
@@ -107,16 +107,16 @@ namespace InvoiceXpressDotNet
         public static partial class SimplifiedInvoices
         {
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">SimplifiedInvoices Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">SimplifiedInvoices Pdf</a> Method
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {
-                return PdfHelper.Rest_Pdf(apiKey, accountName, Int32.MaxValue);
+                return PdfHelper.Rest_Pdf(apiKey, accountName, int.MaxValue);
             }
 
             /// <summary>
-            /// InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">SimplifiedInvoices Pdf</a> Method
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/invoices/documents-pdf">SimplifiedInvoices Pdf</a> Method
             /// </summary>
             public static PdfOutputDto Pdf(string apiKey, string accountName, int simplifiedInvoiceId)
             {

@@ -18,10 +18,10 @@ namespace InvoiceXpressDotNet.Extensions
             using (XmlWriter writer = XmlWriter.Create(stream, xml))
             {
                 var serializer = new XmlSerializer(objectInstance.GetType());
-                var ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+                var ns = new XmlSerializerNamespaces(new[] {XmlQualifiedName.Empty});
                 serializer.Serialize(writer, objectInstance, ns);
                 string returnXml = stream.ToString().RemoveEmptyEntries();
-                
+
                 Trace.WriteLine(returnXml);
 
                 return returnXml;
@@ -35,14 +35,14 @@ namespace InvoiceXpressDotNet.Extensions
                 : xmlData;
 
             Trace.WriteLine(xmlDeserialize);
-            
+
             var serializer = new XmlSerializer(typeof(T));
             using (var reader = new StringReader(xmlDeserialize))
                 return (T) serializer.Deserialize(reader);
         }
 
         /// <summary>
-        /// Remove empty empty entries from xml
+        ///     Remove empty empty entries from xml
         /// </summary>
         /// <param name="xml">Input xml</param>
         /// <returns>Cleaned xml</returns>

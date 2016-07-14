@@ -63,6 +63,7 @@
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="HttpResponseInfo.cs" />
     <Compile Include="InvoiceXpress.Pdf.cs" />
     <Compile Include="PdfOutputDto.Pdf.cs" />
     <Compile Include="ClassGenerator.cs">

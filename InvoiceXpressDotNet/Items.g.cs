@@ -3,6 +3,7 @@ using System;
 using System.Net;
 using System.ComponentModel;
 using InvoiceXpressDotNet.Extensions;
+using InvoiceXpressDotNet.DataTransferObjects;
 
 namespace InvoiceXpressDotNet
 {

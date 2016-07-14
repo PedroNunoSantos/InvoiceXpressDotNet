@@ -24,6 +24,5 @@ namespace InvoiceXpressDotNet.Extensions
         {
             return !parms.Contains(data, comparer);
         }
-        
     }
 }

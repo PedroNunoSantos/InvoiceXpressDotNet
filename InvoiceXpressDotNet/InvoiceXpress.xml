@@ -181,9 +181,9 @@
         <Param Index="2" Name="invoiceId" Type="int" />
       </UrlParms>
     </Method>
-    
-<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-<!--
+
+    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+    <!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
@@ -324,8 +324,8 @@
       </UrlParms>
     </Method>
 
-<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-<!--
+    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+    <!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{simplifiedInvoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
@@ -427,8 +427,8 @@
       </UrlParms>
     </Method>
 
-<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-<!--
+    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+    <!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceReceiptId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoice-receipt/documents-pdf"
@@ -520,8 +520,8 @@
       </UrlParms>
     </Method>
 
-<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-<!--
+    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+    <!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
@@ -612,8 +612,8 @@
       </UrlParms>
     </Method>
 
-<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-<!--
+    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+    <!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
@@ -1160,6 +1160,7 @@
   </Types>
 
   <Enums>
+
     <Enum Name="DocumentState">
       <Value Name="Draft" XmlName="draft" />
       <Value Name="Settled" XmlName="settled" />
@@ -1188,7 +1189,7 @@
       <Value Name="M16" XmlName="M16" Description="Isento Artigo 14.º do RITI" />
       <Value Name="M99" XmlName="M99" Description="Não sujeito; não tributado (ou similar)" />
     </Enum>
-    
+
     <!--https://invoicexpress.com/api/appendix/payment-mechanisms-->
     <Enum Name="PaymentMechanism">
       <Value Name="CC" XmlName="CC" Description="Credit card" />
@@ -1205,8 +1206,8 @@
       <Value Name="TB" XmlName="TB" Description="Bank transfer or authorized direct debit" />
       <Value Name="TR" XmlName="TR" Description="Restaurant ticket" />
     </Enum>
-    
-    
+
+
     <Enum Name="Country">
       <Value Name="Portugal" XmlName="Portugal" Decription="Portugal" />
       <Value Name="Ireland" XmlName="Ireland" Decription="Ireland" />
@@ -1241,7 +1242,8 @@
       <Value Name="BosniaHerzegovina" XmlName="BosniaHerzegovina" Decription="Bosnia-Herzegovina" />
       <Value Name="Botswana" XmlName="Botswana" Decription="Botswana" />
       <Value Name="Brazil" XmlName="Brazil" Decription="Brazil" />
-      <Value Name="BritishIndianOceanTerritory" XmlName="BritishIndianOceanTerritory" Decription="British Indian Ocean Territory" />
+      <Value Name="BritishIndianOceanTerritory" XmlName="BritishIndianOceanTerritory"
+             Decription="British Indian Ocean Territory" />
       <Value Name="Brunei" XmlName="Brunei" Decription="Brunei" />
       <Value Name="Bulgaria" XmlName="Bulgaria" Decription="Bulgaria" />
       <Value Name="BurkinaFaso" XmlName="BurkinaFaso" Decription="Burkina Faso" />
@@ -1249,7 +1251,8 @@
       <Value Name="Burundi" XmlName="Burundi" Decription="Burundi" />
       <Value Name="Cambodia" XmlName="Cambodia" Decription="Cambodia" />
       <Value Name="Cameroon" XmlName="Cameroon" Decription="Cameroon" />
-      <Value Name="CantonAndEnderburyIslands" XmlName="CantonAndEnderburyIslands" Decription="Canton and Enderbury Islands" />
+      <Value Name="CantonAndEnderburyIslands" XmlName="CantonAndEnderburyIslands"
+             Decription="Canton and Enderbury Islands" />
       <Value Name="CapeVerde" XmlName="CapeVerde" Decription="Cape Verde" />
       <Value Name="CaymanIslands" XmlName="CaymanIslands" Decription="Cayman Islands" />
       <Value Name="CentralAfricanRepublic" XmlName="CentralAfricanRepublic" Decription="Central African Republic" />
@@ -1315,7 +1318,8 @@
       <Value Name="Iceland" XmlName="Iceland" Decription="Iceland" />
       <Value Name="India" XmlName="India" Decription="India" />
       <Value Name="Indonesia" XmlName="Indonesia" Decription="Indonesia" />
-      <Value Name="InternationalMonetaryFund" XmlName="InternationalMonetaryFund" Decription="International Monetary Fund" />
+      <Value Name="InternationalMonetaryFund" XmlName="InternationalMonetaryFund"
+             Decription="International Monetary Fund" />
       <Value Name="Iran" XmlName="Iran" Decription="Iran" />
       <Value Name="Iraq" XmlName="Iraq" Decription="Iraq" />
       <Value Name="IsleOfMan" XmlName="IsleOfMan" Decription="Isle of Man" />
@@ -1419,10 +1423,12 @@
       <Value Name="StHelena" XmlName="StHelena" Decription="St. Helena" />
       <Value Name="StKittsAndNevis" XmlName="StKittsAndNevis" Decription="St. Kitts and Nevis" />
       <Value Name="StLucia" XmlName="StLucia" Decription="St. Lucia" />
-      <Value Name="StVincentAndTheGrenadines" XmlName="StVincentAndTheGrenadines" Decription="St. Vincent and the Grenadines" />
+      <Value Name="StVincentAndTheGrenadines" XmlName="StVincentAndTheGrenadines"
+             Decription="St. Vincent and the Grenadines" />
       <Value Name="Sudan" XmlName="Sudan" Decription="Sudan" />
       <Value Name="Suriname" XmlName="Suriname" Decription="Suriname" />
-      <Value Name="SvalbardAndJanMayenIslands" XmlName="SvalbardAndJanMayenIslands" Decription="Svalbard and Jan Mayen Islands" />
+      <Value Name="SvalbardAndJanMayenIslands" XmlName="SvalbardAndJanMayenIslands"
+             Decription="Svalbard and Jan Mayen Islands" />
       <Value Name="Swaziland" XmlName="Swaziland" Decription="Swaziland" />
       <Value Name="Sweden" XmlName="Sweden" Decription="Sweden" />
       <Value Name="Switzerland" XmlName="Switzerland" Decription="Switzerland" />
@@ -1460,8 +1466,7 @@
       <Value Name="Zambia" XmlName="Zambia" Decription="Zambia" />
       <Value Name="Zimbabwe" XmlName="Zimbabwe" Decription="Zimbabwe" />
     </Enum>
-    
-    
+
   </Enums>
 
 </Class>
