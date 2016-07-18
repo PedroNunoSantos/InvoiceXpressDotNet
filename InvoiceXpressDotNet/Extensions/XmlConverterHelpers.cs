@@ -46,7 +46,7 @@ namespace InvoiceXpressDotNet.Extensions
             {
                 float floatValue;
                 if (float.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out floatValue))
-                    return (T) Convert.ChangeType(floatValue, baseType);
+                    return (T)Convert.ChangeType(floatValue, baseType);
                 return default(T);
             }
 
@@ -55,7 +55,7 @@ namespace InvoiceXpressDotNet.Extensions
                 DateTime dateVal;
                 if (DateTime.TryParseExact(str, DateFormat, null, DateTimeStyles.AssumeLocal,
                     out dateVal))
-                    return (T) Convert.ChangeType(dateVal, baseType);
+                    return (T)Convert.ChangeType(dateVal, baseType);
                 return default(T);
             }
 
@@ -63,7 +63,7 @@ namespace InvoiceXpressDotNet.Extensions
             {
                 int intValue;
                 if (int.TryParse(str, out intValue))
-                    return (T) Convert.ChangeType(intValue, baseType);
+                    return (T)Convert.ChangeType(intValue, baseType);
                 return default(T);
             }
 
@@ -71,7 +71,7 @@ namespace InvoiceXpressDotNet.Extensions
             {
                 bool boolValue;
                 if (bool.TryParse(str, out boolValue))
-                    return (T) Convert.ChangeType(boolValue, baseType);
+                    return (T)Convert.ChangeType(boolValue, baseType);
                 return default(T);
             }
 

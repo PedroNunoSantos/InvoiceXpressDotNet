@@ -31,7 +31,7 @@ namespace InvoiceXpressDotNet.Extensions
             , string data = null
             , string contentType = "application/xml; charset=utf-8")
         {
-            var request = (HttpWebRequest) WebRequest.Create(destinationUrl);
+            var request = (HttpWebRequest)WebRequest.Create(destinationUrl);
             request.Method = httpMethod;
             if (!string.IsNullOrWhiteSpace(data))
             {
@@ -48,7 +48,7 @@ namespace InvoiceXpressDotNet.Extensions
 
             try
             {
-                using (var response = (HttpWebResponse) request.GetResponse())
+                using (var response = (HttpWebResponse)request.GetResponse())
                 using (Stream stream = response.GetResponseStream())
                 {
                     responseCode = response.StatusCode;
@@ -57,7 +57,7 @@ namespace InvoiceXpressDotNet.Extensions
             }
             catch (WebException ex)
             {
-                using (var exResponse = (HttpWebResponse) ex.Response)
+                using (var exResponse = (HttpWebResponse)ex.Response)
                 using (Stream exStream = exResponse.GetResponseStream())
                 {
                     responseCode = exResponse.StatusCode;

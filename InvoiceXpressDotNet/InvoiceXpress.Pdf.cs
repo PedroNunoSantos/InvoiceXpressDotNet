@@ -122,6 +122,28 @@ namespace InvoiceXpressDotNet
             {
                 return PdfHelper.Pdf(apiKey, accountName, simplifiedInvoiceId);
             }
+        
         }
+
+        public static partial class Proformas
+        {
+            /// <summary>
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/proformas/documents-pdf">Proformas Pdf</a> Method
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static HttpResponseInfo Rest_Pdf(string apiKey, string accountName, int proformaId)
+            {
+                return PdfHelper.Rest_Pdf(apiKey, accountName, proformaId);
+            }
+
+            /// <summary>
+            ///     InvoiceXpress <a href="https://invoicexpress.com/api/proformas/documents-pdf">Proformas Pdf</a> Method
+            /// </summary>
+            public static PdfOutputDto Pdf(string apiKey, string accountName, int proformaId)
+            {
+                return PdfHelper.Pdf(apiKey, accountName, proformaId);
+            }
+        }
+
     }
 }

@@ -173,6 +173,18 @@
     <Compile Include="PreferredContactDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProformaChangeStateDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformaDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proformas.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProformasDto.g.cs">
+      <DependentUpon>ClassGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="RolesDto.g.cs">
       <DependentUpon>ClassGenerator.tt</DependentUpon>
     </Compile>

@@ -783,6 +783,99 @@
 
   </NestedClass>
 
+  <NestedClass Name="Proformas" ApiUrl="https://invoicexpress.com/api/proformas">
+
+    <Method Name="Create" HttpMethod="POST"
+            Url="https://{accountName}.app.invoicexpress.com/proformas.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/create"
+            InputClass="ProformaDto"
+            ReturnClass="ProformaDto"
+            SucessCode="201">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+      </UrlParms>
+    </Method>
+
+    <Method Name="Get" HttpMethod="GET"
+            Url="https://{accountName}.app.invoicexpress.com/invoices/{proformaId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/get"
+            ReturnClass="ProformaDto"
+            SucessCode="200">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+        <Param Index="2" Name="proformaId" Type="int" />
+      </UrlParms>
+    </Method>
+
+    <Method Name="Update" HttpMethod="PUT"
+            Url="https://{accountName}.app.invoicexpress.com/invoices/{proformaId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/update"
+            InputClass="ProformaDto"
+            SucessCode="200">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+        <Param Index="2" Name="proformaId" Type="int" />
+      </UrlParms>
+    </Method>
+
+    <Method Name="List" HttpMethod="GET"
+            Url="https://{accountName}.app.invoicexpress.com/proformas.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/list"
+            ReturnClass="ProformasDto"
+            SucessCode="200">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+      </UrlParms>
+    </Method>
+
+    <Method Name="ChangeState" HttpMethod="PUT"
+            Url="https://{accountName}.app.invoicexpress.com/proformas/{proformaId}/change-state.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/change-state"
+            SucessCode="200"
+            InputClass="ProformaChangeStateDto"
+            ReturnClass="ProformaChangeStateDto">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+        <Param Index="2" Name="proformaId" Type="int" />
+      </UrlParms>
+    </Method>
+
+    <Method Name="EmailInvoice" HttpMethod="PUT"
+            Url="https://{accountName}.app.invoicexpress.com/proformas/{proformaId}/email-document.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/email"
+            InputClass="EmailMessageDto"
+            SucessCode="200">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+        <Param Index="2" Name="proformaId" Type="int" />
+      </UrlParms>
+    </Method>
+
+    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+    <!--
+    <Method Name="Pdf" HttpMethod="GET"
+            Url="https://{accountName}.app.invoicexpress.com/api/pdf/{proformaId}.xml?api_key={apiKey}"
+            ApiUrl="https://invoicexpress.com/api/proformas/documents-pdf"
+            SucessCode="200"
+            ReturnClass="PdfOutputDto">
+      <UrlParms>
+        <Param Index="0" Name="apiKey" Type="string" />
+        <Param Index="1" Name="accountName" Type="string" />
+        <Param Index="2" Name="proformaId" Type="int" />
+
+      </UrlParms>
+    </Method>
+-->
+   
+
+  </NestedClass>
+
   <Types>
 
     <Type XmlName="account" Name="AccountDto">
@@ -878,9 +971,44 @@
       <Property XmlName="mb_reference" Name="MbReference" Type="string" />
 
     </Type>
+    
+    <Type XmlName="proforma" Name="ProformaDto">
+      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+      <Property XmlName="status" Name="Status" Type="DocumentState" />
+      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+      <Property XmlName="reference" Name="Reference" Type="string" />
+      <Property XmlName="observations" Name="Observations" Type="string" />
+      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+      <Property XmlName="permalink" Name="Permalink" Type="string" />
+      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+      <Property XmlName="client" Name="Client" Type="ClientDto" />
+      <Property XmlName="currency" Name="Currency" Type="string" />
+      <Property XmlName="items" Name="Items" Type="ItemsDto" />
+      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
+      <Property XmlName="auto_add_related_document" Name="AutoAddRelatedDocument" Type="int?" XmlType="int" />
+    </Type>
 
     <Type XmlName="invoices" Name="InvoicesDto" TypeAttribute="array">
       <Property XmlName="invoice" Name="Items" Type="InvoiceDto[]" />
+      <Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
+      <Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
+      <Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
+      <Property XmlName="per_page" Name="PerPage" Type="int?" XmlType="int" />
+    </Type>
+
+    <Type XmlName="proformas" Name="ProformasDto" TypeAttribute="array">
+      <Property XmlName="proforma" Name="Items" Type="InvoiceDto[]" />
       <Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
       <Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
       <Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
@@ -952,6 +1080,14 @@
       <Property XmlName="message" Name="Message" Type="string" />
       <Property XmlName="state" Name="State" Type="DocumentState" />
     </Type>
+    
+    <Type XmlName="proforma" Name="ProformaChangeStateDto">
+      <Property XmlName="id" Name="Id" Type="int" />
+      <Property XmlName="type" Name="Type" Type="string" />
+      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+      <Property XmlName="message" Name="Message" Type="string" />
+      <Property XmlName="state" Name="State" Type="DocumentState" />
+    </Type>
 
     <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceChangeStateDto">
       <Property XmlName="state" Name="State" Type="DocumentState" />
@@ -969,7 +1105,7 @@
       <Property XmlName="body" Name="Body" Type="string" />
       <Property XmlName="cc" Name="Cc" Type="string" />
       <Property XmlName="bcc" Name="Bcc" Type="string" />
-      <Property XmlName="logo" Name="Logo" Type="string" />
+      <Property XmlName="logo" Name="Logo" Type="int?" XmlType="int" />
     </Type>
 
     <Type XmlName="client" Name="EmailClientDto">
@@ -1166,6 +1302,8 @@
       <Value Name="Settled" XmlName="settled" />
       <Value Name="Finalized" XmlName="finalized" />
       <Value Name="Deleted" XmlName="deleted" />
+      <Value Name="Accepted" XmlName="accepted" />
+      <Value Name="Refused" XmlName="refused" />
       <Value Name="Canceled" XmlName="canceled" />
       <Value Name="Final" XmlName="final" />
     </Enum>

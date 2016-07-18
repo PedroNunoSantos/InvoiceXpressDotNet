@@ -6,8 +6,8 @@ using InvoiceXpressDotNet.Enums;
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
-	[XmlRoot("invoice"), XmlType(AnonymousType=true)]
-	public partial class InvoiceChangeStateDto : Dto
+	[XmlRoot("proforma"), XmlType(AnonymousType=true)]
+	public partial class ProformaChangeStateDto : Dto
 	{		
 		
 		[XmlElement("id")]
@@ -29,7 +29,7 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 		public override void SetFromXml(string xml)
 		{
 			var me = this;
-			me = xml.DeserializeXml<InvoiceChangeStateDto>();
+			me = xml.DeserializeXml<ProformaChangeStateDto>();
         }
 		*/
 	}

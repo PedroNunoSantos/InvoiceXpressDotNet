@@ -1,6 +1,7 @@
 ﻿<#@ template debug="true" hostSpecific="true" language="C#" #> 
 <#@ include file="$(SolutionDir)T4\MultipleOutputHelper.ttinclude" #>
 <#@ assembly name="System.Xml, Version=4.0.0.0" #>
+<#@ import namespace="System.Globalization" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Xml.Serialization" #>
 //generated at : <#= DateTime.Now.ToString(CultureInfo.InvariantCulture) #>

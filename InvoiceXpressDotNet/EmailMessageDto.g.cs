@@ -25,8 +25,15 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 		[XmlElement("bcc")]
 		public string Bcc { get; set; }
 		
-		[XmlElement("logo")]
-		public string Logo { get; set; }
+		[XmlIgnore]
+		public int? Logo { get; set; }
+		
+		[XmlElement("logo"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _LogoDto
+	    {	    
+			get { return Logo.ToXml<int?>(); }
+            set { Logo = value.FromXml<int?>(); }
+	    }
 		
 		/*
 		public override void SetFromXml(string xml)

@@ -17,6 +17,10 @@ namespace InvoiceXpressDotNet.Enums
 		Finalized,
 		[XmlEnum(Name="deleted")]
 		Deleted,
+		[XmlEnum(Name="accepted")]
+		Accepted,
+		[XmlEnum(Name="refused")]
+		Refused,
 		[XmlEnum(Name="canceled")]
 		Canceled,
 		[XmlEnum(Name="final")]

@@ -6,35 +6,9 @@ using InvoiceXpressDotNet.Enums;
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
-	[XmlRoot("debit_note"), XmlType(AnonymousType=true)]
-	public partial class DebitNoteDto : Dto
+	[XmlRoot("proforma"), XmlType(AnonymousType=true)]
+	public partial class ProformaDto : Dto
 	{		
-		
-		[XmlIgnore]
-		public DateTime? Date { get; set; }
-		
-		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
-	    public string _DateDto
-	    {	    
-			get { return Date.ToXml<DateTime?>(); }
-            set { Date = value.FromXml<DateTime?>(); }
-	    }
-		
-		[XmlIgnore]
-		public DateTime? DueDate { get; set; }
-		
-		[XmlElement("due_date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
-	    public string _DueDateDto
-	    {	    
-			get { return DueDate.ToXml<DateTime?>(); }
-            set { DueDate = value.FromXml<DateTime?>(); }
-	    }
-		
-		[XmlElement("client")]
-		public ClientDto Client { get; set; }
-		
-		[XmlElement("items")]
-		public ItemsDto Items { get; set; }
 		
 		[XmlIgnore]
 		public int? Id { get; set; }
@@ -65,6 +39,26 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 		[XmlElement("sequence_number")]
 		public string SequenceNumber { get; set; }
 		
+		[XmlIgnore]
+		public DateTime? Date { get; set; }
+		
+		[XmlElement("date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _DateDto
+	    {	    
+			get { return Date.ToXml<DateTime?>(); }
+            set { Date = value.FromXml<DateTime?>(); }
+	    }
+		
+		[XmlIgnore]
+		public DateTime? DueDate { get; set; }
+		
+		[XmlElement("due_date"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _DueDateDto
+	    {	    
+			get { return DueDate.ToXml<DateTime?>(); }
+            set { DueDate = value.FromXml<DateTime?>(); }
+	    }
+		
 		[XmlElement("reference")]
 		public string Reference { get; set; }
 		
@@ -84,17 +78,23 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 		[XmlElement("tax_exemption")]
 		public IvaExemptionCode TaxExemption { get; set; }
 		
+		[XmlElement("permalink")]
+		public string Permalink { get; set; }
+		
 		[XmlElement("sequence_id")]
 		public string SequenceId { get; set; }
 		
 		[XmlElement("manual_sequence_number")]
 		public string ManualSequenceNumber { get; set; }
 		
-		[XmlElement("permalink")]
-		public string Permalink { get; set; }
+		[XmlElement("client")]
+		public ClientDto Client { get; set; }
 		
 		[XmlElement("currency")]
 		public string Currency { get; set; }
+		
+		[XmlElement("items")]
+		public ItemsDto Items { get; set; }
 		
 		[XmlIgnore]
 		public float? Sum { get; set; }
@@ -146,11 +146,24 @@ namespace InvoiceXpressDotNet.DataTransferObjects
             set { Total = value.FromXml<float?>(); }
 	    }
 		
+		[XmlElement("mb_reference")]
+		public string MbReference { get; set; }
+		
+		[XmlIgnore]
+		public int? AutoAddRelatedDocument { get; set; }
+		
+		[XmlElement("auto_add_related_document"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _AutoAddRelatedDocumentDto
+	    {	    
+			get { return AutoAddRelatedDocument.ToXml<int?>(); }
+            set { AutoAddRelatedDocument = value.FromXml<int?>(); }
+	    }
+		
 		/*
 		public override void SetFromXml(string xml)
 		{
 			var me = this;
-			me = xml.DeserializeXml<DebitNoteDto>();
+			me = xml.DeserializeXml<ProformaDto>();
         }
 		*/
 	}

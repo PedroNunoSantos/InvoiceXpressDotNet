@@ -6,13 +6,13 @@ using InvoiceXpressDotNet.Enums;
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
-	[XmlRoot("invoices"), XmlType(AnonymousType=true)]
-	public partial class InvoicesDto : Dto
+	[XmlRoot("proformas"), XmlType(AnonymousType=true)]
+	public partial class ProformasDto : Dto
 	{		
 		[XmlAttribute]
 		public string type = "array";
 		
-		[XmlElement("invoice")]
+		[XmlElement("proforma")]
 		public InvoiceDto[] Items { get; set; }
 		
 		[XmlIgnore]
@@ -59,7 +59,7 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 		public override void SetFromXml(string xml)
 		{
 			var me = this;
-			me = xml.DeserializeXml<InvoicesDto>();
+			me = xml.DeserializeXml<ProformasDto>();
         }
 		*/
 	}
