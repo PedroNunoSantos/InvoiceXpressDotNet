@@ -1,4 +1,4 @@
-// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Net;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/create">SimplifiedInvoices Create</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Create(string apiKey, string accountName, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices.xml?api_key={0}", apiKey, accountName);
@@ -41,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/get">SimplifiedInvoices Get</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, int simplifiedInvoiceId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
@@ -64,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/update">SimplifiedInvoices Update</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, int simplifiedInvoiceId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
@@ -86,7 +86,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/list">SimplifiedInvoices List</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_List(string apiKey, string accountName, int? page, int? perPage)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices.xml?api_key={0}&page={2}&per_page={3}", apiKey, accountName, page, perPage);
@@ -109,7 +109,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/change-state">SimplifiedInvoices ChangeState</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_ChangeState(string apiKey, string accountName, string simplifiedInvoiceId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}/change-state.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
@@ -131,7 +131,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/change-state">SimplifiedInvoices EmailInvoice</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_EmailInvoice(string apiKey, string accountName, int simplifiedInvoiceId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/simplified_invoices/{2}/email-document.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);
@@ -153,7 +153,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/simplified-invoices/related-documents">SimplifiedInvoices RelatedDocuments</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_RelatedDocuments(string apiKey, string accountName, int simplifiedInvoiceId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/document/{2}/related_documents.xml?api_key={0}", apiKey, accountName, simplifiedInvoiceId);

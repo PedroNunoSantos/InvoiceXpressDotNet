@@ -1,189 +1,200 @@
 <Class Type="Class" Name="InvoiceXpress" NameSpace="InvoiceXpressDotNet">
 
-  <NestedClass Name="Accounts" ApiUrl="https://invoicexpress.com/api/accounts">
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://www.app.invoicexpress.com/api/accounts/create.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/accounts/create"
-            SucessCode="201"
-            InputClass="AccountDto"
-            ReturnClass="AccountDto">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-      </UrlParms>
-    </Method>
+	<NestedClass Name="Accounts" ApiUrl="https://invoicexpress.com/api/accounts">
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://www.app.invoicexpress.com/api/accounts/create.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/accounts/create"
+		        SucessCode="201"
+		        InputClass="AccountDto"
+		        ReturnClass="AccountDto">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/get.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/accounts/get"
-            SucessCode="200"
-            ReturnClass="AccountDto">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="accountId" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/get.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/accounts/get"
+		        SucessCode="200"
+		        ReturnClass="AccountDto">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="accountId" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Stats" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/stats.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/accounts/stats"
-            SucessCode="200"
-            ReturnClass="AccountStatsDto">
-      <UrlParms>
-        <Param Index="0" Name="accountName" Type="string" />
-        <Param Index="1" Name="accountId" Type="string" />
-        <Param Index="2" Name="apiKey" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Stats" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/stats.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/accounts/stats"
+		        SucessCode="200"
+		        ReturnClass="AccountStatsDto">
+			<UrlParms>
+				<Param Index="0" Name="accountName" Type="string" />
+				<Param Index="1" Name="accountId" Type="string" />
+				<Param Index="2" Name="apiKey" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Suspend" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/suspend.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/accounts/suspend"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="accountId" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Suspend" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/suspend.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/accounts/suspend"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="accountId" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Activate" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/activate.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/accounts/activate"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="accountId" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Activate" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/activate.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/accounts/activate"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="accountId" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/update.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/accounts/update"
-            SucessCode="200"
-            InputClass="AccountDto">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="accountId" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/api/accounts/{accountId}/update.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/accounts/update"
+		        SucessCode="200"
+		        InputClass="AccountDto">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="accountId" Type="string" />
+			</UrlParms>
+		</Method>
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="Users" ApiUrl="https://invoicexpress.com/api/users">
-    <Method Name="Login" HttpMethod="POST"
-            Url="https://www.app.invoicexpress.com/login.xml"
-            ApiUrl="https://invoicexpress.com/api/users/login"
-            InputClass="CredentialsDto"
-            ReturnClass="UserAccountDto"
-            SucessCode="200">
-    </Method>
+	<NestedClass Name="Users" ApiUrl="https://invoicexpress.com/api/users">
+		<Method Name="Login" HttpMethod="POST"
+		        Url="https://www.app.invoicexpress.com/login.xml"
+		        ApiUrl="https://invoicexpress.com/api/users/login"
+		        InputClass="CredentialsDto"
+		        ReturnClass="UserAccountDto"
+		        SucessCode="200">
+		</Method>
 
-    <Method Name="Accounts" HttpMethod="GET"
-            Url="https://www.app.invoicexpress.com/users/accounts.xml?api_key?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/users/accounts"
-            ReturnClass="UserAccountsDto"
-            SucessCode="200">
-    </Method>
+		<Method Name="Accounts" HttpMethod="GET"
+		        Url="https://www.app.invoicexpress.com/users/accounts.xml?api_key?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/users/accounts"
+		        ReturnClass="UserAccountsDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeAccount" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/users/change_account.xml?api_key?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/users/change-account"
-            InputClass="ChangeAccountToDto"
-            SucessCode="200">
-    </Method>
-  </NestedClass>
+		<Method Name="ChangeAccount" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/users/change_account.xml?api_key?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/users/change-account"
+		        InputClass="ChangeAccountToDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
+	</NestedClass>
 
-  <NestedClass Name="Invoices" ApiUrl="https://invoicexpress.com/api/invoices">
+	<NestedClass Name="Invoices" ApiUrl="https://invoicexpress.com/api/invoices">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/create"
-            InputClass="InvoiceDto"
-            ReturnClass="InvoiceDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/create"
+		        InputClass="InvoiceDto"
+		        ReturnClass="InvoiceDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/get"
-            ReturnClass="InvoiceDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/get"
+		        ReturnClass="InvoiceDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/update"
-            InputClass="InvoiceDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/update"
+		        InputClass="InvoiceDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceId" Type="int" />
+			</UrlParms>
+		</Method>
+		
+		<!--
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/list"
+		        ReturnClass="InvoicesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>		
+		-->
+		
+		<Method Name="ChangeState" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice/{invoiceId}/change-state.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/change-state"
+		        SucessCode="200"
+		        InputClass="InvoiceChangeStateDto"
+		        ReturnClass="InvoiceChangeStateDto">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/list"
-            ReturnClass="InvoicesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="EmailInvoice" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}/email-document.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/email-invoice"
+		        InputClass="EmailMessageDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoice/{invoiceId}/change-state.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/change-state"
-            SucessCode="200"
-            InputClass="InvoiceChangeStateDto"
-            ReturnClass="InvoiceChangeStateDto">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="RelatedDocuments" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/document/{invoiceId}/related_documents.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/related-documents"
+		        ReturnClass="InvoicesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="EmailInvoice" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoices/{invoiceId}/email-document.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/email-invoice"
-            InputClass="EmailMessageDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceId" Type="int" />
-      </UrlParms>
-    </Method>
-
-    <Method Name="RelatedDocuments" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/document/{invoiceId}/related_documents.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/related-documents"
-            ReturnClass="InvoicesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceId" Type="int" />
-      </UrlParms>
-    </Method>
-
-    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-    <!--
+		<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+		<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
@@ -198,134 +209,134 @@
     </Method>
 -->
 
-    <Method Name="Archive" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/{documentType}/{documentId}/archive.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/archive"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="documentType" Type="string" />
-        <Param Index="3" Name="documentId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Archive" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/{documentType}/{documentId}/archive.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/archive"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="documentType" Type="string" />
+				<Param Index="3" Name="documentId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Unarchive" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/{documentType}/{documentId}/unarchive.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/unarchive"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="documentType" Type="string" />
-        <Param Index="3" Name="documentId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Unarchive" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/{documentType}/{documentId}/unarchive.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/unarchive"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="documentType" Type="string" />
+				<Param Index="3" Name="documentId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="PartialPayment" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/documents/{documentId}/partial_payments.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoices/partial-payment"
-            InputClass="PartialPaymentDto"
-            ReturnClass="PartialPaymentReceiptDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="documentId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="PartialPayment" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/documents/{documentId}/partial_payments.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoices/partial-payment"
+		        InputClass="PartialPaymentDto"
+		        ReturnClass="PartialPaymentReceiptDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="documentId" Type="int" />
+			</UrlParms>
+		</Method>
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="SimplifiedInvoices" ApiUrl="https://invoicexpress.com/api/simplified-invoices">
+	<NestedClass Name="SimplifiedInvoices" ApiUrl="https://invoicexpress.com/api/simplified-invoices">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/create"
-            InputClass="SimplifiedInvoiceDto"
-            ReturnClass="SimplifiedInvoiceDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/create"
+		        InputClass="SimplifiedInvoiceDto"
+		        ReturnClass="SimplifiedInvoiceDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/get"
-            ReturnClass="SimplifiedInvoiceDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="simplifiedInvoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/get"
+		        ReturnClass="SimplifiedInvoiceDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="simplifiedInvoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
-            InputClass="SimplifiedInvoiceDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="simplifiedInvoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
+		        InputClass="SimplifiedInvoiceDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="simplifiedInvoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/list"
-            ReturnClass="SimplifiedInvoicesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="page" Type="int?" DefaultValue="1" />
-        <Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/simplified_invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/list"
+		        ReturnClass="SimplifiedInvoicesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/change-state.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
-            InputClass="SimplifiedInvoiceChangeStateDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="simplifiedInvoiceId" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="ChangeState" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/change-state.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
+		        InputClass="SimplifiedInvoiceChangeStateDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="simplifiedInvoiceId" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="EmailInvoice" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/email-document.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
-            InputClass="EmailMessageDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="simplifiedInvoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="EmailInvoice" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/simplified_invoices/{simplifiedInvoiceId}/email-document.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/change-state"
+		        InputClass="EmailMessageDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="simplifiedInvoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
 
-    <Method Name="RelatedDocuments" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/document/{simplifiedInvoiceId}/related_documents.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/related-documents"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="simplifiedInvoiceId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="RelatedDocuments" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/document/{simplifiedInvoiceId}/related_documents.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/related-documents"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="simplifiedInvoiceId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-    <!--
+		<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+		<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{simplifiedInvoiceId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoices/documents-pdf"
@@ -339,96 +350,98 @@
     </Method>
 -->
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="InvoiceReceipts" ApiUrl="https://invoicexpress.com/api/invoice-receipt/create">
+	<NestedClass Name="InvoiceReceipts" ApiUrl="https://invoicexpress.com/api/invoice-receipt/create">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/create"
-            InputClass="InvoiceReceiptDto"
-            ReturnClass="InvoiceReceiptDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice_receipts.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/create"
+		        InputClass="InvoiceReceiptDto"
+		        ReturnClass="InvoiceReceiptDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/get"
-            ReturnClass="InvoiceReceiptDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceReceiptId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/get"
+		        ReturnClass="InvoiceReceiptDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceReceiptId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/update"
-            InputClass="InvoiceReceiptDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceReceiptId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/update"
+		        InputClass="InvoiceReceiptDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceReceiptId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/list"
-            ReturnClass="InvoiceReceiptsDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice_receipts.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/list"
+		        ReturnClass="InvoiceReceiptsDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}/change-state.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/change-state"
-            SucessCode="200"
-            InputClass="InvoiceReceiptChangeStateDto"
-            ReturnClass="InvoiceReceiptChangeStateDto">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceReceiptId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="ChangeState" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}/change-state.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/change-state"
+		        SucessCode="200"
+		        InputClass="InvoiceReceiptChangeStateDto"
+		        ReturnClass="InvoiceReceiptChangeStateResponseDto">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceReceiptId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="EmailInvoice" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}/email-document.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/email"
-            InputClass="EmailMessageDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceReceiptId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="EmailInvoice" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoice_receipts/{invoiceReceiptId}/email-document.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/email"
+		        InputClass="EmailMessageDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceReceiptId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="RelatedDocuments" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/document/{invoiceReceiptId}/related_documents.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/invoice-receipt/related-documents"
-            ReturnClass="InvoicesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="invoiceReceiptId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="RelatedDocuments" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/document/{invoiceReceiptId}/related_documents.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/invoice-receipt/related-documents"
+		        ReturnClass="InvoicesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="invoiceReceiptId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-    <!--
+		<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+		<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{invoiceReceiptId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/invoice-receipt/documents-pdf"
@@ -443,85 +456,85 @@
     </Method>
 -->
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="CreditNotes" ApiUrl="https://invoicexpress.com/api/credit-notes">
+	<NestedClass Name="CreditNotes" ApiUrl="https://invoicexpress.com/api/credit-notes">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/create"
-            InputClass="CreditNoteDto"
-            ReturnClass="CreditNoteDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/create"
+		        InputClass="CreditNoteDto"
+		        ReturnClass="CreditNoteDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/get"
-            ReturnClass="CreditNoteDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/get"
+		        ReturnClass="CreditNoteDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
-            InputClass="CreditNoteDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
+		        InputClass="CreditNoteDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/list"
-            ReturnClass="CreditNotesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="page" Type="int?" DefaultValue="1" />
-        <Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/list"
+		        ReturnClass="CreditNotesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/change-state.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/change-state"
-            InputClass="CreditNoteChangeStateDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="ChangeState" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/change-state.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/change-state"
+		        InputClass="CreditNoteChangeStateDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="EmailDocument" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/email-document.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/email"
-            InputClass="EmailMessageDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="EmailDocument" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/email-document.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/email"
+		        InputClass="EmailMessageDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-    <!--
+		<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+		<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
@@ -535,85 +548,85 @@
     </Method>
 -->
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="CreditNotes" ApiUrl="https://invoicexpress.com/api/debit-notes">
+	<NestedClass Name="CreditNotes" ApiUrl="https://invoicexpress.com/api/debit-notes">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/debit_notes.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/debit-notes/create"
-            InputClass="CreditNoteDto"
-            ReturnClass="CreditNoteDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/debit_notes.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/debit-notes/create"
+		        InputClass="CreditNoteDto"
+		        ReturnClass="CreditNoteDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/get"
-            ReturnClass="CreditNoteDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/get"
+		        ReturnClass="CreditNoteDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
-            InputClass="CreditNoteDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/simplified-invoices/update"
+		        InputClass="CreditNoteDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/list"
-            ReturnClass="CreditNotesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="page" Type="int?" DefaultValue="1" />
-        <Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/list"
+		        ReturnClass="CreditNotesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/change-state.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/change-state"
-            InputClass="CreditNoteChangeStateDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="ChangeState" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/change-state.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/change-state"
+		        InputClass="CreditNoteChangeStateDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="EmailDocument" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/email-document.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/credit-notes/email"
-            InputClass="EmailMessageDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="creditNoteId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="EmailDocument" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/credit_notes/{creditNoteId}/email-document.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/credit-notes/email"
+		        InputClass="EmailMessageDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="creditNoteId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-    <!--
+		<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+		<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{creditNoteId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/credit-notes/documents-pdf"
@@ -627,238 +640,238 @@
     </Method>
 -->
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="Clients" ApiUrl="https://invoicexpress.com/api/clients">
+	<NestedClass Name="Clients" ApiUrl="https://invoicexpress.com/api/clients">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/clients/create"
-            InputClass="ClientDto"
-            ReturnClass="ClientDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/clients/create"
+		        InputClass="ClientDto"
+		        ReturnClass="ClientDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/clients/get"
-            ReturnClass="ClientDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/clients/get"
+		        ReturnClass="ClientDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="clientId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/clients/update"
-            InputClass="ClientDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/clients/update"
+		        InputClass="ClientDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="clientId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-            ApiUrl="https://invoicexpress.com/api/clients/list"
-            InputClass="ClientsDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="page" Type="int?" DefaultValue="1" />
-        <Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/clients.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/clients/list"
+		        InputClass="ClientsDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="3" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Invoices" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}/invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
-            ApiUrl="https://invoicexpress.com/api/clients/list-invoice"
-            ReturnClass="InvoicesDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientId" Type="int" />
-        <Param Index="3" Name="page" Type="int?" DefaultValue="1" />
-        <Param Index="4" Name="perPage" Type="int?" DefaultValue="10" />
-      </UrlParms>
-    </Method>
+		<Method Name="Invoices" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}/invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
+		        ApiUrl="https://invoicexpress.com/api/clients/list-invoice"
+		        ReturnClass="InvoicesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="clientId" Type="int" />
+				<Param Index="3" Name="page" Type="int?" DefaultValue="1" />
+				<Param Index="4" Name="perPage" Type="int?" DefaultValue="10" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="FindByName" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/clients/find-by-name.xml?api_key={apiKey}&amp;client_name={clientName}"
-            ApiUrl="https://invoicexpress.com/api/clients/find-by-name"
-            ReturnClass="ClientDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="FindByName" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/clients/find-by-name.xml?api_key={apiKey}&amp;client_name={clientName}"
+		        ApiUrl="https://invoicexpress.com/api/clients/find-by-name"
+		        ReturnClass="ClientDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="clientName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="FindByCode" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/clients/find-by-code.xml?api_key={apiKey}&amp;client_code={clientCode}"
-            ApiUrl="https://invoicexpress.com/api/clients/find-by-code"
-            ReturnClass="ClientDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="clientCode" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="FindByCode" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/clients/find-by-code.xml?api_key={apiKey}&amp;client_code={clientCode}"
+		        ApiUrl="https://invoicexpress.com/api/clients/find-by-code"
+		        ReturnClass="ClientDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="clientCode" Type="string" />
+			</UrlParms>
+		</Method>
 
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="Items" ApiUrl="https://invoicexpress.com/api/items/create">
+	<NestedClass Name="Items" ApiUrl="https://invoicexpress.com/api/items/create">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/items/create"
-            InputClass="ItemDto"
-            ReturnClass="ItemDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/items/create"
+		        InputClass="ItemDto"
+		        ReturnClass="ItemDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/items/{itemId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/items/get"
-            ReturnClass="ItemDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="itemId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/items/{itemId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/items/get"
+		        ReturnClass="ItemDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="itemId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/items/update"
-            InputClass="ItemDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="itemId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/clients/{clientId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/items/update"
+		        InputClass="ItemDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="itemId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Delete" HttpMethod="DELETE"
-            Url="https://{accountName}.app.invoicexpress.com/items/{itemId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/items/delete"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="itemId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Delete" HttpMethod="DELETE"
+		        Url="https://{accountName}.app.invoicexpress.com/items/{itemId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/items/delete"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="itemId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/clients/list"
-            ReturnClass="ItemsDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/items.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/clients/list"
+		        ReturnClass="ItemsDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-  </NestedClass>
+	</NestedClass>
 
-  <NestedClass Name="Proformas" ApiUrl="https://invoicexpress.com/api/proformas">
+	<NestedClass Name="Proformas" ApiUrl="https://invoicexpress.com/api/proformas">
 
-    <Method Name="Create" HttpMethod="POST"
-            Url="https://{accountName}.app.invoicexpress.com/proformas.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/proformas/create"
-            InputClass="ProformaDto"
-            ReturnClass="ProformaDto"
-            SucessCode="201">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/proformas.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/proformas/create"
+		        InputClass="ProformaDto"
+		        ReturnClass="ProformaDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Get" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/invoices/{proformaId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/proformas/get"
-            ReturnClass="ProformaDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="proformaId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices/{proformaId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/proformas/get"
+		        ReturnClass="ProformaDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="proformaId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="Update" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/invoices/{proformaId}.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/proformas/update"
-            InputClass="ProformaDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="proformaId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/invoices/{proformaId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/proformas/update"
+		        InputClass="ProformaDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="proformaId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="List" HttpMethod="GET"
-            Url="https://{accountName}.app.invoicexpress.com/proformas.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/proformas/list"
-            ReturnClass="ProformasDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-      </UrlParms>
-    </Method>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/proformas.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/proformas/list"
+		        ReturnClass="ProformasDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="ChangeState" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/proformas/{proformaId}/change-state.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/proformas/change-state"
-            SucessCode="200"
-            InputClass="ProformaChangeStateDto"
-            ReturnClass="ProformaChangeStateDto">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="proformaId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="ChangeState" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/proformas/{proformaId}/change-state.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/proformas/change-state"
+		        SucessCode="200"
+		        InputClass="ProformaChangeStateDto"
+		        ReturnClass="ProformaChangeStateDto">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="proformaId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Method Name="EmailInvoice" HttpMethod="PUT"
-            Url="https://{accountName}.app.invoicexpress.com/proformas/{proformaId}/email-document.xml?api_key={apiKey}"
-            ApiUrl="https://invoicexpress.com/api/proformas/email"
-            InputClass="EmailMessageDto"
-            SucessCode="200">
-      <UrlParms>
-        <Param Index="0" Name="apiKey" Type="string" />
-        <Param Index="1" Name="accountName" Type="string" />
-        <Param Index="2" Name="proformaId" Type="int" />
-      </UrlParms>
-    </Method>
+		<Method Name="EmailInvoice" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/proformas/{proformaId}/email-document.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/proformas/email"
+		        InputClass="EmailMessageDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="proformaId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
-    <!--
+		<!-- pdf method are handled by custom code see InvoiceXpress.Pdf.cs-->
+		<!--
     <Method Name="Pdf" HttpMethod="GET"
             Url="https://{accountName}.app.invoicexpress.com/api/pdf/{proformaId}.xml?api_key={apiKey}"
             ApiUrl="https://invoicexpress.com/api/proformas/documents-pdf"
@@ -872,734 +885,854 @@
       </UrlParms>
     </Method>
 -->
-   
 
-  </NestedClass>
 
-  <Types>
+	</NestedClass>
 
-    <Type XmlName="account" Name="AccountDto">
-      <Property XmlName="first_name" Name="FirstName" Type="string" />
-      <Property XmlName="last_name" Name="LastName" Type="string" />
-      <Property XmlName="organization_name" Name="OrganizationName" Type="string" />
-      <Property XmlName="phone" Name="Phone" Type="string" />
-      <Property XmlName="email" Name="Email" Type="string" />
-      <Property XmlName="password" Name="Password" Type="string" />
-      <Property XmlName="fiscal_id" Name="FiscalId" Type="string" />
-      <Property XmlName="tax_country" Name="TaxCountry" Type="Country" />
-      <Property XmlName="language" Name="Language" Type="string" />
-      <Property XmlName="terms" Name="Terms" Type="string" />
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="name" Name="Name" Type="string" />
-      <Property XmlName="url" Name="Url" Type="string" />
-      <Property XmlName="api_key" Name="ApiKey" Type="string" />
-      <Property XmlName="state" Name="State" Type="string" />
-      <Property XmlName="at_configured " Name="AtConfigured" Type="string" />
-      <Property XmlName="address" Name="Address" Type="string" />
-      <Property XmlName="postal_code" Name="PostalCode" Type="string" />
-      <Property XmlName="city" Name="City" Type="string" />
-    </Type>
+	<NestedClass Name="Taxes" ApiUrl="https://invoicexpress.com/api/taxes">
 
-    <Type XmlName="documents" Name="DocumentsStatsDto">
-      <Property XmlName="used_documents" Name="UsedDocuments" Type="int?" XmlType="int" />
-      <Property XmlName="available_documents" Name="AvailableDocuments" Type="int?" XmlType="int" />
-      <Property XmlName="used_api_documents" Name="UsedApiDocuments" Type="int?" XmlType="int" />
-      <Property XmlName="available_api_documents" Name="AvailableApiDocuments" Type="int?" XmlType="int" />
-      <Property XmlName="used_web_documents" Name="UsedWebDocuments" Type="int?" XmlType="int" />
-      <Property XmlName="available_web_documents" Name="AvailableWebDocuments" Type="int?" XmlType="int" />
-    </Type>
+		<Method Name="Create" HttpMethod="POST"
+		        Url="https://{accountName}.app.invoicexpress.com/taxes.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/taxes/create"
+		        InputClass="TaxDto"
+		        ReturnClass="TaxDto"
+		        SucessCode="201">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Type XmlName="users" Name="UsersStatsDto">
-      <Property XmlName="used_users" Name="UsedUsers" Type="int?" XmlType="int" />
-      <Property XmlName="available_users" Name="AvailableUsers" Type="int?" XmlType="int" />
-    </Type>
+		<Method Name="Get" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/taxes/{taxId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/taxes/get"
+		        ReturnClass="TaxDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="taxId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Type XmlName="credentials" Name="CredentialsDto">
-      <Property XmlName="login" Name="Login" Type="string" />
-      <Property XmlName="password" Name="Password" Type="string" />
-    </Type>
+		<Method Name="Update" HttpMethod="PUT"
+		        Url="https://{accountName}.app.invoicexpress.com/taxes/{taxId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/taxes/update"
+		        InputClass="TaxDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="taxId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Type XmlName="account" Name="UserAccountDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="name" Name="Name" Type="string" XmlType="string" />
-      <Property XmlName="url" Name="Url" Type="string" XmlType="string" />
-      <Property XmlName="api_key" Name="ApiKey" Type="string" XmlType="string" />
-      <Property XmlName="state" Name="State" Type="string" XmlType="string" />
-      <Property XmlName="blocked" Name="Blocked" Type="string" XmlType="string" />
-      <Property XmlName="roles" Name="Roles" Type="RolesDto" />
-    </Type>
+		<Method Name="Delete" HttpMethod="DELETE"
+		        Url="https://{accountName}.app.invoicexpress.com/taxes/{taxId}.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/taxes/create"
+		        InputClass="TaxDto"
+		        ReturnClass="TaxDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+				<Param Index="2" Name="taxId" Type="int" />
+			</UrlParms>
+		</Method>
 
-    <Type XmlName="roles" Name="RolesDto">
-      <Property XmlName="role" Name="Role" Type="string" />
-    </Type>
+		<Method Name="List" HttpMethod="GET"
+		        Url="https://{accountName}.app.invoicexpress.com/taxes.xml?api_key={apiKey}"
+		        ApiUrl="https://invoicexpress.com/api/taxes/list"
+		        ReturnClass="TaxesDto"
+		        SucessCode="200">
+			<UrlParms>
+				<Param Index="0" Name="apiKey" Type="string" />
+				<Param Index="1" Name="accountName" Type="string" />
+			</UrlParms>
+		</Method>
 
-    <Type XmlName="accounts" Name="UserAccountsDto" TypeAttribute="array">
-      <Property XmlName="account" Name="Items" Type="UserAccountDto[]" />
-    </Type>
+	</NestedClass>
 
-    <Type XmlName="accounts" Name="AccountsDto" TypeAttribute="array">
-      <Property XmlName="account" Name="Items" Type="AccountDto[]" />
-    </Type>
+	<Types>
 
-    <Type XmlName="change_account_to" Name="ChangeAccountToDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-    </Type>
+		<Type XmlName="account" Name="AccountDto">
+			<Property XmlName="first_name" Name="FirstName" Type="string" />
+			<Property XmlName="last_name" Name="LastName" Type="string" />
+			<Property XmlName="organization_name" Name="OrganizationName" Type="string" />
+			<Property XmlName="phone" Name="Phone" Type="string" />
+			<Property XmlName="email" Name="Email" Type="string" />
+			<Property XmlName="password" Name="Password" Type="string" />
+			<Property XmlName="fiscal_id" Name="FiscalId" Type="string" />
+			<Property XmlName="tax_country" Name="TaxCountry" Type="Country" />
+			<Property XmlName="language" Name="Language" Type="string" />
+			<Property XmlName="terms" Name="Terms" Type="string" />
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="name" Name="Name" Type="string" />
+			<Property XmlName="url" Name="Url" Type="string" />
+			<Property XmlName="api_key" Name="ApiKey" Type="string" />
+			<Property XmlName="state" Name="State" Type="string" />
+			<Property XmlName="at_configured " Name="AtConfigured" Type="string" />
+			<Property XmlName="address" Name="Address" Type="string" />
+			<Property XmlName="postal_code" Name="PostalCode" Type="string" />
+			<Property XmlName="city" Name="City" Type="string" />
+		</Type>
 
-    <Type XmlName="invoice" Name="InvoiceDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="reference" Name="Reference" Type="string" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
-      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="Items" Type="ItemsDto" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
+		<Type XmlName="documents" Name="DocumentsStatsDto">
+			<Property XmlName="used_documents" Name="UsedDocuments" Type="int?" XmlType="int" />
+			<Property XmlName="available_documents" Name="AvailableDocuments" Type="int?" XmlType="int" />
+			<Property XmlName="used_api_documents" Name="UsedApiDocuments" Type="int?" XmlType="int" />
+			<Property XmlName="available_api_documents" Name="AvailableApiDocuments" Type="int?" XmlType="int" />
+			<Property XmlName="used_web_documents" Name="UsedWebDocuments" Type="int?" XmlType="int" />
+			<Property XmlName="available_web_documents" Name="AvailableWebDocuments" Type="int?" XmlType="int" />
+		</Type>
 
-    </Type>
-    
-    <Type XmlName="proforma" Name="ProformaDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="reference" Name="Reference" Type="string" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
-      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="Items" Type="ItemsDto" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
-      <Property XmlName="auto_add_related_document" Name="AutoAddRelatedDocument" Type="int?" XmlType="int" />
-    </Type>
+		<Type XmlName="users" Name="UsersStatsDto">
+			<Property XmlName="used_users" Name="UsedUsers" Type="int?" XmlType="int" />
+			<Property XmlName="available_users" Name="AvailableUsers" Type="int?" XmlType="int" />
+		</Type>
 
-    <Type XmlName="invoices" Name="InvoicesDto" TypeAttribute="array">
-      <Property XmlName="invoice" Name="Items" Type="InvoiceDto[]" />
-      <Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
-      <Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
-      <Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
-      <Property XmlName="per_page" Name="PerPage" Type="int?" XmlType="int" />
-    </Type>
+		<Type XmlName="credentials" Name="CredentialsDto">
+			<Property XmlName="login" Name="Login" Type="string" />
+			<Property XmlName="password" Name="Password" Type="string" />
+		</Type>
 
-    <Type XmlName="proformas" Name="ProformasDto" TypeAttribute="array">
-      <Property XmlName="proforma" Name="Items" Type="InvoiceDto[]" />
-      <Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
-      <Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
-      <Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
-      <Property XmlName="per_page" Name="PerPage" Type="int?" XmlType="int" />
-    </Type>
+		<Type XmlName="account" Name="UserAccountDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="name" Name="Name" Type="string" XmlType="string" />
+			<Property XmlName="url" Name="Url" Type="string" XmlType="string" />
+			<Property XmlName="api_key" Name="ApiKey" Type="string" XmlType="string" />
+			<Property XmlName="state" Name="State" Type="string" XmlType="string" />
+			<Property XmlName="blocked" Name="Blocked" Type="string" XmlType="string" />
+			<Property XmlName="roles" Name="Roles" Type="RolesDto" />
+		</Type>
 
-    <Type XmlName="client" Name="ClientDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="code" Name="Code" Type="string" />
-      <Property XmlName="language" Name="Language" Type="string" />
-      <Property XmlName="name" Name="Name" Type="string" />
-      <Property XmlName="email" Name="Email" Type="string" />
-      <Property XmlName="address" Name="Address" Type="string" />
-      <Property XmlName="city" Name="City" Type="string" />
-      <Property XmlName="postal_code" Name="PostalCode" Type="string" />
-      <Property XmlName="fiscal_id" Name="FiscalId" Type="string" />
-      <Property XmlName="website" Name="Website" Type="string" />
-      <Property XmlName="country" Name="Country" Type="Country" />
-      <Property XmlName="phone" Name="Phone" Type="string" />
-      <Property XmlName="fax" Name="Fax" Type="string" />
-      <Property XmlName="preferred_contact" Name="PreferredContact" Type="PreferredContactDto" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="open_account_link" Name="OpenAccountLink" Type="string" />
-      <Property XmlName="send_options" Name="SendOptions" Type="string" />
-    </Type>
+		<Type XmlName="roles" Name="RolesDto">
+			<Property XmlName="role" Name="Role" Type="string" />
+		</Type>
 
-    <Type XmlName="clients" Name="ClientsDto" TypeAttribute="array">
-      <Property XmlName="client" Name="Items" Type="ClientDto[]" />
-    </Type>
+		<Type XmlName="accounts" Name="UserAccountsDto" TypeAttribute="array">
+			<Property XmlName="account" Name="Items" Type="List&lt;UserAccountDto&gt;" SelfInitialize="True" />
+		</Type>
 
-    <Type XmlName="preferred_contact" Name="PreferredContactDto">
-      <Property XmlName="name" Name="Name" Type="string" />
-      <Property XmlName="email" Name="Email" Type="string" />
-      <Property XmlName="phone" Name="Phone" Type="string" />
-      <Property XmlName="mobile" Name="Mobile" Type="string" />
-    </Type>
+		<Type XmlName="accounts" Name="AccountsDto" TypeAttribute="array">
+			<Property XmlName="account" Name="Items" Type="List&lt;AccountDto&gt;" SelfInitialize="True" />
+		</Type>
 
-    <Type XmlName="item" Name="ItemDto">
-      <Property XmlName="name" Name="Name" Type="string" />
-      <Property XmlName="description" Name="Description" Type="string" />
-      <Property XmlName="unit_price" Name="UnitPrice" Type="float?" XmlType="Float" />
-      <Property XmlName="unit" Name="Unit" Type="string" />
-      <Property XmlName="quantity" Name="Quantity" Type="float?" XmlType="Float" />
-      <Property XmlName="tax" Name="Tax" Type="TaxDto" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="subtotal" Name="Subtotal" Type="float?" XmlType="Float" />
-      <Property XmlName="tax_amount" Name="TaxAmount" Type="float?" XmlType="Float" />
-      <Property XmlName="discount_amount" Name="DiscountAmount" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+		<Type XmlName="change_account_to" Name="ChangeAccountToDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+		</Type>
 
-    </Type>
+		<Type XmlName="invoice" Name="InvoiceDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="reference" Name="Reference" Type="string" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+			<Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="items" Name="Items" Type="ItemsDto" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+			<Property XmlName="mb_reference" Name="MbReference" Type="string" />
 
-    <Type XmlName="items" Name="ItemsDto" TypeAttribute="array">
-      <Property XmlName="item" Name="Items" Type="ItemDto[]" />
-    </Type>
+		</Type>
 
-    <Type XmlName="tax" Name="TaxDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="name" Name="Name" Type="string" />
-      <Property XmlName="value" Name="Value" Type="string" />
-      <Property XmlName="region" Name="Region" Type="string" />
-      <Property XmlName="default_tax" Name="DefaultTax" Type="string" />
-    </Type>
+		<Type XmlName="proforma" Name="ProformaDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="reference" Name="Reference" Type="string" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+			<Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="items" Name="Items" Type="ItemsDto" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+			<Property XmlName="mb_reference" Name="MbReference" Type="string" />
+			<Property XmlName="auto_add_related_document" Name="AutoAddRelatedDocument" Type="int?" XmlType="int" />
+		</Type>
 
-    <Type XmlName="invoice" Name="InvoiceChangeStateDto">
-      <Property XmlName="id" Name="Id" Type="int" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="message" Name="Message" Type="string" />
-      <Property XmlName="state" Name="State" Type="DocumentState" />
-    </Type>
-    
-    <Type XmlName="proforma" Name="ProformaChangeStateDto">
-      <Property XmlName="id" Name="Id" Type="int" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="message" Name="Message" Type="string" />
-      <Property XmlName="state" Name="State" Type="DocumentState" />
-    </Type>
+		<Type XmlName="invoices" Name="InvoicesDto" TypeAttribute="array">
+			<Property XmlName="invoice" Name="Items" Type="List&lt;InvoiceDto&gt;" SelfInitialize="True" />
 
-    <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceChangeStateDto">
-      <Property XmlName="state" Name="State" Type="DocumentState" />
-      <Property XmlName="message" Name="Message" Type="string" />
-    </Type>
+			<Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
+			<Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
+			<Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
+			<Property XmlName="per_page" Name="PerPage" Type="int?" XmlType="int" />
+		</Type>
 
-    <Type XmlName="invoice_receipt" Name="InvoiceReceiptChangeStateDto">
-      <Property XmlName="state" Name="State" Type="DocumentState" />
-      <Property XmlName="message" Name="Message" Type="string" />
-    </Type>
+		<Type XmlName="proformas" Name="ProformasDto" TypeAttribute="array">
+			<Property XmlName="proforma" Name="Items" Type="List&lt;InvoiceDto&gt;" SelfInitialize="True" />
+			<Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
+			<Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
+			<Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
+			<Property XmlName="per_page" Name="PerPage" Type="int?" XmlType="int" />
+		</Type>
 
-    <Type XmlName="message" Name="EmailMessageDto">
-      <Property XmlName="client" Name="Client" Type="EmailClientDto" />
-      <Property XmlName="subject" Name="Subject" Type="string" />
-      <Property XmlName="body" Name="Body" Type="string" />
-      <Property XmlName="cc" Name="Cc" Type="string" />
-      <Property XmlName="bcc" Name="Bcc" Type="string" />
-      <Property XmlName="logo" Name="Logo" Type="int?" XmlType="int" />
-    </Type>
+		<Type XmlName="invoice_receipts" Name="InvoiceReceiptsDto" TypeAttribute="array">
+			<Property XmlName="invoice_receipt" Name="InvoiceReceipt" Type="List&lt;InvoiceReceiptDto&gt;" SelfInitialize="True" />
+			<Property XmlName="current_page" Name="CurrentPage" Type="int?" />
+			<Property XmlName="total_pages" Name="TotalPages" Type="int?" />
+			<Property XmlName="total_entries" Name="TotalEntries" Type="int?" />
+			<Property XmlName="per_page" Name="PerPage" Type="int?" />
+		</Type>
 
-    <Type XmlName="client" Name="EmailClientDto">
-      <Property XmlName="email" Name="Email" Type="string" />
-      <Property XmlName="save" Name="Save" Type="string" />
-    </Type>
+		<Type XmlName="client" Name="ClientDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="code" Name="Code" Type="string" />
+			<Property XmlName="language" Name="Language" Type="string" />
+			<Property XmlName="name" Name="Name" Type="string" />
+			<Property XmlName="email" Name="Email" Type="string" />
+			<Property XmlName="address" Name="Address" Type="string" />
+			<Property XmlName="city" Name="City" Type="string" />
+			<Property XmlName="postal_code" Name="PostalCode" Type="string" />
+			<Property XmlName="fiscal_id" Name="FiscalId" Type="string" />
+			<Property XmlName="website" Name="Website" Type="string" />
+			<Property XmlName="country" Name="Country" Type="Country" />
+			<Property XmlName="phone" Name="Phone" Type="string" />
+			<Property XmlName="fax" Name="Fax" Type="string" />
+			<Property XmlName="preferred_contact" Name="PreferredContact" Type="PreferredContactDto" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="open_account_link" Name="OpenAccountLink" Type="string" />
+			<Property XmlName="send_options" Name="SendOptions" Type="string" />
+		</Type>
 
-    <Type XmlName="output" Name="PdfOutputDto">
-      <Property XmlName="pdfUrl" Name="PdfUrl" Type="string" />
-    </Type>
+		<Type XmlName="clients" Name="ClientsDto" TypeAttribute="array">
+			<Property XmlName="client" Name="Items" Type="List&lt;ClientDto&gt;" SelfInitialize="True" />
+		</Type>
 
-    <Type XmlName="partial_payment" Name="PartialPaymentDto">
-      <Property XmlName="payment_mechanism" Name="PaymentMechanism" Type="PaymentMechanism" />
-      <Property XmlName="note" Name="Note" Type="string" />
-      <Property XmlName="serie" Name="Serie" Type="string" />
-      <Property XmlName="amount" Name="Amount" Type="float?" XmlType="Float" />
-      <Property XmlName="payment_date" Name="PaymentDate" Type="DateTime?" XmlType="Date" />
-    </Type>
+		<Type XmlName="preferred_contact" Name="PreferredContactDto">
+			<Property XmlName="name" Name="Name" Type="string" />
+			<Property XmlName="email" Name="Email" Type="string" />
+			<Property XmlName="phone" Name="Phone" Type="string" />
+			<Property XmlName="mobile" Name="Mobile" Type="string" />
+		</Type>
 
-    <Type XmlName="receipt" Name="PartialPaymentReceiptDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="multicurrency" Name="Multicurrency" Type="MulticurrencyDto" />
-      <Property XmlName="events" Name="Events" Type="EventsDto" />
-    </Type>
+		<Type XmlName="item" Name="ItemDto">
+			<Property XmlName="name" Name="Name" Type="string" />
+			<Property XmlName="description" Name="Description" Type="string" />
+			<Property XmlName="unit_price" Name="UnitPrice" Type="float?" XmlType="Float" />
+			<Property XmlName="unit" Name="Unit" Type="string" />
+			<Property XmlName="quantity" Name="Quantity" Type="float?" XmlType="Float" />
+			<Property XmlName="tax" Name="Tax" Type="TaxDto" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="subtotal" Name="Subtotal" Type="float?" XmlType="Float" />
+			<Property XmlName="tax_amount" Name="TaxAmount" Type="float?" XmlType="Float" />
+			<Property XmlName="discount_amount" Name="DiscountAmount" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
 
-    <Type XmlName="multicurrency" Name="MulticurrencyDto">
-      <Property XmlName="rate" Name="Rate" Type="string" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-    </Type>
+		</Type>
 
-    <Type XmlName="event" Name="EventDto">
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="time" Name="Time" Type="string" />
-      <Property XmlName="user" Name="User" Type="string" />
-    </Type>
+		<Type XmlName="items" Name="ItemsDto" TypeAttribute="array">
+			<Property XmlName="item" Name="Items" Type="List&lt;ItemDto&gt;" SelfInitialize="True" />
+		</Type>
 
-    <Type XmlName="events" Name="EventsDto" TypeAttribute="array">
-      <Property XmlName="event" Name="Items" Type="EventDto[]" />
-    </Type>
+		<Type XmlName="tax" Name="TaxDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="name" Name="Name" Type="string" />
+			<Property XmlName="value" Name="Value" Type="string" />
+			<Property XmlName="region" Name="Region" Type="string" />
+			<Property XmlName="default_tax" Name="DefaultTax" Type="string" />
+		</Type>
 
-    <Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="reference" Name="Reference" Type="string" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
-      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
-      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="Items" Type="ItemsDto" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
-    </Type>
+		<Type XmlName="taxes" Name="TaxesDto" TypeAttribute="array">
+			<Property XmlName="tax" Name="Items" Type="List&lt;TaxDto&gt;" SelfInitialize="True" />
+		</Type>
 
-    <Type XmlName="simplified_invoice" Name="SimplifiedInvoiceDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="reference" Name="Reference" Type="string" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
-      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
-      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="Items" Type="ItemsDto" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-      <Property XmlName="mb_reference" Name="MbReference" Type="string" />
-    </Type>
+		<Type XmlName="invoice" Name="InvoiceChangeStateDto">
+			<Property XmlName="id" Name="Id" Type="int" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="message" Name="Message" Type="string" />
+			<Property XmlName="state" Name="State" Type="DocumentState" />
+		</Type>
 
-    <Type XmlName="simplified_invoices" Name="SimplifiedInvoicesDto" TypeAttribute="array">
-      <Property XmlName="simplified_invoice" Name="Items" Type="SimplifiedInvoiceDto[]" />
-    </Type>
+		<Type XmlName="proforma" Name="ProformaChangeStateDto">
+			<Property XmlName="id" Name="Id" Type="int" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="message" Name="Message" Type="string" />
+			<Property XmlName="state" Name="State" Type="DocumentState" />
+		</Type>
 
-    <Type XmlName="account_stats" Name="AccountStatsDto">
-      <Property XmlName="plan" Name="Plan" Type="string" />
-      <Property XmlName="expires_at" Name="ExpiresAt" Type="string" />
-      <Property XmlName="documents" Name="Documents" Type="DocumentsStatsDto" />
-      <Property XmlName="users" Name="Users" Type="UsersStatsDto" />
-    </Type>
+		<Type XmlName="simplified_invoice" Name="SimplifiedInvoiceChangeStateDto">
+			<Property XmlName="state" Name="State" Type="DocumentState" />
+			<Property XmlName="message" Name="Message" Type="string" />
+		</Type>
 
-    <Type XmlName="credit_note" Name="CreditNoteDto">
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="reference" Name="Reference" Type="string" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
-      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
-      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="items" Name="Items" Type="ItemsDto" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-    </Type>
+		<Type XmlName="invoice_receipt" Name="InvoiceReceiptChangeStateDto">
+			<Property XmlName="state" Name="State" Type="DocumentState" />
+			<Property XmlName="message" Name="Message" Type="string" />
+		</Type>
 
-    <Type XmlName="credit_notes" Name="CreditNotesDto" TypeAttribute="array">
-      <Property XmlName="credit_note" Name="Items" Type="CreditNoteDto[]" />
-    </Type>
+		<Type XmlName="invoice_receipt" Name="InvoiceReceiptChangeStateResponseDto">
+			<Property XmlName="state" Name="State" Type="DocumentState" />
+			<Property XmlName="message" Name="Message" Type="string" />
 
-    <Type XmlName="invoice_receipts" Name="InvoiceReceiptsDto" TypeAttribute="array">
-      <Property XmlName="invoice_receipt" Name="InvoiceReceipt" Type="InvoiceReceiptDto[]" />
-    </Type>
+			<Property XmlName="id" Name="Id" Type="int" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="inverted_sequence_number" Name="InvertedSequenceNumber" Type="string" />
 
-    <Type XmlName="credit_note" Name="CreditNoteChangeStateDto">
-      <Property XmlName="state" Name="State" Type="DocumentState" />
-      <Property XmlName="message" Name="message" Type="string" />
-    </Type>
 
-    <Type XmlName="debit_note" Name="DebitNoteDto">
-      <Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
-      <Property XmlName="client" Name="Client" Type="ClientDto" />
-      <Property XmlName="items" Name="Items" Type="ItemsDto" />
-      <Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
-      <Property XmlName="status" Name="Status" Type="DocumentState" />
-      <Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
-      <Property XmlName="type" Name="Type" Type="string" />
-      <Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
-      <Property XmlName="reference" Name="Reference" Type="string" />
-      <Property XmlName="observations" Name="Observations" Type="string" />
-      <Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
-      <Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
-      <Property XmlName="sequence_id" Name="SequenceId" Type="string" />
-      <Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
-      <Property XmlName="permalink" Name="Permalink" Type="string" />
-      <Property XmlName="currency" Name="Currency" Type="string" />
-      <Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
-      <Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
-      <Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
-      <Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
-      <Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
-    </Type>
 
-    <Type XmlName="debit_notes" Name="DebitNotesDto" TypeAttribute="array">
-      <Property XmlName="debit_note" Name="Items" Type="DebitNoteDto[]" />
-    </Type>
+		</Type>
 
-  </Types>
+		<Type XmlName="message" Name="EmailMessageDto">
+			<Property XmlName="client" Name="Client" Type="EmailClientDto" />
+			<Property XmlName="subject" Name="Subject" Type="string" />
+			<Property XmlName="body" Name="Body" Type="string" />
+			<Property XmlName="cc" Name="Cc" Type="string" />
+			<Property XmlName="bcc" Name="Bcc" Type="string" />
+			<Property XmlName="logo" Name="Logo" Type="int?" XmlType="int" />
+		</Type>
 
-  <Enums>
+		<Type XmlName="client" Name="EmailClientDto">
+			<Property XmlName="email" Name="Email" Type="string" />
+			<Property XmlName="save" Name="Save" Type="string" />
+		</Type>
 
-    <Enum Name="DocumentState">
-      <Value Name="Draft" XmlName="draft" />
-      <Value Name="Settled" XmlName="settled" />
-      <Value Name="Finalized" XmlName="finalized" />
-      <Value Name="Deleted" XmlName="deleted" />
-      <Value Name="Accepted" XmlName="accepted" />
-      <Value Name="Refused" XmlName="refused" />
-      <Value Name="Canceled" XmlName="canceled" />
-      <Value Name="Final" XmlName="final" />
-    </Enum>
+		<Type XmlName="output" Name="PdfOutputDto">
+			<Property XmlName="pdfUrl" Name="PdfUrl" Type="string" />
+		</Type>
 
-    <Enum Name="IvaExemptionCode">
-      <Value Name="M01" XmlName="M01" Description="Artigo 16.º n.º 6 alínea c) do CIVA" />
-      <Value Name="M02" XmlName="M02" Description="Artigo 6.º do Decreto‐Lei n.º 198/90, de 19 de Junho" />
-      <Value Name="M03" XmlName="M03" Description="Exigibilidade de caixa" />
-      <Value Name="M04" XmlName="M04" Description="Isento Artigo 13.º do CIVA" />
-      <Value Name="M05" XmlName="M05" Description="Isento Artigo 14.º do CIVA" />
-      <Value Name="M06" XmlName="M06" Description="Isento Artigo 15.º do CIVA" />
-      <Value Name="M07" XmlName="M07" Description="Isento Artigo 9.º do CIVA" />
-      <Value Name="M08" XmlName="M08" Description="IVA – Autoliquidação" />
-      <Value Name="M09" XmlName="M09" Description="IVA ‐ não confere direito a dedução" />
-      <Value Name="M10" XmlName="M10" Description="IVA – Regime de isenção" />
-      <Value Name="M11" XmlName="M11" Description="Regime particular do tabaco" />
-      <Value Name="M12" XmlName="M12" Description="Regime da margem de lucro – Agências de Viagens" />
-      <Value Name="M13" XmlName="M13" Description="Regime da margem de lucro – Bens em segunda mão" />
-      <Value Name="M14" XmlName="M14" Description="Regime da margem de lucro – Objetos de arte" />
-      <Value Name="M15" XmlName="M15" Description="Regime da margem de lucro – Objetos de coleção e antiguidades" />
-      <Value Name="M16" XmlName="M16" Description="Isento Artigo 14.º do RITI" />
-      <Value Name="M99" XmlName="M99" Description="Não sujeito; não tributado (ou similar)" />
-    </Enum>
+		<Type XmlName="partial_payment" Name="PartialPaymentDto">
+			<Property XmlName="payment_mechanism" Name="PaymentMechanism" Type="PaymentMechanism" />
+			<Property XmlName="note" Name="Note" Type="string" />
+			<Property XmlName="serie" Name="Serie" Type="string" />
+			<Property XmlName="amount" Name="Amount" Type="float?" XmlType="Float" />
+			<Property XmlName="payment_date" Name="PaymentDate" Type="DateTime?" XmlType="Date" />
+		</Type>
 
-    <!-- https://invoicexpress.com/api/appendix/payment-mechanisms -->
-    <Enum Name="PaymentMechanism">
-      <Value Name="CC" XmlName="CC" Description="Credit card" />
-      <Value Name="CD" XmlName="CD" Description="Debit card" />
-      <Value Name="CH" XmlName="CH" Description="Bank check" />
-      <Value Name="CO" XmlName="CO" Description="Check or voucher" />
-      <Value Name="CS" XmlName="CS" Description="Current account balance compensation" />
-      <Value Name="DE" XmlName="DE" Description="e-Cash" />
-      <Value Name="LC" XmlName="LC" Description="Commercial paper" />
-      <Value Name="MB" XmlName="MB" Description="Multibanco payment references" />
-      <Value Name="NU" XmlName="NU" Description="Cash" />
-      <Value Name="OU" XmlName="OU" Description="Other methods not mentioned here" />
-      <Value Name="PR" XmlName="PR" Description="Exchange of properties" />
-      <Value Name="TB" XmlName="TB" Description="Bank transfer or authorized direct debit" />
-      <Value Name="TR" XmlName="TR" Description="Restaurant ticket" />
-    </Enum>
+		<Type XmlName="receipt" Name="PartialPaymentReceiptDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="multicurrency" Name="Multicurrency" Type="MulticurrencyDto" />
+			<Property XmlName="events" Name="Events" Type="EventsDto" />
+		</Type>
 
-    <!-- https://invoicexpress.com/api/appendix/country-list -->
-    <Enum Name="Country">
-      <Value Name="Portugal" XmlName="Portugal" />
-      <Value Name="Ireland" XmlName="Ireland" />
-      <Value Name="UK" XmlName="UK" />
-      <Value Name="Canada" XmlName="Canada" />
-      <Value Name="UnitedStates" XmlName="United States" />
-      <Value Name="Afghanistan" XmlName="Afghanistan" />
-      <Value Name="Albania" XmlName="Albania" />
-      <Value Name="Algeria" XmlName="Algeria" />
-      <Value Name="AmericanSamoa" XmlName="American Samoa" />
-      <Value Name="Andorra" XmlName="Andorra" />
-      <Value Name="Angola" XmlName="Angola" />
-      <Value Name="Anguilla" XmlName="Anguilla" />
-      <Value Name="AntiguaAndBarbuda" XmlName="Antigua and Barbuda" />
-      <Value Name="Argentina" XmlName="Argentina" />
-      <Value Name="Armenia" XmlName="Armenia" />
-      <Value Name="Aruba" XmlName="Aruba" />
-      <Value Name="Australia" XmlName="Australia" />
-      <Value Name="Austria" XmlName="Austria" />
-      <Value Name="Azerbaijan" XmlName="Azerbaijan" />
-      <Value Name="Bahamas" XmlName="Bahamas" />
-      <Value Name="Bahrain" XmlName="Bahrain" />
-      <Value Name="Bangladesh" XmlName="Bangladesh" />
-      <Value Name="Barbados" XmlName="Barbados" />
-      <Value Name="Belarus" XmlName="Belarus" />
-      <Value Name="Belgium" XmlName="Belgium" />
-      <Value Name="Belize" XmlName="Belize" />
-      <Value Name="Benin" XmlName="Benin" />
-      <Value Name="Bermuda" XmlName="Bermuda" />
-      <Value Name="Bhutan" XmlName="Bhutan" />
-      <Value Name="Bolivia" XmlName="Bolivia" />
-      <Value Name="BosniaHerzegovina" XmlName="Bosnia-Herzegovina" />
-      <Value Name="Botswana" XmlName="Botswana" />
-      <Value Name="Brazil" XmlName="Brazil" />
-      <Value Name="BritishIndianOceanTerritory" XmlName="British Indian Ocean Territory" />
-      <Value Name="Brunei" XmlName="Brunei" />
-      <Value Name="Bulgaria" XmlName="Bulgaria" />
-      <Value Name="BurkinaFaso" XmlName="Burkina Faso" />
-      <Value Name="Burma" XmlName="Burma" />
-      <Value Name="Burundi" XmlName="Burundi" />
-      <Value Name="Cambodia" XmlName="Cambodia" />
-      <Value Name="Cameroon" XmlName="Cameroon" />
-      <Value Name="CantonAndEnderburyIslands" XmlName="Canton and Enderbury Islands" />
-      <Value Name="CapeVerde" XmlName="Cape Verde" />
-      <Value Name="CaymanIslands" XmlName="Cayman Islands" />
-      <Value Name="CentralAfricanRepublic" XmlName="Central African Republic" />
-      <Value Name="Chad" XmlName="Chad" />
-      <Value Name="Chile" XmlName="Chile" />
-      <Value Name="China" XmlName="China" />
-      <Value Name="ChristmasIsland" XmlName="Christmas Island" />
-      <Value Name="CocosKeelingIslands" XmlName="Cocos (Keeling) Islands" />
-      <Value Name="Colombia" XmlName="Colombia" />
-      <Value Name="Comoros" XmlName="Comoros" />
-      <Value Name="Congo" XmlName="Congo" />
-      <Value Name="CongoDemocraticRepublic" XmlName="Congo, Democratic Republic" />
-      <Value Name="CookIslands" XmlName="Cook Islands" />
-      <Value Name="CostaRica" XmlName="Costa Rica" />
-      <Value Name="CoteDIvoire" XmlName="Côte d’Ivoire" />
-      <Value Name="Croatia" XmlName="Croatia" />
-      <Value Name="Cuba" XmlName="Cuba" />
-      <Value Name="Curacao" XmlName="Curaçao" />
-      <Value Name="Cyprus" XmlName="Cyprus" />
-      <Value Name="CzechRepublic" XmlName="Czech Republic" />
-      <Value Name="Denmark" XmlName="Denmark" />
-      <Value Name="Djibouti" XmlName="Djibouti" />
-      <Value Name="Dominica" XmlName="Dominica" />
-      <Value Name="DominicanRepublic" XmlName="Dominican Republic" />
-      <Value Name="DronningMaudLand" XmlName="Dronning Maud Land" />
-      <Value Name="EastTimor" XmlName="East Timor" />
-      <Value Name="Ecuador" XmlName="Ecuador" />
-      <Value Name="Egypt" XmlName="Egypt" />
-      <Value Name="ElSalvador" XmlName="El Salvador" />
-      <Value Name="EquatorialGuinea" XmlName="Equatorial Guinea" />
-      <Value Name="Eritrea" XmlName="Eritrea" />
-      <Value Name="Estonia" XmlName="Estonia" />
-      <Value Name="Ethiopia" XmlName="Ethiopia" />
-      <Value Name="FaeroeIslandsFøroyar" XmlName="Faeroe Islands (Føroyar)" />
-      <Value Name="FalklandIslands" XmlName="Falkland Islands" />
-      <Value Name="Fiji" XmlName="Fiji" />
-      <Value Name="Finland" XmlName="Finland" />
-      <Value Name="France" XmlName="France" />
-      <Value Name="FrenchGuiana" XmlName="French Guiana" />
-      <Value Name="FrenchPolynesia" XmlName="French Polynesia" />
-      <Value Name="Gabon" XmlName="Gabon" />
-      <Value Name="Gambia" XmlName="Gambia" />
-      <Value Name="Georgia" XmlName="Georgia" />
-      <Value Name="Germany" XmlName="Germany" />
-      <Value Name="Ghana" XmlName="Ghana" />
-      <Value Name="Gibraltar" XmlName="Gibraltar" />
-      <Value Name="GreatBritain" XmlName="Great Britain" />
-      <Value Name="Greece" XmlName="Greece" />
-      <Value Name="Greenland" XmlName="Greenland" />
-      <Value Name="Grenada" XmlName="Grenada" />
-      <Value Name="Guadeloupe" XmlName="Guadeloupe" />
-      <Value Name="Guam" XmlName="Guam" />
-      <Value Name="Guatemala" XmlName="Guatemala" />
-      <Value Name="Guernsey" XmlName="Guernsey" />
-      <Value Name="GuineaBissau" XmlName="Guinea-Bissau" />
-      <Value Name="Guinea" XmlName="Guinea" />
-      <Value Name="Guyana" XmlName="Guyana" />
-      <Value Name="Haiti" XmlName="Haiti" />
-      <Value Name="HeardAndMcDonaldIslands" XmlName="Heard and McDonald Islands" />
-      <Value Name="Honduras" XmlName="Honduras" />
-      <Value Name="HongKong" XmlName="Hong Kong" />
-      <Value Name="Hungary" XmlName="Hungary" />
-      <Value Name="Iceland" XmlName="Iceland" />
-      <Value Name="India" XmlName="India" />
-      <Value Name="Indonesia" XmlName="Indonesia" />
-      <Value Name="InternationalMonetaryFund" XmlName="International Monetary Fund" />
-      <Value Name="Iran" XmlName="Iran" />
-      <Value Name="Iraq" XmlName="Iraq" />
-      <Value Name="IsleOfMan" XmlName="Isle of Man" />
-      <Value Name="Israel" XmlName="Israel" />
-      <Value Name="Italy" XmlName="Italy" />
-      <Value Name="IvoryCoast" XmlName="Ivory Coast" />
-      <Value Name="Jamaica" XmlName="Jamaica" />
-      <Value Name="Japan" XmlName="Japan" />
-      <Value Name="Jersey" XmlName="Jersey" />
-      <Value Name="JohnstonIsland" XmlName="Johnston Island" />
-      <Value Name="Jordan" XmlName="Jordan" />
-      <Value Name="Kampuchea" XmlName="Kampuchea" />
-      <Value Name="Kazakhstan" XmlName="Kazakhstan" />
-      <Value Name="Kenya" XmlName="Kenya" />
-      <Value Name="Kiribati" XmlName="Kiribati" />
-      <Value Name="KoreaNorth" XmlName="Korea, North" />
-      <Value Name="KoreaSouth" XmlName="Korea, South" />
-      <Value Name="Kuwait" XmlName="Kuwait" />
-      <Value Name="Kyrgyzstan" XmlName="Kyrgyzstan" />
-      <Value Name="Laos" XmlName="Laos" />
-      <Value Name="Latvia" XmlName="Latvia" />
-      <Value Name="Lebanon" XmlName="Lebanon" />
-      <Value Name="Lesotho" XmlName="Lesotho" />
-      <Value Name="Liberia" XmlName="Liberia" />
-      <Value Name="Libya" XmlName="Libya" />
-      <Value Name="Liechtenstein" XmlName="Liechtenstein" />
-      <Value Name="Lithuania" XmlName="Lithuania" />
-      <Value Name="Luxembourg" XmlName="Luxembourg" />
-      <Value Name="Macau" XmlName="Macau" />
-      <Value Name="MacedoniaFormerYugRep" XmlName="Macedonia (Former Yug. Rep.)" />
-      <Value Name="Madagascar" XmlName="Madagascar" />
-      <Value Name="Malawi" XmlName="Malawi" />
-      <Value Name="Malaysia" XmlName="Malaysia" />
-      <Value Name="Maldives" XmlName="Maldives" />
-      <Value Name="Mali" XmlName="Mali" />
-      <Value Name="Malta" XmlName="Malta" />
-      <Value Name="MarshallIslands" XmlName="Marshall Islands" />
-      <Value Name="Martinique" XmlName="Martinique" />
-      <Value Name="Mauritania" XmlName="Mauritania" />
-      <Value Name="Mauritius" XmlName="Mauritius" />
-      <Value Name="Mayotte" XmlName="Mayotte" />
-      <Value Name="Micronesia" XmlName="Micronesia" />
-      <Value Name="MidwayIslands" XmlName="Midway Islands" />
-      <Value Name="Mexico" XmlName="Mexico" />
-      <Value Name="Moldova" XmlName="Moldova" />
-      <Value Name="Monaco" XmlName="Monaco" />
-      <Value Name="Mongolia" XmlName="Mongolia" />
-      <Value Name="Montenegro" XmlName="Montenegro" />
-      <Value Name="Montserrat" XmlName="Montserrat" />
-      <Value Name="Morocco" XmlName="Morocco" />
-      <Value Name="Mozambique" XmlName="Mozambique" />
-      <Value Name="Myanmar" XmlName="Myanmar" />
-      <Value Name="Nauru" XmlName="Nauru" />
-      <Value Name="Namibia" XmlName="Namibia" />
-      <Value Name="Nepal" XmlName="Nepal" />
-      <Value Name="NetherlandsAntilles" XmlName="Netherlands Antilles" />
-      <Value Name="Netherlands" XmlName="Netherlands" />
-      <Value Name="NewCaledonia" XmlName="New Caledonia" />
-      <Value Name="NewZealand" XmlName="New Zealand" />
-      <Value Name="Nicaragua" XmlName="Nicaragua" />
-      <Value Name="Niger" XmlName="Niger" />
-      <Value Name="Nigeria" XmlName="Nigeria" />
-      <Value Name="Niue" XmlName="Niue" />
-      <Value Name="NorfolkIsland" XmlName="Norfolk Island" />
-      <Value Name="NorthernMarianaIslands" XmlName="Northern Mariana Islands" />
-      <Value Name="Norway" XmlName="Norway" />
-      <Value Name="Oman" XmlName="Oman" />
-      <Value Name="Pakistan" XmlName="Pakistan" />
-      <Value Name="Palau" XmlName="Palau" />
-      <Value Name="Palestine" XmlName="Palestine" />
-      <Value Name="Panama" XmlName="Panama" />
-      <Value Name="PapuaNewGuinea" XmlName="Papua New Guinea" />
-      <Value Name="Paraguay" XmlName="Paraguay" />
-      <Value Name="Peru" XmlName="Peru" />
-      <Value Name="Philippines" XmlName="Philippines" />
-      <Value Name="PitcairnIsland" XmlName="Pitcairn Island" />
-      <Value Name="Poland" XmlName="Poland" />
-      <Value Name="PuertoRico" XmlName="Puerto Rico" />
-      <Value Name="Qatar" XmlName="Qatar" />
-      <Value Name="Reunion" XmlName="Reunion" />
-      <Value Name="Romania" XmlName="Romania" />
-      <Value Name="Russia" XmlName="Russia" />
-      <Value Name="Rwanda" XmlName="Rwanda" />
-      <Value Name="SamoaWestern" XmlName="Samoa (Western)" />
-      <Value Name="SamoaAmerica" XmlName="Samoa (America)" />
-      <Value Name="SanMarino" XmlName="San Marino" />
-      <Value Name="SaoTomeAndPrincipe" XmlName="São Tomé and Príncipe" />
-      <Value Name="SaudiArabia" XmlName="Saudi Arabia" />
-      <Value Name="Senegal" XmlName="Sénégal" />
-      <Value Name="Serbia" XmlName="Serbia" />
-      <Value Name="Seychelles" XmlName="Seychelles" />
-      <Value Name="SierraLeone" XmlName="Sierra Leone" />
-      <Value Name="Singapore" XmlName="Singapore" />
-      <Value Name="Slovakia" XmlName="Slovakia" />
-      <Value Name="Slovenia" XmlName="Slovenia" />
-      <Value Name="SolomonIslands" XmlName="Solomon Islands" />
-      <Value Name="Somalia" XmlName="Somalia" />
-      <Value Name="SouthAfrica" XmlName="South Africa" />
-      <Value Name="Spain" XmlName="Spain" />
-      <Value Name="SriLanka" XmlName="Sri Lanka" />
-      <Value Name="StHelena" XmlName="St. Helena" />
-      <Value Name="StKittsAndNevis" XmlName="St. Kitts and Nevis" />
-      <Value Name="StLucia" XmlName="St. Lucia" />
-      <Value Name="StVincentAndTheGrenadines" XmlName="St. Vincent and the Grenadines" />
-      <Value Name="Sudan" XmlName="Sudan" />
-      <Value Name="Suriname" XmlName="Suriname" />
-      <Value Name="SvalbardAndJanMayenIslands" XmlName="Svalbard and Jan Mayen Islands" />
-      <Value Name="Swaziland" XmlName="Swaziland" />
-      <Value Name="Sweden" XmlName="Sweden" />
-      <Value Name="Switzerland" XmlName="Switzerland" />
-      <Value Name="Syria" XmlName="Syria" />
-      <Value Name="Tahiti" XmlName="Tahiti" />
-      <Value Name="Taiwan" XmlName="Taiwan" />
-      <Value Name="Tajikistan" XmlName="Tajikistan" />
-      <Value Name="Tanzania" XmlName="Tanzania" />
-      <Value Name="Thailand" XmlName="Thailand" />
-      <Value Name="TimorLeste" XmlName="Timor-Leste" />
-      <Value Name="Togo" XmlName="Togo" />
-      <Value Name="TrinidadAndTobago" XmlName="Trinidad and Tobago" />
-      <Value Name="Tunisia" XmlName="Tunisia" />
-      <Value Name="Turkey" XmlName="Turkey" />
-      <Value Name="Turkmenistan" XmlName="Turkmenistan" />
-      <Value Name="TurksAndCaicosIslands" XmlName="Turks and Caicos Islands" />
-      <Value Name="Tuvalu" XmlName="Tuvalu" />
-      <Value Name="Uganda" XmlName="Uganda" />
-      <Value Name="Ukraine" XmlName="Ukraine" />
-      <Value Name="UnitedArabEmirates" XmlName="United Arab Emirates" />
-      <Value Name="UpperVolta" XmlName="Upper Volta" />
-      <Value Name="Uruguay" XmlName="Uruguay" />
-      <Value Name="Uzbekistan" XmlName="Uzbekistan" />
-      <Value Name="Vanuatu" XmlName="Vanuatu" />
-      <Value Name="Vatican" XmlName="Vatican" />
-      <Value Name="Venezuela" XmlName="Venezuela" />
-      <Value Name="Vietnam" XmlName="Vietnam" />
-      <Value Name="VirginIslands" XmlName="Virgin Islands" />
-      <Value Name="WakeIsland" XmlName="Wake Island" />
-      <Value Name="WallisAndFutunaIslands" XmlName="Wallis and Futuna Islands" />
-      <Value Name="WesternSahara" XmlName="Western Sahara" />
-      <Value Name="WesternSamoa" XmlName="Western Samoa" />
-      <Value Name="Yemen" XmlName="Yemen" />
-      <Value Name="Zaire" XmlName="Zaïre" />
-      <Value Name="Zambia" XmlName="Zambia" />
-      <Value Name="Zimbabwe" XmlName="Zimbabwe" />
-    </Enum>
+		<Type XmlName="multicurrency" Name="MulticurrencyDto">
+			<Property XmlName="rate" Name="Rate" Type="string" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+		</Type>
 
-  </Enums>
+		<Type XmlName="event" Name="EventDto">
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="time" Name="Time" Type="string" />
+			<Property XmlName="user" Name="User" Type="string" />
+		</Type>
+
+		<Type XmlName="events" Name="EventsDto" TypeAttribute="array">
+			<Property XmlName="event" Name="Items" Type="List&lt;EventDto&gt;" SelfInitialize="True" />
+		</Type>
+
+		<Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="reference" Name="Reference" Type="string" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+			<Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+			<Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="items" Name="Items" Type="ItemsDto" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+			<Property XmlName="mb_reference" Name="MbReference" Type="string" />
+		</Type>
+
+		<Type XmlName="simplified_invoice" Name="SimplifiedInvoiceDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="reference" Name="Reference" Type="string" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+			<Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+			<Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="items" Name="Items" Type="ItemsDto" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+			<Property XmlName="mb_reference" Name="MbReference" Type="string" />
+		</Type>
+
+		<Type XmlName="simplified_invoices" Name="SimplifiedInvoicesDto" TypeAttribute="array">
+			<Property XmlName="simplified_invoice" Name="Items" Type="List&lt;SimplifiedInvoiceDto&gt;" SelfInitialize="True" />
+		</Type>
+
+		<Type XmlName="account_stats" Name="AccountStatsDto">
+			<Property XmlName="plan" Name="Plan" Type="string" />
+			<Property XmlName="expires_at" Name="ExpiresAt" Type="string" />
+			<Property XmlName="documents" Name="Documents" Type="DocumentsStatsDto" />
+			<Property XmlName="users" Name="Users" Type="UsersStatsDto" />
+		</Type>
+
+		<Type XmlName="credit_note" Name="CreditNoteDto">
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="reference" Name="Reference" Type="string" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+			<Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+			<Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="items" Name="Items" Type="ItemsDto" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+		</Type>
+
+		<Type XmlName="credit_notes" Name="CreditNotesDto" TypeAttribute="array">
+			<Property XmlName="credit_note" Name="Items" Type="List&lt;CreditNoteDto&gt;" SelfInitialize="True" />
+		</Type>
+
+
+		<Type XmlName="credit_note" Name="CreditNoteChangeStateDto">
+			<Property XmlName="state" Name="State" Type="DocumentState" />
+			<Property XmlName="message" Name="message" Type="string" />
+		</Type>
+
+		<Type XmlName="debit_note" Name="DebitNoteDto">
+			<Property XmlName="date" Name="Date" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="due_date" Name="DueDate" Type="DateTime?" XmlType="Date" />
+			<Property XmlName="client" Name="Client" Type="ClientDto" />
+			<Property XmlName="items" Name="Items" Type="ItemsDto" />
+			<Property XmlName="id" Name="Id" Type="int?" XmlType="int" />
+			<Property XmlName="status" Name="Status" Type="DocumentState" />
+			<Property XmlName="archived" Name="Archived" Type="bool?" XmlType="bool" />
+			<Property XmlName="type" Name="Type" Type="string" />
+			<Property XmlName="sequence_number" Name="SequenceNumber" Type="string" />
+			<Property XmlName="reference" Name="Reference" Type="string" />
+			<Property XmlName="observations" Name="Observations" Type="string" />
+			<Property XmlName="retention" Name="Retention" Type="float?" XmlType="Float" />
+			<Property XmlName="tax_exemption" Name="TaxExemption" Type="IvaExemptionCode" />
+			<Property XmlName="sequence_id" Name="SequenceId" Type="string" />
+			<Property XmlName="manual_sequence_number" Name="ManualSequenceNumber" Type="string" />
+			<Property XmlName="permalink" Name="Permalink" Type="string" />
+			<Property XmlName="currency" Name="Currency" Type="string" />
+			<Property XmlName="sum" Name="Sum" Type="float?" XmlType="Float" />
+			<Property XmlName="discount" Name="Discount" Type="float?" XmlType="Float" />
+			<Property XmlName="before_taxes" Name="BeforeTaxes" Type="float?" XmlType="Float" />
+			<Property XmlName="taxes" Name="Taxes" Type="float?" XmlType="Float" />
+			<Property XmlName="total" Name="Total" Type="float?" XmlType="Float" />
+		</Type>
+
+		<Type XmlName="debit_notes" Name="DebitNotesDto" TypeAttribute="array">
+			<Property XmlName="debit_note" Name="Items" Type="List&lt;DebitNoteDto&gt;" SelfInitialize="True" />
+		</Type>
+
+	</Types>
+	<Enums>
+		
+		<Enum Name="DocumentState">
+			<Value Name="Draft" XmlName="draft" UrlName="draft" />
+			<Value Name="Settled" XmlName="settled" UrlName="settled" />
+			<Value Name="Finalized" XmlName="finalized" UrlName="finalized" />
+			<Value Name="Deleted" XmlName="deleted" UrlName="deleted" />
+			<Value Name="Accepted" XmlName="accepted" UrlName="accepted" />
+			<Value Name="Refused" XmlName="refused" UrlName="refused" />
+			<Value Name="Canceled" XmlName="canceled" UrlName="canceled" />
+			<Value Name="Final" XmlName="final" UrlName="final" />
+		</Enum>
+
+		<Enum Name="DocumentType">
+			<Value Name="Invoice" XmlName="Invoice" UrlName="Invoice" />
+			<Value Name="CashInvoice" XmlName="CashInvoice" UrlName="CashInvoice" />
+			<Value Name="InvoiceReceipt" XmlName="InvoiceReceipt" UrlName="InvoiceReceipt" />
+			<Value Name="SimplifiedInvoice" XmlName="SimplifiedInvoice" UrlName="SimplifiedInvoice" />
+			<Value Name="CreditNote" XmlName="CreditNote" UrlName="CreditNote" />
+			<Value Name="DebitNote" XmlName="DebitNote" UrlName="DebitNote" />
+			<Value Name="Receipt" XmlName="Receipt" UrlName="Receipt" />
+		</Enum>
+
+		<Enum Name="DocumentStatus">
+			<Value Name="Draft" XmlName="draft" UrlName="draft" />
+			<Value Name="Sent" XmlName="sent" UrlName="sent" />
+			<Value Name="Settled" XmlName="settled" UrlName="settled" />
+			<Value Name="Canceled" XmlName="canceled" UrlName="canceled" />
+			<Value Name="SecondCopy" XmlName="second_copy" UrlName="second_copy" />
+		</Enum>
+
+		<Enum Name="IvaExemptionCode">
+			<Value Name="M01" XmlName="M01" Description="Artigo 16.º n.º 6 alínea c) do CIVA" />
+			<Value Name="M02" XmlName="M02" Description="Artigo 6.º do Decreto‐Lei n.º 198/90, de 19 de Junho" />
+			<Value Name="M03" XmlName="M03" Description="Exigibilidade de caixa" />
+			<Value Name="M04" XmlName="M04" Description="Isento Artigo 13.º do CIVA" />
+			<Value Name="M05" XmlName="M05" Description="Isento Artigo 14.º do CIVA" />
+			<Value Name="M06" XmlName="M06" Description="Isento Artigo 15.º do CIVA" />
+			<Value Name="M07" XmlName="M07" Description="Isento Artigo 9.º do CIVA" />
+			<Value Name="M08" XmlName="M08" Description="IVA – Autoliquidação" />
+			<Value Name="M09" XmlName="M09" Description="IVA ‐ não confere direito a dedução" />
+			<Value Name="M10" XmlName="M10" Description="IVA – Regime de isenção" />
+			<Value Name="M11" XmlName="M11" Description="Regime particular do tabaco" />
+			<Value Name="M12" XmlName="M12" Description="Regime da margem de lucro – Agências de Viagens" />
+			<Value Name="M13" XmlName="M13" Description="Regime da margem de lucro – Bens em segunda mão" />
+			<Value Name="M14" XmlName="M14" Description="Regime da margem de lucro – Objetos de arte" />
+			<Value Name="M15" XmlName="M15" Description="Regime da margem de lucro – Objetos de coleção e antiguidades" />
+			<Value Name="M16" XmlName="M16" Description="Isento Artigo 14.º do RITI" />
+			<Value Name="M99" XmlName="M99" Description="Não sujeito; não tributado (ou similar)" />
+		</Enum>
+
+		<!-- https://invoicexpress.com/api/appendix/payment-mechanisms -->
+		<Enum Name="PaymentMechanism">
+			<Value Name="CC" XmlName="CC" Description="Credit card" />
+			<Value Name="CD" XmlName="CD" Description="Debit card" />
+			<Value Name="CH" XmlName="CH" Description="Bank check" />
+			<Value Name="CO" XmlName="CO" Description="Check or voucher" />
+			<Value Name="CS" XmlName="CS" Description="Current account balance compensation" />
+			<Value Name="DE" XmlName="DE" Description="e-Cash" />
+			<Value Name="LC" XmlName="LC" Description="Commercial paper" />
+			<Value Name="MB" XmlName="MB" Description="Multibanco payment references" />
+			<Value Name="NU" XmlName="NU" Description="Cash" />
+			<Value Name="OU" XmlName="OU" Description="Other methods not mentioned here" />
+			<Value Name="PR" XmlName="PR" Description="Exchange of properties" />
+			<Value Name="TB" XmlName="TB" Description="Bank transfer or authorized direct debit" />
+			<Value Name="TR" XmlName="TR" Description="Restaurant ticket" />
+		</Enum>
+
+		<!-- https://invoicexpress.com/api/appendix/country-list -->
+		<Enum Name="Country">
+			<Value Name="Portugal" XmlName="Portugal" />
+			<Value Name="Ireland" XmlName="Ireland" />
+			<Value Name="UK" XmlName="UK" />
+			<Value Name="Canada" XmlName="Canada" />
+			<Value Name="UnitedStates" XmlName="United States" />
+			<Value Name="Afghanistan" XmlName="Afghanistan" />
+			<Value Name="Albania" XmlName="Albania" />
+			<Value Name="Algeria" XmlName="Algeria" />
+			<Value Name="AmericanSamoa" XmlName="American Samoa" />
+			<Value Name="Andorra" XmlName="Andorra" />
+			<Value Name="Angola" XmlName="Angola" />
+			<Value Name="Anguilla" XmlName="Anguilla" />
+			<Value Name="AntiguaAndBarbuda" XmlName="Antigua and Barbuda" />
+			<Value Name="Argentina" XmlName="Argentina" />
+			<Value Name="Armenia" XmlName="Armenia" />
+			<Value Name="Aruba" XmlName="Aruba" />
+			<Value Name="Australia" XmlName="Australia" />
+			<Value Name="Austria" XmlName="Austria" />
+			<Value Name="Azerbaijan" XmlName="Azerbaijan" />
+			<Value Name="Bahamas" XmlName="Bahamas" />
+			<Value Name="Bahrain" XmlName="Bahrain" />
+			<Value Name="Bangladesh" XmlName="Bangladesh" />
+			<Value Name="Barbados" XmlName="Barbados" />
+			<Value Name="Belarus" XmlName="Belarus" />
+			<Value Name="Belgium" XmlName="Belgium" />
+			<Value Name="Belize" XmlName="Belize" />
+			<Value Name="Benin" XmlName="Benin" />
+			<Value Name="Bermuda" XmlName="Bermuda" />
+			<Value Name="Bhutan" XmlName="Bhutan" />
+			<Value Name="Bolivia" XmlName="Bolivia" />
+			<Value Name="BosniaHerzegovina" XmlName="Bosnia-Herzegovina" />
+			<Value Name="Botswana" XmlName="Botswana" />
+			<Value Name="Brazil" XmlName="Brazil" />
+			<Value Name="BritishIndianOceanTerritory" XmlName="British Indian Ocean Territory" />
+			<Value Name="Brunei" XmlName="Brunei" />
+			<Value Name="Bulgaria" XmlName="Bulgaria" />
+			<Value Name="BurkinaFaso" XmlName="Burkina Faso" />
+			<Value Name="Burma" XmlName="Burma" />
+			<Value Name="Burundi" XmlName="Burundi" />
+			<Value Name="Cambodia" XmlName="Cambodia" />
+			<Value Name="Cameroon" XmlName="Cameroon" />
+			<Value Name="CantonAndEnderburyIslands" XmlName="Canton and Enderbury Islands" />
+			<Value Name="CapeVerde" XmlName="Cape Verde" />
+			<Value Name="CaymanIslands" XmlName="Cayman Islands" />
+			<Value Name="CentralAfricanRepublic" XmlName="Central African Republic" />
+			<Value Name="Chad" XmlName="Chad" />
+			<Value Name="Chile" XmlName="Chile" />
+			<Value Name="China" XmlName="China" />
+			<Value Name="ChristmasIsland" XmlName="Christmas Island" />
+			<Value Name="CocosKeelingIslands" XmlName="Cocos (Keeling) Islands" />
+			<Value Name="Colombia" XmlName="Colombia" />
+			<Value Name="Comoros" XmlName="Comoros" />
+			<Value Name="Congo" XmlName="Congo" />
+			<Value Name="CongoDemocraticRepublic" XmlName="Congo, Democratic Republic" />
+			<Value Name="CookIslands" XmlName="Cook Islands" />
+			<Value Name="CostaRica" XmlName="Costa Rica" />
+			<Value Name="CoteDIvoire" XmlName="Côte d’Ivoire" />
+			<Value Name="Croatia" XmlName="Croatia" />
+			<Value Name="Cuba" XmlName="Cuba" />
+			<Value Name="Curacao" XmlName="Curaçao" />
+			<Value Name="Cyprus" XmlName="Cyprus" />
+			<Value Name="CzechRepublic" XmlName="Czech Republic" />
+			<Value Name="Denmark" XmlName="Denmark" />
+			<Value Name="Djibouti" XmlName="Djibouti" />
+			<Value Name="Dominica" XmlName="Dominica" />
+			<Value Name="DominicanRepublic" XmlName="Dominican Republic" />
+			<Value Name="DronningMaudLand" XmlName="Dronning Maud Land" />
+			<Value Name="EastTimor" XmlName="East Timor" />
+			<Value Name="Ecuador" XmlName="Ecuador" />
+			<Value Name="Egypt" XmlName="Egypt" />
+			<Value Name="ElSalvador" XmlName="El Salvador" />
+			<Value Name="EquatorialGuinea" XmlName="Equatorial Guinea" />
+			<Value Name="Eritrea" XmlName="Eritrea" />
+			<Value Name="Estonia" XmlName="Estonia" />
+			<Value Name="Ethiopia" XmlName="Ethiopia" />
+			<Value Name="FaeroeIslandsFøroyar" XmlName="Faeroe Islands (Føroyar)" />
+			<Value Name="FalklandIslands" XmlName="Falkland Islands" />
+			<Value Name="Fiji" XmlName="Fiji" />
+			<Value Name="Finland" XmlName="Finland" />
+			<Value Name="France" XmlName="France" />
+			<Value Name="FrenchGuiana" XmlName="French Guiana" />
+			<Value Name="FrenchPolynesia" XmlName="French Polynesia" />
+			<Value Name="Gabon" XmlName="Gabon" />
+			<Value Name="Gambia" XmlName="Gambia" />
+			<Value Name="Georgia" XmlName="Georgia" />
+			<Value Name="Germany" XmlName="Germany" />
+			<Value Name="Ghana" XmlName="Ghana" />
+			<Value Name="Gibraltar" XmlName="Gibraltar" />
+			<Value Name="GreatBritain" XmlName="Great Britain" />
+			<Value Name="Greece" XmlName="Greece" />
+			<Value Name="Greenland" XmlName="Greenland" />
+			<Value Name="Grenada" XmlName="Grenada" />
+			<Value Name="Guadeloupe" XmlName="Guadeloupe" />
+			<Value Name="Guam" XmlName="Guam" />
+			<Value Name="Guatemala" XmlName="Guatemala" />
+			<Value Name="Guernsey" XmlName="Guernsey" />
+			<Value Name="GuineaBissau" XmlName="Guinea-Bissau" />
+			<Value Name="Guinea" XmlName="Guinea" />
+			<Value Name="Guyana" XmlName="Guyana" />
+			<Value Name="Haiti" XmlName="Haiti" />
+			<Value Name="HeardAndMcDonaldIslands" XmlName="Heard and McDonald Islands" />
+			<Value Name="Honduras" XmlName="Honduras" />
+			<Value Name="HongKong" XmlName="Hong Kong" />
+			<Value Name="Hungary" XmlName="Hungary" />
+			<Value Name="Iceland" XmlName="Iceland" />
+			<Value Name="India" XmlName="India" />
+			<Value Name="Indonesia" XmlName="Indonesia" />
+			<Value Name="InternationalMonetaryFund" XmlName="International Monetary Fund" />
+			<Value Name="Iran" XmlName="Iran" />
+			<Value Name="Iraq" XmlName="Iraq" />
+			<Value Name="IsleOfMan" XmlName="Isle of Man" />
+			<Value Name="Israel" XmlName="Israel" />
+			<Value Name="Italy" XmlName="Italy" />
+			<Value Name="IvoryCoast" XmlName="Ivory Coast" />
+			<Value Name="Jamaica" XmlName="Jamaica" />
+			<Value Name="Japan" XmlName="Japan" />
+			<Value Name="Jersey" XmlName="Jersey" />
+			<Value Name="JohnstonIsland" XmlName="Johnston Island" />
+			<Value Name="Jordan" XmlName="Jordan" />
+			<Value Name="Kampuchea" XmlName="Kampuchea" />
+			<Value Name="Kazakhstan" XmlName="Kazakhstan" />
+			<Value Name="Kenya" XmlName="Kenya" />
+			<Value Name="Kiribati" XmlName="Kiribati" />
+			<Value Name="KoreaNorth" XmlName="Korea, North" />
+			<Value Name="KoreaSouth" XmlName="Korea, South" />
+			<Value Name="Kuwait" XmlName="Kuwait" />
+			<Value Name="Kyrgyzstan" XmlName="Kyrgyzstan" />
+			<Value Name="Laos" XmlName="Laos" />
+			<Value Name="Latvia" XmlName="Latvia" />
+			<Value Name="Lebanon" XmlName="Lebanon" />
+			<Value Name="Lesotho" XmlName="Lesotho" />
+			<Value Name="Liberia" XmlName="Liberia" />
+			<Value Name="Libya" XmlName="Libya" />
+			<Value Name="Liechtenstein" XmlName="Liechtenstein" />
+			<Value Name="Lithuania" XmlName="Lithuania" />
+			<Value Name="Luxembourg" XmlName="Luxembourg" />
+			<Value Name="Macau" XmlName="Macau" />
+			<Value Name="MacedoniaFormerYugRep" XmlName="Macedonia (Former Yug. Rep.)" />
+			<Value Name="Madagascar" XmlName="Madagascar" />
+			<Value Name="Malawi" XmlName="Malawi" />
+			<Value Name="Malaysia" XmlName="Malaysia" />
+			<Value Name="Maldives" XmlName="Maldives" />
+			<Value Name="Mali" XmlName="Mali" />
+			<Value Name="Malta" XmlName="Malta" />
+			<Value Name="MarshallIslands" XmlName="Marshall Islands" />
+			<Value Name="Martinique" XmlName="Martinique" />
+			<Value Name="Mauritania" XmlName="Mauritania" />
+			<Value Name="Mauritius" XmlName="Mauritius" />
+			<Value Name="Mayotte" XmlName="Mayotte" />
+			<Value Name="Micronesia" XmlName="Micronesia" />
+			<Value Name="MidwayIslands" XmlName="Midway Islands" />
+			<Value Name="Mexico" XmlName="Mexico" />
+			<Value Name="Moldova" XmlName="Moldova" />
+			<Value Name="Monaco" XmlName="Monaco" />
+			<Value Name="Mongolia" XmlName="Mongolia" />
+			<Value Name="Montenegro" XmlName="Montenegro" />
+			<Value Name="Montserrat" XmlName="Montserrat" />
+			<Value Name="Morocco" XmlName="Morocco" />
+			<Value Name="Mozambique" XmlName="Mozambique" />
+			<Value Name="Myanmar" XmlName="Myanmar" />
+			<Value Name="Nauru" XmlName="Nauru" />
+			<Value Name="Namibia" XmlName="Namibia" />
+			<Value Name="Nepal" XmlName="Nepal" />
+			<Value Name="NetherlandsAntilles" XmlName="Netherlands Antilles" />
+			<Value Name="Netherlands" XmlName="Netherlands" />
+			<Value Name="NewCaledonia" XmlName="New Caledonia" />
+			<Value Name="NewZealand" XmlName="New Zealand" />
+			<Value Name="Nicaragua" XmlName="Nicaragua" />
+			<Value Name="Niger" XmlName="Niger" />
+			<Value Name="Nigeria" XmlName="Nigeria" />
+			<Value Name="Niue" XmlName="Niue" />
+			<Value Name="NorfolkIsland" XmlName="Norfolk Island" />
+			<Value Name="NorthernMarianaIslands" XmlName="Northern Mariana Islands" />
+			<Value Name="Norway" XmlName="Norway" />
+			<Value Name="Oman" XmlName="Oman" />
+			<Value Name="Pakistan" XmlName="Pakistan" />
+			<Value Name="Palau" XmlName="Palau" />
+			<Value Name="Palestine" XmlName="Palestine" />
+			<Value Name="Panama" XmlName="Panama" />
+			<Value Name="PapuaNewGuinea" XmlName="Papua New Guinea" />
+			<Value Name="Paraguay" XmlName="Paraguay" />
+			<Value Name="Peru" XmlName="Peru" />
+			<Value Name="Philippines" XmlName="Philippines" />
+			<Value Name="PitcairnIsland" XmlName="Pitcairn Island" />
+			<Value Name="Poland" XmlName="Poland" />
+			<Value Name="PuertoRico" XmlName="Puerto Rico" />
+			<Value Name="Qatar" XmlName="Qatar" />
+			<Value Name="Reunion" XmlName="Reunion" />
+			<Value Name="Romania" XmlName="Romania" />
+			<Value Name="Russia" XmlName="Russia" />
+			<Value Name="Rwanda" XmlName="Rwanda" />
+			<Value Name="SamoaWestern" XmlName="Samoa (Western)" />
+			<Value Name="SamoaAmerica" XmlName="Samoa (America)" />
+			<Value Name="SanMarino" XmlName="San Marino" />
+			<Value Name="SaoTomeAndPrincipe" XmlName="São Tomé and Príncipe" />
+			<Value Name="SaudiArabia" XmlName="Saudi Arabia" />
+			<Value Name="Senegal" XmlName="Sénégal" />
+			<Value Name="Serbia" XmlName="Serbia" />
+			<Value Name="Seychelles" XmlName="Seychelles" />
+			<Value Name="SierraLeone" XmlName="Sierra Leone" />
+			<Value Name="Singapore" XmlName="Singapore" />
+			<Value Name="Slovakia" XmlName="Slovakia" />
+			<Value Name="Slovenia" XmlName="Slovenia" />
+			<Value Name="SolomonIslands" XmlName="Solomon Islands" />
+			<Value Name="Somalia" XmlName="Somalia" />
+			<Value Name="SouthAfrica" XmlName="South Africa" />
+			<Value Name="Spain" XmlName="Spain" />
+			<Value Name="SriLanka" XmlName="Sri Lanka" />
+			<Value Name="StHelena" XmlName="St. Helena" />
+			<Value Name="StKittsAndNevis" XmlName="St. Kitts and Nevis" />
+			<Value Name="StLucia" XmlName="St. Lucia" />
+			<Value Name="StVincentAndTheGrenadines" XmlName="St. Vincent and the Grenadines" />
+			<Value Name="Sudan" XmlName="Sudan" />
+			<Value Name="Suriname" XmlName="Suriname" />
+			<Value Name="SvalbardAndJanMayenIslands" XmlName="Svalbard and Jan Mayen Islands" />
+			<Value Name="Swaziland" XmlName="Swaziland" />
+			<Value Name="Sweden" XmlName="Sweden" />
+			<Value Name="Switzerland" XmlName="Switzerland" />
+			<Value Name="Syria" XmlName="Syria" />
+			<Value Name="Tahiti" XmlName="Tahiti" />
+			<Value Name="Taiwan" XmlName="Taiwan" />
+			<Value Name="Tajikistan" XmlName="Tajikistan" />
+			<Value Name="Tanzania" XmlName="Tanzania" />
+			<Value Name="Thailand" XmlName="Thailand" />
+			<Value Name="TimorLeste" XmlName="Timor-Leste" />
+			<Value Name="Togo" XmlName="Togo" />
+			<Value Name="TrinidadAndTobago" XmlName="Trinidad and Tobago" />
+			<Value Name="Tunisia" XmlName="Tunisia" />
+			<Value Name="Turkey" XmlName="Turkey" />
+			<Value Name="Turkmenistan" XmlName="Turkmenistan" />
+			<Value Name="TurksAndCaicosIslands" XmlName="Turks and Caicos Islands" />
+			<Value Name="Tuvalu" XmlName="Tuvalu" />
+			<Value Name="Uganda" XmlName="Uganda" />
+			<Value Name="Ukraine" XmlName="Ukraine" />
+			<Value Name="UnitedArabEmirates" XmlName="United Arab Emirates" />
+			<Value Name="UpperVolta" XmlName="Upper Volta" />
+			<Value Name="Uruguay" XmlName="Uruguay" />
+			<Value Name="Uzbekistan" XmlName="Uzbekistan" />
+			<Value Name="Vanuatu" XmlName="Vanuatu" />
+			<Value Name="Vatican" XmlName="Vatican" />
+			<Value Name="Venezuela" XmlName="Venezuela" />
+			<Value Name="Vietnam" XmlName="Vietnam" />
+			<Value Name="VirginIslands" XmlName="Virgin Islands" />
+			<Value Name="WakeIsland" XmlName="Wake Island" />
+			<Value Name="WallisAndFutunaIslands" XmlName="Wallis and Futuna Islands" />
+			<Value Name="WesternSahara" XmlName="Western Sahara" />
+			<Value Name="WesternSamoa" XmlName="Western Samoa" />
+			<Value Name="Yemen" XmlName="Yemen" />
+			<Value Name="Zaire" XmlName="Zaïre" />
+			<Value Name="Zambia" XmlName="Zambia" />
+			<Value Name="Zimbabwe" XmlName="Zimbabwe" />
+		</Enum>
+
+	</Enums>
+
+	<UrlFilters>
+		<Method Name="InvoiceFilters">
+			<Type Name="Text" UrlName="text" Type="string" />
+			<Type Name="DocumentType" UrlName="type[]" Type="List&lt;DocumentType&gt;" SelfInitialize="True" />
+			<Type Name="DocumentStatus" UrlName="status[]" Type="List&lt;DocumentStatus&gt;" SelfInitialize="True" />
+			<Type Name="DateTo" UrlName="date[to]" Type="DateTime?" />
+			<Type Name="DateFrom" UrlName="date[from]" Type="DateTime?" />
+			<Type Name="DueDateTo" UrlName="due_date[to]" Type="DateTime?" />
+			<Type Name="DueDateFrom" UrlName="due_date[from]" Type="DateTime?" />
+			<Type Name="TotalBeforeTaxesTo" UrlName="total_before_taxes[to]" Type="float?" />
+			<Type Name="TotalBeforeTaxesFrom" UrlName="total_before_taxes[from]" Type="float?" />
+			<Type Name="NonArchived" UrlName="non_archived" Type="bool?" />
+			<Type Name="Archived" UrlName="archived" Type="bool?" />
+		</Method>
+	</UrlFilters>
 
 </Class>

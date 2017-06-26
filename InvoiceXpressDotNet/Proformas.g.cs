@@ -1,4 +1,4 @@
-// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Net;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/proformas/create">Proformas Create</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Create(string apiKey, string accountName, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/proformas.xml?api_key={0}", apiKey, accountName);
@@ -41,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/proformas/get">Proformas Get</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, int proformaId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoices/{2}.xml?api_key={0}", apiKey, accountName, proformaId);
@@ -64,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/proformas/update">Proformas Update</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, int proformaId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoices/{2}.xml?api_key={0}", apiKey, accountName, proformaId);
@@ -86,7 +86,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/proformas/list">Proformas List</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_List(string apiKey, string accountName)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/proformas.xml?api_key={0}", apiKey, accountName);
@@ -109,7 +109,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/proformas/change-state">Proformas ChangeState</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_ChangeState(string apiKey, string accountName, int proformaId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/proformas/{2}/change-state.xml?api_key={0}", apiKey, accountName, proformaId);
@@ -132,7 +132,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/proformas/email">Proformas EmailInvoice</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_EmailInvoice(string apiKey, string accountName, int proformaId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/proformas/{2}/email-document.xml?api_key={0}", apiKey, accountName, proformaId);

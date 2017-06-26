@@ -1,4 +1,4 @@
-// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Net;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/create">Clients Create</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Create(string apiKey, string accountName, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients.xml?api_key={0}", apiKey, accountName);
@@ -41,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/get">Clients Get</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, int clientId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}.xml?api_key={0}", apiKey, accountName, clientId);
@@ -64,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/update">Clients Update</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, int clientId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}.xml?api_key={0}", apiKey, accountName, clientId);
@@ -86,7 +86,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list">Clients List</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_List(string apiKey, string accountName, int? page, int? perPage, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients.xml?api_key={0}&page={2}&per_page={3}", apiKey, accountName, page, perPage);
@@ -108,7 +108,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/list-invoice">Clients Invoices</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Invoices(string apiKey, string accountName, int clientId, int? page, int? perPage)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/{2}/invoices.xml?api_key={0}&page={3}&per_page={4}", apiKey, accountName, clientId, page, perPage);
@@ -131,7 +131,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/find-by-name">Clients FindByName</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_FindByName(string apiKey, string accountName, string clientName)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/find-by-name.xml?api_key={0}&client_name={2}", apiKey, accountName, clientName);
@@ -154,7 +154,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/clients/find-by-code">Clients FindByCode</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_FindByCode(string apiKey, string accountName, string clientCode)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/clients/find-by-code.xml?api_key={0}&client_code={2}", apiKey, accountName, clientCode);

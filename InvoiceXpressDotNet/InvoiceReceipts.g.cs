@@ -1,4 +1,4 @@
-// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Net;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/create">InvoiceReceipts Create</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Create(string apiKey, string accountName, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts.xml?api_key={0}", apiKey, accountName);
@@ -41,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/get">InvoiceReceipts Get</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, int invoiceReceiptId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts/{2}.xml?api_key={0}", apiKey, accountName, invoiceReceiptId);
@@ -64,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/update">InvoiceReceipts Update</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, int invoiceReceiptId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts/{2}.xml?api_key={0}", apiKey, accountName, invoiceReceiptId);
@@ -86,10 +86,10 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/list">InvoiceReceipts List</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
-			public static HttpResponseInfo Rest_List(string apiKey, string accountName)
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public static HttpResponseInfo Rest_List(string apiKey, string accountName, int? page, int? perPage)
 			{
-				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts.xml?api_key={0}", apiKey, accountName);
+				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts.xml?api_key={0}&page={2}&per_page={3}", apiKey, accountName, page, perPage);
 				var result = url.HttpGet();
 				if ((int) result.StatusCode != 200)
 					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)200)
@@ -100,16 +100,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/list">InvoiceReceipts List</a> Method
 			/// </summary>
-			public static InvoiceReceiptsDto List(string apiKey, string accountName)
+			public static InvoiceReceiptsDto List(string apiKey, string accountName, int? page, int? perPage)
 			{
-				HttpResponseInfo result = Rest_List(apiKey, accountName);
+				HttpResponseInfo result = Rest_List(apiKey, accountName, page, perPage);
 			    return result.Text.DeserializeXml<InvoiceReceiptsDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/change-state">InvoiceReceipts ChangeState</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_ChangeState(string apiKey, string accountName, int invoiceReceiptId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts/{2}/change-state.xml?api_key={0}", apiKey, accountName, invoiceReceiptId);
@@ -123,16 +123,16 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/change-state">InvoiceReceipts ChangeState</a> Method
 			/// </summary>
-			public static InvoiceReceiptChangeStateDto ChangeState(string apiKey, string accountName, int invoiceReceiptId, InvoiceReceiptChangeStateDto inputData)
+			public static InvoiceReceiptChangeStateResponseDto ChangeState(string apiKey, string accountName, int invoiceReceiptId, InvoiceReceiptChangeStateDto inputData)
 			{
 				HttpResponseInfo result = Rest_ChangeState(apiKey, accountName, invoiceReceiptId, inputData.XmlSerializeToString());
-			    return result.Text.DeserializeXml<InvoiceReceiptChangeStateDto>();
+			    return result.Text.DeserializeXml<InvoiceReceiptChangeStateResponseDto>();
 			}
 
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/email">InvoiceReceipts EmailInvoice</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_EmailInvoice(string apiKey, string accountName, int invoiceReceiptId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/invoice_receipts/{2}/email-document.xml?api_key={0}", apiKey, accountName, invoiceReceiptId);
@@ -154,7 +154,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/invoice-receipt/related-documents">InvoiceReceipts RelatedDocuments</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_RelatedDocuments(string apiKey, string accountName, int invoiceReceiptId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/document/{2}/related_documents.xml?api_key={0}", apiKey, accountName, invoiceReceiptId);

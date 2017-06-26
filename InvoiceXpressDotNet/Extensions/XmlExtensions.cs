@@ -18,7 +18,7 @@ namespace InvoiceXpressDotNet.Extensions
             using (XmlWriter writer = XmlWriter.Create(stream, xml))
             {
                 var serializer = new XmlSerializer(objectInstance.GetType());
-                var ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+                var ns = new XmlSerializerNamespaces(new[] {XmlQualifiedName.Empty});
                 serializer.Serialize(writer, objectInstance, ns);
                 string returnXml = stream.ToString().RemoveEmptyEntries();
 
@@ -38,7 +38,7 @@ namespace InvoiceXpressDotNet.Extensions
 
             var serializer = new XmlSerializer(typeof(T));
             using (var reader = new StringReader(xmlDeserialize))
-                return (T)serializer.Deserialize(reader);
+                return (T) serializer.Deserialize(reader);
         }
 
         /// <summary>

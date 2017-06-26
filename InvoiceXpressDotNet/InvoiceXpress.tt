@@ -1,0 +1,984 @@
+﻿<#@ template debug="true" hostSpecific="true" language="C#" #> 
+<#@ output extension=".cs" encoding="utf-8" #>
+<#@include file="$(SolutionDir)T4\TemplateFilemanager.CS.ttinclude" #>
+<#@include file="$(SolutionDir)T4\ConfigurationAccessor.ttinclude" #>
+<#@include file="$(SolutionDir)T4\EventkeyT4.ttinclude" #>
+
+//generated at : <#= DateTime.Now.ToString(CultureInfo.InvariantCulture) #>
+<#
+	string xmlFileContent = File.ReadAllText(ParentFilePath, Encoding.UTF8);
+    TemplateFileManager m = TemplateFileManager.Create(this);
+	
+	var xmlConfig = Xml.DeserializeXml<Class>(xmlFileContent);
+    GenerateEnums(m, xmlConfig);
+    GenerateDtos(m, xmlConfig);
+    GenerateApiCalls(m, xmlConfig);
+	GenerateUrlDtos(m, xmlConfig);
+
+    m.Process();
+#>
+<#+
+    private const string BaseNamespace = "InvoiceXpressDotNet";
+
+    private void GenerateApiCalls(TemplateFileManager m, Class mc)
+    {
+        foreach (ClassNestedClass api in mc.NestedClass)
+        {
+            m.StartNewFile($"{api.Name}.g.cs");
+            PrintFileHeader();
+#>
+using System;
+using System.Net;
+using System.ComponentModel;
+using <#= BaseNamespace #>.Extensions;
+using <#= BaseNamespace #>.DataTransferObjects;
+
+namespace <#=BaseNamespace #>
+{
+	public static partial class InvoiceXpress
+    {
+		/// <summary>
+		/// InvoiceXpress <a href="<#= api.ApiUrl #>"><#= api.Name #></a> module
+		/// </summary>
+		public static partial class <#= api.Name #>
+		{
+<#+
+	    foreach (ClassNestedClassMethod mtd in api.Method)
+	    {
+	        //string inputNameSpace = string.Empty; //String.Format("{0}", mtd.Name);
+	        //string returnNameSpace = string.Empty; //String.Format("{0}", mtd.Name);
+
+	        UrlParmsHelper u = BuildParameters(mtd);
+	        string returnClassName = u.ReturnClassName;
+#>
+
+			/// <summary>
+			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
+			/// </summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public static HttpResponseInfo Rest_<#=mtd.Name #>(<#=u.MethodSignatureStr #>)
+			{
+				string url = <#= u.UrlStringFormat #>;
+				var result = url.Http<#= GetHttpMethod(mtd.HttpMethod) #>(<#= u.HasInput ? "inputData" : "" #>);
+				if ((int) result.StatusCode != <#=mtd.SucessCode #>)
+					throw new System.Exception(string.Format("Invalid HttpStatusCode. Expected {0}", (HttpStatusCode)<#=mtd.SucessCode #>)
+						, new Exception(result.Text));
+				return result;
+			}
+
+			/// <summary>
+			/// InvoiceXpress <a href="<#= mtd.ApiUrl ?? "" #>"><#=api.Name #> <#=mtd.Name #></a> Method
+			/// </summary>
+			public static <#=returnClassName #> <#=mtd.Name #>(<#=u.MethodCallStr #>)
+			{
+<#+
+	        string deserializePart = u.HasReturn ? $".DeserializeXml<{returnClassName}>()" : string.Empty;
+	        Write("\t\t\t\t");
+	        string invocationCall = u.HasInput
+	            ? $"Rest_{mtd.Name}({u.MethodCallParameters}{(string.IsNullOrEmpty(u.MethodCallParameters) ? "" : ", ")}inputData.XmlSerializeToString())"
+		        : $"Rest_{mtd.Name}({u.MethodCallParameters})";
+
+	        WriteLine(u.HasReturn
+	            ? $"HttpResponseInfo result = {invocationCall};\r\n\t\t\t    return result.Text{deserializePart};"
+		        : $"{invocationCall};");
+#>
+			}
+<#+
+	    }
+#>
+
+	}
+}
+}<#+
+            m.EndBlock();
+        }
+    }
+
+    private void GenerateDtos(TemplateFileManager m, Class c)
+	{
+		foreach (ClassType type in c.Types)
+		{
+			m.StartNewFile($"{type.Name}.g.cs");
+			PrintFileHeader();
+
+#>
+using System;
+using System.Xml.Serialization;
+using System.ComponentModel;
+using System.Collections.Generic;
+using <#= BaseNamespace #>.Extensions;
+using <#= BaseNamespace #>.Enums;
+
+
+namespace <#= BaseNamespace #>.DataTransferObjects
+{
+	[XmlRoot("<#= type.XmlName #>"), XmlType(AnonymousType=true)]
+	public partial class <#= type.Name #> : Dto
+	{		
+<#+
+            if (type.TypeAttribute != null)
+			{
+#>
+		[XmlAttribute]
+		public string type = "<#=type.TypeAttribute #>";
+<#+
+			}
+			
+			foreach (ClassTypeProperty p in type.Property)
+			{
+				if (!Core.IsAnyOf(p.XmlType, StringComparer.OrdinalIgnoreCase, "date", "float", "int", "bool"))
+				{
+#>		
+		[XmlElement("<#=p.XmlName #>")]
+		public <#=p.Type #> <#=p.Name #> { get; set; }<#=Core.IsAnyOf(p.SelfInitialize, "true", "True") ? $" = new {p.Type}();" : "" #>
+<#+
+				}
+				else
+				{
+#>
+		
+		[XmlIgnore]
+		public <#= p.Type #> <#=p.Name #> { get; set; }
+		
+		[XmlElement("<#=p.XmlName #>"), EditorBrowsableAttribute(EditorBrowsableState.Never), Browsable(false)]
+	    public string _<#=p.Name #>Dto
+	    {	    
+			get { return <#=p.Name #>.ToXml<<#= p.Type #>>(); }
+            set { <#=p.Name #> = value.FromXml<<#= p.Type #>>(); }
+	    }
+<#+
+				}
+			}
+#>
+		
+		/*
+		public override void SetFromXml(string xml)
+		{
+			var me = this;
+			me = xml.DeserializeXml<<#= type.Name #>>();
+        }
+		*/
+	}
+}
+<#+
+			m.EndBlock();
+		}
+	}
+	
+	private void GenerateEnums(TemplateFileManager m, Class c)
+	{
+	    foreach (ClassEnum e in c.Enums)
+	    {
+	        m.StartNewFile($"{e.Name}.enum.g.cs");
+		    PrintFileHeader();
+
+#>
+using System;
+using System.Xml.Serialization;
+using System.ComponentModel;
+using <#= BaseNamespace #>.Attributes;
+using <#= BaseNamespace #>.Extensions;
+
+namespace <#= BaseNamespace #>.Enums
+{
+	public enum <#= e.Name #>
+	{
+		[XmlEnum("")]
+		[UrlFilter("")]
+		None = 0,
+<#+
+		foreach (ClassEnumValue enumValue in e.Value)
+		{
+		    if (!string.IsNullOrWhiteSpace(enumValue.Description))
+		    {
+#>
+		/// <summary>
+		/// <#=enumValue.Description ?? "" #>
+		/// </summary>		
+<#+
+		    }
+#>
+		<#=!string.IsNullOrWhiteSpace(enumValue.XmlName)? $"[XmlEnum(Name=\"{enumValue.XmlName}\")]" : ""#>
+		<#=!string.IsNullOrWhiteSpace(enumValue.UrlName)? $"[UrlFilter(\"{enumValue.UrlName}\")]" : ""#>
+		<#=ToCSharpValidName(enumValue.Name) #>,
+<#+
+		}
+#>
+	}
+}
+<#+
+	        m.EndBlock();
+	    }
+	}
+
+	private void GenerateUrlDtos(TemplateFileManager m, Class c)
+	{
+		ClassUrlFiltersMethod mt = c.UrlFilters.Method;
+
+		m.StartNewFile($"{mt.Name}.f.g.cs");
+		PrintFileHeader();
+
+#>
+using System;
+using System.Xml.Serialization;
+using System.ComponentModel;
+using System.Collections.Generic;
+using <#= BaseNamespace #>.Attributes;
+using <#= BaseNamespace #>.Enums;
+using <#= BaseNamespace #>.Extensions;
+
+namespace <#= BaseNamespace #>.DataTransferObjects
+{
+	public class <#= mt.Name #>
+	{		
+<#+
+		foreach (ClassUrlFiltersMethodType t in mt.Type)
+		{
+#>
+		[UrlFilter("<#=t.UrlName #>")]
+		public <#=t.Type #> <#= t.Name #> { get; set; }<#=Core.IsAnyOf(t.SelfInitialize, "true", "True") ? $" = new {t.Type}();" : "" #>
+<#+
+		}
+#>
+	}
+}
+<#+
+		m.EndBlock();
+	}
+
+	private void PrintFileHeader()
+	{
+		WriteLine($"// Connector API {BaseNamespace} developed by EventKey, Lda http://www.eventkey.pt");
+	}
+	
+	private class UrlParmsHelper
+    {
+        public string UrlStringFormat { get; set; }
+        public bool HasInput { get; set; }
+        public bool HasReturn { get; set; }
+        public string InputClassName { get; set; }
+        public string ReturnClassName { get; set; }
+        public string MethodSignatureStr { get; set; }
+        public string MethodCallStr { get; set; }
+        public string MethodCallParameters { get; set; }
+    }
+
+    private string GetHttpMethod(string httpMethod)
+    {
+        switch (httpMethod.ToLower())
+        {
+            case "get": return "Get";
+            case "post": return "Post";
+            case "create": return "Create";
+            case "put": return "Put";
+            case "delete": return "Delete";
+            default: throw new ArgumentOutOfRangeException(nameof(httpMethod));
+        }
+    }
+
+    private static UrlParmsHelper BuildParameters(ClassNestedClassMethod m)
+    {
+        string maskedUrl = m.Url;
+        var up = new UrlParmsHelper();
+
+        up.HasInput = !string.IsNullOrEmpty(m.InputClass);
+        up.InputClassName = m.InputClass;
+
+        up.HasReturn = !string.IsNullOrEmpty(m.ReturnClass);
+        up.ReturnClassName = up.HasReturn ? m.ReturnClass : "void";
+
+        var sbUrlStringFormat = new StringBuilder();
+        var sbParameterList = new StringBuilder();
+        var sbArgumentList = new StringBuilder();
+
+        if (m.UrlParms != null)
+        {
+            foreach (ClassNestedClassMethodParam p in m.UrlParms.OrderBy(p => p.Index))
+            {
+                maskedUrl = maskedUrl.Replace($"{{{p.Name}}}", $"{{{p.Index}}}");
+                sbUrlStringFormat.Append($", {p.Name}");
+	            string parm = $"{p.Type} {p.Name}";
+
+                sbParameterList.Append(sbParameterList.Length > 0
+                    ? $", {parm}"
+	                : $"{parm}");
+
+                sbArgumentList.Append(sbArgumentList.Length > 0
+                    ? $", {p.Name}"
+	                : $"{p.Name}");
+            }
+        }
+
+        string m1SignatureStr = sbParameterList.ToString();
+        string m2SignatureStr = m1SignatureStr;
+        if (m.InputClass != null)
+        {
+            m1SignatureStr =
+	            $"{m1SignatureStr}{(m1SignatureStr.Length > 0 ? ", string inputData" : "string inputData")}";
+            m2SignatureStr =
+	            $"{m2SignatureStr}{(m2SignatureStr.Length > 0 ? $", {up.InputClassName} inputData" : $"{up.InputClassName} inputData")}";
+        }
+
+        up.UrlStringFormat = $"string.Format(\"{maskedUrl}\"{sbUrlStringFormat})";
+        up.MethodSignatureStr = m1SignatureStr;
+        up.MethodCallStr = m2SignatureStr;
+        up.MethodCallParameters = sbArgumentList.ToString();
+        return up;
+    }
+	
+	#region Xml
+	
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class Class {
+    
+		private ClassNestedClass[] nestedClassField;
+    
+		private ClassType[] typesField;
+    
+		private ClassEnum[] enumsField;
+    
+		private ClassUrlFilters urlFiltersField;
+    
+		private string typeField;
+    
+		private string nameField;
+    
+		private string nameSpaceField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlElementAttribute("NestedClass")]
+		public ClassNestedClass[] NestedClass {
+			get {
+				return this.nestedClassField;
+			}
+			set {
+				this.nestedClassField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlArrayItemAttribute("Type", IsNullable=false)]
+		public ClassType[] Types {
+			get {
+				return this.typesField;
+			}
+			set {
+				this.typesField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlArrayItemAttribute("Enum", IsNullable=false)]
+		public ClassEnum[] Enums {
+			get {
+				return this.enumsField;
+			}
+			set {
+				this.enumsField = value;
+			}
+		}
+    
+		/// <remarks/>
+		public ClassUrlFilters UrlFilters {
+			get {
+				return this.urlFiltersField;
+			}
+			set {
+				this.urlFiltersField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Type {
+			get {
+				return this.typeField;
+			}
+			set {
+				this.typeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string NameSpace {
+			get {
+				return this.nameSpaceField;
+			}
+			set {
+				this.nameSpaceField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassNestedClass {
+    
+		private ClassNestedClassMethod[] methodField;
+    
+		private string nameField;
+    
+		private string apiUrlField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlElementAttribute("Method")]
+		public ClassNestedClassMethod[] Method {
+			get {
+				return this.methodField;
+			}
+			set {
+				this.methodField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string ApiUrl {
+			get {
+				return this.apiUrlField;
+			}
+			set {
+				this.apiUrlField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassNestedClassMethod {
+    
+		private ClassNestedClassMethodParam[] urlParmsField;
+    
+		private string[] textField;
+    
+		private string nameField;
+    
+		private string httpMethodField;
+    
+		private string urlField;
+    
+		private string apiUrlField;
+    
+		private byte sucessCodeField;
+    
+		private string inputClassField;
+    
+		private string returnClassField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlArrayItemAttribute("Param", IsNullable=false)]
+		public ClassNestedClassMethodParam[] UrlParms {
+			get {
+				return this.urlParmsField;
+			}
+			set {
+				this.urlParmsField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlTextAttribute()]
+		public string[] Text {
+			get {
+				return this.textField;
+			}
+			set {
+				this.textField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string HttpMethod {
+			get {
+				return this.httpMethodField;
+			}
+			set {
+				this.httpMethodField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Url {
+			get {
+				return this.urlField;
+			}
+			set {
+				this.urlField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string ApiUrl {
+			get {
+				return this.apiUrlField;
+			}
+			set {
+				this.apiUrlField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public byte SucessCode {
+			get {
+				return this.sucessCodeField;
+			}
+			set {
+				this.sucessCodeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string InputClass {
+			get {
+				return this.inputClassField;
+			}
+			set {
+				this.inputClassField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string ReturnClass {
+			get {
+				return this.returnClassField;
+			}
+			set {
+				this.returnClassField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassNestedClassMethodParam {
+    
+		private byte indexField;
+    
+		private string nameField;
+    
+		private string typeField;
+    
+		private byte defaultValueField;
+    
+		private bool defaultValueFieldSpecified;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public byte Index {
+			get {
+				return this.indexField;
+			}
+			set {
+				this.indexField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Type {
+			get {
+				return this.typeField;
+			}
+			set {
+				this.typeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public byte DefaultValue {
+			get {
+				return this.defaultValueField;
+			}
+			set {
+				this.defaultValueField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlIgnoreAttribute()]
+		public bool DefaultValueSpecified {
+			get {
+				return this.defaultValueFieldSpecified;
+			}
+			set {
+				this.defaultValueFieldSpecified = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassType {
+    
+		private ClassTypeProperty[] propertyField;
+    
+		private string xmlNameField;
+    
+		private string nameField;
+    
+		private string typeAttributeField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlElementAttribute("Property")]
+		public ClassTypeProperty[] Property {
+			get {
+				return this.propertyField;
+			}
+			set {
+				this.propertyField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string XmlName {
+			get {
+				return this.xmlNameField;
+			}
+			set {
+				this.xmlNameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string TypeAttribute {
+			get {
+				return this.typeAttributeField;
+			}
+			set {
+				this.typeAttributeField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassTypeProperty {
+    
+		private string xmlNameField;
+    
+		private string nameField;
+    
+		private string typeField;
+    
+		private string xmlTypeField;
+    
+		private string selfInitializeField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string XmlName {
+			get {
+				return this.xmlNameField;
+			}
+			set {
+				this.xmlNameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Type {
+			get {
+				return this.typeField;
+			}
+			set {
+				this.typeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string XmlType {
+			get {
+				return this.xmlTypeField;
+			}
+			set {
+				this.xmlTypeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string SelfInitialize {
+			get {
+				return this.selfInitializeField;
+			}
+			set {
+				this.selfInitializeField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassEnum {
+    
+		private ClassEnumValue[] valueField;
+    
+		private string nameField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlElementAttribute("Value")]
+		public ClassEnumValue[] Value {
+			get {
+				return this.valueField;
+			}
+			set {
+				this.valueField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassEnumValue {
+    
+		private string nameField;
+    
+		private string urlNameField;
+    
+		private string xmlNameField;
+    
+		private string descriptionField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string UrlName {
+			get {
+				return this.urlNameField;
+			}
+			set {
+				this.urlNameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string XmlName {
+			get {
+				return this.xmlNameField;
+			}
+			set {
+				this.xmlNameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Description {
+			get {
+				return this.descriptionField;
+			}
+			set {
+				this.descriptionField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassUrlFilters {
+    
+		private ClassUrlFiltersMethod methodField;
+    
+		/// <remarks/>
+		public ClassUrlFiltersMethod Method {
+			get {
+				return this.methodField;
+			}
+			set {
+				this.methodField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassUrlFiltersMethod {
+    
+		private ClassUrlFiltersMethodType[] typeField;
+    
+		private string nameField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlElementAttribute("Type")]
+		public ClassUrlFiltersMethodType[] Type {
+			get {
+				return this.typeField;
+			}
+			set {
+				this.typeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+	}
+
+	/// <remarks/>
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+	public partial class ClassUrlFiltersMethodType {
+    
+		private string urlNameField;
+    
+		private string nameField;
+    
+		private string typeField;
+    
+		private string selfInitializeField;
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string UrlName {
+			get {
+				return this.urlNameField;
+			}
+			set {
+				this.urlNameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Name {
+			get {
+				return this.nameField;
+			}
+			set {
+				this.nameField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string Type {
+			get {
+				return this.typeField;
+			}
+			set {
+				this.typeField = value;
+			}
+		}
+    
+		/// <remarks/>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string SelfInitialize {
+			get {
+				return this.selfInitializeField;
+			}
+			set {
+				this.selfInitializeField = value;
+			}
+		}
+	}
+	
+	#endregion
+#>

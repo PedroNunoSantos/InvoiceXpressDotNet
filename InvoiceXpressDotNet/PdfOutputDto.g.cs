@@ -1,8 +1,11 @@
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
+
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {

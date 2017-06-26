@@ -1,14 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceXpressDotNet", "InvoiceXpressDotNet\InvoiceXpressDotNet.csproj", "{119A28A2-9FB7-407D-815C-728A102B8E02}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".T4", ".T4", "{480C9F6B-DCAF-4D37-A50C-62C556DED5B2}"
 	ProjectSection(SolutionItems) = preProject
 		T4\ConfigurationAccessor.ttinclude = T4\ConfigurationAccessor.ttinclude
+		T4\EventKeyT4.ttinclude = T4\EventKeyT4.ttinclude
 		T4\MultipleOutputHelper.ttinclude = T4\MultipleOutputHelper.ttinclude
+		T4\TemplateFilemanager.CS.ttinclude = T4\TemplateFilemanager.CS.ttinclude
+		T4\VsAutomationHelper.CS.ttinclude = T4\VsAutomationHelper.CS.ttinclude
 	EndProjectSection
 EndProject
 Global

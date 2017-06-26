@@ -1,4 +1,4 @@
-// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Net;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/create">Accounts Create</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Create(string apiKey, string inputData)
 			{
 				string url = string.Format("https://www.app.invoicexpress.com/api/accounts/create.xml?api_key={0}", apiKey);
@@ -41,7 +41,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/get">Accounts Get</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Get(string apiKey, string accountName, string accountId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/get.xml?api_key={0}", apiKey, accountName, accountId);
@@ -64,7 +64,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/stats">Accounts Stats</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Stats(string accountName, string accountId, string apiKey)
 			{
 				string url = string.Format("https://{0}.app.invoicexpress.com/api/accounts/{1}/stats.xml?api_key={2}", accountName, accountId, apiKey);
@@ -87,7 +87,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/suspend">Accounts Suspend</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Suspend(string apiKey, string accountName, string accountId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/suspend.xml?api_key={0}", apiKey, accountName, accountId);
@@ -109,7 +109,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/activate">Accounts Activate</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Activate(string apiKey, string accountName, string accountId)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/activate.xml?api_key={0}", apiKey, accountName, accountId);
@@ -131,7 +131,7 @@ namespace InvoiceXpressDotNet
 			/// <summary>
 			/// InvoiceXpress <a href="https://invoicexpress.com/api/accounts/update">Accounts Update</a> Method
 			/// </summary>
-			[EditorBrowsableAttribute(EditorBrowsableState.Never)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
 			public static HttpResponseInfo Rest_Update(string apiKey, string accountName, string accountId, string inputData)
 			{
 				string url = string.Format("https://{1}.app.invoicexpress.com/api/accounts/{2}/update.xml?api_key={0}", apiKey, accountName, accountId);

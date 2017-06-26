@@ -1,8 +1,11 @@
+﻿// Connector API InvoiceXpressDotNet developed by EventKey, Lda http://www.eventkey.pt
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
+
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
@@ -13,7 +16,7 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 		public string type = "array";
 		
 		[XmlElement("simplified_invoice")]
-		public SimplifiedInvoiceDto[] Items { get; set; }
+		public List<SimplifiedInvoiceDto> Items { get; set; } = new List<SimplifiedInvoiceDto>();
 		
 		/*
 		public override void SetFromXml(string xml)

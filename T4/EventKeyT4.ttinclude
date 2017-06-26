@@ -1,0 +1,204 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE"#>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Serialization" #>
+<#@ import namespace="System.Xml.Schema" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#+
+
+	#region Internal Helpers
+
+	string ParentFilePath => GetParentProjectItem().Properties.Item("FullPath").Value.ToString();
+	FileCodeModel ParentFileCodeModel => GetParentProjectItem().FileCodeModel;
+
+	ProjectItem GetParentProjectItem(){
+		DTE dte = GetDTEObject();
+		ProjectItem myProjectItem =  dte.Solution.FindProjectItem(Host.TemplateFile);	
+		return  myProjectItem.Collection.Parent as ProjectItem;
+	}
+
+	DTE GetDTEObject(){
+		ITextTemplatingEngineHost host = Host;	
+		IServiceProvider hostServiceProvider = (IServiceProvider) host;
+		DTE dte = null;
+		if (hostServiceProvider != null)
+		{
+			dte = hostServiceProvider.
+				GetService(typeof(DTE)) as DTE;
+		}
+		return dte;
+	}
+
+	#endregion
+
+	// Core Helpers
+	public static class Core
+	{
+		public static bool IsAnyOf<T>(T data, params T[] parms) => 
+			IsAnyOf(data, EqualityComparer<T>.Default, parms);
+
+		public static bool IsAnyOf<T>(T data, IEqualityComparer<T> comparer, params T[] parms) =>
+			parms.Contains(data,comparer);
+
+		public static bool IsNoneOf<T>(T data, params T[] parms) => 
+			IsNoneOf(data, EqualityComparer<T>.Default, parms);
+
+		public static bool IsNoneOf<T>(T data, IEqualityComparer<T> comparer, params T[] parms) => 
+			!parms.Contains(data,comparer);
+	}
+
+	// Xml Helpers
+	public static class Xml
+	{
+		public static T DeserializeXml<T>(string objectData)
+		{
+			return (T) DeserializeXml(objectData, typeof(T));
+		}
+
+		public static object DeserializeXml(string objectData, Type type)
+		{
+			var serializer = new XmlSerializer(type);
+			object result;
+
+			using (var reader = new StringReader(objectData))
+				result = serializer.Deserialize(reader);
+
+			return result;
+		}	
+
+		/*
+		public static string XmlToXsd(string xml)
+		{
+			using (var rd = new StringReader(xml))
+			using (var xmlReader = XmlReader.Create(rd))
+			{
+				//var schemaSet = new XmlSchemaSet();
+				var schemaInfer = new XmlSchemaInference();
+				XmlSchemaSet schemaSet = schemaInfer.InferSchema(xmlReader);
+				var sb = new StringBuilder();
+
+				foreach (XmlSchema schema in schemaSet.Schemas())
+				{
+					using (var stringWriter = new StringWriter())
+					using (var writer = XmlWriter.Create(stringWriter))
+					{
+						schema.Write(writer);
+						sb.Append(stringWriter.ToString());
+					}
+				}
+				return sb.ToString();
+			}
+		}
+
+		// http://mikehadlow.blogspot.pt/2007/01/writing-your-own-xsdexe.html
+		public string XsdToClass(string xsdStr, string namespaceName = "")
+		{
+			XmlSchema xsd = XmlSchema.Read(new StringReader(xsdStr), null);
+
+			var xsds = new XmlSchemas();
+			xsds.Add(xsd);
+			xsds.Compile(null, true);
+			var schemaImporter = new XmlSchemaImporter(xsds);
+
+			// create the codedom
+			var ns = new CodeNamespace(namespaceName);
+			var codeExporter = new XmlCodeExporter(ns);
+
+			var maps = new List<XmlTypeMapping>();
+			foreach (XmlSchemaType schemaType in xsd.SchemaTypes.Values)
+				maps.Add(schemaImporter.ImportSchemaType(schemaType.QualifiedName));
+
+			foreach (XmlSchemaElement schemaElement in xsd.Elements.Values)
+				maps.Add(schemaImporter.ImportTypeMapping(schemaElement.QualifiedName));
+
+			foreach (var map in maps)
+				codeExporter.ExportTypeMapping(map);
+
+			RemoveAttributes(ns);
+
+			// Check for invalid characters in identifiers
+			CodeGenerator.ValidateIdentifiers(ns);
+
+			// output the C# code
+			var codeProvider = new CSharpCodeProvider();
+			using (var wr = new StringWriter())
+			{
+				var opt = new CodeGeneratorOptions();
+				opt.VerbatimOrder = false;
+				codeProvider.GenerateCodeFromNamespace(ns, wr, opt);
+				return wr.GetStringBuilder().ToString();
+			}
+		}
+
+		private void RemoveAttributes(CodeNamespace codeNamespace)
+		{
+			foreach (CodeTypeDeclaration codeType in codeNamespace.Types)
+			{
+				CodeAttributeDeclaration xmlTypeAttribute = null;
+				foreach (CodeAttributeDeclaration codeAttribute in codeType.CustomAttributes)
+				{
+					if (codeAttribute.Name == "System.Xml.Serialization.XmlTypeAttribute")
+						xmlTypeAttribute = codeAttribute;
+				}
+				codeType.CustomAttributes.Clear();
+				if (xmlTypeAttribute != null)
+					codeType.CustomAttributes.Add(xmlTypeAttribute);
+			}
+		}
+		*/
+
+	}
+
+	// string Helpers
+	public static string RemoveDiacritics(string stIn)
+	{
+		string stFormD = stIn.Normalize(NormalizationForm.FormD);
+		var sb = new StringBuilder();
+
+		foreach (char c in stFormD)
+		{
+			UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(c);
+			if (uc != UnicodeCategory.NonSpacingMark)
+				sb.Append(c);
+		}
+		return sb.ToString();
+	}
+
+	private static string ToCSharpValidName(string baseName)
+	{
+		char[] separators = {' ', '(', ')', '.', '-', 'º', '\'', '%', '?', '!', ';', '/', ':', ','};
+		string validcSharpName = Replace(RemoveDiacritics(baseName), separators, "_");
+		string enumIdentifier = validcSharpName.Trim('_');
+		return enumIdentifier;
+	}
+
+	public static string Replace(string str, char[] separators, string newVal)
+	{
+		string[] temp = str.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+		return string.Join(newVal, temp);
+	}
+
+	public static string StringArrayToString(params string[] stringArray)
+	{
+		return stringArray.Aggregate((c, a) => $"{c}{Environment.NewLine}{a}");
+	}
+
+
+	// ENV
+	private string FolderNamespace
+	{
+		get
+		{
+			object temp = System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint");
+			string theNamespace = temp is string ? temp as string : string.Empty;
+			return theNamespace;
+		}
+	}
+
+
+#>
