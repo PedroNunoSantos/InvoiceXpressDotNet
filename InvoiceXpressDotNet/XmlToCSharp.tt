@@ -1,0 +1,113 @@
+<#@ template debug="true" hostSpecific="true" language="C#" #> 
+<#@ output extension=".txt" encoding="utf-8" #>
+<#@include file="$(SolutionDir)T4\EventkeyT4.ttinclude" #>
+<#@include file="$(SolutionDir)T4\TemplateFilemanager.CS.ttinclude" #>
+<#@ assembly name="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" #>
+<#
+	string xmlFileContent = File.ReadAllText(ParentFilePath, Encoding.UTF8);
+	TemplateFileManager m = TemplateFileManager.Create(this);
+	m.StartNewFile("Xml.ttinclude");
+	
+	GenerateCSharp(xmlFileContent);
+
+	m.EndBlock();
+	m.Process();
+	
+#>
+<#+
+	public static string XmlToXsd(string xml)
+	{
+		using (var rd = new StringReader(xml))
+		using (var xmlReader = XmlReader.Create(rd))
+		{
+			//var schemaSet = new XmlSchemaSet();
+			var schemaInfer = new XmlSchemaInference();
+			XmlSchemaSet schemaSet = schemaInfer.InferSchema(xmlReader);
+			var sb = new StringBuilder();
+
+			foreach (XmlSchema schema in schemaSet.Schemas())
+			{
+				using (var stringWriter = new StringWriter())
+				using (var writer = XmlWriter.Create(stringWriter))
+				{
+					schema.Write(writer);
+					sb.Append(stringWriter);
+				}
+			}
+			return sb.ToString();
+		}
+	}
+
+	// http://mikehadlow.blogspot.pt/2007/01/writing-your-own-xsdexe.html
+	public string XsdToClass(string xsdStr, string namespaceName = "")
+	{
+		XmlSchema xsd = XmlSchema.Read(new StringReader(xsdStr), null);
+
+		var xsds = new XmlSchemas();
+		xsds.Add(xsd);
+		xsds.Compile(null, true);
+		var schemaImporter = new XmlSchemaImporter(xsds);
+
+		// create the codedom
+		var ns = new System.CodeDom.CodeNamespace(namespaceName);
+		var codeExporter = new XmlCodeExporter(ns);
+
+		var maps = new List<XmlTypeMapping>();
+		foreach (XmlSchemaType schemaType in xsd.SchemaTypes.Values)
+			maps.Add(schemaImporter.ImportSchemaType(schemaType.QualifiedName));
+
+		foreach (XmlSchemaElement schemaElement in xsd.Elements.Values)
+			maps.Add(schemaImporter.ImportTypeMapping(schemaElement.QualifiedName));
+
+		foreach (var map in maps)
+			codeExporter.ExportTypeMapping(map);
+
+		RemoveAttributes(ns);
+
+		// Check for invalid characters in identifiers
+		CodeGenerator.ValidateIdentifiers(ns);
+
+		// output the C# code
+		var codeProvider = new CSharpCodeProvider();
+		using (var wr = new StringWriter())
+		{
+			var opt = new CodeGeneratorOptions();
+			opt.VerbatimOrder = false;
+			codeProvider.GenerateCodeFromNamespace(ns, wr, opt);
+			return wr.GetStringBuilder().ToString();
+		}
+	}
+
+	private void RemoveAttributes(System.CodeDom.CodeNamespace codeNamespace)
+	{
+		foreach (CodeTypeDeclaration codeType in codeNamespace.Types)
+		{
+			CodeAttributeDeclaration xmlTypeAttribute = null;
+			foreach (CodeAttributeDeclaration codeAttribute in codeType.CustomAttributes)
+			{
+				if (codeAttribute.Name == "System.Xml.Serialization.XmlTypeAttribute")
+					xmlTypeAttribute = codeAttribute;
+			}
+			codeType.CustomAttributes.Clear();
+			if (xmlTypeAttribute != null)
+				codeType.CustomAttributes.Add(xmlTypeAttribute);
+		}
+	}
+
+	private void WriteHeader()
+	{
+		
+	}
+
+	private void GenerateCSharp(string xml)
+	{
+		var xsd = XmlToXsd(xml);
+		var cSharp = XsdToClass(xsd);
+
+#>
+\<#+
+<#=cSharp#>
+\#>
+<#+
+	}
+#>

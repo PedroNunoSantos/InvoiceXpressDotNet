@@ -2,17 +2,17 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections;
 using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
-
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
 	[XmlRoot("output"), XmlType(AnonymousType=true)]
 	public partial class PdfOutputDto : Dto
 	{		
-		
+
 		[XmlElement("pdfUrl")]
 		public string PdfUrl { get; set; }
 		

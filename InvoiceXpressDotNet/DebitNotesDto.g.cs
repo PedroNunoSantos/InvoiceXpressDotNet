@@ -2,10 +2,10 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections;
 using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
-
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
@@ -14,10 +14,19 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 	{		
 		[XmlAttribute]
 		public string type = "array";
-		
+
 		[XmlElement("debit_note")]
 		public List<DebitNoteDto> Items { get; set; } = new List<DebitNoteDto>();
 		
+		#region Add Methods elpers
+		
+		public void Add(DebitNoteDto item) => Items.Add(item);
+
+		public void AddRange(IEnumerable<DebitNoteDto> items) => Items.AddRange(items);
+		
+		#endregion
+
+				
 		/*
 		public override void SetFromXml(string xml)
 		{

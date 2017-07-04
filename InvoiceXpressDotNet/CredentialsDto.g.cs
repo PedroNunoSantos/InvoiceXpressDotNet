@@ -2,20 +2,20 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections;
 using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
-
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
 	[XmlRoot("credentials"), XmlType(AnonymousType=true)]
 	public partial class CredentialsDto : Dto
 	{		
-		
+
 		[XmlElement("login")]
 		public string Login { get; set; }
-		
+
 		[XmlElement("password")]
 		public string Password { get; set; }
 		

@@ -2,10 +2,10 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections;
 using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
-
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
@@ -14,7 +14,7 @@ namespace InvoiceXpressDotNet.DataTransferObjects
 	{		
 		[XmlAttribute]
 		public string type = "array";
-		
+
 		[XmlElement("account")]
 		public List<UserAccountDto> Items { get; set; } = new List<UserAccountDto>();
 		

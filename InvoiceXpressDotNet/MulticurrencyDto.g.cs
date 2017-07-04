@@ -2,20 +2,20 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections;
 using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
-
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
 	[XmlRoot("multicurrency"), XmlType(AnonymousType=true)]
 	public partial class MulticurrencyDto : Dto
 	{		
-		
+
 		[XmlElement("rate")]
 		public string Rate { get; set; }
-		
+
 		[XmlElement("currency")]
 		public string Currency { get; set; }
 		

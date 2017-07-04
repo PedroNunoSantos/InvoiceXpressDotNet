@@ -1,0 +1,44 @@
+﻿ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Generated helper templates
+// Generated items
+// GestaoEventos\InvoiceXpressDotNet\Xml.ttinclude

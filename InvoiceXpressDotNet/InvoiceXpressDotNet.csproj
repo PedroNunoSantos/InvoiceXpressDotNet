@@ -254,6 +254,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Xml.ttinclude">
+      <DependentUpon>XmlToCSharp.tt</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -261,6 +264,16 @@
   <ItemGroup>
     <Content Include="InvoiceXpress.xml">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XmlToCSharp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>XmlToCSharp.txt</LastGenOutput>
+      <DependentUpon>InvoiceXpress.xml</DependentUpon>
+    </Content>
+    <Content Include="XmlToCSharp.txt">
+      <DependentUpon>XmlToCSharp.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

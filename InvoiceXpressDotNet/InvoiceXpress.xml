@@ -140,7 +140,7 @@
 				<Param Index="2" Name="invoiceId" Type="int" />
 			</UrlParms>
 		</Method>
-		
+
 		<!--
 		<Method Name="List" HttpMethod="GET"
 		        Url="https://{accountName}.app.invoicexpress.com/invoices.xml?api_key={apiKey}&amp;page={page}&amp;per_page={perPage}"
@@ -155,7 +155,7 @@
 			</UrlParms>
 		</Method>		
 		-->
-		
+
 		<Method Name="ChangeState" HttpMethod="PUT"
 		        Url="https://{accountName}.app.invoicexpress.com/invoice/{invoiceId}/change-state.xml?api_key={apiKey}"
 		        ApiUrl="https://invoicexpress.com/api/invoices/change-state"
@@ -1011,11 +1011,11 @@
 		</Type>
 
 		<Type XmlName="accounts" Name="UserAccountsDto" TypeAttribute="array">
-			<Property XmlName="account" Name="Items" Type="List&lt;UserAccountDto&gt;" SelfInitialize="True" />
+			<Property XmlName="account" Name="Items" Type="List&lt;UserAccountDto&gt;" InitializeList="true" />
 		</Type>
 
 		<Type XmlName="accounts" Name="AccountsDto" TypeAttribute="array">
-			<Property XmlName="account" Name="Items" Type="List&lt;AccountDto&gt;" SelfInitialize="True" />
+			<Property XmlName="account" Name="Items" Type="List&lt;AccountDto&gt;" InitializeList="true" />
 		</Type>
 
 		<Type XmlName="change_account_to" Name="ChangeAccountToDto">
@@ -1077,7 +1077,7 @@
 		</Type>
 
 		<Type XmlName="invoices" Name="InvoicesDto" TypeAttribute="array">
-			<Property XmlName="invoice" Name="Items" Type="List&lt;InvoiceDto&gt;" SelfInitialize="True" />
+			<Property XmlName="invoice" Name="Invoices" Type="List&lt;InvoiceDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 
 			<Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
 			<Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
@@ -1086,7 +1086,7 @@
 		</Type>
 
 		<Type XmlName="proformas" Name="ProformasDto" TypeAttribute="array">
-			<Property XmlName="proforma" Name="Items" Type="List&lt;InvoiceDto&gt;" SelfInitialize="True" />
+			<Property XmlName="proforma" Name="Items" Type="List&lt;InvoiceDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 			<Property XmlName="current_page" Name="CurrentPage" Type="int?" XmlType="int" />
 			<Property XmlName="total_pages" Name="TotalPages" Type="int?" XmlType="int" />
 			<Property XmlName="total_entries" Name="TotalEntries" Type="int?" XmlType="int" />
@@ -1094,7 +1094,7 @@
 		</Type>
 
 		<Type XmlName="invoice_receipts" Name="InvoiceReceiptsDto" TypeAttribute="array">
-			<Property XmlName="invoice_receipt" Name="InvoiceReceipt" Type="List&lt;InvoiceReceiptDto&gt;" SelfInitialize="True" />
+			<Property XmlName="invoice_receipt" Name="InvoiceReceipt" Type="List&lt;InvoiceReceiptDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 			<Property XmlName="current_page" Name="CurrentPage" Type="int?" />
 			<Property XmlName="total_pages" Name="TotalPages" Type="int?" />
 			<Property XmlName="total_entries" Name="TotalEntries" Type="int?" />
@@ -1122,7 +1122,7 @@
 		</Type>
 
 		<Type XmlName="clients" Name="ClientsDto" TypeAttribute="array">
-			<Property XmlName="client" Name="Items" Type="List&lt;ClientDto&gt;" SelfInitialize="True" />
+			<Property XmlName="client" Name="Items" Type="List&lt;ClientDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 		<Type XmlName="preferred_contact" Name="PreferredContactDto">
@@ -1148,7 +1148,7 @@
 		</Type>
 
 		<Type XmlName="items" Name="ItemsDto" TypeAttribute="array">
-			<Property XmlName="item" Name="Items" Type="List&lt;ItemDto&gt;" SelfInitialize="True" />
+			<Property XmlName="item" Name="Items" Type="List&lt;ItemDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 		<Type XmlName="tax" Name="TaxDto">
@@ -1160,7 +1160,7 @@
 		</Type>
 
 		<Type XmlName="taxes" Name="TaxesDto" TypeAttribute="array">
-			<Property XmlName="tax" Name="Items" Type="List&lt;TaxDto&gt;" SelfInitialize="True" />
+			<Property XmlName="tax" Name="Items" Type="List&lt;TaxDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 		<Type XmlName="invoice" Name="InvoiceChangeStateDto">
@@ -1263,7 +1263,7 @@
 		</Type>
 
 		<Type XmlName="events" Name="EventsDto" TypeAttribute="array">
-			<Property XmlName="event" Name="Items" Type="List&lt;EventDto&gt;" SelfInitialize="True" />
+			<Property XmlName="event" Name="Items" Type="List&lt;EventDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 		<Type XmlName="invoice_receipt" Name="InvoiceReceiptDto">
@@ -1319,7 +1319,7 @@
 		</Type>
 
 		<Type XmlName="simplified_invoices" Name="SimplifiedInvoicesDto" TypeAttribute="array">
-			<Property XmlName="simplified_invoice" Name="Items" Type="List&lt;SimplifiedInvoiceDto&gt;" SelfInitialize="True" />
+			<Property XmlName="simplified_invoice" Name="Items" Type="List&lt;SimplifiedInvoiceDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 		<Type XmlName="account_stats" Name="AccountStatsDto">
@@ -1355,7 +1355,7 @@
 		</Type>
 
 		<Type XmlName="credit_notes" Name="CreditNotesDto" TypeAttribute="array">
-			<Property XmlName="credit_note" Name="Items" Type="List&lt;CreditNoteDto&gt;" SelfInitialize="True" />
+			<Property XmlName="credit_note" Name="Items" Type="List&lt;CreditNoteDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 
@@ -1390,12 +1390,13 @@
 		</Type>
 
 		<Type XmlName="debit_notes" Name="DebitNotesDto" TypeAttribute="array">
-			<Property XmlName="debit_note" Name="Items" Type="List&lt;DebitNoteDto&gt;" SelfInitialize="True" />
+			<Property XmlName="debit_note" Name="Items" Type="List&lt;DebitNoteDto&gt;" InitializeList="true" GenerateAddMethods="true"/>
 		</Type>
 
 	</Types>
+  
 	<Enums>
-		
+
 		<Enum Name="DocumentState">
 			<Value Name="Draft" XmlName="draft" UrlName="draft" />
 			<Value Name="Settled" XmlName="settled" UrlName="settled" />
@@ -1722,8 +1723,8 @@
 	<UrlFilters>
 		<Method Name="InvoiceFilters">
 			<Type Name="Text" UrlName="text" Type="string" />
-			<Type Name="DocumentType" UrlName="type[]" Type="List&lt;DocumentType&gt;" SelfInitialize="True" />
-			<Type Name="DocumentStatus" UrlName="status[]" Type="List&lt;DocumentStatus&gt;" SelfInitialize="True" />
+			<Type Name="DocumentType" UrlName="type[]" Type="List&lt;DocumentType&gt;" InitializeList="true" />
+			<Type Name="DocumentStatus" UrlName="status[]" Type="List&lt;DocumentStatus&gt;" InitializeList="true" />
 			<Type Name="DateTo" UrlName="date[to]" Type="DateTime?" />
 			<Type Name="DateFrom" UrlName="date[from]" Type="DateTime?" />
 			<Type Name="DueDateTo" UrlName="due_date[to]" Type="DateTime?" />

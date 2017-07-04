@@ -2,20 +2,20 @@
 using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections;
 using System.Collections.Generic;
 using InvoiceXpressDotNet.Extensions;
 using InvoiceXpressDotNet.Enums;
-
 
 namespace InvoiceXpressDotNet.DataTransferObjects
 {
 	[XmlRoot("invoice_receipt"), XmlType(AnonymousType=true)]
 	public partial class InvoiceReceiptChangeStateDto : Dto
 	{		
-		
+
 		[XmlElement("state")]
 		public DocumentState State { get; set; }
-		
+
 		[XmlElement("message")]
 		public string Message { get; set; }
 		
