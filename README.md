@@ -61,7 +61,7 @@ item2.Name = "Some not so amazing product";
 item2.UnitPrice = 0;
 item2.Quantity = 1;
 
-// add itens to the invoice
+// add items to the invoice
 invoice.Items = new ItemsDto { Items = new[] { item1, item2 } };
 
 // create the invoice
@@ -137,11 +137,11 @@ invoiceReceipt.Client = client;
 invoiceReceipt.Observations = "Generated with InvoiceXpressDotNet";
 
 // Create some items for the invoice
-var produt1 = new ItemDto();
-produt1.Name = "Some amazing product";
-produt1.UnitPrice = 200;
-produt1.Quantity = 1;
-produt1.Discount = 5.5F;
+var product1 = new ItemDto();
+product1.Name = "Some amazing product";
+product1.UnitPrice = 200;
+product1.Quantity = 1;
+product1.Discount = 5.5F;
 
 var gift = new ItemDto();
 gift.Name = "Gift";
@@ -149,7 +149,7 @@ gift.UnitPrice = 0;
 gift.Quantity = 1;
 
 // add itens to the invoice
-invoiceReceipt.Items = new ItemsDto { Items = new[] { produt1, gift } };
+invoiceReceipt.Items = new ItemsDto { Items = new[] { product1, gift } };
 
 // create the invoice
 InvoiceReceiptDto createdInvoiceReceipt = InvoiceXpress.InvoiceReceipts.Create(_apiKey, _accountName, invoiceReceipt);

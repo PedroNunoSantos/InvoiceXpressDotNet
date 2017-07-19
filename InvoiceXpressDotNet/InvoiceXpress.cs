@@ -41,7 +41,7 @@
 
 
 
-//generated at : 06/29/2017 16:15:06
+//generated at : 07/12/2017 15:24:16
 // Generated helper templates
 // Generated items
 // GestaoEventos\InvoiceXpressDotNet\InvoiceFilters.f.g.cs
